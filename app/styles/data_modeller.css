@@ -1,0 +1,528 @@
+.bg-primary {
+  background-color: #53809e;
+}
+
+.bg-secondary {
+  background-color: #799cb4;
+}
+
+.bg-border {
+  background-color: #e7eef3;
+}
+
+.text-primary {
+  color: #53809e;
+}
+
+.text-secondary {
+  color: #799cb4;
+}
+
+.text-border {
+  color: #e7eef3;
+}
+
+.theme-heritage-green {
+  background-color: #009677;
+  border-color: #00634f !important;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.text-heritage-green {
+  color: #009677 !important;
+}
+
+.theme-fresh-green {
+  background-color: #50b848;
+  border-color: #409439 !important;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.text-fresh-green {
+  color: #50b848 !important;
+}
+
+.theme-future-green {
+  background-color: #8dc63f;
+  border-color: #72a230 !important;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.text-future-green {
+  color: #8dc63f !important;
+}
+
+.theme-sky {
+  background-color: #00c0e8;
+  border-color: #0096b5 !important;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.text-sky {
+  color: #00c0e8 !important;
+}
+
+.theme-sun {
+  background-color: #fff200;
+  border-color: #ccc200 !important;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.text-sun {
+  color: #fff200 !important;
+}
+
+.theme-naartjie {
+  background-color: #f37021;
+  border-color: #d5580c !important;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.text-naartjie {
+  color: #f37021 !important;
+}
+
+.theme-cerise {
+  background-color: #ed0080;
+  border-color: #ba0064 !important;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.text-cerise {
+  color: #ed0080 !important;
+}
+
+.theme-brown {
+  background-color: #cbcba9;
+  border-color: #b8b889 !important;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.text-brown {
+  color: #cbcba9 !important;
+}
+
+.theme-dark {
+  background-color: #131313;
+  border-color: black !important;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.text-dark {
+  color: #131313 !important;
+}
+
+.border {
+  border-width: 1px !important;
+  border-radius: 5px !important;
+  border-style: solid !important;
+  border-color: #53809e !important;
+}
+
+.border-primary {
+  border-color: #53809e;
+}
+
+.bg-brown {
+  background-color: #cbcba9;
+}
+
+.text-brown {
+  color: #cbcba9;
+}
+
+.border-brown {
+  border-color: #cbcba9;
+}
+
+.bg-dark {
+  background-color: #131313;
+}
+
+.text-dark {
+  color: #131313;
+}
+
+.border-dark {
+  border-color: #131313;
+}
+
+.bg-sky {
+  background-color: #00c0e8;
+}
+
+.text-sky {
+  color: #00c0e8;
+}
+
+.border-sky {
+  border-color: #00c0e8;
+}
+
+.bg-sun {
+  background-color: #fff200;
+}
+
+.text-sun {
+  color: #fff200;
+}
+
+.border-sun {
+  border-color: #fff200;
+}
+
+.bg-heritage-green {
+  background-color: #009677;
+}
+
+.text-heritage-green {
+  color: #009677;
+}
+
+.border-heritage-green {
+  border-color: #009677;
+}
+
+.bg-future-green {
+  background-color: #009677;
+}
+
+.text-future-green {
+  color: #009677;
+}
+
+.border-future-green {
+  border-color: #009677;
+}
+
+.bg-naartjie {
+  background-color: #f37021;
+}
+
+.text-naartjie {
+  color: #f37021;
+}
+
+.border-naartjie {
+  border-color: #f37021;
+}
+
+.faded-text {
+  color: #2c3643;
+  color: rgba(44, 54, 67, 0.5);
+}
+
+.base-active-item {
+  background-color: #53809e !important;
+  color: white !important;
+}
+
+.header-text {
+  color: #53809e !important;
+  color: rgba(83, 128, 158, 0.8) !important;
+}
+
+.base-border {
+  border: 1px solid #c9c9c9;
+  border-radius: 5px;
+}
+
+.bg-om-heritage-green {
+  background-color: #009677;
+}
+
+.bg-om-fresh-green {
+  background-color: #50b848;
+}
+
+.bg-om-future-green {
+  background-color: #8dc63f;
+}
+
+.bg-om-sky {
+  background-color: #00c0e8;
+}
+
+.bg-om-sun {
+  background-color: #00c0e8;
+}
+
+.bg-om-naartjie {
+  background-color: #f37021;
+}
+
+.bg-om-cerise {
+  background-color: #ed0080;
+}
+
+.text-om-heritage-green {
+  color: #009677;
+}
+
+.text-om-fresh-green {
+  color: #50b848;
+}
+
+.text-om-future-green {
+  color: #8dc63f;
+}
+
+.text-om-sky {
+  color: #00c0e8;
+}
+
+.text-om-sun {
+  color: #fff200;
+}
+
+.text-om-naartjie {
+  color: #f37021;
+}
+
+.text-om-cerise {
+  color: #ed0080;
+}
+
+.border-om-heritage-green {
+  border-color: #009677 !important;
+}
+
+.border-om-fresh-green {
+  border-color: #50b848 !important;
+}
+
+.border-om-future-green {
+  border-color: #8dc63f !important;
+}
+
+.border-om-sky {
+  border-color: #00c0e8 !important;
+}
+
+.border-om-sun {
+  border-color: #fff200 !important;
+}
+
+.border-om-naartjie {
+  border-color: #f37021 !important;
+}
+
+.border-om-cerise {
+  border-color: #ed0080 !important;
+}
+
+.data-designer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  width: 100vw;
+  min-width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
+  background-color: #e4e6e8;
+}
+
+.data-designer .design-sidebar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  width: 250px;
+  height: 100vh;
+  background-color: #e7eef3;
+}
+
+.data-designer .design-sidebar .toolbar,
+.data-designer .design-sidebar .search-bar {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 10px;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.data-designer .design-sidebar .search-bar {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.data-designer .table-list {
+  height: 80vh;
+  width: 100%;
+  overflow: auto;
+}
+
+.data-designer .design-mode {
+  width: 80vw;
+  height: 100vh;
+  overflow: auto;
+}
+
+.table-search {
+  color: #5E5B5B;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 2px solid #1E90FF;
+  display: inline-block;
+}
+
+.faded-text {
+  color: #000000;
+}
+
+.link_label {
+  background: white;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.sql-table {
+  z-index: 15;
+  font-size: 0.85em;
+  min-width: 150px;
+  max-width: 250px;
+  display: inline-block;
+  background: white;
+  position: absolute;
+  border-radius: 5px;
+  border: 2px solid #53809e;
+}
+
+.sql-table-title {
+  background-color: #e7eef3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.sql-table-title .dropdown {
+  z-index: 999;
+}
+
+.sql-table-title .dropdown .dropdown-menu {
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+.sql-table-title .dropdown .dropdown-menu .dropdown-item {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin: 0px !important;
+  font-size: 0.85rem !important;
+}
+
+.sql-table .sql-table-title .title {
+  text-align: center;
+  padding: 5px;
+  font-weight: bold;
+  color: #53809e;
+  display: inline-block;
+  width: 100%;
+}
+
+.sql-table-content {
+  overflow: auto;
+  max-height: 200px;
+}
+
+.sql-table tbody td {
+  text-align: left;
+  padding: 3px;
+  border-bottom: 1px solid #e7eef3;
+}
+
+.sql-table.selected {
+  border-width: 3px;
+  border-color: #53809e;
+}
+
+.sql-table-field.selected {
+  font-weight: bold;
+  border: 0;
+  color: #FF0000;
+  background-color: #93DCFF;
+}
+
+.sql-table:hover {
+  cursor: pointer;
+}
+
+.primary {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.key {
+  font-style: italic;
+}
+
+.primary.key {
+  font-style: normal;
+}
+
+.typehint {
+  color: gray;
+}
+
+.field-type {
+  font-style: normal;
+  font-size: 0.75em;
+}
+
+.comment {
+  overflow: auto;
+  max-height: 50px;
+  font-size: 0.85em;
+  font-style: italic;
+  font-weight: normal !important;
+  color: silver;
+  margin-right: 0.5em;
+}
+
+.adding {
+  cursor: crosshair;
+}

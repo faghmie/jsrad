@@ -1,0 +1,56 @@
+
+.sticky {
+	background			: #FFFF5E;
+	display				: inline-block;
+	box-shadow			: 4px 4px 8px #1c1c1c;
+	-webkit-box-shadow	: 4px 4px 8px #1c1c1c;
+	-moz-box-shadow		: 4px 4px 8px #1c1c1c;
+	-o-box-shadow		: 4px 4px 8px #1c1c1c;
+	
+	-webkit-transform: rotate(2deg);
+	-moz-transform: rotate(2deg);
+	-o-transform: rotate(2deg);
+	-ms-transform: rotate(2deg);
+	transform: rotate(2deg);
+}
+	
+.stickytop {
+	text-align			: center;
+	font-weight			: bold;
+	font-family			: arial;
+	width				: 50%;
+	background-color	: rgba(51, 51, 51, 0.85); /*#FF5B0D;*/
+	padding				: 10px 0px 10px 0px;
+	position			: relative;
+	left				: 25%;
+	top					: -10px;
+	height				: 5px;
+	box-shadow			: 0px 4px 4px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow	: 0px 4px 4px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow		: 0px 4px 4px rgba(0, 0, 0, 0.3);
+	-o-box-shadow		: 0px 4px 4px rgba(0, 0, 0, 0.3);
+
+	/*rotate the tape 12 degrees anti-clockwise*/
+	-webkit-transform	: rotate(-6deg);
+	-moz-transform		: rotate(-6deg);
+	-o-transform		: rotate(-6deg);
+	-ms-transform		: rotate(-6deg);
+}
+
+.stickytext {
+	overflow			: hidden;
+	width				: 95%;
+	height				: 75%;
+	top					: 10px;
+	position			: absolute;
+}
+
+textarea.stickynotes {
+	width				: 100%;
+	height				: 100%;
+	border				: 0px;
+	resize				: none;
+	background			: transparent;
+	padding				: 10px 0px 0px 8px;
+	font-family			: "Comic Sans MS", cursive, sans-serif;
+}

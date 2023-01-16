@@ -1,0 +1,311 @@
+$base-text-color: rgb(44,54,67);
+$inverse-text-color: white;
+$faded-text-color: rgb(192,192,192);
+$base-bg-color: rgb(255,255,255);
+$border-color: rgb(201, 201, 201);
+$side-panel-color: rgb(228, 230, 232);
+$base-background: rgba($base-text-color, 0.2);
+$text-white: white;
+
+$swimlane-activity: rgb(192, 214, 228);
+$swimlane-start: rgb(82, 163, 35);
+$swimlane-end: rgb(49, 49, 49);
+
+$connector-color: rgb(35, 121, 163);
+
+$color-heritage-green: rgb(0, 150, 119);
+$color-fresh-green: rgb(80, 184, 72);
+$color-future-green: rgb(141, 198, 63);
+$color-sky: rgb(0, 192, 232);
+$color-sun: rgb(255, 242, 0);
+$color-naartjie: rgb(243, 112, 33);
+$color-cerise: rgb(237, 0, 128);
+$color-brown: rgb(203, 203, 169);
+$color-dark: rgb(19, 19, 19);
+
+//BIZNOUS
+  $color-primary: rgb(83,128,158);
+  $color-secondary: rgb(121,156,180);
+  $color-border: #e7eef3;
+
+//GREY
+  // $color-primary: rgb(73,73,73);
+  // $color-secondary: rgb(109,109,109);
+  // $color-border: rgb(223,223,223);
+
+//OLD MUTUAL
+  // $color-primary: rgb(0, 150, 119);
+  // $color-secondary: rgb(80, 184, 72);
+  // $color-border: rgba(180, 207, 141, 0.65);
+
+//SANLAM
+  // $color-primary: rgb(0,117,201);
+  // $color-secondary:rgb(38, 130, 196);
+  // $color-border: rgb(151, 198, 231);
+
+//RED
+  // $color-primary: rgb(208,72,72);
+  // $color-secondary: rgb(220,122,122);
+  // $color-border: rgb(234,175,175);
+
+//BROWN
+  // $color-primary: rgb(180,109,89);
+  // $color-secondary: rgb(195,138,122);
+  // $color-border: rgb(225,196,188);
+
+//CAPPUCCINO
+  // $color-primary: rgb(75,56,50);
+  // $color-secondary: rgb(133,68,66);
+  // $color-border: rgb(255,244,230);
+
+//SILVER
+  // $color-primary: rgb(167,167,167);
+  // $color-secondary: rgb(148,148,148);
+  // $color-border: rgb(180,180,180);
+
+//DEEP-BLUE
+  // $color-primary: rgb(0,0,128);
+  // $color-secondary: rgb(76,76,166);
+  // $color-border: rgb(226,43,141);
+  // $color-border: rgb(114,105,233);
+
+.bg-primary{
+  background-color: $color-primary;
+}
+.bg-secondary{
+  background-color: $color-secondary;
+}
+.bg-border{
+  background-color: $color-border;
+}
+.text-primary{
+  color: $color-primary;
+}
+.text-secondary{
+  color: $color-secondary;
+}
+.text-border{
+  color: $color-border;
+}
+
+
+$colours: 'heritage-green' $color-heritage-green,
+  'fresh-green' $color-fresh-green, 'future-green' $color-future-green,
+  'sky' $color-sky, 'sun' $color-sun, 'naartjie' $color-naartjie,
+  'cerise' $color-cerise, 'brown' $color-brown, 'dark' $color-dark;
+
+@each $i in $colours {
+  .theme-#{nth($i, 1)} {
+    background-color: nth($i, 2);
+    // color: white;
+    border-color: darken(nth($i, 2), 10%) !important;
+    border-width: 1px;
+    border-style: solid;
+  }
+  .text-#{nth($i, 1)} {
+    color: nth($i, 2) !important;
+  }
+}
+
+.border{
+  border-width: 1px !important;
+  border-radius: 5px !important;
+  border-style: solid !important;
+  border-color: $color-primary !important;
+}
+
+
+.border-primary {
+  border-color: $color-primary;
+}
+
+
+.bg-brown {
+  background-color: $color-brown;
+}
+
+.text-brown {
+  color: $color-brown;
+}
+
+.border-brown {
+  border-color: $color-brown;
+}
+
+.bg-dark {
+  background-color: $color-dark;
+}
+
+.text-dark {
+  color: $color-dark;
+}
+
+.border-dark {
+  border-color: $color-dark;
+}
+
+.bg-sky {
+  background-color: $color-sky;
+}
+
+.text-sky {
+  color: $color-sky;
+}
+
+.border-sky {
+  border-color: $color-sky;
+}
+
+.bg-sun {
+  background-color: $color-sun;
+}
+
+.text-sun {
+  color: $color-sun;
+}
+
+.border-sun {
+  border-color: $color-sun;
+}
+
+.bg-heritage-green {
+  background-color: $color-heritage-green;
+}
+
+.text-heritage-green {
+  color: $color-heritage-green;
+}
+
+.border-heritage-green {
+  border-color: $color-heritage-green;
+}
+
+.bg-future-green {
+  background-color: $color-heritage-green;
+}
+
+.text-future-green {
+  color: $color-heritage-green;
+}
+
+.border-future-green {
+  border-color: $color-heritage-green;
+}
+
+.bg-naartjie {
+  background-color: $color-naartjie;
+}
+
+.text-naartjie {
+  color: $color-naartjie;
+}
+
+.border-naartjie {
+  border-color: $color-naartjie;
+}
+
+.faded-text {
+  color: $base-text-color;
+  color: rgba($base-text-color, 0.5);
+}
+
+.base-active-item {
+  background-color: $color-primary !important;
+  color: $base-bg-color !important;
+}
+
+.header-text {
+  color: $color-primary !important;
+  color: rgba($color-primary, 0.8) !important;
+}
+
+.base-border {
+  border: 1px solid $border-color;
+  border-radius: 5px;
+}
+
+.bg-om-heritage-green {
+  background-color: $color-heritage-green;
+}
+
+.bg-om-fresh-green {
+  background-color: $color-fresh-green;
+}
+
+.bg-om-future-green {
+  background-color: $color-future-green;
+}
+
+.bg-om-sky {
+  background-color: $color-sky;
+}
+
+.bg-om-sun {
+  background-color: $color-sky;
+}
+
+.bg-om-naartjie {
+  background-color: $color-naartjie;
+}
+
+.bg-om-cerise {
+  background-color: $color-cerise;
+}
+
+.text-om-heritage-green {
+  color: $color-heritage-green;
+}
+
+.text-om-fresh-green {
+  color: $color-fresh-green;
+}
+
+.text-om-future-green {
+  color: $color-future-green;
+}
+
+.text-om-sky {
+  color: $color-sky;
+}
+
+.text-om-sun {
+  color: $color-sun;
+}
+
+.text-om-naartjie {
+  color: $color-naartjie;
+}
+
+.text-om-cerise {
+  color: $color-cerise;
+}
+
+.border-om-heritage-green {
+  border-color: $color-heritage-green !important;
+}
+
+.border-om-fresh-green {
+  border-color: $color-fresh-green !important;
+}
+
+.border-om-future-green {
+  border-color: $color-future-green !important;
+}
+
+.border-om-sky {
+  border-color: $color-sky !important;
+}
+
+.border-om-sun {
+  border-color: $color-sun !important;
+}
+
+.border-om-naartjie {
+  border-color: $color-naartjie !important;
+}
+
+.border-om-cerise {
+  border-color: $color-cerise !important;
+}
+
+$theme_type: 'primary' $color-primary $base-text-color;

@@ -1,0 +1,147 @@
+<!--
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width = device-width, initial-scale = 1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<link rel="manifest" href="manifest.json">
+
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="application-name" content="JSRad">
+	<meta name="apple-mobile-web-app-title" content="JSRad">
+	<meta name="theme-color" content="#0f4a73">
+	<meta name="msapplication-navbutton-color" content="#0f4a73">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="msapplication-starturl" content="/">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="icon" type="image/jpeg" sizes="48x48" href="images/webapp.jpg">
+	<link rel="apple-touch-icon" type="image/jpeg" sizes="48x48" href="images/webapp.jpg">
+
+	<title>PoC Builder</title>
+
+	<!-- build:style libs -->
+	<!-- /build -->
+
+	<!-- build:style app -->
+	<!-- /build -->
+
+	<style>
+		.loader {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			z-index: 1;
+			width: 150px;
+			height: 150px;
+			margin: -75px 0 0 -75px;
+			border: 16px solid #f3f3f3;
+			border-radius: 50%;
+			border-top: 16px solid #3498db;
+			width: 120px;
+			height: 120px;
+			-webkit-animation: spin 2s linear infinite;
+			animation: spin 2s linear infinite;
+		}
+
+		@-webkit-keyframes spin {
+			0% {
+				-webkit-transform: rotate(0deg);
+			}
+
+			100% {
+				-webkit-transform: rotate(360deg);
+			}
+		}
+
+		@keyframes spin {
+			0% {
+				transform: rotate(0deg);
+			}
+
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+
+		/* Add animation to "page content" */
+		.animate-bottom {
+			position: relative;
+			-webkit-animation-name: animatebottom;
+			-webkit-animation-duration: 1s;
+			animation-name: animatebottom;
+			animation-duration: 1s
+		}
+
+		@-webkit-keyframes animatebottom {
+			from {
+				bottom: -100px;
+				opacity: 0
+			}
+
+			to {
+				bottom: 0px;
+				opacity: 1
+			}
+		}
+
+		@keyframes animatebottom {
+			from {
+				bottom: -100px;
+				opacity: 0
+			}
+
+			to {
+				bottom: 0;
+				opacity: 1
+			}
+		}
+
+		.startup-loader {
+
+			text-align: center;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="startup-loader">
+		<div class="loader"></div>
+
+		<h3 style="display:inline-block;">starting...</h3>
+		<h4 id="progress-message"></h4>
+	</div>
+
+	<!-- build:script libs -->
+	<!-- /build -->
+
+	<!-- build:script app -->
+
+	<!-- /build -->
+
+	<!-- build:script main [defer] -->
+	<!-- /build -->
+
+	<script type="text/javascript" src="config/fa-icons.json"></script>
+
+	<script type="text/javascript" src="config/fa-icons.json"></script>
+	<script type="text/javascript">
+		window.addEventListener('DOMContentLoaded', function () {
+			// service_worker_init();
+			App.designer = new UiDesigner();
+
+			App.designer.build();
+			App.AuthToken = {};
+			load_prototype();
+		});
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,188 @@
+@import 'colors';
+
+.data-designer {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-grow: 1;
+    flex-wrap: nowrap;
+    width: 100vw;
+    min-width: 100vw;
+    max-width: 100vw;
+    height: 100vh;
+    background-color: $side-panel-color;
+    
+    .design-sidebar {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        width: 250px;
+        height: 100vh;
+        background-color: $color-border;
+
+        .toolbar,
+        .search-bar {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            flex-wrap: nowrap;
+        }
+
+        .search-bar{
+            justify-content: center;
+        }
+    }
+
+
+    .table-list {
+        height: 80vh;
+        width: 100%;
+        overflow: auto;
+    }
+
+    .design-mode {
+        width: 80vw;
+        height: 100vh;
+        overflow: auto;
+    }
+}
+
+.table-search {
+    color: #5E5B5B;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 2px solid #1E90FF;
+    display: inline-block;
+}
+
+.faded-text {
+    color: #000000;
+}
+
+.link_label {
+    background: white;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.sql-table {
+    z-index: 15;
+    font-size: 0.85em;
+    min-width: 150px;
+    max-width: 250px;
+    display: inline-block;
+
+    // background: rgba($base-text-color, 0.03);
+    background: $base-bg-color;
+    position: absolute;
+    border-radius: 5px;
+
+    // overflow: hidden;
+
+    // box-shadow: 0px 0px 5px $color-primary;
+    border: 2px solid $color-primary;
+}
+
+
+.sql-table-title {
+    background-color: $color-border;
+    // border-bottom: 1px solid $color-border;
+    // border-bottom: 3px solid $color-secondary;
+    
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .dropdown{
+        z-index: 999;
+        
+        .dropdown-menu{
+            padding: 0px !important;
+            margin: 0px !important;
+            .dropdown-item{
+                padding-top: 0 !important;
+                padding-bottom: 0 !important;
+                margin: 0px !important;
+                font-size: 0.85rem !important;
+            }
+        }
+    }
+}
+
+.sql-table .sql-table-title .title {
+    text-align: center;
+    padding: 5px;
+    font-weight: bold;
+    // color: $inverse-text-color;
+    color: $color-primary;
+    display: inline-block;
+    width: 100%;
+}
+
+.sql-table-content {
+    overflow: auto;
+    max-height: 200px;
+}
+
+.sql-table tbody td {
+    text-align: left;
+    padding: 3px;
+    border-bottom: 1px solid $color-border;
+}
+
+.sql-table.selected {
+    border-width: 3px;
+    border-color: $color-primary;
+}
+
+.sql-table-field.selected {
+    font-weight: bold;
+    border: 0;
+    color: #FF0000;
+    background-color: #93DCFF;
+
+}
+
+.sql-table:hover {
+    cursor: pointer;
+}
+
+.primary {
+    font-weight: bold;
+    font-style: italic;
+}
+
+.key {
+    font-style: italic;
+}
+
+.primary.key {
+    font-style: normal;
+}
+
+.typehint {
+    color: gray;
+}
+
+.field-type {
+    font-style: normal;
+    font-size: 0.75em;
+}
+
+.comment {
+    overflow: auto;
+    max-height: 50px;
+    font-size: 0.85em;
+    font-style: italic;
+    font-weight: normal !important;
+    color: $faded-text-color;
+    margin-right: 0.5em;
+}
+
+.adding {
+    cursor: crosshair;
+}

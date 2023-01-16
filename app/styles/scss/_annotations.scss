@@ -1,0 +1,163 @@
+/*
+http://www.cssarrowplease.com/
+*/
+
+.arrow_box {
+	position: relative;
+	background: #FFFFFF;
+	border: 2px solid #4a4a4a;
+    border-radius: 5px;
+}
+.arrow_box:after, .arrow_box:before {
+	right: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box:after {
+	border-color: rgba(213, 212, 209, 0);
+	border-right-color: #FFFFFF;
+	border-width: 30px;
+	margin-top: -30px;
+}
+.arrow_box:before {
+	border-color: rgba(74, 74, 74, 0);
+	border-right-color: #4a4a4a;
+	border-width: 33px;
+	margin-top: -33px;
+}
+
+/*
+ARROW*/
+
+.shape{
+    -webkit-transform: initial;
+  -moz-transform: initial;
+  -ms-transform: initial;
+  -o-transform: initial;
+  transform: initial;
+}
+
+
+.diamond {
+/*
+    -ms-transform-origin: center center;
+    -webkit-transform-origin: center center;
+    -moz-transform-origin: center center;
+    transform-origin: center center;
+    transform-style: preserve-3D;
+*/    
+    -ms-transform: rotateZ(-45deg) !important;
+    -webkit-transform: rotateZ(-45deg) !important;
+    -moz-transform: rotateZ(-45deg) !important;
+    transform: rotateZ(-45deg) !important;
+    padding: 0;
+}
+
+.activity{
+    border-radius: 15px;
+}
+
+.box{
+    border-radius: 0px;
+}
+
+.circle{
+    border-radius: 50%;
+}
+
+.chevron_before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 50%;
+    width:100%;
+    z-index: 0;
+  -webkit-transform: skewX(20deg) !important;
+  -moz-transform: skewX(20deg) !important;
+  -ms-transform: skewX(20deg) !important;
+  -o-transform: skewX(20deg) !important;
+  transform: skewX(20deg) !important;
+
+}
+.chevron_after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 50%;
+    width:100%;
+    z-index: 0;
+  -webkit-transform: skewX(-20deg) !important;
+  -moz-transform: skewX(-20deg) !important;
+  -ms-transform: skewX(-20deg) !important;
+  -o-transform: skewX(-20deg) !important;
+  transform: skewX(-20deg) !important;
+
+
+}
+
+.tank{
+    /*position:absolute;
+    top: 0;
+    height:0;
+    display: table-cell;
+    vertical-align: middle;
+    */
+}
+.tank .middle{
+/*
+    position:absolute;
+    z-index: 2;
+*/
+}
+
+
+.tank .top{
+/*
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+    position:absolute;
+    z-index: 3;
+*/
+}
+
+.tank .bottom{
+/*
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+    position:absolute;
+    z-index: 1;
+*/
+}
+
+.tank .caption{
+/*
+	z-index: 40;
+	position:absolute;
+*/
+	
+/*
+	display: inline-block;
+	position: absolute;
+	overflow: hidden;
+	
+	word-wrap: break-word;
+	padding: 5px;
+	vertical-align: middle;
+*/
+
+}
+
+.curve-line{ 
+  border:solid 5px #000;
+  border-color:#000 transparent transparent transparent;
+  border-radius: 50%/100px 50px 0 0;
+}
+

@@ -1,0 +1,290 @@
+@import 'colors';
+
+.design-toolbox-panel {
+	position: absolute;
+	top: 0;
+	left: calc(100vw - 300px);
+	max-height: 100vh;
+	overflow: hidden;
+	width: 300px;
+	min-width: 50px;
+	color: $color-primary;
+	// background: $color-border;
+	background-color: $side-panel-color;
+
+	border-radius: 5px;
+	box-shadow: 0px 0px 15px $color-primary;
+
+	.toolbox-body {
+		padding: 10px;
+		overflow-x: hidden;
+		overflow-y: auto;
+	}
+}
+
+.popup-toolbox-panel {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	overflow: auto;
+	min-width: 300px;
+	max-width: 300px;
+	color: $color-primary;
+}
+
+.design-toolbox-title {
+	font-size: 0.9rem;
+	text-align: center;
+	font-weight: bold;
+	background-color: $color-primary;
+	color: $inverse-text-color;
+	margin: 0;
+	margin-bottom: 5px;
+	padding: 10px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+	i {
+		&:hover {
+			display: inline-block;
+
+			cursor: pointer;
+			background-color: $color-secondary;
+			color: $inverse-text-color;
+		}
+	}
+}
+
+.design-toolbox-widgets {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+
+	input,
+	select {
+		background: $side-panel-color !important;
+		border-bottom-width: 1px !important;
+	}
+
+	.props-edit {
+		overflow: auto;
+		height: 78vh;
+	}
+
+	.toolbox-area {
+		display: flex;
+		flex-direction: column;
+		margin: 0;
+		padding: 0;
+		gap: 5px;
+		flex-wrap: wrap;
+	}
+
+	.widget-container {
+		display: flex;
+		// border: 1px solid $color-border;
+
+		flex-direction: row;
+		color: $color-primary;
+
+		&:hover {
+			background-color: $color-primary;
+			color: $inverse-text-color !important;
+		}
+	}
+
+	.widget-category{
+		overflow: hidden;
+		background: transparent;
+		width: 100%;
+		font-weight: bold;
+		font-size: 0.75rem;
+		padding-left: 20px;
+		background-color: $color-border;
+		border-radius: 5px;
+		text-transform: uppercase;
+	}
+	.widget-template {
+		overflow: hidden;
+		cursor: pointer;
+		background: transparent;
+		height: 30px;
+		width: 100%;
+		// width: 60px;
+
+		white-space: normal;
+		word-wrap: break-word;
+		// border-radius: 5px;
+
+		.widget-caption {
+			font-size: 0.8rem;
+			padding-left: 10px;
+			text-transform: uppercase;
+			text-align: center;
+			height: 25px;
+			line-height: 25px;
+			white-space: normal;
+			word-wrap: break-word;
+			vertical-align: bottom;
+			justify-content: center;
+		}
+
+		.widget-thumbnail {
+			overflow: hidden;
+			width: 25px;
+			height: 25px;
+			padding-right: 10px;
+			margin-top: auto;
+
+			img {
+				mix-blend-mode: multiply;
+			}
+
+			img,
+			i {
+				width: 25px;
+				height: 25px;
+				max-width: 25px;
+				max-height: 25px;
+			}
+
+			i {
+				font-size: 25px;
+			}
+		}
+	}
+
+
+}
+
+.design-props-group {
+	padding: 5px;
+	min-height: 30px;
+}
+
+.design-props-group input,
+.design-props-group select,
+.design-props-group .btn {
+	padding: 1px 5px;
+	min-height: 22px;
+}
+
+.design-props-label {
+	text-transform: uppercase;
+	display: table-cell;
+
+	font-size: 9px;
+
+	overflow: hidden;
+}
+
+.active {
+	background-color: $color-primary !important;
+	color: $inverse-text-color !important;
+}
+
+
+.text-formater {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin: 10px;
+	padding-right: 5px;
+
+	&.row {
+		flex-direction: row;
+	}
+}
+
+.popup-toolbox-panel,
+.text-formater {
+	.title-line {
+		width: 100%;
+		font-size: 12px;
+		font-weight: bold;
+		color: $base-text-color;
+		border-top: 1px solid $color-primary;
+		padding-top: 10px;
+	}
+
+	.checkbox,
+	.form-control,
+	input {
+		font-size: 0.8rem !important;
+		padding: 0 !important;
+		background-color: $color-border !important;
+		border-color: $color-secondary !important;
+		border-width: 1px !important;
+	}
+
+	button {
+		margin: 5px;
+		// padding: 5px;
+		font-size: 0.8rem;
+
+		background-color: $color-border;
+		border-radius: 5px;
+		border: 1px solid $color-secondary;
+
+		&:hover {
+			cursor: pointer;
+			background-color: $color-primary;
+			color: $inverse-text-color;
+		}
+	}
+
+	.control-with-label {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: start;
+
+		label,
+		.label {
+			display: block;
+			text-align: right;
+			padding-right: 10px;
+			font-size: 0.75rem !important;
+			color: $base-text-color;
+			font-weight: bold;
+			width: 40% !important;
+			min-width: 80px !important;
+			max-width: 50% !important;
+		}
+	}
+}
+
+
+.popup-toolbox-panel {
+	.title-line {
+		font-size: 1em;
+	}
+
+	.checkbox,
+	input {
+		font-size: 0.85em;
+	}
+}
+
+
+
+.btn-font-family {
+	font-size: 12px;
+}
+
+@media screen and (max-width: 500px) {
+	// .design-toolbox-panel {
+	// 	position: fixed;
+	// 	left: 1vw;
+	// 	bottom: 40px;
+	// 	height: 40vh;
+	// 	max-height: 40vh;
+	// 	min-height: 40vh;
+	// 	overflow: auto;
+	// 	min-width: 98vw;
+	// 	max-width: 98vw;
+	// }
+}

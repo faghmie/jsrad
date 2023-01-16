@@ -1,0 +1,50 @@
+# Introduction
+------------
+
+tool to visually create screen and process maps. It is a kind of a low/no code project
+
+I will get around to the documentation at some point, if there is enough
+interest in the project.
+
+Any issues can be mailed to me: faghmie@gmail.com
+
+I needed some sort of diagram tool which I could easily generate my SQL
+from and also play with the data in the tables to get a feel for how
+effective my ERD is.
+
+
+I hope you find the project usefull :-)
+
+
+This software is based on the original code of www sql designer 
+(http://ondras.zarovi.cz/sql/demo/)
+
+
+# General
+-------
+
+You can use the program to create some basic ERD's with it.
+You can then edit the data in the tables.
+
+# Foreign keys
+------------
+Simply drag-and-drop the field from the first table into the header
+of the second table you want to link to.
+
+# Web-App
+-------
+This is a basic attempt to create a very basic application from your ERD
+
+
+# Documentation
+-------------
+Using your ERD the system will attempt to create some basic 
+documentation.
+
+** I still need to make it exportable to HTML. :-)
+
+
+# Import - CSV
+------------
+
+The system can import a CSV file and auto-create the table with its data.

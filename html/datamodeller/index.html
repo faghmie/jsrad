@@ -1,0 +1,123 @@
+<!--
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+		<title>ERD Designer</title>
+		<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		
+        <!-- build:style libs -->
+        <!-- /build -->
+
+        <!-- build:style app -->
+        <!-- /build -->
+        
+		<style>
+			.loader {
+			  position: absolute;
+			  left: 50%;
+			  top: 50%;
+			  z-index: 1;
+			  width: 150px;
+			  height: 150px;
+			  margin: -75px 0 0 -75px;
+			  border: 16px solid #f3f3f3;
+			  border-radius: 50%;
+			  border-top: 16px solid #3498db;
+			  width: 120px;
+			  height: 120px;
+			  -webkit-animation: spin 2s linear infinite;
+			  animation: spin 2s linear infinite;
+			}
+
+			@-webkit-keyframes spin {
+			  0% { -webkit-transform: rotate(0deg); }
+			  100% { -webkit-transform: rotate(360deg); }
+			}
+
+			@keyframes spin {
+			  0% { transform: rotate(0deg); }
+			  100% { transform: rotate(360deg); }
+			}
+
+			/* Add animation to "page content" */
+			.animate-bottom {
+			  position: relative;
+			  -webkit-animation-name: animatebottom;
+			  -webkit-animation-duration: 1s;
+			  animation-name: animatebottom;
+			  animation-duration: 1s
+			}
+
+			@-webkit-keyframes animatebottom {
+			  from { bottom:-100px; opacity:0 }
+			  to { bottom:0px; opacity:1 }
+			}
+
+			@keyframes animatebottom {
+			  from{ bottom:-100px; opacity:0 }
+			  to{ bottom:0; opacity:1 }
+			}
+
+			.startup-loader {
+			 
+			  text-align: center;
+			}
+		</style>
+    </head>
+    <body>
+		<div class="startup-loader">
+			<div class="loader"></div>
+
+			<h3 style="display:inline-block;">Loading app....please wait</h3>
+			<h4 id="progress-message"></h4>
+		</div>
+
+<!--
+	<nav id="toolbar" class="navbar navbar-default navbar-fixed-top" role="navigation" style="position:absolute;display:none;">
+		<div class="container-fluid">
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-dm-toolbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand" href="#"><img src="images/logo.png" alt="jsRAD" style="height:24px;width:auto;"></a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-dm-toolbar">
+			</div>
+		</div>
+	</nav>
+		
+-->
+		
+        <!-- build:script libs -->
+        <!-- /build -->
+
+        <!-- build:script app -->
+
+        <!-- /build -->
+
+        <!-- build:script main [defer] -->
+        <!-- /build -->
+
+		<script src="https://apis.google.com/js/client.js"></script>
+<!--
+		<script type="text/javascript" src="json/module_ide.json"></script>
+-->
+		<script type="text/javascript" src="../json/database_ide.json"></script>
+		<script type="text/javascript" src="../json/fa-icons.json"></script>
+		
+		<script type="text/javascript">
+			//INIT THE APP ONCE THE DOM HAS INITIALISED
+			$(function(){
+				designer = new SQL.Designer();
+				load_datamodel();
+			});
+		</script>
+    </body>
+</html>

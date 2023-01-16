@@ -1,0 +1,25 @@
+.process-busy {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 10px;
+    opacity: 1 !important;
+
+    width: 300px;
+    height: 100px;
+
+    .body-content {
+        // width: 100%;
+        margin: auto;
+        padding: 10px;
+
+        display: flex;
+        flex-direction: row;
+        
+        i{
+            // padding: 10px;
+            font-weight: bold;
+            font-size: 2rem;
+        }
+    }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "JSRad",
+  "short_name": "JSRad",
+  "description": "Build for your phone on your phone",
+  "start_url": "/",
+  "background_color": "#6495ed",
+  "theme_color": "#0f4a73",
+  "icons": [{
+    "src": "images/webapp.png",
+    "sizes": "48x48",
+    "type": "image/jpeg"
+  }]
+}
