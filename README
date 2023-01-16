@@ -1,4 +1,4 @@
-#Introduction
+# Introduction
 
 
 tool to visually create screen and process maps. It is a kind of a low/no code project
@@ -21,23 +21,23 @@ This software is based on the original code of www sql designer
 
 
 # General
--------
+
 
 You can use the program to create some basic ERD's with it.
 You can then edit the data in the tables.
 
 # Foreign keys
-------------
+
 Simply drag-and-drop the field from the first table into the header
 of the second table you want to link to.
 
 # Web-App
--------
+
 This is a basic attempt to create a very basic application from your ERD
 
 
 # Documentation
--------------
+
 Using your ERD the system will attempt to create some basic 
 documentation.
 
@@ -45,6 +45,6 @@ documentation.
 
 
 # Import - CSV
-------------
+
 
 The system can import a CSV file and auto-create the table with its data.
