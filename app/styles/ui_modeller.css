@@ -2189,6 +2189,7 @@ ARROW*/
           flex-direction: column;
 }
 
+.form-overview.toolbox .actions,
 .form-overview.toolbox .form-overview-item {
   height: 28px;
   width: 100%;

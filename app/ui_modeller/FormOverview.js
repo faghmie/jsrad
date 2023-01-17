@@ -10,17 +10,17 @@ export default class FormOverview {
 	#get_workspace() {
 		$('.form-overview').remove();
 
-		var overview = $('<div>')
+		let overview = $('<div>')
 			.addClass('form-overview')
 			.appendTo('body')
 			.hide();
 
-		var btn_add = $(`<div class="form-overview-item" title="add new form">
+		let btn_add = $(`<div class="form-overview-item" title="add new form">
 							<i class="fa fa-fw fa-plus"/> new form
 						</div>`).appendTo(overview);
 
 
-		var btn_clone = $(`<div class="form-overview-item" title="clone the current form">
+		let btn_clone = $(`<div class="form-overview-item" title="clone the current form">
 							<i class="fa fa-fw fa-clone"/> clone current
 						</div>`)
 			.appendTo(overview);
@@ -39,13 +39,14 @@ export default class FormOverview {
 		return overview;
 	}
 
+
 	refresh() {
-		var $this = this;
+		let $this = this;
 
-		var overview = this.#get_workspace();
+		let overview = this.#get_workspace();
 
-		for (var form of this.Forms) {
-			var li = $(`<div class="form-overview-item">
+		for (let form of this.Forms) {
+			let li = $(`<div class="form-overview-item">
 						<div class="form-title">
 							<span>${form.label}</span>
 							<i class="ui-icon-close fa fa-times"></i>
@@ -75,7 +76,7 @@ export default class FormOverview {
 				item: li,
 				form: form
 			}, function (evt) {
-				var data = evt.data;
+				let data = evt.data;
 				evt.stopPropagation();
 				App.Confirm('Are you sure you want remove the form?', 'Remove Form', function () {
 					$this.Forms.removeForm(data.form);
@@ -87,6 +88,34 @@ export default class FormOverview {
 		return overview;
 	}
 
+	get_buttons(){
+		let actions = $(`<div class="actions">`);
+
+		let btn_add = $(`<button title="add new form">
+							<i class="fa fa-fw fa-plus"/> new form
+						</button>`).appendTo(actions);
+
+
+		let btn_clone = $(`<button title="clone the current form">
+							<i class="fa fa-fw fa-clone"/> clone current
+						</button>`)
+			.appendTo(actions);
+
+		btn_add.on('click', this, async function(evt) {
+			await evt.data.Forms.addForm();
+			overview.hide();
+			overview.remove();
+		});
+
+		btn_clone.on('click', this, evt => {
+			evt.data.Forms.cloneForm();
+			overview.remove();
+		});
+
+		return actions;
+
+	}
+
 	get(){
 		/** @type{Form | undefined} */
 		let form = null;
@@ -96,6 +125,8 @@ export default class FormOverview {
 		/** @type{Form | undefined} */
 		let active_form = this.Forms.getActiveForm();
 
+		overview.append(this.get_buttons());
+
 		for (form of this.Forms) {
 			let prefix = `<i class="la la-wpforms"></i>`;
 			if (form.is_a_process === true){
@@ -103,7 +134,7 @@ export default class FormOverview {
 				// prefix = '[P] ';
 			}
 
-			var li = $(`<div class="form-overview-item">
+			let li = $(`<div class="form-overview-item">
 							<span>${prefix}${form.label}</span>
 							<i class="ui-icon-close la la-times"></i>
 					</div>`).appendTo(overview);
@@ -123,7 +154,7 @@ export default class FormOverview {
 				item: li,
 				form: form
 			}, function (evt) {
-				var data = evt.data;
+				let data = evt.data;
 				evt.stopPropagation();
 				App.Confirm('Are you sure you want remove the form?', 'Remove Form', function () {
 					$this.Forms.removeForm(data.form);
@@ -136,7 +167,7 @@ export default class FormOverview {
 	}
 
 	show() {
-		var overview = this.refresh();
+		let overview = this.refresh();
 
 		this.#update_form_preview().then(() => {
 				overview.show('blind');
@@ -149,7 +180,7 @@ export default class FormOverview {
 	#update_form_preview() {
 		return new Promise((resolve, reject) => {
 
-			var form = this.Forms.getActiveForm();
+			let form = this.Forms.getActiveForm();
 
 			if (!form) {
 				return resolve();
