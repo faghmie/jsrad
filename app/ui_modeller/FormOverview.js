@@ -103,13 +103,10 @@ export default class FormOverview {
 
 		btn_add.on('click', this, async function(evt) {
 			await evt.data.Forms.addForm();
-			overview.hide();
-			overview.remove();
 		});
 
 		btn_clone.on('click', this, evt => {
 			evt.data.Forms.cloneForm();
-			overview.remove();
 		});
 
 		return actions;
@@ -117,6 +114,8 @@ export default class FormOverview {
 	}
 
 	get(){
+		let $this = this;
+
 		/** @type{Form | undefined} */
 		let form = null;
 		

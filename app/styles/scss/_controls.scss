@@ -67,6 +67,22 @@ dl {
   }
 }
 
+button{
+  background-color: transparent;
+  border: 1px solid $color-primary;
+  border-radius: 5px;
+  color: $color-primary;
+  font-weight: bold;
+  
+  &:hover,
+  &:focus,
+  &:active{
+    border: 1px solid $color-primary;
+    background-color: $color-primary;
+    color: $inverse-text-color;
+  }
+}
+
 fieldset{
   border: 1px solid $color-border;
   margin: 15px;

@@ -378,6 +378,20 @@ dl dd {
   text-align: left;
 }
 
+button {
+  background-color: transparent;
+  border: 1px solid #53809e;
+  border-radius: 5px;
+  color: #53809e;
+  font-weight: bold;
+}
+
+button:hover, button:focus, button:active {
+  border: 1px solid #53809e;
+  background-color: #53809e;
+  color: white;
+}
+
 fieldset {
   border: 1px solid #e7eef3;
   margin: 15px;
