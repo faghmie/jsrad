@@ -106,11 +106,13 @@ export default class SidePanel {
                         data-page=".design-area-docs"
                         title="documentation"><i class="fa fa-fw fa-file-text"></i>
                     </a>
-                    <a class="workspace-button design-controls" 
-                        data-page=".design-area-database"
-                        title="database connection"><i class="fa fa-fw fa-plug"></i>
-                    </a>
-                </div>`);
+                    </div>`);
+
+                    
+                    // <a class="workspace-button design-controls" 
+                    //     data-page=".design-area-database"
+                    //     title="database connection"><i class="fa fa-fw fa-plug"></i>
+                    // </a>
     }
 
     #create_panels(){
