@@ -1,4 +1,4 @@
-import Form from "../../form.js";
+import Form from "../../Form.js";
 import BaseActivity from "../BaseActivity.js";
 
 export default class MergeActivity extends BaseActivity {

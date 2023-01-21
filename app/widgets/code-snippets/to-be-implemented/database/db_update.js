@@ -118,7 +118,7 @@ var control_db_update = {
 							.addClass('input-group')
 							.append(datasource);
 		var btn_ds = $('<div>').addClass('input-group-btn').appendTo(ds_div);
-		var view_ds = $('<a class="btn" title="edit datasource"><i class="fa fa-fw fa-pencil" /></a>')
+		var view_ds = $('<a class="btn" title="edit datasource"><i class="la la-fw la-pencil" /></a>')
 						.appendTo(btn_ds);
 						
 		view_ds.on('click', function(){
@@ -134,7 +134,7 @@ var control_db_update = {
 							.append(tables);
 		btn_tbl = $('<div>').addClass('input-group-btn').appendTo(tbl_div);
 
-		var view_table = $('<a class="btn" title="view data in table"><i class="fa fa-fw fa-th" /></a>')
+		var view_table = $('<a class="btn" title="view data in table"><i class="la la-fw la-th" /></a>')
 						.appendTo(btn_tbl);
 						
 		view_table.on('click', function(){

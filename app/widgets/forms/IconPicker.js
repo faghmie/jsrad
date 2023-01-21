@@ -1,3 +1,4 @@
+import IconSelector from "../IconSelector.js";
 import ControlInterface from "../_base/ControlInterface.js";
 
 export default class IconControl extends ControlInterface {
@@ -6,8 +7,8 @@ export default class IconControl extends ControlInterface {
 		height: 50,
 		width: 50,
 		value: {
-			icon: 'fa fa-bell',
-			icon_size: 'fa-3x'
+			icon: 'fa la-bell',
+			icon_size: 'la-3x'
 		}
 	}
 
@@ -27,15 +28,15 @@ export default class IconControl extends ControlInterface {
 		//ICONS
 		var icon_select = $('<a>')
 			.addClass('btn btn-lg btn-flat btn-light')
-			.html("<i class='fa fa-fw " + this.value.icon + "'>");
+			.html("<i class='la la-fw " + this.value.icon + "'>");
 
 		icon_select.on('click', function () {
-			var icons = new icon_selector({
+			var icons = new IconSelector({
 				on_selected: function (icon_class, use_icon) {
 					$this.value.icon = icon_class;
 					$this.format();
 					icon_select.remove('i');
-					icon_select.html("<i class='fa fa-fw " + icon_class + "'>");
+					icon_select.html("<i class='la la-fw " + icon_class + "'>");
 				}
 			}).open();
 		});
@@ -64,17 +65,17 @@ export default class IconControl extends ControlInterface {
 	format() {
 		// super.format();
 		if (typeof this.value !== 'object') this.value = {};
-		if (typeof this.value.icon !== 'string') this.value.icon = 'fa fa-bell';
+		if (typeof this.value.icon !== 'string') this.value.icon = 'la la-bell';
 		this.aspect_ratio = 1;
-		this.ctrl.attr('class', 'main-control fa');
+		this.ctrl.attr('class', 'main-control la');
 
-		this.ctrl.addClass(this.value.icon + ' fa ');
+		this.ctrl.addClass(this.value.icon + ' la ');
 		this.ctrl.css({
 			'font-size': parseFloat(this.width) //*0.8
 		});
 
 		if (true === this.value.can_spin)
-			this.ctrl.addClass('fa-spin');
+			this.ctrl.addClass('la-spin');
 	}
 
 	setControlStyle (css){
@@ -83,7 +84,7 @@ export default class IconControl extends ControlInterface {
 	}
 
 	getControl() {
-		this.ctrl = $('<div>').addClass('fa fa-fw fa-bell');
+		this.ctrl = $('<div>').addClass('la la-fw la-bell');
 
 		return this.ctrl;
 	}

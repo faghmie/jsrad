@@ -1,4 +1,4 @@
-import UiDesigner from "../ui_modeller/ui_designer.js";
+import UiDesigner from "../ui_modeller/UiDesigner.js";
 import ControlInterface from "./_base/ControlInterface.js";
 
 export default class Form extends ControlInterface {

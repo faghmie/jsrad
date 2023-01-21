@@ -75,6 +75,10 @@ function Card(content, on_show, on_close){
 	}
 	calc_dimensions();
 
+	addEventListener('resize', function(){
+		calc_dimensions();
+	});
+	
 	function calc_dimensions(){
 		let dims = content[0].getBoundingClientRect();
 		let height = dims.height;
@@ -84,12 +88,11 @@ function Card(content, on_show, on_close){
 			height += div.find('.header-row').height() + 30;
 			width += 20;
 		}
-
+		
 		if (typeof options.height != 'undefined'){
 			//Honor dimensions sent in
 			return;
 		}
-
 		if (dims.width > 0){
 			div.css({
 				width : width,

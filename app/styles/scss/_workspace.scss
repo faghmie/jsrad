@@ -82,7 +82,8 @@
 
 
 .workspace-button {
-    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
     height: 48px;
     min-height: 48px;
     max-height: 48px;
@@ -91,7 +92,11 @@
     max-width: 48px;
     border: 0;
 
-    .fa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .la {
         display: inline-block;
         line-height: 48px;
         vertical-align: middle;
@@ -109,7 +114,7 @@
 .dropdown-item {
     padding: 5px;
 
-    .fa {
+    .la {
         display: inline-block;
         line-height: 48px;
         vertical-align: middle;

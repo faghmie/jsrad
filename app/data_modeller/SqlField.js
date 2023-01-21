@@ -60,7 +60,7 @@ export default class SqlField extends SqlBase{
 		var dest = this;
 		
 		this.dom.container = $("<tr class='sql-table-field'>")
-									.append("<td class='remove-field faded-text' style='width:20px;'><span class='hide-me fa fa-times'/></td>")
+									.append("<td class='remove-field faded-text' style='width:20px;'><span class='hide-me la la-times'/></td>")
 									.append("<td class='title'>")
 									.append("<td class='typehint'>")
 									.append("<td class='field-type'>");
@@ -74,7 +74,7 @@ export default class SqlField extends SqlBase{
 			evt.data.ColumnProperties.Show();
 		});
 
-		this.dom.container.find('.fa-times').on('click tap', this, function(evt){
+		this.dom.container.find('.la-times').on('click tap', this, function(evt){
 			evt.stopPropagation();
 
 			App.Confirm('Are you sure you want to remove the field' + ' [' + evt.data.name + '] ?', 'Remove field?', function () {

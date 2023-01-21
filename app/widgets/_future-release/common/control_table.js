@@ -144,9 +144,9 @@ var control_table = {
 			$this._format();
 			$this.ctrl.find('th i').remove();
 			if (sort_order === 'asc')
-				th.append('<i class=\'pull-right fa fa-caret-up\'>');
+				th.append('<i class=\'pull-right la la-caret-up\'>');
 			else
-				th.append('<i class=\'pull-right fa fa-caret-down\'>');
+				th.append('<i class=\'pull-right la la-caret-down\'>');
 			
 		});		
 	},

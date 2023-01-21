@@ -733,7 +733,7 @@ input::-ms-input-placeholder {
   font-size: 0.9rem;
 }
 
-.dropdown-item .fa, .dropdown-item .las {
+.dropdown-item .la, .dropdown-item .las {
   margin-right: 10px;
 }
 
@@ -1601,7 +1601,8 @@ select[multiple] option:hover {
 }
 
 .workspace-button {
-  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
   height: 48px;
   min-height: 48px;
   max-height: 48px;
@@ -1609,9 +1610,18 @@ select[multiple] option:hover {
   min-width: 48px;
   max-width: 48px;
   border: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.workspace-button .fa {
+.workspace-button .la {
   display: inline-block;
   line-height: 48px;
   vertical-align: middle;
@@ -1628,7 +1638,7 @@ select[multiple] option:hover {
   padding: 5px;
 }
 
-.dropdown-item .fa {
+.dropdown-item .la {
   display: inline-block;
   line-height: 48px;
   vertical-align: middle;
@@ -2111,7 +2121,6 @@ ARROW*/
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: #e7eef3;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4649,6 +4658,63 @@ textarea.stickynotes {
 .process-busy .body-content i {
   font-weight: bold;
   font-size: 2rem;
+}
+
+.icon-selector {
+  width: 80vw;
+  min-width: 300px;
+  height: 80vh;
+  max-height: 80vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  gap: 5px;
+}
+
+.icon-selector ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  max-height: 70vh;
+  overflow: auto;
+  background-color: transparent;
+  list-style: none;
+}
+
+.icon-selector ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 5px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  width: 50px;
+  height: 50px;
+  font-size: 14px;
+}
+
+.icon-selector ul li:hover {
+  background-color: #53809e;
+  color: white;
 }
 
 .activity-confirmation {

@@ -160,9 +160,9 @@ var mobile_toolbar = function(_designer) {
 			'text-align': 'center',
 			background: '#ECECEC',
 		});
-		props.append('<a class="btn-text"><i class="fa fa-fw fa-font"></i></a>');
-		props.append('<a class="btn-styler"><i class="fa fa-fw fa-paint-brush"></i></a>');
-		props.append('<a class="btn-project"><i class="fa fa-fw fa-gear"></i></a>');
+		props.append('<a class="btn-text"><i class="la la-fw la-font"></i></a>');
+		props.append('<a class="btn-styler"><i class="la la-fw la-paint-brush"></i></a>');
+		props.append('<a class="btn-project"><i class="la la-fw la-gear"></i></a>');
 		props.find('a').css({
 				display: 'block',
 				'margin-bottom': '15px',

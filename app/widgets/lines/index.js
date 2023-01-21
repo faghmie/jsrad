@@ -1,0 +1,86 @@
+export default [
+  {
+    category: 'Line Shapes',
+    type: 'lines/line_down',
+    label: 'Arrow Down',
+    thumbnail: 'images/widgets/line_down.png',
+  },
+  {
+    category: 'Line Shapes',
+    type: 'lines/line_left_angle_bottom',
+    label: 'Angle Arrow Left Bottom',
+    thumbnail: 'images/widgets/line_angle_left_bottom.png',
+  },
+  {
+    category: 'Line Shapes',
+    type: 'lines/line_left_angle_down',
+    label: 'Angle Arrow Left Down',
+    thumbnail: 'images/widgets/line_angle_left_down.png',
+  },
+  {
+    category: 'Line Shapes',
+    type: 'lines/line_left_angle_up',
+    label: 'Angle Arrow Left Up',
+    thumbnail: 'images/widgets/line_angle_left_up.png',
+  },
+  {
+    category: 'Line Shapes',
+    type: 'lines/line_left_top_angle',
+    label: 'Angle Arrow Top Left',
+    thumbnail: 'images/widgets/line_angle_left_top.png',
+  },
+  {
+    category: 'Line Shapes',
+    type: 'lines/line_left',
+    label: 'Arrow Left',
+    thumbnail: 'images/widgets/line_left.png',
+  },
+  {
+    category: 'Line Shapes',
+    type: 'lines/line_right_angle_bottom',
+    label: 'Angle Arrow Right Bottom',
+    thumbnail: 'images/widgets/line_angle_right_bottom.png',
+  },
+  {
+    category: 'Line Shapes',
+    type: 'lines/line_angle_down',
+    label: 'Angle Arrow Right Down',
+    thumbnail: 'images/widgets/line_angle_right_down.png',
+  },
+  {
+    category: 'Line Shapes',
+    type: 'lines/line_angle_up',
+    label: 'Angle Arrow Right Up',
+    thumbnail: 'images/widgets/line_angle_right_up.png',
+  },
+  {
+    category: 'Line Shapes',
+    type: 'lines/line_right_top_angle',
+    label: 'Angle Arrow Top Right',
+    thumbnail: 'images/widgets/line_angle_right_top.png',
+  },
+  {
+    category: 'Line Shapes',
+    type: 'lines/line_right',
+    label: 'Arrow Right',
+    thumbnail: 'images/widgets/line_right.png',
+  },
+  {
+    category: 'Line Shapes',
+    type: 'lines/line_up',
+    label: 'Arrow Up',
+    thumbnail: 'images/widgets/line_up.png',
+  },
+  {
+    category: 'Line Shapes',
+    type: 'lines/line_zigzag_left',
+    label: 'Zig-Zag Left',
+    thumbnail: 'images/widgets/line_zigzag_left.png',
+  },
+  {
+    category: 'Line Shapes',
+    type: 'lines/line_zigzag_right',
+    label: 'Zig-Zag Right',
+    thumbnail: 'images/widgets/line_zigzag_right.png',
+  },
+];

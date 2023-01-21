@@ -2,7 +2,7 @@
 
 import WidgetConnector from "./WidgetConnector.js";
 import ControlInterface from "./_base/ControlInterface.js"
-import Form from './form.js';
+import Form from './Form.js';
 
 export default class ControlFactory {
 

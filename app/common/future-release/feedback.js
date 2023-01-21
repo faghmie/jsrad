@@ -25,7 +25,7 @@ var jsrad_feedback = function(){
 					
 		var send = $('<a>')
 					.addClass('btn btn-success btn btn-flat btn-outline col-2')
-					.html('post <i class="fa fa-fw fa-send"/>')
+					.html('post <i class="la la-fw la-send"/>')
 					.appendTo(input_row);
 		
 		var comments = $('<ul>')

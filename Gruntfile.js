@@ -12,31 +12,13 @@ module.exports = function (grunt) {
 				// the files to concatenate
 				src: '<%= pkg.scripts.common %>',
 				// the location of the resulting JS file
-				dest: 'dist/js/<%= pkg.name %>_app.js'
-			},
-			widgets: {
-				// the files to concatenate
-				src: '<%= pkg.scripts.widgets %>',
-				// the location of the resulting JS file
-				dest: 'dist/js/<%= pkg.name %>_widgets.js'
-			},
-			ide: {
-				// the files to concatenate
-				src: '<%= pkg.scripts.ide %>',
-				// the location of the resulting JS file
-				dest: 'dist/js/<%= pkg.name %>_ide.js'
-			},
-			erd: {
-				// the files to concatenate
-				src: '<%= pkg.scripts.erd %>',
-				// the location of the resulting JS file
-				dest: 'dist/js/<%= pkg.name %>_erd.js'
+				dest: 'dist/app/<%= pkg.name %>.common.js'
 			},
 			external_libs: {
 				// the files to concatenate
 				src: '<%= pkg.scripts.libs %>',
 				// the location of the resulting JS file
-				dest: 'dist/js/<%= pkg.name %>_external_libs.js'
+				dest: 'dist/app/<%= pkg.name %>_external_libs.js'
 			}
 		},
 		uglify: {
@@ -46,19 +28,8 @@ module.exports = function (grunt) {
 			},
 			dist: {
 				files: {
-					'dist/js/<%= pkg.name %>_ide.min.js': ['<%= concat.ide.dest %>'],
-					'dist/js/<%= pkg.name %>_external_libs.min.js': ['<%= concat.external_libs.dest %>'],
-					'dist/js/<%= pkg.name %>.core.min.js': [
-						'<%= concat.common.dest %>',
-						'<%= concat.widgets.dest %>',
-						'<%= concat.erd.dest %>',
-					],
-					'dist/js/<%= pkg.name %>.min.js': [
-						'<%= concat.common.dest %>',
-						'<%= concat.ide.dest %>',
-						'<%= concat.widgets.dest %>',
-						'<%= concat.erd.dest %>',
-					]
+					'dist/app/<%= pkg.name %>_external_libs.min.js': ['<%= pkg.scripts.libs %>'],
+					'dist/app/<%= pkg.name %>.common.min.js': ['<%= pkg.scripts.common %>']
 				}
 			}
 		},
@@ -76,28 +47,6 @@ module.exports = function (grunt) {
 			]
 
 		},
-		// jshint: {
-		// 	// define the files to lint
-		// 	files: [
-		// 		'Gruntfile.js',
-		// 		'<%= pkg.scripts.common %>',
-		// 		'<%= pkg.scripts.widgets %>',
-		// 		'<%= pkg.scripts.ide %>',
-		// 		'<%= pkg.scripts.erd %>',
-		// 	],
-		// 	// configure JSHint (documented at http://www.jshint.com/docs/)
-		// 	options: {
-		// 		esversion: 6,
-		// 		laxcomma: true,
-		// 		loopfunc: true,
-		// 		// more options here if you want to override JSHint defaults
-		// 		globals: {
-		// 			jQuery: true,
-		// 			console: true,
-		// 			module: true
-		// 		}
-		// 	}
-		// },
 		watch: {
 			files: ['<%= eslint.target %>'],
 			tasks: ['concat', 'uglify', 'cssmin', 'copy'],
@@ -117,20 +66,32 @@ module.exports = function (grunt) {
 		},
 		copy: {
 			main: {
-				files: [{
+				files: [
+					{
 						expand: true,
 						src: 'images/**',
 						dest: 'dist'
 					},
 					{
 						expand: true,
-						src: 'libs/jquery-ui-1.12.1/images/*',
-						dest: 'dist/images',
+						src: 'manifest.json',
+						dest: 'dist'
+					},
+					{
+						expand: true,
+						src: 'libs/jquery-ui-1.12.1/images/**',
+						dest: 'dist/css/images',
 						flatten: true
 					},
 					{
 						expand: true,
 						src: 'libs/font-awesome-4.5.0/fonts/*',
+						dest: 'dist/fonts',
+						flatten: true
+					},
+					{
+						expand: true,
+						src: 'libs/line-awesome/1.3.0/fonts/*',
 						dest: 'dist/fonts',
 						flatten: true
 					},
@@ -149,6 +110,24 @@ module.exports = function (grunt) {
 						expand: true,
 						src: 'api/**',
 						dest: 'dist'
+					},
+					{
+						expand: true,
+						cwd: 'app/widgets',
+						src: '**',
+						dest: 'dist/app/widgets'
+					},
+					{
+						expand: true,
+						cwd: 'app/data_modeller',
+						src: '**',
+						dest: 'dist/app/data_modeller'
+					},
+					{
+						expand: true,
+						cwd: 'app/ui_modeller',
+						src: '**',
+						dest: 'dist/app/ui_modeller'
 					}
 				]
 			}
@@ -179,12 +158,7 @@ module.exports = function (grunt) {
 			all_css: ['dist/**/*.css'],
 			js: ['dist/**/*.js'],
 			production: [
-				'dist/js/jsrad_app.js',
-				'dist/js/jsrad_erd.js',
-				'dist/js/jsrad_external_libs.js',
-				'dist/js/jsrad_ide.js',
-				'dist/js/jsrad_ide.min.js',
-				'dist/js/jsrad_widgets.js'
+				'dist/app/*.js'
 			]
 		},
 		htmlbuild: {
@@ -197,10 +171,7 @@ module.exports = function (grunt) {
 					scripts: {
 						libs: '<%= pkg.scripts.libs %>',
 						app: [
-							'<%= pkg.scripts.common %>',
-							'<%= pkg.scripts.widgets %>',
-							'<%= pkg.scripts.ide %>',
-							'<%= pkg.scripts.erd %>'
+							'<%= pkg.scripts.common %>'
 						],
 						main: 'main.js'
 					},
@@ -219,8 +190,8 @@ module.exports = function (grunt) {
 					//beautify: true,
 					//relative: true,
 					scripts: {
-						libs: 'dist/js/jsrad_external_libs.min.js',
-						app: 'dist/js/jsrad.min.js',
+						libs: 'dist/app/jsrad_external_libs.min.js',
+						app: 'dist/app/jsrad.common.min.js',
 						main: 'main.js',
 					},
 					styles: {
@@ -263,7 +234,7 @@ module.exports = function (grunt) {
 			// 'jshint',
 			// 'eslint',
 			'newer:concat',
-			// 'newer:uglify',
+			'newer:uglify',
 			'cssmin',
 			'newer:copy',
 			'htmlbuild',

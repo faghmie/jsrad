@@ -343,7 +343,7 @@ export default class BaseActivity extends ControlInterface {
 
 		this.addCaption();
 
-		let icon = $('<i>').addClass('fa fa-lg fa-fw fa-code').appendTo(this.ctrl);
+		let icon = $('<i>').addClass('la la-lg la-fw la-code').appendTo(this.ctrl);
 		icon.css({
 			position: 'absolute',
 			left: 0,

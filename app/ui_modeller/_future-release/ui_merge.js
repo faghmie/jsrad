@@ -119,7 +119,7 @@ var ui_merge = function (_designer){
 		var datasource = $('<select class="form-control">');
 		var tables = $('<select class="form-control">');
 		var local_db = $('<div><label for="fileInput" class="btn btn-flat btn-outline btn-light">'+
-							 '<i class="fa fa-cloud-upload"></i> Import file'+
+							 '<i class="la la-cloud-upload"></i> Import file'+
 						  '</label>'+
 						  '<input type="file" id="fileInput">'+
 						  '</div>');

@@ -1,5 +1,6 @@
 import { BaseFormControl } from "./BaseFormControl.js";
 import ControlInterface from "../_base/ControlInterface.js";
+import IconSelector from "../IconSelector.js";
 
 export default class TextEntry extends BaseFormControl(ControlInterface) {
 
@@ -12,7 +13,7 @@ export default class TextEntry extends BaseFormControl(ControlInterface) {
 		value: '',
 		placeholder: 'start typing...',
 		icon_position: 'left',
-		icon: 'fa fa-pencil'
+		icon: 'la la-pencil'
 
 	};
 
@@ -71,20 +72,20 @@ export default class TextEntry extends BaseFormControl(ControlInterface) {
 		//ICONS
 		let icon_select = $('<a>')
 			.addClass('btn btn-sm btn-light')
-			.html("<i class='fa fa-fw " + this.icon + "'>");
+			.html("<i class='la la-fw " + this.icon + "'>");
 
 		if (false === this.use_icon)
 			icon_select.html('No Icon');
 
 		icon_select.on('click', this, function (evt) {
-			new icon_selector({
+			new IconSelector({
 				on_selected: function (icon_class, use_icon) {
 					evt.data.icon = icon_class;
 					evt.data.use_icon = use_icon;
 					evt.data.format();
 					if (true === use_icon) {
 						icon_select.remove('i');
-						icon_select.html("<i class='fa fa-fw " + icon_class + "'>");
+						icon_select.html("<i class='la la-fw " + icon_class + "'>");
 					} else {
 						icon_select.html('No Icon');
 					}
@@ -125,7 +126,7 @@ export default class TextEntry extends BaseFormControl(ControlInterface) {
 		let icon = null;
 		this.use_icon = this.icon.length !== 0;
 		if (this.use_icon === true) {
-			icon = $("<span class='icon'><i class='fa-fw " + this.icon + "'></i></span>");
+			icon = $("<span class='icon'><i class='la-fw " + this.icon + "'></i></span>");
 
 		} else if (this.add_on_text !== '') {
 			icon = $("<span class='icon'>").text(this.add_on_text);
@@ -184,7 +185,7 @@ export default class TextEntry extends BaseFormControl(ControlInterface) {
 	getControl() {
 		super.getControl();
 		this.ctrl.find('.control-group').append(`<span class="icon">
-			<i class="fa fa-pencil"/>
+			<i class="la la-pencil"/>
 		</span>
 		<input type="text" class="form-control"/>`);
 

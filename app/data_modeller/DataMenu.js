@@ -7,21 +7,22 @@ export default class DataMenu{
     #get_menu(){
         return $(`<a class="dropdown">
                     <a class="workspace-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-fw fa-bars"></i>
+                        <i class="la la-fw la-bars"></i>
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item switch-diagram" title="open datasource" href="#"><i class="fa fa-exchange"></i> Switch to UI Modeller</a>
+                        <a class="dropdown-item switch-diagram" title="open datasource" href="#"><i class="la la-exchange"></i> Switch to UI Modeller</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item open-diagram" href="#"><i class="fa fa-fw fa-folder-open"></i> Open New Project</a>
-                        <a class="dropdown-item new-diagram" title="re-use from existing model" href="#"><i class="fa fa-puzzle-piece"></i> Re-use existing...</a>
+                        <a class="dropdown-item open-diagram" href="#"><i class="la la-fw la-folder-open"></i> Open New Project</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item tb_save_to_disk" href="#"><i class="fa fa-fw fa-save save-to-disk" title="save to local disk" ></i> Save to Disk</a>
+                        <a class="dropdown-item tb_save_to_disk" href="#"><i class="la la-fw la-save save-to-disk" title="save to local disk" ></i> Save to Disk</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item btn_generate_doc" href="#"><i class="fa fa-newspaper-o"></i> Generate Documentation</a>
-                        <a class="dropdown-item btn_csv_to_table" href="#"><i class="fa fa-file-text-o"></i> Import CSV</a>
-                        <a class="dropdown-item btn_generate_sql" href="#"><i class="fa fa-database"></i> Export SQL</a>
-                    </div>
-                </a>`);
+                        <a class="dropdown-item btn_generate_doc" href="#"><i class="la la-newspaper-o"></i> Generate Documentation</a>
+                        <a class="dropdown-item btn_csv_to_table" href="#"><i class="la la-file-text-o"></i> Import CSV</a>
+                        <a class="dropdown-item btn_generate_sql" href="#"><i class="la la-database"></i> Export SQL</a>
+						</div>
+						</a>`);
+						
+                        // <a class="dropdown-item new-diagram" title="re-use from existing model" href="#"><i class="la la-puzzle-piece"></i> Re-use existing...</a>
     }
 
     GetMenu() {

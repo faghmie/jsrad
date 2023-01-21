@@ -25,15 +25,15 @@ export default class FormatProperties {
 		var div = $(`<div class="btn-group-toggle" data-toggle="buttons">
 						<label class="text-align left btn">
 							<input type="radio" data-css-type="text-align" data-css-value="left">
-							<i class="fa fa-align-left" />
+							<i class="la la-align-left" />
 						</label>
 						<label class="text-align center btn">
 							<input type="radio" name="fmt-font-align" data-css-type="text-align" data-css-value="center">
-							<i class="fa fa-align-center" />
+							<i class="la la-align-center" />
 						</label>
 						<label class="text-align right btn">
 							<input type="radio" name="fmt-font-align" data-css-type="text-align" data-css-value="right">
-							<i class="fa fa-align-right" />
+							<i class="la la-align-right" />
 						</label>
 					</div>`);
 		
@@ -117,15 +117,15 @@ export default class FormatProperties {
 		var div = $('<div class="btn-group-toggle" data-toggle="buttons">' +
 						'<label class="text-style font-weight btn" data-css-type="font-weight" data-css-value="bold">'+
 							'<input type="checkbox">'+
-							'<span class="fa fa-bold"></span>'+
+							'<span class="la la-bold"></span>'+
 						'</label>' +
 						'<label class="text-style font-style btn" data-css-type="font-style" data-css-value="italic">'+
 							'<input type="checkbox">'+
-							'<span class="fa fa-italic"><span>'+
+							'<span class="la la-italic"><span>'+
 						'</label>' +
 						'<label class="text-style font-style btn" data-css-type="text-decoration" data-css-value="underline">'+
 							'<input type="checkbox">'+
-							'<span class="fa fa-underline"><span>'+
+							'<span class="la la-underline"><span>'+
 						'</label>' +
 					'</div>');
 		

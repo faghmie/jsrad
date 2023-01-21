@@ -5,10 +5,10 @@ var AppStorage = {
 		return $('<div class="d-flex flex-column">'+
                     '<h4>Where do you want to work from</h4>'+
                     '<div class="btn btn-outline-dark btn-block btn-local">'+
-                        '<i class="fa fa-lg fa-save pull-left"></i>  Use app storage'+
+                        '<i class="la la-lg la-save pull-left"></i>  Use app storage'+
                     '</div>'+
                     '<div class="btn btn-outline-dark btn-block btn-use-google">'+
-                        '<i class="fa fa-lg fa-google pull-left"></i>  Use Google Drive'+
+                        '<i class="la la-lg la-google pull-left"></i>  Use Google Drive'+
                     '</div>'+
                 '</div>'
 			);

@@ -97,14 +97,14 @@ export default class SqlTable extends SqlBase {
 						<div class="title" />
 						<div class="dropdown">
 							<a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<i class="fa fa-fw fa-gear"></i>
+								<i class="la la-fw la-gear"></i>
 							</a>
 							<div class="dropdown-menu">
-							<a class="dropdown-item edit-table"    href="#"><i class="fa fa-fw fa-pencil"></i> Edit table</a>
-							<a class="dropdown-item add-field"    href="#"><i class="fa fa-fw fa-plus"></i> Add field</a>
-							<a class="dropdown-item expander"    href="#"><i class="fa fa-eye"></i> Show/Hide fields</a>
-							<a class="dropdown-item table-data"   href="#"><i class="fa fa-table"></i> Show table data</a>
-							<a class="dropdown-item remove-table" href="#"><i class="fa fa-trash-o"></i> Remove table</a>
+							<a class="dropdown-item edit-table"    href="#"><i class="la la-fw la-pencil"></i> Edit table</a>
+							<a class="dropdown-item add-field"    href="#"><i class="la la-fw la-plus"></i> Add field</a>
+							<a class="dropdown-item expander"    href="#"><i class="la la-eye"></i> Show/Hide fields</a>
+							<a class="dropdown-item table-data"   href="#"><i class="la la-table"></i> Show table data</a>
+							<a class="dropdown-item remove-table" href="#"><i class="la la-trash-o"></i> Remove table</a>
 							</div>
 						</div>
 					</div>
@@ -348,9 +348,9 @@ export default class SqlTable extends SqlBase {
 			if (typeof obj[key] === 'function') delete obj[key];
 		}
 
-		for (key in DataEditor) { if (key !== 'data') delete obj[key]; }
-		for (key in DataInterface) { if (key !== 'data') delete obj[key]; }
-		for (key in DataImporter) { if (key !== 'data') delete obj[key]; }
+		// for (key in DataEditor) { if (key !== 'data') delete obj[key]; }
+		// for (key in DataInterface) { if (key !== 'data') delete obj[key]; }
+		// for (key in DataImporter) { if (key !== 'data') delete obj[key]; }
 
 		obj.fields = {};
 		for (key in this.fields) {
@@ -405,8 +405,8 @@ export default class SqlTable extends SqlBase {
 		if (false === this.expanded) {
 			$this.dom.container.find('table').hide();
 			var icon = $this.dom.expander;
-			icon.addClass('fa-chevron-right');
-			icon.removeClass('fa-chevron-down');
+			icon.addClass('la-chevron-right');
+			icon.removeClass('la-chevron-down');
 		}
 	}
 

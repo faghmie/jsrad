@@ -10,8 +10,8 @@ export default class ColumnProperties{
 
 	#move_column(){
 		var prop = $(`<div class="btn-group" role="group">
-						<a type="button" class="btn btn-light btn-flat col-up" title="move column up"><i class="fa fa-arrow-up" /></a>
-						<a type="button" class="btn btn-light btn-flat col-down" title="move column down"><i class="fa fa-arrow-down" /></a>
+						<a type="button" class="btn btn-light btn-flat col-up" title="move column up"><i class="la la-arrow-up" /></a>
+						<a type="button" class="btn btn-light btn-flat col-down" title="move column down"><i class="la la-arrow-down" /></a>
 					</div>`);
 		
 		prop.find('.col-up').on('click', this.ctrl, evt => evt.data.up());

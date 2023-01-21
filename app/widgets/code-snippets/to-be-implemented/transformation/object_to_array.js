@@ -2,7 +2,7 @@ var control_object_to_array = {
 	type				: 'object_to_array',
 	control_label		: 'Object To Array',
 	control_category	: 'Transformation',
-	control_thumbnail	: 'class:fa fa-exchange',
+	control_thumbnail	: 'class:la la-exchange',
 	description			: 'Convert either a single object, or an array'+
 						' of objects into an array',
 	

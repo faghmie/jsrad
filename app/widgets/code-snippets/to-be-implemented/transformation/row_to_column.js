@@ -2,7 +2,7 @@ var control_row_to_column = {
 	type				: 'row_to_column',
 	control_label		: 'Transform row to column',
 	control_category	: 'Transformation',
-	control_thumbnail	: 'class:fa fa-exchange',
+	control_thumbnail	: 'class:la la-exchange',
 	description			: 'Transform a row field into a column',
 	
 	_get_settings	: function(){

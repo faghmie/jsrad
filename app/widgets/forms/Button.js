@@ -1,3 +1,4 @@
+import IconSelector from "../IconSelector.js";
 import ControlInterface from "../_base/ControlInterface.js";
 
 export default class Button extends ControlInterface {
@@ -62,22 +63,22 @@ export default class Button extends ControlInterface {
 
 		//ICONS
 		let icon_select = $('<a>')
-			.addClass('btn btn-sm btn-light')
-			.html("<i class='fa fa-fw " + this.icon + "'>")
-			.css('width', '50px');
+			.addClass('btn btn-outline')
+			.html("<i class='la la-fw " + this.icon + "'>")
+			.css('width', '40px');
 
 		if (false === this.use_icon)
 			icon_select.html('No Icon');
 
 		icon_select.on('click', function () {
-			let icons = new icon_selector({
+			let icons = new IconSelector({
 				on_selected: function (icon_class, use_icon) {
 					$this.icon = icon_class;
 					$this.use_icon = use_icon;
 					$this.format();
 					if (true === use_icon) {
 						icon_select.remove('i');
-						icon_select.html("<i class='fa fa-fw " + icon_class + "'>");
+						icon_select.html("<i class='la la-fw " + icon_class + "'>");
 					} else {
 						icon_select.html('No Icon');
 					}

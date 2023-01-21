@@ -1,0 +1,40 @@
+.icon-selector{
+	width           : 80vw;
+    min-width       : 300px;
+	height          : 80vh;
+	max-height      : 80vh;
+	// background      : $color-border;
+	display		    : flex;
+    flex-direction  : column;
+	flex-wrap	    : nowrap;
+    gap: 5px;
+
+    ul{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        max-height          : 70vh;
+        overflow        : auto;
+        background-color: transparent;
+        list-style: none;
+        li{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            font-weight: bold;
+            // text-align: center;
+            // vertical-align: middle;
+            margin: 0;
+            padding: 0;
+            width: 50px;
+            height: 50px;
+            font-size: 14px;
+            &:hover{
+                background-color: $color-primary;
+                color: $inverse-text-color;
+            }
+        }
+    }
+}
+

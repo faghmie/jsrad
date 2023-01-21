@@ -1,4 +1,3 @@
-import DatabaseProperties from "./PropertyDatabase.js";
 import DocsProperties from "./PropertyDocs.js";
 import CommentsEditor from "./PropertyComments.js";
 import FormatProperties from "./PropertyFormat.js";
@@ -8,8 +7,6 @@ import ProjectProperties from "./PropertyProject.js";
 import Toolbox from "./Toolbox.js";
 import AlignmentManager from "./PropertyAlignment.js";
 import FormOverview from "./FormOverview.js";
-import ProjectManager from "./ProjectManager.js";
-import FormManager from "./FormManager.js";
 
 export default class SidePanel {
     container = null;
@@ -69,49 +66,49 @@ export default class SidePanel {
     #get_buttons() {
         return $(`<div class="design-sidebar">
                     <a class="workspace-button btn-design-present">
-                        <i class="fa fa-fw fa-play"></i>
+                        <i class="la la-fw la-play"></i>
                     </a>
 
                     <a class="dropdown jsrad-project-menu workspace-menu design-controls no-panel">
                         <div class="workspace-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-fw fa-bars"></i>
+                            <i class="la la-fw la-bars"></i>
                         </div>
                     </a>
 
                     <a class="workspace-button design-controls"
                         data-page=".design-area-project-settings" 
-                        title="project settings"><i class="fa fa-fw fa-gear"></i>
+                        title="project settings"><i class="la la-fw la-gear"></i>
                     </a>
                     <a class="workspace-button design-controls btn-design-area-overview" 
                         data-page=".design-area-overview"
-                        title="forms & processes"><i class="fa fa-fw fa-tv"></i>
+                        title="forms & processes"><i class="la la-fw la-tv"></i>
                     </a>
                     <a class="workspace-button design-controls" 
                         data-page=".design-area-widgets"
-                        title="widgets"><i class="fa fa-fw fa-cubes"></i>
+                        title="widgets"><i class="la la-fw la-cubes"></i>
                     </a>
                     <a class="workspace-button design-controls"
                         data-page=".design-area-text"
-                        title="formating"><i class="fa fa-fw fa-paint-brush"></i>
+                        title="formating"><i class="la la-fw la-paint-brush"></i>
                     </a>
                     <a class="workspace-button design-controls"
                         data-page=".design-area-props" 
-                        title="properties"><i class="fa fa-fw fa-pencil"></i>
+                        title="properties"><i class="la la-fw la-pencil-alt"></i>
                     </a>
                     <a class="workspace-button design-controls" 
                         data-page=".design-area-comments"
-                        title="comments"><i class="fa fa-fw fa-comments"></i>
+                        title="comments"><i class="la la-fw la-comments"></i>
                     </a>
                     <a class="workspace-button design-controls" 
                         data-page=".design-area-docs"
-                        title="documentation"><i class="fa fa-fw fa-file-text"></i>
+                        title="documentation"><i class="la la-fw la-file-text"></i>
                     </a>
                     </div>`);
 
                     
                     // <a class="workspace-button design-controls" 
                     //     data-page=".design-area-database"
-                    //     title="database connection"><i class="fa fa-fw fa-plug"></i>
+                    //     title="database connection"><i class="la la-fw la-plug"></i>
                     // </a>
     }
 
@@ -228,17 +225,17 @@ export default class SidePanel {
         let btn = this.container.find('.btn-design-present i');
         let in_run_mode = false;
 
-        if (btn.hasClass('fa-stop')) {
-			btn.removeClass('fa-stop');
-			btn.addClass('fa-play');
+        if (btn.hasClass('la-stop')) {
+			btn.removeClass('la-stop');
+			btn.addClass('la-play');
             this.container.find('.design-controls').show();
 			in_run_mode = true;
 
             this.Show();
 
 		} else {
-            btn.addClass('fa-stop');
-			btn.removeClass('fa-play');
+            btn.addClass('la-stop');
+			btn.removeClass('la-play');
             this.container.find('.design-controls').hide();
 
             this.HideAll();
@@ -254,8 +251,8 @@ export default class SidePanel {
     }
 
     set_properties(control, default_pane) {
-        let editor = new DatabaseProperties(),
-            docs = new DocsProperties(),
+        let docs = new DocsProperties(),
+            // editor = new DatabaseProperties(),
             comments = new CommentsEditor(),
             fonts = new FormatProperties(),
             styler = new StyleProperties(),
@@ -285,8 +282,8 @@ export default class SidePanel {
         this.panel_container.find('.design-area-text .toolbox-body').children(':not(h4)').remove();
         this.panel_container.find('.design-area-text .toolbox-body').append(fonts.attach(ctrl).append(styler.attach(ctrl)).append(this.AlignmentManager.attach(ctrl)));
 
-        this.panel_container.find('.design-area-database .toolbox-body').children(':not(h4)').remove();
-        this.panel_container.find('.design-area-database .toolbox-body').append(editor.attach(ctrl));
+        // this.panel_container.find('.design-area-database .toolbox-body').children(':not(h4)').remove();
+        // this.panel_container.find('.design-area-database .toolbox-body').append(editor.attach(ctrl));
 
         this.panel_container.find('.design-area-docs .toolbox-body').children(':not(h4)').remove();
         this.panel_container.find('.design-area-docs .toolbox-body').append(docs.attach(ctrl));

@@ -83,7 +83,7 @@ export const ControlDatasource = (superclass) => class extends superclass {
 			.addClass('data-source-loading pull-left')
 			.show();
 		var indicator = $('<i>')
-			.addClass('fa fa-lg fa-fw fa-spinner fa-pulse pull-left')
+			.addClass('la la-lg la-fw la-spinner la-pulse pull-left')
 			.css({
 				'font-size': '28px',
 				padding: '4px',

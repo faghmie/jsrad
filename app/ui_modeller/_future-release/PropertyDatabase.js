@@ -1,4 +1,4 @@
-import PropertyBase from "./PropertyBase.js";
+import PropertyBase from "../PropertyBase.js";
 
 export default class DatabaseProperties extends PropertyBase{
 	
@@ -160,7 +160,7 @@ export default class DatabaseProperties extends PropertyBase{
 		
 		var btn_tbl = $('<div>').addClass('input-group-btn').appendTo(tbl_div);
 		
-		var view_table = $('<a class="btn" title="view data in table"><i class="fa fa-fw fa-th" /></a>')
+		var view_table = $('<a class="btn" title="view data in table"><i class="la la-fw la-th" /></a>')
 						.appendTo(btn_tbl);
 						
 		view_table.on('click', function(){

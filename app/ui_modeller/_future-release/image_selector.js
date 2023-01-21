@@ -60,7 +60,7 @@ var image_selector = function (options_in){
 		if (window.File && window.FileReader && window.FileList && window.Blob){
 			local_file = $('<div class="btn btn-light btn-flat">'+
 								'<label for="localAppFileInput" class="btn btn-flat btn-outline btn-light">'+
-									'<i class="fa fa-cloud-upload"></i> Import file'+
+									'<i class="la la-cloud-upload"></i> Import file'+
 									'<input type="file" id="localAppFileInput" class="load-local-file">'+
 								'</label>'+
 							'</div>').appendTo(container);

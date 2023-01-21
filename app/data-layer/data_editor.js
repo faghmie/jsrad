@@ -350,8 +350,8 @@ var DataEditor = {	//YOU ARE MEANT TO EXTEND THE JSON DATA WITH THIS OBJECT TO C
 			//$body = $('<div class="data-body">').append(ui_group).appendTo(_dlg);
 		
 		$toolbar.append('<div class="btn-group">'+
-					'<button id="btn_cancel" type="button" class="btn btn-flat btn-light"><i class="fa fa-power-off" /></button>'+
-					'<button id="btn_create" type="button" class="btn btn-flat btn-light"><i class="fa fa-plus" /></button>'+
+					'<button id="btn_cancel" type="button" class="btn btn-flat btn-light"><i class="la la-power-off" /></button>'+
+					'<button id="btn_create" type="button" class="btn btn-flat btn-light"><i class="la la-plus" /></button>'+
 				'</div>');
 		
 		$toolbar.find('#btn_create').click(function(){
@@ -395,10 +395,10 @@ var DataEditor = {	//YOU ARE MEANT TO EXTEND THE JSON DATA WITH THIS OBJECT TO C
 		var $toolbar = $('<div class="btn-toolbar" role="toolbar">').appendTo(_dlg);
 
 		$toolbar.append('<div class="btn-group">'+
-					'<button id="btn_cancel" type="button" class="btn btn-flat btn-light"><i class="fa fa-power-off" /></button>'+
-					'<button id="btn_update" type="button" class="btn btn-flat btn-light"><i class="fa fa-save" /></button>'+
-					'<button id="btn_remove" type="button" class="btn btn-flat btn-light"><i class="fa fa-times" /></button>'+
-					'<button id="btn_clone" type="button" class="btn btn-flat btn-light"><i class="fa fa-copy" /></button>'+
+					'<button id="btn_cancel" type="button" class="btn btn-flat btn-light"><i class="la la-power-off" /></button>'+
+					'<button id="btn_update" type="button" class="btn btn-flat btn-light"><i class="la la-save" /></button>'+
+					'<button id="btn_remove" type="button" class="btn btn-flat btn-light"><i class="la la-times" /></button>'+
+					'<button id="btn_clone" type="button" class="btn btn-flat btn-light"><i class="la la-copy" /></button>'+
 				'</div>');
 
 		$toolbar.find('#btn_clone').click(function(){
@@ -594,12 +594,12 @@ var DataEditor = {	//YOU ARE MEANT TO EXTEND THE JSON DATA WITH THIS OBJECT TO C
 			$toolbar = $('<div class="btn-toolbar" role="toolbar">').appendTo(_dlg);
 
 		$toolbar.append('<div class="btn-group">'+
-					'<button id="btn_cancel" type="button" class="btn btn-flat btn-light"><i class="fa fa-power-off" /></button>'+
-					'<button id="btn_create" type="button" class="btn btn-flat btn-light"><i class="fa fa-plus" /></button>'+
-					'<button id="btn_update" type="button" class="btn btn-flat btn-light"><i class="fa fa-pencil" /></button>'+
-					'<button id="btn_import" type="button" class="btn btn-flat btn-light"><i class="fa fa-arrow-down" /></button>'+
-					'<button id="btn_export" type="button" class="btn btn-flat btn-light"><i class="fa fa-arrow-up" /></button>'+
-					'<button id="btn_remove" type="button" class="btn btn-flat btn-light"><i class="fa fa-times" /></button>'+
+					'<button id="btn_cancel" type="button" class="btn btn-flat btn-light"><i class="la la-power-off" /></button>'+
+					'<button id="btn_create" type="button" class="btn btn-flat btn-light"><i class="la la-plus" /></button>'+
+					'<button id="btn_update" type="button" class="btn btn-flat btn-light"><i class="la la-pencil" /></button>'+
+					'<button id="btn_import" type="button" class="btn btn-flat btn-light"><i class="la la-arrow-down" /></button>'+
+					'<button id="btn_export" type="button" class="btn btn-flat btn-light"><i class="la la-arrow-up" /></button>'+
+					'<button id="btn_remove" type="button" class="btn btn-flat btn-light"><i class="la la-times" /></button>'+
 				'</div>');
 		
 		if ($this.options.toolbar.indexOf('create') === -1)$toolbar.find('#btn_create').hide();
@@ -906,8 +906,8 @@ var DataEditor = {	//YOU ARE MEANT TO EXTEND THE JSON DATA WITH THIS OBJECT TO C
 		var data_type = $.trim(field.data_type).toLowerCase();
 
 		if (data_type === 'date' || data_type === 'datetime' || data_type === 'time'){
-			var icon = 'fa-calendar';
-			if (data_type === 'time') icon = 'fa-clock-o';
+			var icon = 'la-calendar';
+			if (data_type === 'time') icon = 'la-clock-o';
 			
 			result += '<div class="input-group date widget-datepicker is-'+ data_type +'">'+
 							'<span class="input-group-addon"><i class="fa '+ icon +'" /></span>'+

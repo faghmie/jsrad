@@ -183,7 +183,7 @@ export default class SqlDesigner extends SqlBase {
 
   #side_panel_toolbar(container) {
     var format_tb = $(`<a class="workspace-button add-table" title="add table">
-							<i class="fa fa-plus"></i>
+							<i class="la la-plus"></i>
 						</a>`);
 
     container
@@ -563,10 +563,10 @@ export default class SqlDesigner extends SqlBase {
     if (table.uuid.trim() === '') {
       return;
     }
-    var icon_class = 'fa-eye';
+    var icon_class = 'la-eye';
     if (table.visible !== true) {
       table.hide();
-      icon_class = 'fa-eye-slash text-danger';
+      icon_class = 'la-eye-slash text-danger';
     }
     var designer = this,
       table_list = this.dom.toolbox,
@@ -577,19 +577,19 @@ export default class SqlDesigner extends SqlBase {
     if (found_table.length === 0) {
       table_list.append(`<a class="list-group-item ${table.uuid}" data-table="${table.uuid}">
 					<span class="small table-list-title">${table.title}</span>
-					<span class="pull-right check-icon fa fa-fw ${icon_class}"></span>
+					<span class="pull-right check-icon la la-fw ${icon_class}"></span>
 				</a>`);
     } else {
       found_table = table_list.find('.' + table.uuid);
 
       found_table
         .find('.check-icon')
-        .removeClass('fa-eye text-danger fa-eye-slash');
+        .removeClass('la-eye text-danger la-eye-slash');
 
       if (table.visible === false) {
-        found_table.find('.check-icon').addClass('text-danger fa-eye-slash');
+        found_table.find('.check-icon').addClass('text-danger la-eye-slash');
       } else {
-        found_table.find('.check-icon').addClass('fa-eye');
+        found_table.find('.check-icon').addClass('la-eye');
       }
     }
 
@@ -599,18 +599,18 @@ export default class SqlDesigner extends SqlBase {
       .on('click', function () {
         var $this = $(this);
         var table = designer.TableManager.tables[$this.data('table')];
-        if ($this.find('.check-icon').hasClass('fa-eye')) {
+        if ($this.find('.check-icon').hasClass('la-eye')) {
           table.hide();
           $this
             .find('.check-icon')
-            .removeClass('fa-eye')
-            .addClass('text-danger fa-eye-slash');
+            .removeClass('la-eye')
+            .addClass('text-danger la-eye-slash');
         } else {
           table.show();
           $this
             .find('.check-icon')
-            .removeClass('text-danger fa-eye-slash')
-            .addClass('fa-eye');
+            .removeClass('text-danger la-eye-slash')
+            .addClass('la-eye');
         }
       });
   }

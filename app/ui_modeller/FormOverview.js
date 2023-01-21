@@ -16,12 +16,12 @@ export default class FormOverview {
 			.hide();
 
 		let btn_add = $(`<div class="form-overview-item" title="add new form">
-							<i class="fa fa-fw fa-plus"/> new form
+							<i class="la la-fw la-plus"/> new form
 						</div>`).appendTo(overview);
 
 
 		let btn_clone = $(`<div class="form-overview-item" title="clone the current form">
-							<i class="fa fa-fw fa-clone"/> clone current
+							<i class="la la-fw la-clone"/> clone current
 						</div>`)
 			.appendTo(overview);
 
@@ -49,7 +49,7 @@ export default class FormOverview {
 			let li = $(`<div class="form-overview-item">
 						<div class="form-title">
 							<span>${form.label}</span>
-							<i class="ui-icon-close fa fa-times"></i>
+							<i class="ui-icon-close la la-times"></i>
 						</div>
 						<img src="preview form"/>
 					</div>`).appendTo(overview);
@@ -92,12 +92,12 @@ export default class FormOverview {
 		let actions = $(`<div class="actions">`);
 
 		let btn_add = $(`<button title="add new form">
-							<i class="fa fa-fw fa-plus"/> new form
+							<i class="la la-fw la-plus"/> new form
 						</button>`).appendTo(actions);
 
 
 		let btn_clone = $(`<button title="clone the current form">
-							<i class="fa fa-fw fa-clone"/> clone current
+							<i class="la la-fw la-clone"/> clone current
 						</button>`)
 			.appendTo(actions);
 

@@ -2,7 +2,7 @@ var control_calendar = class Calendar extends ControlInterface {
 	static type = 'calendar';
 	static control_label = 'Calendar';
 	static control_category = null; //'Special';
-	static control_thumbnail = 'class:fa fa-calendar';
+	static control_thumbnail = 'class:la la-calendar';
 
 	properties = {
 		height: 280,

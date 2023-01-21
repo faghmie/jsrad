@@ -13,7 +13,7 @@ export default class ProjectOpenDialog {
 					<div class="prj-btn-bar">
                         <div class="btn btn-file">
                             <label for="fileInput">
-							    <i class="fa fa-regular fa-folder-open"></i> Load From Disk
+							    <i class="la la-regular la-folder-open"></i> Load From Disk
 						    </label>
 						  <input type="file" id="fileInput">
                         </div>
@@ -26,7 +26,7 @@ export default class ProjectOpenDialog {
     #get_btn_new_project() {
         return $('<div>')
             .addClass('btn')
-            .html('<i class="fa fa-plus"></i> New Project')
+            .html('<i class="la la-plus"></i> New Project')
             .on('click', function () {
                 this.project.CreateNew();
                 this.card.close();

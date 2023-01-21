@@ -132,7 +132,7 @@ var product_tour = function(_designer) {
 	function create_buttons(){
 		var row = $('<div>').addClass('row').appendTo(overview);
 		var btn_close = $("<a class='btn btn-light btn-lg btn-flat pull-right col-6' title='Close'>"+
-							"<i class='fa fa-fw fa-times'/> Close Overview"+
+							"<i class='la la-fw la-times'/> Close Overview"+
 						'</a>')
 						.appendTo(row);
 		
@@ -142,7 +142,7 @@ var product_tour = function(_designer) {
 		});
 		
 		var btn_tour = $("<a class='btn btn-light btn-lg btn-flat pull-left col-6' title='Product Tour'>"+
-							"<i class='fa fa-fw fa-support'/> Show Tour"+
+							"<i class='la la-fw la-support'/> Show Tour"+
 						'</a>')
 						.appendTo(row);
 		

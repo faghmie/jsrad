@@ -2,7 +2,7 @@ var control_array_count_if = {
 	type				: 'array_count_if',
 	control_label		: 'Transform Count If Array',
 	control_category	: 'Transformation',
-	control_thumbnail	: 'class:fa fa-exchange',
+	control_thumbnail	: 'class:la la-exchange',
 	description			: 'Count rows in a table if the specified colums '+
 						' passes the IF condition.',
 	

@@ -1,3 +1,5 @@
+const { default: IconSelector } = require("../IconSelector");
+
 var control_auto_complete = {
 	type				: 'auto_complete',
 	control_label		: 'Auto-complete',
@@ -11,7 +13,7 @@ var control_auto_complete = {
 			value			: {
                     data: 'Apple,Orange,Banana,Kiwi,Lemon,Naartjie,Plum,Nectarine',
                     icon_position	: 'right',
-					icon			: 'fa fa-question',
+					icon			: 'la la-question',
                     placeholder: 'type to search'
                 }
 		},
@@ -73,20 +75,20 @@ var control_auto_complete = {
 				icon_position.find('option').eq(1).attr('selected', 'selected');
 
 			//ICONS
-			var icon_select = $("<a class='btn btn-sm btn-light'>").html("<i class='fa fa-fw "+ this.value.icon +"'>");
+			var icon_select = $("<a class='btn btn-sm btn-light'>").html("<i class='la la-fw "+ this.value.icon +"'>");
 			
             if (false === this.value.use_icon)
                 icon_select.html('No Icon');
 
             icon_select.on('click', function(){
-                var icons = new icon_selector({
+                var icons = new IconSelector({
                     on_selected: function(icon_class, use_icon){
                         $this.value.icon = icon_class;
                         $this.value.use_icon = use_icon;
                         $this._format();
                         if (true === use_icon){
                             icon_select.remove('i');
-                            icon_select.html("<i class='fa fa-fw "+ icon_class +"'>");
+                            icon_select.html("<i class='la la-fw "+ icon_class +"'>");
                         } else {
                             icon_select.html('No Icon');
                         }
@@ -145,7 +147,7 @@ var control_auto_complete = {
 			var icon = null;
 			this.value.use_icon = this.value.icon.length !== 0;
 			if (this.value.use_icon === true){
-				icon = $("<span class='input-group-addon'><i class='fa-fw "+this.value.icon+"'></i></span>");
+				icon = $("<span class='input-group-addon'><i class='la-fw "+this.value.icon+"'></i></span>");
 				
 			} else if (this.value.text !== ''){
 				icon = $("<span class='input-group-addon'>").text(this.value.text);
@@ -204,7 +206,7 @@ var control_auto_complete = {
 	getControl : function(owner){
 		this.ctrl = $('<div class=\'input-group\'>'+
 						'<span class=\'input-group-addon\'>'+
-							'<i class=\'fa fa-pencil\'/>'+
+							'<i class=\'la la-pencil\'/>'+
 						'</span>'+
 						'<input type=\'text\' autocomplete=\'off\' class=\'main-control form-control\'/>'+
 					'</div>');

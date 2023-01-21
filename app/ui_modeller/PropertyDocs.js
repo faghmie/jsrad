@@ -5,7 +5,7 @@ export default class DocsProperties extends PropertyBase {
 	attached_object		= null;
 
 	attach(obj){
-		var widget = $("<ul class='custom-docs list-group props-edit'>");
+		var widget = $(`<div class="text-formater">`);
 		this.attached_object = obj;
 		var s = [
 				["tooltip", "<textarea  id='tooltip' style='width:90%'/>"],
@@ -23,17 +23,17 @@ export default class DocsProperties extends PropertyBase {
 		
 		widget.on("keyup", "#tooltip", obj, function(evt){
 			evt.stopPropagation();
-			evt.data.setToolTip($(this).val());
+			evt.data.setToolTip(evt.target.value);
 		});
 		
 		widget.on("keyup", "#description", obj, function(evt){
 			evt.stopPropagation();
-			evt.data.description = $(this).val();
+			evt.data.description = evt.target.value;
 		});
 		
 		widget.on("keyup", "#behaviour", obj, function(evt){
 			evt.stopPropagation();
-			evt.data.behaviour = $(this).val();
+			evt.data.behaviour = evt.target.value;
 		});
 		
 		return widget;

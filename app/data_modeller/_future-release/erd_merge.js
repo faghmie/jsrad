@@ -140,7 +140,7 @@ var erd_merge = function (_designer){
 		var datasource = $('<select class="form-control">');
 		var tables = $('<select multiple class="form-control">');
 		var local_db = $('<div><label for="fileInput" class="btn btn-flat btn-outline btn-light">'+
-							 '<i class="fa fa-cloud-upload"></i> Import file'+
+							 '<i class="la la-cloud-upload"></i> Import file'+
 						  '</label>'+
 						  '<input type="file" id="fileInput">'+
 						  '</div>');
@@ -234,7 +234,7 @@ var erd_merge = function (_designer){
 				width: '75%'
 			})
 			.addClass('pull-left');
-		var view_table = $('<a class="btn btn-light btn-lg btn-flat btn-outline" title="view data in table"><i class="fa fa-fw fa-th" /></a>').appendTo(tbl_div);
+		var view_table = $('<a class="btn btn-light btn-lg btn-flat btn-outline" title="view data in table"><i class="la la-fw la-th" /></a>').appendTo(tbl_div);
 		view_table.on('click', function(){
 			var tbl = tables.val();
 			var src = datasource.val();

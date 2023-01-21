@@ -310,7 +310,7 @@ export default class ControlInterface extends ControlDatasource(ControlJquery(Co
 		let btn_addon = $(`<span>`).addClass('input-group-btn').appendTo(div);
 		let btn = $(`<a>`)
 						.addClass('btn btn-flat btn-outline btn-light')
-						.html('<i class="fa fa-lg fa-arrow-circle-right" />')
+						.html('<i class="la la-lg la-arrow-circle-right" />')
 						.appendTo(btn_addon);
 		
 		if (only_show_processes !== true) only_show_processes = false;
@@ -909,7 +909,7 @@ export default class ControlInterface extends ControlDatasource(ControlJquery(Co
 			.addClass('control-text')
 			.appendTo(this.dom.container);
 		let indicator = $('<i>')
-			.addClass('fa fa-fw fa-pencil')
+			.addClass('la la-fw la-pencil')
 			.appendTo(text)
 			.css({
 				position: 'absolute',
@@ -992,7 +992,7 @@ export default class ControlInterface extends ControlDatasource(ControlJquery(Co
 				top: -20,
 			})
 			.appendTo(this.dom.container);
-		handle.append('<i class="fa fa-rotate-right"/>');
+		handle.append('<i class="la la-rotate-right"/>');
 
 		let dragging = false,
 			startpoint = null,

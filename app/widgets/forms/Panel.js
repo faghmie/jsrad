@@ -1,3 +1,4 @@
+import IconSelector from "../IconSelector.js";
 import ControlInterface from "../_base/ControlInterface.js";
 
 export default class PanelControl extends ControlInterface {
@@ -42,21 +43,21 @@ export default class PanelControl extends ControlInterface {
 		});
 
 		//ICONS
-		var icon_select = $("<a class='btn btn-lg btn-light'>").html("<i class='fa fa-fw " + this.value.icon + "'>");
+		var icon_select = $("<a class='btn btn-lg btn-light'>").html("<i class='la la-fw " + this.value.icon + "'>");
 
 		if (false === this.value.use_icon)
 			icon_select.html("No Icon");
 
 		icon_select.on("click", this, function (evt) {
 			var $this = evt.data;
-			var icons = new icon_selector({
+			var icons = new IconSelector({
 				on_selected: function (icon_class, use_icon) {
 					$this.value.icon = icon_class;
 					$this.value.use_icon = use_icon;
 					$this.format();
 					if (true === use_icon) {
 						icon_select.remove("i");
-						icon_select.html("<i class='fa fa-fw " + icon_class + "'>");
+						icon_select.html("<i class='la la-fw " + icon_class + "'>");
 					} else {
 						icon_select.html("No Icon");
 					}
@@ -103,7 +104,7 @@ export default class PanelControl extends ControlInterface {
 		if (this.value.use_icon === true) {
 			this.ctrl.find('.card-icon')
 				.css('padding-right', '10px')
-				.append('<i class="fa fa-lg fa-fw ' + this.value.icon + '" ></i>');
+				.append('<i class="la la-lg la-fw ' + this.value.icon + '" ></i>');
 		}
 
 	}

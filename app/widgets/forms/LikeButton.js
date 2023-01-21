@@ -8,7 +8,7 @@ export default class LikeButton extends ControlInterface {
 
 		value: {
 			type: 'btn btn-light',
-			icon: 'fa fa-thumbs-o-up',
+			icon: 'la la-thumbs-o-up',
 			icon_position: 'left',
 			size: 'btn-sm',
 			flat: true,
@@ -119,9 +119,9 @@ export default class LikeButton extends ControlInterface {
 			if (this.value.flat === true)
 				this.ctrl.addClass('btn-flat');
 
-			var icon = "<i class='fa fa-thumbs-o-up m-2'/>   ";
+			var icon = "<i class='la la-thumbs-o-up m-2'/>   ";
 			if (this.like_state > 0) {
-				icon = "<i class='fa fa-thumbs-up m-2'/>   ";
+				icon = "<i class='la la-thumbs-up m-2'/>   ";
 			}
 
 			if (this.value.icon_position === 'left')

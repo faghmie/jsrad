@@ -134,14 +134,10 @@
 	<script type="text/javascript" src="config/fa-icons.json"></script>
 	<script type="text/javascript">
 		window.addEventListener('DOMContentLoaded', function () {
-			// service_worker_init();
-			App.designer = new UiDesigner();
-
-			App.designer.build();
-			App.AuthToken = {};
-			load_prototype();
+			import('./app/ui_modeller/UiDesigner.js').then(module => {
+				new module.default().build();
+			});
 		});
 	</script>
 </body>
-
 </html>

@@ -2,7 +2,7 @@ var control_remove_columns = {
 	type				: 'remove_columns',
 	control_label		: 'Transform Remove Columns From Array',
 	control_category	: 'Transformation',
-	control_thumbnail	: 'class:fa fa-exchange',
+	control_thumbnail	: 'class:la la-exchange',
 	description			: 'Transform an array by removing some columns '+
 							'and return a new array without the columns ',
 	

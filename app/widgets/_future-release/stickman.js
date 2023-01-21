@@ -2,7 +2,7 @@ var control_stickman = {
 	type				: 'stickman',
 	control_label		: 'Stickman',
 	control_category	: 'Shape',
-	control_thumbnail	: 'class:fa fa-odnoklassniki',
+	control_thumbnail	: 'class:la la-odnoklassniki',
 	
     create_shape: function(){
         var head = $('<div>').addClass('circle').appendTo(this.ctrl);

@@ -5,7 +5,7 @@ import ProjectOpenDialog from "./ProjectOpenDialog.js";
 import SidePanel from "./SidePanel.js";
 import ControlFactory from "../widgets/ControlFactory.js";
 import SqlDesigner from "../data_modeller/SqlDesigner.js";
-import Form from "../widgets/form.js";
+import Form from "../widgets/Form.js";
 
 export default class UiDesigner {
 

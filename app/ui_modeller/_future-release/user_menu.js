@@ -72,7 +72,7 @@ var user_menu = function (){
 			if (div.find('.register').is(':visible') === true){
 				action = 'register';
 			}
-			signin.append('  <i class="fa fa-refresh fa-spin"/>');
+			signin.append('  <i class="la la-refresh la-spin"/>');
 			App.AuthToken.first_name = first_name.val();
 			App.AuthToken.surname = surname.val();
 			App.AuthToken.password = pwd.val();
@@ -103,15 +103,15 @@ var user_menu = function (){
 	
 	function get_menu(container){
         var menu = $('<ul class="dropdown-menu dropdown-menu-right ui-user-menu">'+
-							'<li class="dropdown-item feedback_btn"><a><i class="fa fa-fw fa-smile-o"></i> Feedback...</a></li>'+
-							'<li class="dropdown-item product-overview"><a><i class="fa fa-fw fa-question"></i> Overview...</a></li>'+
+							'<li class="dropdown-item feedback_btn"><a><i class="la la-fw la-smile-o"></i> Feedback...</a></li>'+
+							'<li class="dropdown-item product-overview"><a><i class="la la-fw la-question"></i> Overview...</a></li>'+
 							'<li class="dropdown-divider jsrad-logon-form"><a></a></li>'+
 							'<li class="dropdown-item disabled small jsrad-logon-form"><a>Login with credentials</a></li>'+
 							'<li class="dropdown-item custom-credentials jsrad-logon-form"></li>'+
 							'<li class="dropdown-divider"><a></a></li>'+
 							'<li class="dropdown-item disabled small  "><a>or Sigin with</a></li>'+
 							'<li class="dropdown-divider"><a></a></li>'+
-							'<li class="dropdown-item tb_login"><a><i class="fa fa-fw fa-google"></i> Google Sign In</a></li>'+
+							'<li class="dropdown-item tb_login"><a><i class="la la-fw la-google"></i> Google Sign In</a></li>'+
 						'</ul>');
 		
 		menu.find('.custom-credentials').append(capture_credentials());

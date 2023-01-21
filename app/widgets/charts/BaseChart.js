@@ -66,7 +66,6 @@ export class BaseChart extends ControlInterface {
 		this.setControlStyle();
 		
 		var caption = this.ctrl.find('.chart-caption');
-console.log(this)
 		caption.hide();
 		this.label = this.label.trim();
 		caption.html(this.label);

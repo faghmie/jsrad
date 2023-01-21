@@ -2,7 +2,7 @@ var control_extract_columns = {
 	type				: 'extract_columns',
 	control_label		: 'Transform Extract Columns From Array',
 	control_category	: 'Transformation',
-	control_thumbnail	: 'class:fa fa-exchange',
+	control_thumbnail	: 'class:la la-exchange',
 	description			: 'Transform an array by extract some columns '+
 							'and return the extracted columns as a new '+
 							'array',
