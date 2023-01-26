@@ -5,24 +5,22 @@ export default class DataMenu{
     }
 
     #get_menu(){
-        return $(`<a class="dropdown">
-                    <a class="workspace-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        return $(`<div class="dropdown">
+                    <div class="workspace-button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="la la-fw la-bars"></i>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item switch-diagram" title="open datasource" href="#"><i class="la la-exchange"></i> Switch to UI Modeller</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item open-diagram" href="#"><i class="la la-fw la-folder-open"></i> Open New Project</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item tb_save_to_disk" href="#"><i class="la la-fw la-save save-to-disk" title="save to local disk" ></i> Save to Disk</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item btn_generate_doc" href="#"><i class="la la-newspaper-o"></i> Generate Documentation</a>
-                        <a class="dropdown-item btn_csv_to_table" href="#"><i class="la la-file-text-o"></i> Import CSV</a>
-                        <a class="dropdown-item btn_generate_sql" href="#"><i class="la la-database"></i> Export SQL</a>
-						</div>
-						</a>`);
-						
-                        // <a class="dropdown-item new-diagram" title="re-use from existing model" href="#"><i class="la la-puzzle-piece"></i> Re-use existing...</a>
+                    </div>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item switch-diagram" title="open datasource" href="#"><i class="la la-exchange"></i> Switch to UI Modeller</li>
+                        <li class="dropdown-divider"></li>
+                        <li class="dropdown-item open-diagram" href="#"><i class="la la-fw la-folder-open"></i> Open New Project</li>
+                        <li class="dropdown-divider"></li>
+                        <li class="dropdown-item tb_save_to_disk" href="#"><i class="la la-fw la-save save-to-disk" title="save to local disk" ></i> Save to Disk</li>
+                        <li class="dropdown-divider"></li>
+                        <li class="dropdown-item btn_generate_doc" href="#"><i class="la la-newspaper-o"></i> Generate Documentation</li>
+                        <li class="dropdown-item btn_csv_to_table" href="#"><i class="la la-file-text-o"></i> Import CSV</li>
+                        <li class="dropdown-item btn_generate_sql" href="#"><i class="la la-database"></i> Export SQL</;>
+					</ul>
+				</div>`);
     }
 
     GetMenu() {

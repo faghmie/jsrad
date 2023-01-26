@@ -22,7 +22,7 @@ export default class Toolbox {
         this.toolbox = $(`<div class="design-toolbox-widgets">
                 <select class="form-control"/>
                 <input type="text" placeholder="refine search" class="search-box form-control"/>
-                <div class="props-edit"><ul class="toolbox-area"></div>
+                <div class="props-edit"><ul class="toolbox-area"/></div>
             </div>`);
 
         import('../widgets/widgets.js').then(function (plugins) {

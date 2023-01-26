@@ -26,6 +26,10 @@ export default class TableManager{
 			$this.RemoveRelation(evt.detail.foreign_key);
 		});
 
+		document.addEventListener('table-remove', function(evt){
+			$this.removeTable(evt.detail);
+		});
+
 		document.addEventListener('table-row-removed', function(evt){
 			let field = evt.detail.field;
 
@@ -144,8 +148,17 @@ export default class TableManager{
 		}));
 
 		document.dispatchEvent(new CustomEvent('ide-is-dirty'));
-
+		
 		return t;
+	}
+	
+	removeTable(table){
+		App.Confirm('Are you sure you want to remove table: ' + ' [' + table.title + '] ?', 'Remove table?', function () {
+			delete this.tables[table.uuid];
+			table.destroy();
+			document.dispatchEvent(new CustomEvent('ide-is-dirty'));
+		}.bind(this));
+
 	}
 
 	Sync() {

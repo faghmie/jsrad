@@ -98,17 +98,52 @@ export default class SqlBase {
 	}
 
 	redraw() {}
-}
 
-function clone(existingArray) {
-	var newObj = (existingArray instanceof Array) ? [] : {};
-	for (var i in existingArray) {
-		if (i === 'clone') continue;
-		if (existingArray[i] && typeof existingArray[i] === 'object') {
-			newObj[i] = clone(existingArray[i]);
-		} else {
-			newObj[i] = existingArray[i];
-		}
-	}
-	return newObj;
+	add_panel(title, body) {
+        let panel = $(`<div class="design-toolbox-panel">
+                    <div class="design-toolbox-title">
+                        <span>${title}</span>
+                        <div class="panel-controls">
+                            <i class="la la-chevron-down show-hide"/>
+                            <i class="la la-times close-panel"/>
+                        </div>
+                    </div>
+                    <div class="toolbox-body"/>
+                </div>`)
+            .appendTo($('body'))
+            // .resizable()
+            .draggable({
+                handle: '.design-toolbox-title'
+            });
+
+            panel.on('click', panel, function (evt) {
+				let panel = evt.data;
+                if (evt.target.className.includes('close-panel')) {
+                    panel.hide();
+                } else if (evt.target.className.includes('show-hide')) {
+                    if (evt.target.className.includes('la-chevron-down')) {
+                        evt.target.classList.remove('la-chevron-down');
+                        evt.target.classList.add('la-chevron-up');
+                        panel.attr('current-height', panel.css('height'));
+                        panel.css('height', 40);
+                        panel.resizable('destroy');
+
+                    } else if (evt.target.className.includes('la-chevron-up')) {
+                        evt.target.classList.remove('la-chevron-up');
+                        evt.target.classList.add('la-chevron-down');
+                        panel.css('height', panel.attr('current-height'));
+                        panel.resizable();
+                    }
+                } else {
+                    panel.show();
+                }
+            }.bind(this));
+
+		panel.find('.toolbox-body').append(body);
+
+		panel.show();
+
+        return panel;
+    }
+
 }

@@ -81,17 +81,15 @@ export default class StyleProperties {
 	}
 	
 	get_background_color(obj){
-		var div_fc = $('<div>');
 		
 		var fc = $(`<input type="color">`)
-					.appendTo(div_fc)
 					.attr("value", obj.style['background-color'])
 					.on("input", obj, function(evt){
 						evt.data.style['background-color'] = evt.target.value;
 						evt.data.format();
 					});
 		
-		return div_fc;
+		return fc;
 	}
 	
 	get_border_color(obj){
@@ -107,7 +105,7 @@ export default class StyleProperties {
 	
 	get_border_style(obj){
 		var border_style = ['', 'solid', 'dashed', 'dotted', 'double', 'groove', 'ridge', 'inset', 'outset'];
-		var prop = $('<select class="form-control">')
+		var prop = $('<select class="form-control form-select">')
 			.css({
 				width: '80px',
 				'max-width': '80px'

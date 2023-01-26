@@ -15,7 +15,7 @@ export default class LineConnection {
 			'border-style': 'solid',
 			'border-width': '2px',
 			'border-radius': '8px',
-			'z-index': '10',
+			'z-index': '0',
 		}, options.style || {});
 
 		this.options = options;

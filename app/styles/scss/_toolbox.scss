@@ -4,21 +4,49 @@
 	position: absolute;
 	top: 0;
 	left: calc(100vw - 300px);
-	max-height: 100vh;
+	max-height: calc(100vh - 48px);
 	overflow: hidden;
 	width: 300px;
 	min-width: 50px;
 	color: $color-primary;
-	// background: $color-border;
 	background-color: $side-panel-color;
 
 	border-radius: 5px;
 	box-shadow: 0px 0px 15px $color-primary;
+	display: flex;
+	flex-direction: column;
+
+	.design-toolbox-title {
+		font-size: 0.9rem;
+		text-align: center;
+		font-weight: bold;
+		background-color: $color-primary;
+		color: $inverse-text-color;
+		margin: 0;
+		margin-bottom: 5px;
+		padding: 10px;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+
+		i {
+			&:hover {
+				display: inline-block;
+
+				cursor: pointer;
+				background-color: $color-secondary;
+				color: $inverse-text-color;
+			}
+		}
+	}
 
 	.toolbox-body {
-		padding: 10px;
-		overflow-x: hidden;
-		overflow-y: auto;
+		// padding: 10px;
+		margin-left: 10px;
+		margin-right: 10px;
+		overflow: auto;
+		// overflow-x: hidden;
+		// overflow-y: auto;
 	}
 }
 
@@ -30,31 +58,86 @@
 	min-width: 300px;
 	max-width: 300px;
 	color: $color-primary;
+	background-color: $side-panel-color;
+
+	border-radius: 5px;
+	box-shadow: 0px 0px 15px $color-primary;
+
+	width: 350px;
+	max-width: 350px;
+	min-width: 350px;
+	
+			height: 80vh;
+			min-height: 80vh;
+			max-height: 80vh;
+	.title-line {
+		font-size: 1em;
+	}
+
+	.checkbox,
+	input {
+		font-size: 0.85em;
+	}
 }
 
-.design-toolbox-title {
-	font-size: 0.9rem;
-	text-align: center;
-	font-weight: bold;
-	background-color: $color-primary;
-	color: $inverse-text-color;
-	margin: 0;
-	margin-bottom: 5px;
-	padding: 10px;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
+.popup-toolbox-panel,
+.text-formater {
+	.title-line {
+		width: 100%;
+		font-size: 12px;
+		font-weight: bold;
+		color: $base-text-color;
+		border-top: 1px solid $color-primary;
+		padding-top: 10px;
+	}
 
-	i {
+	.checkbox,
+	.form-control,
+	input {
+		font-size: 0.8rem !important;
+		padding: 0 !important;
+		background-color: $color-border !important;
+		border-color: $color-secondary !important;
+		border-width: 1px !important;
+	}
+
+	button {
+		margin: 5px;
+		// padding: 5px;
+		font-size: 0.8rem;
+
+		background-color: $color-border;
+		border-radius: 5px;
+		border: 1px solid $color-secondary;
+
 		&:hover {
-			display: inline-block;
-
 			cursor: pointer;
-			background-color: $color-secondary;
+			background-color: $color-primary;
 			color: $inverse-text-color;
 		}
 	}
+
+	.control-with-label {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: start;
+
+		label,
+		.label {
+			display: block;
+			text-align: right;
+			padding-right: 10px;
+			font-size: 0.75rem !important;
+			color: $base-text-color;
+			font-weight: bold;
+			width: 40% !important;
+			min-width: 80px !important;
+			max-width: 50% !important;
+		}
+	}
 }
+
 
 .design-toolbox-widgets {
 	display: flex;
@@ -94,7 +177,7 @@
 		}
 	}
 
-	.widget-category{
+	.widget-category {
 		overflow: hidden;
 		background: transparent;
 		width: 100%;
@@ -105,6 +188,7 @@
 		border-radius: 5px;
 		text-transform: uppercase;
 	}
+
 	.widget-template {
 		overflow: hidden;
 		cursor: pointer;
@@ -191,100 +275,31 @@
 	flex-direction: column;
 	flex-wrap: wrap;
 	gap: 10px;
-	margin: 10px;
-	padding-right: 5px;
+
+	// margin: 10px;
+	// padding-right: 5px;
+	.form-control {
+		margin: 0 !important;
+	}
+
+	input[type='color'] {
+		width: 40px;
+		max-height: 18px;
+	}
+
+	.btn-group-toggle,
+	.btn-group {
+		width: auto;
+		// margin: 0;
+		display: flex;
+	}
 
 	&.row {
-		flex-direction: row;
-	}
-}
-
-.popup-toolbox-panel,
-.text-formater {
-	.title-line {
-		width: 100%;
-		font-size: 12px;
-		font-weight: bold;
-		color: $base-text-color;
-		border-top: 1px solid $color-primary;
-		padding-top: 10px;
-	}
-
-	.checkbox,
-	.form-control,
-	input {
-		font-size: 0.8rem !important;
-		padding: 0 !important;
-		background-color: $color-border !important;
-		border-color: $color-secondary !important;
-		border-width: 1px !important;
-	}
-
-	button {
-		margin: 5px;
-		// padding: 5px;
-		font-size: 0.8rem;
-
-		background-color: $color-border;
-		border-radius: 5px;
-		border: 1px solid $color-secondary;
-
-		&:hover {
-			cursor: pointer;
-			background-color: $color-primary;
-			color: $inverse-text-color;
-		}
-	}
-
-	.control-with-label {
 		display: flex;
 		flex-direction: row;
-		flex-wrap: nowrap;
-		justify-content: start;
-
-		label,
-		.label {
-			display: block;
-			text-align: right;
-			padding-right: 10px;
-			font-size: 0.75rem !important;
-			color: $base-text-color;
-			font-weight: bold;
-			width: 40% !important;
-			min-width: 80px !important;
-			max-width: 50% !important;
-		}
 	}
 }
-
-
-.popup-toolbox-panel {
-	.title-line {
-		font-size: 1em;
-	}
-
-	.checkbox,
-	input {
-		font-size: 0.85em;
-	}
-}
-
-
 
 .btn-font-family {
 	font-size: 12px;
-}
-
-@media screen and (max-width: 500px) {
-	// .design-toolbox-panel {
-	// 	position: fixed;
-	// 	left: 1vw;
-	// 	bottom: 40px;
-	// 	height: 40vh;
-	// 	max-height: 40vh;
-	// 	min-height: 40vh;
-	// 	overflow: auto;
-	// 	min-width: 98vw;
-	// 	max-width: 98vw;
-	// }
 }

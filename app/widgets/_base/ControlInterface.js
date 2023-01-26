@@ -1,7 +1,7 @@
 // import Form from "../form.js";
 import ControlBase from "./ControlBase.js";
-import {ControlDatasource} from "./ControlDatasource.js";
-import {ControlJquery} from "./ControlJquery.js";
+import { ControlDatasource } from "./ControlDatasource.js";
+import { ControlJquery } from "./ControlJquery.js";
 
 export default class ControlInterface extends ControlDatasource(ControlJquery(ControlBase)) {
 	name = '';
@@ -52,7 +52,7 @@ export default class ControlInterface extends ControlDatasource(ControlJquery(Co
 		this.selected = true;
 
 		if (this.form) {
-			if (true === this.is_locked){
+			if (true === this.is_locked) {
 				this.dom.manager.addClass('locked');
 			} else {
 				this.dom.manager.addClass('selected');
@@ -60,18 +60,18 @@ export default class ControlInterface extends ControlDatasource(ControlJquery(Co
 		}
 
 		if (this.resizable === undefined || this.resizable === true) {
-			if (this.dom.container.is('.ui-resizable')){
+			if (this.dom.container.is('.ui-resizable')) {
 				this.dom.container.resizable('enable');
 			} else {
 				this.make_resizable();
 			}
 		}
 
-		if (this.dom.container.is('.ui-resizable') && this.is_locked){
+		if (this.dom.container.is('.ui-resizable') && this.is_locked) {
 			this.dom.container.resizable('disable');
 		}
 
-		if (!this.dom.container.is('.ui-draggable')){
+		if (!this.dom.container.is('.ui-draggable')) {
 			this.make_draggable();
 		}
 
@@ -79,7 +79,7 @@ export default class ControlInterface extends ControlDatasource(ControlJquery(Co
 
 		//Do this timeout to prevent UI from locking
 		//It allows for the UI to be more responsive
-		window.setTimeout(function(){
+		window.setTimeout(function () {
 			document.dispatchEvent(new CustomEvent('ui-set-properties', {
 				detail: this
 			}));
@@ -114,7 +114,7 @@ export default class ControlInterface extends ControlDatasource(ControlJquery(Co
 
 	get_documentation() {
 		let html = '';
-		
+
 		//TITLE
 		html += '<h2>Description</h2>';
 		html += '<p>' + this.description + '</p>';
@@ -300,44 +300,45 @@ export default class ControlInterface extends ControlDatasource(ControlJquery(Co
 		return form === this;
 	}
 
-	get_link_form(only_show_processes){
+	get_link_form(only_show_processes) {
 		let form = this.getForm();
 		let designer = form.designer;
-		
+
 		let div = $(`<div>`).addClass('input-group');
 		let select = $(`<select>`).addClass('form-control').appendTo(div);
-		
+
 		let btn_addon = $(`<span>`).addClass('input-group-btn').appendTo(div);
 		let btn = $(`<a>`)
-						.addClass('btn btn-flat btn-outline btn-light')
-						.html('<i class="la la-lg la-arrow-circle-right" />')
-						.appendTo(btn_addon);
-		
+			.addClass('btn btn-flat btn-outline btn-light')
+			.html('<i class="la la-lg la-arrow-circle-right" />')
+			.appendTo(btn_addon);
+
 		if (only_show_processes !== true) only_show_processes = false;
-		
+
 		select.append('<option type="click" value="{{none}}">');
-		
-		for(let frm of designer.Forms){
+
+		for (let frm of designer.Forms) {
 			if (frm.uuid === form.uuid) continue;
 			if (true === only_show_processes && frm.isProcess() !== true) continue;
-			
-			select.append('<option value="'+frm.uuid+'">'+frm.label+'</option>');
-			
+
+			select.append('<option value="' + frm.uuid + '">' + frm.label + '</option>');
+
 			if (this.linked_form === frm.uuid)
 				select.find('option:last-child').attr('selected', 'selected');
 		}
 
-		select.on('change', function(evt){
+		select.on('change', function (evt) {
 			evt.stopPropagation();
 			this.ctrl.off('click');
 			this.linked_form = evt.target.value;
 		}.bind(this));
-		
-		btn.on('click', function(evt){
-			if (form.designer.Forms.Exists(this.linked_form))
-				form.designer.Forms.Get(this.linked_form).show();
+
+		btn.on('click', function (evt) {
+			if (form.designer.Forms.Exists(this.linked_form)){
+				form.designer.Forms.showForm(this.linked_form);
+			}
 		}.bind(this));
-		
+
 		div = $('<div>').append(div);
 
 		return div;
@@ -1075,11 +1076,11 @@ export default class ControlInterface extends ControlDatasource(ControlJquery(Co
 				let offset = $(this).offset(),
 					left = ui.position.left - offset.left,
 					top = ui.position.top - offset.top;
-				
+
 				let control_info = JSON.parse(item.attr('widget'));
 				control_info.left = left;
 				control_info.top = top;
-				
+
 				if (!form.designer) return;
 
 				//fire off an event

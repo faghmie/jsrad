@@ -1,5 +1,8 @@
+import SqlTable from "./SqlTable.js";
+
 export default class TableProperties {
 
+	/** @type {SqlTable | undefined} */
 	ctrl = null;
 
 	constructor(table) {
@@ -7,44 +10,39 @@ export default class TableProperties {
 	}
 
 	Show() {
-		var widget = $(`<div class="popup-toolbox-panel">`);
+		let widget = $(`<div class="text-formater">`);
 
 		widget.append(this.#evt_setName(this.ctrl));
 
 		widget.append(this.#evt_set_comment(this.ctrl));
 
-		open_card(widget, {
-			title: this.ctrl.title,
-			'width': '350px',
-			'min-width': '350px',
-			'max-width': '350px',
-		});
+		this.ctrl.add_panel('Table Properties', widget);
 
 		return widget;
 	}
 
 	#evt_setName(obj) {
-		var prop = $(`<input class="form-control" type="text" placeholder="title" />`)
+		let prop = $(`<input class="form-control" type="text" placeholder="title" />`)
 			.val(obj.title)
 			.on('input', evt => {
 				obj.setName(evt.target.value);
 				document.dispatchEvent(new CustomEvent('ide-is-dirty'));
 			});
 
-		var div = $(`<div class="control-with-label"><label>name</label></div>`).append(prop);
+		let div = $(`<div class="control-with-label"><label>name</label></div>`).append(prop);
 
 		return div;
 	}
 
 	#evt_set_comment(obj) {
-		var prop = $(`<textarea class="form-control" placeholder="comment"/>`)
+		let prop = $(`<textarea class="form-control" placeholder="comment"/>`)
 			.val(obj.comment)
 			.on('input', evt => {
 				obj.setComment(evt.target.value);
 				document.dispatchEvent(new CustomEvent('ide-is-dirty'));
 			});
 
-		var div = $(`<div class="control-with-label"><label>comment</label></div>`).append(prop);
+		let div = $(`<div class="control-with-label"><label>comment</label></div>`).append(prop);
 		return div;
 	}
 }

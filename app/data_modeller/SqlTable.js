@@ -96,7 +96,7 @@ export default class SqlTable extends SqlBase {
 					<div class="sql-table-title header">
 						<div class="title" />
 						<div class="dropdown">
-							<a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<a data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<i class="la la-fw la-gear"></i>
 							</a>
 							<div class="dropdown-menu">
@@ -138,10 +138,9 @@ export default class SqlTable extends SqlBase {
 		this.dom.container.find('.edit-table').on('click', this, evt => evt.data.TableProperties.Show());
 
 		this.dom.container.find('.remove-table').on('click', this, function (evt) {
-			evt.stopPropagation();
-			App.Confirm('Are you sure you want to remove table: ' + ' [' + evt.data.title + '] ?', 'Remove table?', function () {
-				evt.data.destroy();
-			});
+			document.dispatchEvent(new CustomEvent('table-remove', {
+				detail: evt.data
+			}));
 		});
 
 		this.dom.container.find('.table-data').on('click', this, function (evt) {

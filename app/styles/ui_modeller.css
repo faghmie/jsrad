@@ -1609,7 +1609,6 @@ select[multiple] option:hover {
   width: 48px;
   min-width: 48px;
   max-width: 48px;
-  border: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2560,7 +2559,7 @@ ARROW*/
   position: absolute;
   top: 0;
   left: calc(100vw - 300px);
-  max-height: 100vh;
+  max-height: calc(100vh - 48px);
   overflow: hidden;
   width: 300px;
   min-width: 50px;
@@ -2569,15 +2568,6 @@ ARROW*/
   border-radius: 5px;
   -webkit-box-shadow: 0px 0px 15px #53809e;
           box-shadow: 0px 0px 15px #53809e;
-}
-
-.design-toolbox-panel .toolbox-body {
-  padding: 10px;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-.popup-toolbox-panel {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2585,14 +2575,9 @@ ARROW*/
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 10px;
-  overflow: auto;
-  min-width: 300px;
-  max-width: 300px;
-  color: #53809e;
 }
 
-.design-toolbox-title {
+.design-toolbox-panel .design-toolbox-title {
   font-size: 0.9rem;
   text-align: center;
   font-weight: bold;
@@ -2613,11 +2598,121 @@ ARROW*/
           justify-content: space-between;
 }
 
-.design-toolbox-title i:hover {
+.design-toolbox-panel .design-toolbox-title i:hover {
   display: inline-block;
   cursor: pointer;
   background-color: #799cb4;
   color: white;
+}
+
+.design-toolbox-panel .toolbox-body {
+  margin-left: 10px;
+  margin-right: 10px;
+  overflow: auto;
+}
+
+.popup-toolbox-panel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 10px;
+  overflow: auto;
+  min-width: 300px;
+  max-width: 300px;
+  color: #53809e;
+  background-color: #e4e6e8;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 15px #53809e;
+          box-shadow: 0px 0px 15px #53809e;
+  width: 350px;
+  max-width: 350px;
+  min-width: 350px;
+  height: 80vh;
+  min-height: 80vh;
+  max-height: 80vh;
+}
+
+.popup-toolbox-panel .title-line {
+  font-size: 1em;
+}
+
+.popup-toolbox-panel .checkbox,
+.popup-toolbox-panel input {
+  font-size: 0.85em;
+}
+
+.popup-toolbox-panel .title-line,
+.text-formater .title-line {
+  width: 100%;
+  font-size: 12px;
+  font-weight: bold;
+  color: #2c3643;
+  border-top: 1px solid #53809e;
+  padding-top: 10px;
+}
+
+.popup-toolbox-panel .checkbox,
+.popup-toolbox-panel .form-control,
+.popup-toolbox-panel input,
+.text-formater .checkbox,
+.text-formater .form-control,
+.text-formater input {
+  font-size: 0.8rem !important;
+  padding: 0 !important;
+  background-color: #e7eef3 !important;
+  border-color: #799cb4 !important;
+  border-width: 1px !important;
+}
+
+.popup-toolbox-panel button,
+.text-formater button {
+  margin: 5px;
+  font-size: 0.8rem;
+  background-color: #e7eef3;
+  border-radius: 5px;
+  border: 1px solid #799cb4;
+}
+
+.popup-toolbox-panel button:hover,
+.text-formater button:hover {
+  cursor: pointer;
+  background-color: #53809e;
+  color: white;
+}
+
+.popup-toolbox-panel .control-with-label,
+.text-formater .control-with-label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+}
+
+.popup-toolbox-panel .control-with-label label,
+.popup-toolbox-panel .control-with-label .label,
+.text-formater .control-with-label label,
+.text-formater .control-with-label .label {
+  display: block;
+  text-align: right;
+  padding-right: 10px;
+  font-size: 0.75rem !important;
+  color: #2c3643;
+  font-weight: bold;
+  width: 40% !important;
+  min-width: 80px !important;
+  max-width: 50% !important;
 }
 
 .design-toolbox-widgets {
@@ -2770,58 +2865,26 @@ ARROW*/
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   gap: 10px;
-  margin: 10px;
-  padding-right: 5px;
+}
+
+.text-formater .form-control {
+  margin: 0 !important;
+}
+
+.text-formater input[type='color'] {
+  width: 40px;
+  max-height: 18px;
+}
+
+.text-formater .btn-group-toggle,
+.text-formater .btn-group {
+  width: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .text-formater.row {
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-}
-
-.popup-toolbox-panel .title-line,
-.text-formater .title-line {
-  width: 100%;
-  font-size: 12px;
-  font-weight: bold;
-  color: #2c3643;
-  border-top: 1px solid #53809e;
-  padding-top: 10px;
-}
-
-.popup-toolbox-panel .checkbox,
-.popup-toolbox-panel .form-control,
-.popup-toolbox-panel input,
-.text-formater .checkbox,
-.text-formater .form-control,
-.text-formater input {
-  font-size: 0.8rem !important;
-  padding: 0 !important;
-  background-color: #e7eef3 !important;
-  border-color: #799cb4 !important;
-  border-width: 1px !important;
-}
-
-.popup-toolbox-panel button,
-.text-formater button {
-  margin: 5px;
-  font-size: 0.8rem;
-  background-color: #e7eef3;
-  border-radius: 5px;
-  border: 1px solid #799cb4;
-}
-
-.popup-toolbox-panel button:hover,
-.text-formater button:hover {
-  cursor: pointer;
-  background-color: #53809e;
-  color: white;
-}
-
-.popup-toolbox-panel .control-with-label,
-.text-formater .control-with-label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2829,35 +2892,6 @@ ARROW*/
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: start;
-}
-
-.popup-toolbox-panel .control-with-label label,
-.popup-toolbox-panel .control-with-label .label,
-.text-formater .control-with-label label,
-.text-formater .control-with-label .label {
-  display: block;
-  text-align: right;
-  padding-right: 10px;
-  font-size: 0.75rem !important;
-  color: #2c3643;
-  font-weight: bold;
-  width: 40% !important;
-  min-width: 80px !important;
-  max-width: 50% !important;
-}
-
-.popup-toolbox-panel .title-line {
-  font-size: 1em;
-}
-
-.popup-toolbox-panel .checkbox,
-.popup-toolbox-panel input {
-  font-size: 0.85em;
 }
 
 .btn-font-family {

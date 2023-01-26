@@ -48,8 +48,8 @@ module.exports = function (grunt) {
 
 		},
 		watch: {
-			files: ['<%= eslint.target %>'],
-			tasks: ['concat', 'uglify', 'cssmin', 'copy'],
+			files: ['<%= eslint.target %>', 'html/**', 'package.json'],
+			tasks: ['concat', 'cssmin', 'htmlbuild', 'copy'],
 			options: {
 				livereload: true
 			}
@@ -169,7 +169,8 @@ module.exports = function (grunt) {
 					relative: true,
 					type: 'module',
 					scripts: {
-						libs: '<%= pkg.scripts.libs %>',
+						libs: ['<%= pkg.scripts.libs %>'
+						],
 						app: [
 							'<%= pkg.scripts.common %>'
 						],
@@ -190,7 +191,8 @@ module.exports = function (grunt) {
 					//beautify: true,
 					//relative: true,
 					scripts: {
-						libs: 'dist/app/jsrad_external_libs.min.js',
+						libs: ['dist/app/jsrad_external_libs.min.js'
+						],
 						app: 'dist/app/jsrad.common.min.js',
 						main: 'main.js',
 					},

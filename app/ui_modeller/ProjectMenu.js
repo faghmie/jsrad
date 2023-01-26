@@ -9,16 +9,16 @@ export default class ProjectMenu{
     Build() {
         let $this = this;
 
-        let menu = $(`<div class="dropdown-menu">
-                            <a class="dropdown-item switch-diagram" title="open datasource" href="#"><i class="la la-exchange"></i> Switch to Data Modeller</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item open-diagram"><i class="la la-fw la-folder-open"></i> Open New Project</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item tb_save_to_disk"><i class="la la-fw la-save save-to-disk" title="save to local disk" ></i> Save to Disk</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item " id="tb_snapshot" title="generate documentation"><i class="la la-fw la-newspaper-o"></i> Generate Documentation</a>
-                            <a class="dropdown-item " id="tb_image" title="generate image"><i class="la la-fw la-file-image-o"> </i> Export as Image</a>
-                            </div>`);
+        let menu = $(`<ul class="dropdown-menu">
+                            <li class="dropdown-item switch-diagram" title="open datasource" href="#"><i class="la la-exchange"></i> Switch to Data Modeller</li>
+                            <li class="dropdown-divider"></li>
+                            <li class="dropdown-item open-diagram"><i class="la la-fw la-folder-open"></i> Open New Project</li>
+                            <li class="dropdown-divider"></li>
+                            <li class="dropdown-item tb_save_to_disk"><i class="la la-fw la-save save-to-disk" title="save to local disk" ></i> Save to Disk</li>
+                            <li class="dropdown-divider"></li>
+                            <li class="dropdown-item " id="tb_snapshot" title="generate documentation"><i class="la la-fw la-newspaper-o"></i> Generate Documentation</li>
+                            <li class="dropdown-item " id="tb_image" title="generate image"><i class="la la-fw la-file-image-o"> </i> Export as Image</li>
+                            </ul>`);
                             // <a class="dropdown-item reuse_ui"><i class="la la-fw la-puzzle-piece"></i> Re-use from existing...</a>
     
         menu.find('.tb_save_to_disk').off('click').on('click', function () {

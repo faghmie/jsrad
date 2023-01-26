@@ -17,7 +17,7 @@ export default class AlignmentManager {
 	};
 
 	get_order(obj) {
-		var prop = $(`<div class="text-formatter row">
+		var prop = $(`<div class="text-formatter">
             <button class="to-front">to front</button>
             <button class="send-back">send back</button>
             </div>`);
@@ -34,7 +34,7 @@ export default class AlignmentManager {
 	}
 
 	get_sizer(obj) {
-		var prop = $(`<div class="text-formatter row">
+		var prop = $(`<div class="text-formatter">
             <button class="copy">copy size</button>
             <button class="paste">paste size</button>
             </div>`);
@@ -64,7 +64,7 @@ export default class AlignmentManager {
 	}
 
 	get_styler(obj) {
-		var prop = $(`<div class="text-formatter row">
+		var prop = $(`<div class="text-formatter">
             <button class="copy">copy style</button>
             <button class="paste">paste style</button>
             <button class="default">default style</button>
@@ -110,23 +110,15 @@ export default class AlignmentManager {
 	}
 
 	get_alignment(obj) {
-		var prop = $(`<div class="btn-group-toggle" data-toggle="buttons">
-						<label class="left btn" title="align to left">
-							<input type="radio">
-							<i class="la la-download la-rotate-90" />
-						</label>
-						<label class="top btn" title="align top">
-							<input type="radio">
-							<i class="la la-download la-rotate-180" />
-						</label>
-						<label class="right btn" title="align to right">
-							<input type="radio">
-							<i class="la la-download la-rotate-270" />
-						</label>
-						<label class="bottom btn" title="align bottoms">
-							<input type="radio">
-							<i class="la la-download" />
-						</label>
+		var prop = $(`<div class="text-formatter">
+						<button class=" la la-download la-rotate-90 left btn" title="align to left">
+						</button>
+						<button class="la la-download la-rotate-180 top btn" title="align top">
+						</button>
+						<button class="la la-download la-rotate-270 right btn" title="align to right">
+						</button>
+						<button class="la la-download bottom btn" title="align bottoms">
+						</button>
 					</div>`);
 
 		prop.find('.left').on('click', obj, function (evt) {
