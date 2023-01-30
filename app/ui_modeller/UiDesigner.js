@@ -373,7 +373,6 @@ export default class UiDesigner {
 		}
 	}
 
-
 	async toObject() {
 		let json = {
 			project: {},

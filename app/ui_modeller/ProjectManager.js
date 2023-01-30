@@ -193,8 +193,8 @@ export default class ProjectManager {
         });
     }
 
-    SaveToDisk() {
-        let json = this.designer.toObject(),
+    async SaveToDisk() {
+        let json = await this.designer.toObject(),
             name = json.name;
 
         if (json.project) {
