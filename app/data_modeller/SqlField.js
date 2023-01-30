@@ -60,7 +60,7 @@ export default class SqlField extends SqlBase{
 		var dest = this;
 		
 		this.dom.container = $("<tr class='sql-table-field'>")
-									.append("<td class='remove-field faded-text' style='width:20px;'><span class='hide-me la la-times'/></td>")
+									.append("<td class='remove-field faded-text' style='width:20px;'><span class='hide-me la la-times'></span></td>")
 									.append("<td class='title'>")
 									.append("<td class='typehint'>")
 									.append("<td class='field-type'>");

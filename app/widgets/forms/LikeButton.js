@@ -119,9 +119,9 @@ export default class LikeButton extends ControlInterface {
 			if (this.value.flat === true)
 				this.ctrl.addClass('btn-flat');
 
-			var icon = "<i class='la la-thumbs-o-up m-2'/>   ";
+			var icon = "<i class='la la-thumbs-o-up m-2'></i>   ";
 			if (this.like_state > 0) {
-				icon = "<i class='la la-thumbs-up m-2'/>   ";
+				icon = "<i class='la la-thumbs-up m-2'></i>   ";
 			}
 
 			if (this.value.icon_position === 'left')
@@ -183,7 +183,7 @@ export default class LikeButton extends ControlInterface {
 	}
 
 	getControl() {
-		this.ctrl = $("<button type='button' class='btn btn-light' title='i like this' />");
+		this.ctrl = $("<button type='button' class='btn btn-light' title='i like this' ></button>");
 
 		return this.ctrl;
 	}

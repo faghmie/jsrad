@@ -53,7 +53,7 @@ var control_file = {
 	},
 	
 	getControl	: function(owner){
-		this.ctrl = $("<input type='file' class='form-control' />");
+		this.ctrl = $("<input type='file' class='form-control' >");
 		
 		return this.ctrl;
 	}

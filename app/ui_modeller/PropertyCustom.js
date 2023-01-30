@@ -44,9 +44,9 @@ export default class CustomProperties extends PropertyBase {
 		if (!(s instanceof Array)) s = [];
 		
 		if (obj !== obj.getForm())
-			s.unshift(['allow inline editor',`<input type="checkbox" id="inline-editor" />`]);
+			s.unshift(['allow inline editor',`<input type="checkbox" id="inline-editor" >`]);
 		
-		s.unshift(['name',"<input type='text' class='' id='name'/>"]);
+		s.unshift(['name',"<input type='text' class='' id='name'>"]);
 		s.unshift(['when the user click go to....', obj.get_link_form(false)]);
 		
 		if (typeof obj.dm_is_data_aware === 'function'){
@@ -54,7 +54,7 @@ export default class CustomProperties extends PropertyBase {
 			s.unshift(['data operation', make_data_model(obj, widget)]);
 		}
 		
-		s.unshift(['display name','<input type="text" id="label"/>']);
+		s.unshift(['display name','<input type="text" id="label">']);
 		
 		this._append_item('Control Type', `<span>${obj.type.replaceAll('./', '').toTitle()}</span>`, null, widget);
 
@@ -110,10 +110,10 @@ export default class CustomProperties extends PropertyBase {
 		var widget = $('<div class="text-formater nowrap">');
 		
 		var s =[
-				['value',`<textarea class="value"/>`],
-				// ["tab index","<input type='number' id='tabindex' class=''/>"],
-				// ["control type","<input type='text' readonly class='' id='type'/>"],
-				// ["id","<input type='text' readonly class='' id='uuid'/>"]
+				['value',`<textarea class="value"></textarea>`],
+				// ["tab index","<input type='number' id='tabindex' class=''>"],
+				// ["control type","<input type='text' readonly class='' id='type'>"],
+				// ["id","<input type='text' readonly class='' id='uuid'>"]
 			];
         
         for(var index = 0; index < s.length; index++){

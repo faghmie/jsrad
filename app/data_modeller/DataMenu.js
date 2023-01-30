@@ -141,7 +141,7 @@ export default class DataMenu{
 						.appendTo(div);
 					img.attr('src', canvas.toDataURL());
 					div.append($this.getDocumentation());
-					div.append('<hr><br/>');
+					div.append('<hr><br>');
 					$dlg.append(div);
 					$this.dom.container.css({
 						'height': DB_DESIGN_AREA.height,

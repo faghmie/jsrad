@@ -104,11 +104,11 @@ export default class SqlBase {
                     <div class="design-toolbox-title">
                         <span>${title}</span>
                         <div class="panel-controls">
-                            <i class="la la-chevron-down show-hide"/>
-                            <i class="la la-times close-panel"/>
+                            <i class="la la-chevron-down show-hide></i>
+                            <i class="la la-times close-panel"></i>
                         </div>
                     </div>
-                    <div class="toolbox-body"/>
+                    <div class="toolbox-body"></div>
                 </div>`)
             .appendTo($('body'))
             // .resizable()

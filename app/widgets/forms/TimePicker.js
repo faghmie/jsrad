@@ -15,7 +15,7 @@ export default class TimeControl extends TextEntry {
 	getControl() {
 		super.getControl();
 		this.ctrl.find('input').remove();
-		this.ctrl.find('.control-group').append(`<input type="time" class="form-control"/>`);
+		this.ctrl.find('.control-group').append(`<input type="time" class="form-control">`);
 
 		return this.ctrl;
 	}

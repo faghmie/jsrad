@@ -52,7 +52,7 @@ export default class StyleProperties {
 	}
 	
 	get_opacity(obj){
-		var opacity = $(`<div><input  class="form-control" type="number" min="0" max="100" value=100 /></div>`);
+		var opacity = $(`<div><input  class="form-control" type="number" min="0" max="100" value=100 ></div>`);
 		var num = 100;
 		if (!isNaN(parseFloat(obj.opacity)))
 			num = parseFloat(obj.opacity)*100;
@@ -68,7 +68,7 @@ export default class StyleProperties {
 	}
 	
 	get_rotation(obj){
-		var rotation = $(`<div><input class="form-control" type="number" min="0" max="360" value=0 /></div>`);
+		var rotation = $(`<div><input class="form-control" type="number" min="0" max="360" value=0 ></div>`);
 		
 		rotation.find("input")
 			.val(obj.rotation)

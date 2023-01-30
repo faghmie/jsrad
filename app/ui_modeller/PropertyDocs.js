@@ -8,9 +8,9 @@ export default class DocsProperties extends PropertyBase {
 		var widget = $(`<div class="text-formater">`);
 		this.attached_object = obj;
 		var s = [
-				["tooltip", "<textarea  id='tooltip' style='width:90%'/>"],
-				["description", "<textarea  id='description' style='width:90%'/>"],
-				["behaviour", "<textarea  id='behaviour' style='width:90%'/>"],
+				["tooltip", "<textarea  id='tooltip' style='width:90%'></textarea>"],
+				["description", "<textarea  id='description' style='width:90%'></textarea>"],
+				["behaviour", "<textarea  id='behaviour' style='width:90%'></textarea>"],
 			];
 		
 		for(var index = 0; index < s.length; index++){

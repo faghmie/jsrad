@@ -139,7 +139,7 @@ var image_selector = function (options_in){
         });
 
         var div = $("<div>");
-        var search = $("<input class='form-control input-sm' placeholder='type to search...' />").appendTo(div);
+        var search = $("<input class='form-control input-sm' placeholder='type to search...' >").appendTo(div);
         search.on("keyup", function(){
             var find = $(this).val();
             

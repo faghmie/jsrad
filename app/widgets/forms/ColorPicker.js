@@ -16,7 +16,7 @@ export default class ColorPicker extends BaseFormControl(ControlInterface) {
 	getControl() {
 		super.getControl();
 
-		this.ctrl.find('.control-group').append('<input type="color" />');
+		this.ctrl.find('.control-group').append('<input type="color" >');
 
 		return this.ctrl;
 	}

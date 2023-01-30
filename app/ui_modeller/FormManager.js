@@ -227,7 +227,7 @@ export default class FormManager {
                     img.attr('src', canvas.toDataURL());
 
                     div.append(form.get_documentation());
-                    div.append('<hr><br/>');
+                    div.append('<hr><br>');
 
                     resolve(div.html());
                 }

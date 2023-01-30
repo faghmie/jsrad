@@ -14,7 +14,7 @@ export default class DateControl extends TextEntry {
 	getControl() {
 		super.getControl();
 		this.ctrl.find('input').remove();
-		this.ctrl.find('.control-group').append(`<input type="date" class="form-control"/>`);
+		this.ctrl.find('.control-group').append(`<input type="date" class="form-control">`);
 
 		return this.ctrl;
 	}

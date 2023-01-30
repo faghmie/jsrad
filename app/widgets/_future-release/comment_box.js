@@ -91,7 +91,7 @@ var control_comment_box = {
 		comment.append("<p class='pull-right comment-date small'>");
 		comment.append("<div class='media-body'>" +
 						"<h4 class='media-heading comment-user'></h4>" +
-						"<div class='comment-content'/>" +
+						"<div class='comment-content'></div>" +
 					   '</div>');
 		
 		comment.find('.comment-date')
@@ -118,7 +118,7 @@ var control_comment_box = {
 					});
 		
 		if (typeof msg.message === 'string')
-			comment.find('.comment-content').append(msg.message.replace(/(\r)|(\n)|(\r\n)/g,'<br/>'));
+			comment.find('.comment-content').append(msg.message.replace(/(\r)|(\n)|(\r\n)/g,'<br>'));
 
 		return this;
 		
@@ -206,7 +206,7 @@ var control_comment_box = {
 							.addClass('input-group')
 							.append(datasource);
 		var btn_ds = $('<div>').addClass('input-group-btn').appendTo(ds_div);
-		var view_ds = $('<a class="btn" title="edit datasource"><i class="la la-fw la-pencil" /></a>')
+		var view_ds = $('<a class="btn" title="edit datasource"><i class="la la-fw la-pencil" ></i></a>')
 						.appendTo(btn_ds);
 						
 		view_ds.on('click', function(){
@@ -222,7 +222,7 @@ var control_comment_box = {
 							.append(tables);
 		btn_tbl = $('<div>').addClass('input-group-btn').appendTo(tbl_div);
 
-		var view_table = $('<a class="btn" title="view data in table"><i class="la la-fw la-th" /></a>')
+		var view_table = $('<a class="btn" title="view data in table"><i class="la la-fw la-th" ></i></a>')
 						.appendTo(btn_tbl);
 						
 		view_table.on('click', function(){

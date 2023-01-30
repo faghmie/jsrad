@@ -37,7 +37,7 @@ var control_card = {
 			var $this = this;
 			
 			//TITLE
-			var title = $("<input type='text'/>").val(this.value.title);
+			var title = $("<input type='text'>").val(this.value.title);
 			
 			title.on("keyup", function(evt){
 				evt.stopPropagation();
@@ -55,7 +55,7 @@ var control_card = {
 			});
 			
 			//BUTTONS
-			var buttons = $("<input type='text'/>").val(this.value.buttons);
+			var buttons = $("<input type='text'>").val(this.value.buttons);
 			
 			buttons.on("blur", function(){
 				$this.value.buttons = $(this).val();
@@ -63,7 +63,7 @@ var control_card = {
 			});
 			
 			//IMAGE
-			var image = $("<input type='text'/>").val(this.value.image);
+			var image = $("<input type='text'>").val(this.value.image);
 			
 			image.on("keyup blur", function(evt){
 				evt.stopPropagation();
@@ -149,7 +149,7 @@ var control_card = {
 	
 	getControl	: function(owner){
 		this.ctrl = $('<div class="-card-small">' +
-							'<img class="card-with-image" data-src="holder.js/100%x180/" alt="Card image cap"/>' +
+							'<img class="card-with-image" data-src="holder.js/100%x180/" alt="Card image cap">' +
 						'<div class="card-title"></div>' +
 						'<div class="card-text"></div>' +
 						'<div class="card-actions">' +

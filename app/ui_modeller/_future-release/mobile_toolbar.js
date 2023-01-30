@@ -82,9 +82,9 @@ var mobile_toolbar = function(_designer) {
 		if (!(s instanceof Array)) s = [];
 		
 		if (obj !== obj.getForm())
-			s.unshift(['allow inline editor','<input type=\'checkbox\' id=\'inline-editor\' />']);
+			s.unshift(['allow inline editor','<input type=\'checkbox\' id=\'inline-editor\' >']);
 		
-		s.unshift(['name',"<input type='text' class='' id='name'/>"]);
+		s.unshift(['name',"<input type='text' class='' id='name'>"]);
 		s.unshift(['when the user click go to....', base_activity.get_link_form(false, obj)]);
 		
 		// if (typeof obj.dm_is_data_aware === 'function'){
@@ -92,7 +92,7 @@ var mobile_toolbar = function(_designer) {
 		// 	s.unshift(['data operation', make_data_model(obj, widget)]);
 		// }
 		
-		s.unshift(['display name','<input type="text" id="label"/>']);
+		s.unshift(['display name','<input type="text" id="label">']);
 		
 		if (s instanceof Array){
 			for(var index = 0; index < s.length; index++){
@@ -148,8 +148,8 @@ var mobile_toolbar = function(_designer) {
 
 	function make_settings(obj){
 		var ui = $('<div class="design-toolbox-panel"><div class="d-flex align-items-stretch">'+
-					'<div class="ui-props-bar p-2"/>'+
-					'<div class="ui-props-content p-2 flex-grow-1"/>'+
+					'<div class="ui-props-bar p-2"></div>'+
+					'<div class="ui-props-content p-2 flex-grow-1"></div>'+
 				'</div></div>').appendTo(obj.getForm().designer.dom.workspace);
 		
 		var props = ui.find('.ui-props-bar');

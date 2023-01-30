@@ -16,8 +16,8 @@ export default class ColumnProperties {
 
 	#move_column() {
 		var prop = $(`<div class="btn-group" role="group">
-						<a type="button" class="btn btn-light btn-flat col-up" title="move column up"><i class="la la-arrow-up" /></a>
-						<a type="button" class="btn btn-light btn-flat col-down" title="move column down"><i class="la la-arrow-down" /></a>
+						<a type="button" class="btn btn-light btn-flat col-up" title="move column up"><i class="la la-arrow-up"></i></a>
+						<a type="button" class="btn btn-light btn-flat col-down" title="move column down"><i class="la la-arrow-down"></i></a>
 					</div>`);
 
 		prop.find('.col-up').on('click', this.ctrl, evt => evt.data.up());
@@ -39,7 +39,7 @@ export default class ColumnProperties {
 	}
 
 	#set_comment() {
-		var prop = $(`<textarea class="form-control" placeholder="comment"/>`)
+		var prop = $(`<textarea class="form-control" placeholder="comment></textarea>`)
 			.val(this.ctrl.comment)
 			.on('input', this.ctrl, evt => {
 				evt.data.setComment(evt.target.value);
@@ -55,7 +55,7 @@ export default class ColumnProperties {
 			, 'editor', 'boolean', 'password', 'email', 'color'
 		];
 
-		var prop = $(`<select class="form-control" placeholder="data type"/>`)
+		var prop = $(`<select class="form-control" placeholder="data type></select>`)
 			.val(this.ctrl.comment)
 			.on('change', this.ctrl, evt => {
 				evt.data.data_type = evt.target.value;
@@ -77,7 +77,7 @@ export default class ColumnProperties {
 	#set_viewtype() {
 		var types = ['', 'count', 'sum', 'avg', 'max', 'min'];
 
-		var prop = $(`<select class="form-control" placeholder="aggregate"/>`)
+		var prop = $(`<select class="form-control" placeholder="aggregate></select>`)
 			.val(this.ctrl.comment)
 			.on('input', this.ctrl, evt => {
 				evt.data.aggregate_type = evt.target.value;
@@ -101,7 +101,7 @@ export default class ColumnProperties {
 
 	#set_auto_increment() {
 		var prop = $(`<div class="checkbox">
-						<label><input type="checkbox" value="" />Auto Increment</label>
+						<label><input type="checkbox" value="" >Auto Increment</label>
 					</div>`);
 
 		var chk = prop.find('input');
@@ -127,7 +127,7 @@ export default class ColumnProperties {
 
 	#set_nullable() {
 		var prop = $(`<div class="checkbox">
-						<label><input type="checkbox" value="" />Nullable</label>
+						<label><input type="checkbox" value="" >Nullable</label>
 					</div>`);
 
 		var chk = prop.find('input');
@@ -147,7 +147,7 @@ export default class ColumnProperties {
 
 	#set_required() {
 		var prop = $(`<div class="checkbox">
-						<label><input type="checkbox" value="" />Required</label>
+						<label><input type="checkbox" value="" >Required</label>
 					</div>`);
 
 		var chk = prop.find('input');
@@ -166,7 +166,7 @@ export default class ColumnProperties {
 
 	#show_on_grid() {
 		var prop = $(`<div class="checkbox">
-						<label><input type="checkbox" value="" />Show on grid</label>
+						<label><input type="checkbox" value="" >Show on grid</label>
 					</div>`);
 
 		var chk = prop.find('input');
@@ -185,7 +185,7 @@ export default class ColumnProperties {
 
 	#show_on_editor() {
 		var prop = $(`<div class="checkbox">
-						<label><input type="checkbox" value="" />Show on Editor</label>
+						<label><input type="checkbox" value="" >Show on Editor</label>
 					</div>`);
 
 		var chk = prop.find('input');
@@ -204,7 +204,7 @@ export default class ColumnProperties {
 
 	#show_on_import() {
 		var prop = $(`<div class="checkbox">
-						<label><input type="checkbox" value="" />Show on Import</label>
+						<label><input type="checkbox" value="" >Show on Import</label>
 					</div>`);
 
 		var chk = prop.find('input');
@@ -223,7 +223,7 @@ export default class ColumnProperties {
 
 	#hide_connector() {
 		var prop = $(`<div class="checkbox">
-						<label><input type="checkbox" value="" />Hide Connector</label>
+						<label><input type="checkbox" value="" >Hide Connector</label>
 					</div>`);
 
 		var chk = prop.find('input');
@@ -242,7 +242,7 @@ export default class ColumnProperties {
 
 	#set_readonly() {
 		var prop = $(`<div class="checkbox">
-						<label><input type="checkbox" value="" />Read Only</label>
+						<label><input type="checkbox" value="" >Read Only</label>
 					</div>`);
 
 		var chk = prop.find('input');
@@ -285,9 +285,9 @@ export default class ColumnProperties {
 
 	#set_foreign_key(widget) {
 		var $this = this;
-		var table_select = $(`<select class="form-control" placeholder="foreign table" />`),
-			field_select = $(`<select class="form-control" id="fk_field" placeholder="link on" />`),
-			display_select = $(`<select class="form-control" id="fk_display_field" placeholder="display" />`);
+		var table_select = $(`<select class="form-control" placeholder="foreign table" ></select>`),
+			field_select = $(`<select class="form-control" id="fk_field" placeholder="link on" ></select>`),
+			display_select = $(`<select class="form-control" id="fk_display_field" placeholder="display" ></select>`);
 
 		widget.append(table_select);
 		widget.append(field_select);

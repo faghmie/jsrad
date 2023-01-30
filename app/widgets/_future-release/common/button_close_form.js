@@ -23,7 +23,7 @@ var ButtonCloseForm = class ButtonCloseForm extends Button {
 	}
 
 	getControl() {
-		this.ctrl = $("<button class='btn btn-light'/>");
+		this.ctrl = $("<button class='btn btn-light'></button>");
 
 		return this.ctrl;
 	}

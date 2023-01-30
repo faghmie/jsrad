@@ -199,7 +199,7 @@ export default class SqlDesigner extends SqlBase {
 
 	#get_search_box(list) {
 		var $this = this;
-		var search_box = $(`<input type="text" class="table-search" placeholder="Search" />`);
+		var search_box = $(`<input type="text" class="table-search" placeholder="Search" >`);
 
 		search_box
 			.on('keydown', function (evt) {

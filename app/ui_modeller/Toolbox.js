@@ -20,9 +20,9 @@ export default class Toolbox {
 
     #create() {
         this.toolbox = $(`<div class="design-toolbox-widgets">
-                <select class="form-control"/>
-                <input type="text" placeholder="refine search" class="search-box form-control"/>
-                <div class="props-edit"><ul class="toolbox-area"/></div>
+                <select class="form-control"></select>
+                <input type="text" placeholder="refine search" class="search-box form-control">
+                <div class="props-edit"><ul class="toolbox-area"></ul></div>
             </div>`);
 
         import('../widgets/widgets.js').then(function (plugins) {
@@ -168,8 +168,8 @@ export default class Toolbox {
         target.each(function () {
             let li = $(`<div class="widget-template" title="${widget.label}">
                         <div class="widget-container">
-                            <div class="widget-thumbnail"/>
-                            <div class="widget-caption"/>
+                            <div class="widget-thumbnail"></div>
+                            <div class="widget-caption"></div>
                         </div>' +
                     </div>`)
                 .appendTo(this)
@@ -179,10 +179,10 @@ export default class Toolbox {
 
             if (widget.thumbnail.indexOf('class:') !== -1) {
                 li.find('.widget-thumbnail')
-                    .append('<i class="' + widget.thumbnail.replace('class:', '') + '"/>');
+                    .append('<i class="' + widget.thumbnail.replace('class:', '') + '"></i>');
             } else {
                 li.find('.widget-thumbnail')
-                    .append("<img src='" + widget.thumbnail + "' alt='...' />");
+                    .append("<img src='" + widget.thumbnail + "' alt='...' ></img>");
             }
 
             li.find('.widget-caption').text(widget.label);

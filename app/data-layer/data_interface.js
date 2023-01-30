@@ -177,7 +177,7 @@ var DataInterface = {
 			}
 		}
 		
-		if (result && typeof result === 'string') result = result.replace(/(\n)/g, '<br/>');
+		if (result && typeof result === 'string') result = result.replace(/(\n)/g, '<br></br>');
 		//if (result === null) result = '';
 		return result;
 	},
@@ -214,7 +214,7 @@ var DataInterface = {
 			}
 		}
 		
-		if (result && typeof result === 'string') result = result.replace(/(\n)/g, '<br/>');
+		if (result && typeof result === 'string') result = result.replace(/(\n)/g, '<br></br>');
 		if (result === null) result = '';
 		return result;
 	},

@@ -34,7 +34,7 @@ export default class TextEntry extends BaseFormControl(ControlInterface) {
 	get_settings() {
 		let settings = super.get_settings();
 		//PLACEHOLDER
-		let placeholder = $(`<input type="text"/>`)
+		let placeholder = $(`<input type="text">`)
 			.addClass('form-control')
 			.val(this.placeholder)
 			.on('input', function (evt) {
@@ -44,7 +44,7 @@ export default class TextEntry extends BaseFormControl(ControlInterface) {
 			}.bind(this));
 
 		//ADD-ON TEXT
-		let add_on_text = $("<input type='text'/>")
+		let add_on_text = $("<input type='text'>")
 			.addClass('form-control')
 			.val(this.add_on_text)
 			.on('input', function (evt) {
@@ -54,7 +54,7 @@ export default class TextEntry extends BaseFormControl(ControlInterface) {
 			}.bind(this));
 
 		//ICON POSITION
-		let icon_position = $('<select>')
+		let icon_position = $('<select></select>')
 			.addClass('form-control')
 			.append('<option>left</option>')
 			.append('<option>right</option>');
@@ -185,9 +185,9 @@ export default class TextEntry extends BaseFormControl(ControlInterface) {
 	getControl() {
 		super.getControl();
 		this.ctrl.find('.control-group').append(`<span class="icon">
-			<i class="la la-pencil"/>
+			<i class="la la-pencil"></i>
 		</span>
-		<input type="text" class="form-control"/>`);
+		<input type="text" class="form-control">`);
 
 		return this.ctrl;
 	}

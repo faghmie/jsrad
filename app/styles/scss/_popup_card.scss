@@ -68,8 +68,8 @@
 }
 
 .ui-overlay {
-    background: $base-bg-color !important;
-    background: rgba($base-bg-color, 0.4) !important;
+    background: $color-primary !important;
+    background: rgba($color-primary, 0.4) !important;
     width: 100vw;
     height: 100vh;
     position: fixed;

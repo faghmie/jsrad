@@ -293,10 +293,10 @@ var dimensions_property = function (_designer) {
 			"<button class='btn btn-outline btn-sm btn-light btn-justified height-smallest'>height smallest</button>" +
 			"</div>"
 		],
-		["left", "<input type='number' id='left' class=''/>"],
-		["top", "<input type='number' id='top' class=''/>"],
-		["width", "<input type='number' id='width' class=''/>"],
-		["height", "<input type='number' id='height' class=''/>"],
+		["left", "<input type='number' id='left' class=''>"],
+		["top", "<input type='number' id='top' class=''>"],
+		["width", "<input type='number' id='width' class=''>"],
+		["height", "<input type='number' id='height' class=''>"],
 	];
 
 	function _append_item(text, control, is_custom, widget) {

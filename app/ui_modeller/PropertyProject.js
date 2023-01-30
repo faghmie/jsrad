@@ -10,10 +10,10 @@ export default class ProjectProperties extends PropertyBase {
 		let project = project_manager.project;
 
 		let s = [
-				['project name', '<input class="project-name"/>'],
-				['version', '<input class="project-version"/>'],
-				['notes', '<textarea class="project-notes"/>'],
-				['startup form', '<select class="project-startup"/>'],
+				['project name', '<input class="project-name">'],
+				['version', '<input class="project-version">'],
+				['notes', '<textarea class="project-notes"></textarea>'],
+				['startup form', '<select class="project-startup"></select>'],
 			];
 		
 		s.forEach(function(item){

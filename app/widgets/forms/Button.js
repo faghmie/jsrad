@@ -87,8 +87,8 @@ export default class Button extends ControlInterface {
 		});
 
 		let icon = $('<div><div>' +
-			"<div class='pull-left icon'/>" +
-			"<div class='pull-left icon-pos'/>" +
+			"<div class='pull-left icon'></div>" +
+			"<div class='pull-left icon-pos'></div>" +
 			'</div></div>');
 		icon.find('.icon').append(icon_select);
 		icon.find('.icon-pos').append(icon_position);
@@ -120,8 +120,8 @@ export default class Button extends ControlInterface {
 			let selected = '';
 
 			let cls = value;
-			let opt = $("<option value='" + cls + "'>")
-				.append("<span><i class='" + cls + "'/> " + cls.replace(/btn-/g, '') + '</span>')
+			let opt = $("<option value='" + cls + "'>></option>")
+				.append("<span><i class='" + cls + "'></i> " + cls.replace(/btn-/g, '') + '</span>')
 				.appendTo(color_select);
 
 			if (cls === $this.button_type) {
@@ -194,9 +194,9 @@ export default class Button extends ControlInterface {
 			let icon = "<i class='" + this.icon + "'";
 
 			if (this.icon_position === 'left')
-				html = icon + " style='padding-right:10px;'/> " + html;
+				html = icon + " style='padding-right:10px;'></i> " + html;
 			else
-				html = html + icon + " style='padding-left:10px;'/> ";
+				html = html + icon + " style='padding-left:10px;'></i> ";
 		}
 
 		this.ctrl.html(html);
@@ -220,7 +220,7 @@ export default class Button extends ControlInterface {
 	}
 
 	getControl() {
-		this.ctrl = $("<button type='button' class='btn btn-light'/>");
+		this.ctrl = $("<button type='button' class='btn btn-light'></button>");
 		// IControl.extend(this, data_aware_base);
 		return this.ctrl;
 	}

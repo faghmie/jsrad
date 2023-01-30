@@ -132,7 +132,7 @@ var product_tour = function(_designer) {
 	function create_buttons(){
 		var row = $('<div>').addClass('row').appendTo(overview);
 		var btn_close = $("<a class='btn btn-light btn-lg btn-flat pull-right col-6' title='Close'>"+
-							"<i class='la la-fw la-times'/> Close Overview"+
+							"<i class='la la-fw la-times'></i> Close Overview"+
 						'</a>')
 						.appendTo(row);
 		
@@ -142,7 +142,7 @@ var product_tour = function(_designer) {
 		});
 		
 		var btn_tour = $("<a class='btn btn-light btn-lg btn-flat pull-left col-6' title='Product Tour'>"+
-							"<i class='la la-fw la-support'/> Show Tour"+
+							"<i class='la la-fw la-support'></i> Show Tour"+
 						'</a>')
 						.appendTo(row);
 		
@@ -180,11 +180,11 @@ var product_tour = function(_designer) {
 	
 	function create_left_pane(row){
 		var pane = $('<div class="align-items-center justify-content-center">');
-		pane.append('<h2>Key Features</h2><hr/>');
+		pane.append('<h2>Key Features</h2><hr>');
 		for(var i = 0; i < features.length; i++){
 			pane.append('<h4>'+features[i].title+'</h4>');
 			pane.append('<p>'+ features[i].description+'<p>');
-			pane.append('<hr/>');
+			pane.append('<hr>');
 		}
 		pane.children().css('margin-left', '15px');
 		return pane;
@@ -192,11 +192,11 @@ var product_tour = function(_designer) {
 	
 	function create_right_pane(row){
 		var pane = $('<div class="align-items-center justify-content-center">');
-		pane.append('<h2>Tips</h2><hr/>');
+		pane.append('<h2>Tips</h2><hr>');
 		for(var i = 0; i < tips.length; i++){
 			pane.append('<h4>'+tips[i].title+'</h4>');
 			pane.append('<p>'+ tips[i].description+'<p>');
-			pane.append('<hr/>');
+			pane.append('<hr>');
 		}
 		pane.children().css('margin-right', '15px');
 		return pane;

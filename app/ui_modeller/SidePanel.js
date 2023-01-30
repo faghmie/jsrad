@@ -145,11 +145,11 @@ export default class SidePanel {
                     <div class="design-toolbox-title">
                         <span>${btn.attr('title')}</span>
                         <div class="panel-controls">
-                            <i class="la la-chevron-down show-hide"/>
-                            <i class="la la-times close-panel"/>
+                            <i class="la la-chevron-down show-hide"></i>
+                            <i class="la la-times close-panel"></i>
                         </div>
                     </div>
-                    <div class="toolbox-body"/>
+                    <div class="toolbox-body"></div>
                 </div>`)
             .addClass(cls)
             .hide()

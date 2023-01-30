@@ -39,7 +39,7 @@ export default class ControlFactory {
 		// @ts-ignore
 		ctrl.dom.container = $(`<div class="widget">
 									<div class="widget-control">
-										<div class="widget-manager" />
+										<div class="widget-manager" ></div>
 									</div>
 								</div>`)
 			.data('control', ctrl);

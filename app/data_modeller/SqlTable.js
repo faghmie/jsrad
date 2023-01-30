@@ -94,7 +94,7 @@ export default class SqlTable extends SqlBase {
 	#build(left, top) {
 		this.dom.container = $(`<div class="sql-table">
 					<div class="sql-table-title header">
-						<div class="title" />
+						<div class="title" ></div>
 						<div class="dropdown">
 							<a data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<i class="la la-fw la-gear"></i>
@@ -110,7 +110,7 @@ export default class SqlTable extends SqlBase {
 					</div>
 					<div class="sql-table-content">
 						<table style="width:100%" >
-							<tbody />
+							<tbody ></tbody>
 						</table>
 					</div>
 				</div>`).appendTo(this.owner.container);

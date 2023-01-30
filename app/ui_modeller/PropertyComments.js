@@ -3,10 +3,10 @@ export default class CommentsEditor{
 	#new_comment(msg){
 		var comment =$(`<div class="comment-line">
                             <div class="comment-header">
-                                <div class="comment-user"/>
-                                <div class="comment-date"/>
+                                <div class="comment-user"></div>
+                                <div class="comment-date"></div>
                             </div>
-						    <div class="comment-content"/>
+						    <div class="comment-content"></div>
                         </div>`);
 		if (typeof msg.timestamp === "string") msg.timestamp = new Date(msg.timestamp);
 		
@@ -15,7 +15,7 @@ export default class CommentsEditor{
 		comment.find(".comment-user")
 					.append(msg.username);
 					
-		comment.find(".comment-content").append(msg.message.replace(/(\r)|(\n)|(\r\n)/g,"<br/>"));
+		comment.find(".comment-content").append(msg.message.replace(/(\r)|(\n)|(\r\n)/g,"<br>"));
 		
 		return comment;
 	}
@@ -26,10 +26,10 @@ export default class CommentsEditor{
             !(obj.__comments__ instanceof Array))
             obj.__comments__ = [];
         
-		var container = $(`<div class="comments"/>`);
+		var container = $(`<div class="comments"></div>`);
 
         var author = $(`<input type="text" class="form-control author" placeholder="author">`).appendTo(container);
-        var msg_box = $(`<textarea class="form-control comment" placeholder="type comments here (ctrl+enter for newline)" />`)
+        var msg_box = $(`<textarea class="form-control comment" placeholder="type comments here (ctrl+enter for newline)" ></textarea>`)
             .appendTo(container);
 
         if (!App.AuthToken || !App.AuthToken.email){

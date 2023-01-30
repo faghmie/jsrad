@@ -62,9 +62,9 @@ export default class StickyNote extends ControlInterface {
 
 	getControl(owner) {
 		this.ctrl = $('<div class="sticky ui-corner-all">' +
-			'<div class="stickytop" />' +
+			'<div class="stickytop" ></div>' +
 			'<div class="stickytext">' +
-			'<textarea class="stickynotes" />' +
+			'<textarea class="stickynotes" ></textarea>' +
 			'</div>' +
 			'</div>');
 

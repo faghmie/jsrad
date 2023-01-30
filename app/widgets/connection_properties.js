@@ -7,7 +7,7 @@ export default class ConnectionProperties {
 	GetProperties() {
 		var div = $(`<div class="text-formater row">
 						<a class="btn btn-warning btn-remove-line">remove</a>
-                        <input type="color" class="border-color"/>
+                        <input type="color" class="border-color">
 					</div>`);
 
 		div.find('.btn-remove-line').on('click', this.#remove_connector.bind(this));

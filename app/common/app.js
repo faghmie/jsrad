@@ -2,7 +2,7 @@ if (typeof FD === 'undefined') FD = {};
 
 var App = {
 		message_div		: $('<div class="card notify">'+
-								'<div class="side-bar" />'+
+								'<div class="side-bar"></div>'+
 								'<div class="content">'+
 									'<a class="pull-right close-btn"><i class="la la-fw la-times"></i></a>'+
 									'<h3 class="title">#{title}</h3>'+
@@ -297,8 +297,8 @@ var App = {
 				},
 				card = null,
 				dlg = $('<div class=\'container-fluid\'>' +
-						'<div class=\'row content-area\'/>' +
-						'<div class=\'row button-area\'/>' +
+						'<div class=\'row content-area\'></div>' +
+						'<div class=\'row button-area\'></div>' +
 					'</div>');
 			
 			if (typeof options !== 'object')
@@ -307,7 +307,7 @@ var App = {
 				options = $.extend(true, defaults, options);
 			
 			
-			var content = $("<input type='text' class='form-control'/>").appendTo(dlg.find('.content-area'));
+			var content = $("<input type='text' class='form-control'>").appendTo(dlg.find('.content-area'));
 			content.val(options.default_value);
 			var btn_ok = $("<button type='button' class='btn btn-success btn-flat pull-right'>"+options.ok_title+'</button>');
 			btn_ok.on('click', function(){
@@ -443,8 +443,8 @@ var App = {
 			
 			var dlg = $('<div>');
 			dlg.append("<p class='message'>"+msg+'</p>');
-			ok_button = $("<button type='button' class='btn btn-success pull-right'><i class='la la-check'/>  "+ok_button+'</button>');
-			cancel_button = $("<button type='button' class='btn btn-light btn-danger pull-left'><i class='la la-times'/>  "+cancel_button+'</button>');
+			ok_button = $("<button type='button' class='btn btn-success pull-right'><i class='la la-check'></i> "+ok_button+'</button>');
+			cancel_button = $("<button type='button' class='btn btn-light btn-danger pull-left'><i class='la la-times'></i>  "+cancel_button+'</button>');
 			
 			ok_button.on('click', dlg, function(evt){
 				if (typeof on_done === 'function') on_done();

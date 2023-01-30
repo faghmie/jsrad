@@ -25,15 +25,15 @@ export default class FormatProperties {
 		var div = $(`<div class="btn-group-toggle" data-toggle="buttons">
 						<label class="text-align btn" css-value="left">
 							<input type="radio" class="btn-check">
-							<i class="la la-align-left" />
+							<i class="la la-align-left" ></i>
 						</label>
 						<label class="text-align btn" css-value="center">
 							<input type="radio" class="btn-check">
-							<i class="la la-align-center" />
+							<i class="la la-align-center" ></i>
 						</label>
 						<label class="text-align btn" css-value="right">
 							<input type="radio" class="btn-check">
-							<i class="la la-align-right" />
+							<i class="la la-align-right" ></i>
 						</label>
 					</div>`);
 

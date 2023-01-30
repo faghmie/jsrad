@@ -66,7 +66,7 @@ var DataEditor = {	//YOU ARE MEANT TO EXTEND THE JSON DATA WITH THIS OBJECT TO C
 				//console.log(data);
 				$this.remove(data, function(data_set, err){
 					if (err.length !== 0){
-						return App.MessageError(err.join('<br/>'));
+						return App.MessageError(err.join('<br>></br>'));
 					}
 					console.log(data_set);
 					$this.options.table.find('tr').each(function(){
@@ -272,7 +272,7 @@ var DataEditor = {	//YOU ARE MEANT TO EXTEND THE JSON DATA WITH THIS OBJECT TO C
 							.appendTo($this.options.table);
 
 				var td = $('<td>')
-						.append('<input type="checkbox" class="ui-widget" />')
+						.append('<input type="checkbox" class="ui-widget">')
 						.prop('field',{})
 						.appendTo(tr);
 
@@ -350,8 +350,8 @@ var DataEditor = {	//YOU ARE MEANT TO EXTEND THE JSON DATA WITH THIS OBJECT TO C
 			//$body = $('<div class="data-body">').append(ui_group).appendTo(_dlg);
 		
 		$toolbar.append('<div class="btn-group">'+
-					'<button id="btn_cancel" type="button" class="btn btn-flat btn-light"><i class="la la-power-off" /></button>'+
-					'<button id="btn_create" type="button" class="btn btn-flat btn-light"><i class="la la-plus" /></button>'+
+					'<button id="btn_cancel" type="button" class="btn btn-flat btn-light"><i class="la la-power-off"></i></button>'+
+					'<button id="btn_create" type="button" class="btn btn-flat btn-light"><i class="la la-plus"></i></button>'+
 				'</div>');
 		
 		$toolbar.find('#btn_create').click(function(){
@@ -375,7 +375,7 @@ var DataEditor = {	//YOU ARE MEANT TO EXTEND THE JSON DATA WITH THIS OBJECT TO C
 			}
 
 			$this.create(data, function(data, errors){
-				if (errors.length !== 0) return App.MessageError(errors.join('<br/>'));
+				if (errors.length !== 0) return App.MessageError(errors.join('<br></br>'));
 				
 				//$this.message = $.extend(true, {}, data[0]);
 				$this.add_row_to_grid(data);
@@ -395,10 +395,10 @@ var DataEditor = {	//YOU ARE MEANT TO EXTEND THE JSON DATA WITH THIS OBJECT TO C
 		var $toolbar = $('<div class="btn-toolbar" role="toolbar">').appendTo(_dlg);
 
 		$toolbar.append('<div class="btn-group">'+
-					'<button id="btn_cancel" type="button" class="btn btn-flat btn-light"><i class="la la-power-off" /></button>'+
-					'<button id="btn_update" type="button" class="btn btn-flat btn-light"><i class="la la-save" /></button>'+
-					'<button id="btn_remove" type="button" class="btn btn-flat btn-light"><i class="la la-times" /></button>'+
-					'<button id="btn_clone" type="button" class="btn btn-flat btn-light"><i class="la la-copy" /></button>'+
+					'<button id="btn_cancel" type="button" class="btn btn-flat btn-light"><i class="la la-power-off"></i></button>'+
+					'<button id="btn_update" type="button" class="btn btn-flat btn-light"><i class="la la-save"></i></button>'+
+					'<button id="btn_remove" type="button" class="btn btn-flat btn-light"><i class="la la-times"></i></button>'+
+					'<button id="btn_clone" type="button" class="btn btn-flat btn-light"><i class="la la-copy" ></i></button>'+
 				'</div>');
 
 		$toolbar.find('#btn_clone').click(function(){
@@ -455,7 +455,7 @@ var DataEditor = {	//YOU ARE MEANT TO EXTEND THE JSON DATA WITH THIS OBJECT TO C
 			
 			$this.update(old_data, data, function(data, errors){
 				if (errors.length !== 0){
-					App.MessageError(errors.join('<br/>'));
+					App.MessageError(errors.join('<br></br>'));
 					return;
 				}
 				
@@ -512,7 +512,7 @@ var DataEditor = {	//YOU ARE MEANT TO EXTEND THE JSON DATA WITH THIS OBJECT TO C
 		
 		$this.options.table = $('<table class="table-editor table table-condensed table-responsive">').appendTo(div);
 		this.options.table.append($('<thead>').append(tr));
-		tr.append('<th><input type="checkbox"/></th>'); //THIS IS FOR THE CHECKBOX
+		tr.append('<th><input type="checkbox"></th>'); //THIS IS FOR THE CHECKBOX
 		
 		for(col in this.fields){
 			field = this.fields[col];
@@ -558,7 +558,7 @@ var DataEditor = {	//YOU ARE MEANT TO EXTEND THE JSON DATA WITH THIS OBJECT TO C
 						.appendTo(tbody);
 
 			var td = $('<td class="fix-first-col">')
-					.append('<input type="checkbox" class="ui-widget" />')
+					.append('<input type="checkbox" class="ui-widget">')
 					.prop('field',{})
 					.appendTo(tr);
 			
@@ -594,12 +594,12 @@ var DataEditor = {	//YOU ARE MEANT TO EXTEND THE JSON DATA WITH THIS OBJECT TO C
 			$toolbar = $('<div class="btn-toolbar" role="toolbar">').appendTo(_dlg);
 
 		$toolbar.append('<div class="btn-group">'+
-					'<button id="btn_cancel" type="button" class="btn btn-flat btn-light"><i class="la la-power-off" /></button>'+
-					'<button id="btn_create" type="button" class="btn btn-flat btn-light"><i class="la la-plus" /></button>'+
-					'<button id="btn_update" type="button" class="btn btn-flat btn-light"><i class="la la-pencil" /></button>'+
-					'<button id="btn_import" type="button" class="btn btn-flat btn-light"><i class="la la-arrow-down" /></button>'+
-					'<button id="btn_export" type="button" class="btn btn-flat btn-light"><i class="la la-arrow-up" /></button>'+
-					'<button id="btn_remove" type="button" class="btn btn-flat btn-light"><i class="la la-times" /></button>'+
+					'<button id="btn_cancel" type="button" class="btn btn-flat btn-light"><i class="la la-power-off" ></i></button>'+
+					'<button id="btn_create" type="button" class="btn btn-flat btn-light"><i class="la la-plus" ></i></button>'+
+					'<button id="btn_update" type="button" class="btn btn-flat btn-light"><i class="la la-pencil" ></i></button>'+
+					'<button id="btn_import" type="button" class="btn btn-flat btn-light"><i class="la la-arrow-down" ></i></button>'+
+					'<button id="btn_export" type="button" class="btn btn-flat btn-light"><i class="la la-arrow-up" ></i></button>'+
+					'<button id="btn_remove" type="button" class="btn btn-flat btn-light"><i class="la la-times" ></i></button>'+
 				'</div>');
 		
 		if ($this.options.toolbar.indexOf('create') === -1)$toolbar.find('#btn_create').hide();
@@ -609,7 +609,7 @@ var DataEditor = {	//YOU ARE MEANT TO EXTEND THE JSON DATA WITH THIS OBJECT TO C
 		if ($this.options.toolbar.indexOf('export') === -1) $toolbar.find('#btn_export').hide();
 		
 		$toolbar.append('<form class="pull-right">'+
-							'<input type="text" class="search_string" class="form-control" placeholder="Search" />'+
+							'<input type="text" class="search_string" class="form-control" placeholder="Search" >'+
 						'</form>');
 				
 		if ($this.options.toolbar.indexOf('search') === -1) $toolbar.find('.btn-search').hide();
@@ -910,8 +910,8 @@ var DataEditor = {	//YOU ARE MEANT TO EXTEND THE JSON DATA WITH THIS OBJECT TO C
 			if (data_type === 'time') icon = 'la-clock-o';
 			
 			result += '<div class="input-group date widget-datepicker is-'+ data_type +'">'+
-							'<span class="input-group-addon"><i class="fa '+ icon +'" /></span>'+
-							'<input id="'+name+'" type="text" placeholder="'+field.title+'" class="form_data form-control" />'+
+							'<span class="input-group-addon"><i class="fa '+ icon +'" ></i></span>'+
+							'<input id="'+name+'" type="text" placeholder="'+field.title+'" class="form_data form-control" ></i>'+
 						'</div>';
 			
 		}
@@ -924,19 +924,19 @@ var DataEditor = {	//YOU ARE MEANT TO EXTEND THE JSON DATA WITH THIS OBJECT TO C
 						'</label>';
 		}
 		else if (data_type === 'number')
-			result += '<input type="number" id="'+name+'" placeholder="'+field.title+'"  class="form_data form-control number" />';
+			result += '<input type="number" id="'+name+'" placeholder="'+field.title+'"  class="form_data form-control number" >';
 		else if (data_type === 'color')
-			result += "<input type='color' id='"+name+"' class='form_data form-control' placeholder='"+field.title+"' />";
+			result += "<input type='color' id='"+name+"' class='form_data form-control' placeholder='"+field.title+"' >";
 		else if (data_type === "lookup" || typeof field.foreign_key !== "undefined")
-			result += "<select id='"+name+"' class='form_data form-control' placeholder='"+field.title+"'/>";
+			result += "<select id='"+name+"' class='form_data form-control' placeholder='"+field.title+"'></select>";
 		else if (data_type === "notes")
 			result += "<textarea id='"+name+"' class='form_data form-control notes' placeholder='"+field.title+"'></textarea>";
 		else if (data_type === "editor")
 			result += "<textarea id='"+name+"' class='form_data form-control editor' placeholder='"+field.title+"'></textarea>";
 		else if (data_type === "password")
-			result += "<input type='password' id='"+name+"' class='form_data form-control' placeholder='"+field.title+"'  />";
+			result += "<input type='password' id='"+name+"' class='form_data form-control' placeholder='"+field.title+"'>";
 		else
-			result += "<input type='text' id='"+name+"' class='form_data form-control'  placeholder='"+field.title+"' />";
+			result += "<input type='text' id='"+name+"' class='form_data form-control'  placeholder='"+field.title+"'>";
 		
 		result += "</div>";
 		result = $(result);

@@ -234,7 +234,7 @@ var erd_merge = function (_designer){
 				width: '75%'
 			})
 			.addClass('pull-left');
-		var view_table = $('<a class="btn btn-light btn-lg btn-flat btn-outline" title="view data in table"><i class="la la-fw la-th" /></a>').appendTo(tbl_div);
+		var view_table = $('<a class="btn btn-light btn-lg btn-flat btn-outline" title="view data in table"><i class="la la-fw la-th" ></i></a>').appendTo(tbl_div);
 		view_table.on('click', function(){
 			var tbl = tables.val();
 			var src = datasource.val();

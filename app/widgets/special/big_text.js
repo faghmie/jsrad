@@ -33,7 +33,7 @@ export default class BigText extends ControlInterface {
     var $this = this;
 
     //TITLE
-    var title = $('<input type="text"/>').val(this.label);
+    var title = $('<input type="text">').val(this.label);
 
     title.on(
       'input',

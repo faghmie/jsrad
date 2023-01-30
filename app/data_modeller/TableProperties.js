@@ -22,7 +22,7 @@ export default class TableProperties {
 	}
 
 	#evt_setName(obj) {
-		let prop = $(`<input class="form-control" type="text" placeholder="title" />`)
+		let prop = $(`<input class="form-control" type="text" placeholder="title" >`)
 			.val(obj.title)
 			.on('input', evt => {
 				obj.setName(evt.target.value);
@@ -35,7 +35,7 @@ export default class TableProperties {
 	}
 
 	#evt_set_comment(obj) {
-		let prop = $(`<textarea class="form-control" placeholder="comment"/>`)
+		let prop = $(`<textarea class="form-control" placeholder="comment"></textarea>`)
 			.val(obj.comment)
 			.on('input', evt => {
 				obj.setComment(evt.target.value);

@@ -334,7 +334,7 @@ export default class Form extends ControlInterface {
 	show_busy_card() {
 		let progress = $(`<div class="process-busy">
 			<div class="body-content">
-				<i class="la la-fw la-2x la-refresh la-spin" />
+				<i class="la la-fw la-2x la-refresh la-spin" ></i>
 				<span>
 				in progress...
 				</span>
@@ -628,7 +628,7 @@ export default class Form extends ControlInterface {
 			evt.data.trigger('change');
 		});
 
-		let responsive = $("<input type='checkbox' id='responsive'/>");
+		let responsive = $("<input type='checkbox' id='responsive'>");
 
 		if (this.is_responsive === true)
 			responsive.attr('checked', 'checked');

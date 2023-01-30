@@ -72,7 +72,7 @@ var user_menu = function (){
 			if (div.find('.register').is(':visible') === true){
 				action = 'register';
 			}
-			signin.append('  <i class="la la-refresh la-spin"/>');
+			signin.append('  <i class="la la-refresh la-spin"></i>');
 			App.AuthToken.first_name = first_name.val();
 			App.AuthToken.surname = surname.val();
 			App.AuthToken.password = pwd.val();
@@ -158,7 +158,7 @@ var user_menu = function (){
 	}
 	
 	function update_display(){
-		var img = '<img class="img-circle" alt="" src="'+ App.AuthToken.thumbnail + '" />';
+		var img = '<img class="img-circle" alt="" src="'+ App.AuthToken.thumbnail + '">';
 		
 		var name = App.AuthToken.first_name.toString().trim();
 		if (name.length === 0 && App.AuthToken.display_name)

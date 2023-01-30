@@ -42,7 +42,7 @@ export default class SearchBox extends BaseFormControl(ControlInterface) {
 		var settings = super.get_settings();
 
 		//PLACEHOLDER
-		var placeholder = $("<input type='text'/>")
+		var placeholder = $("<input type='text'>")
 			.addClass('form-control')
 			.val(this.placeholder || this.label);
 
@@ -152,9 +152,9 @@ export default class SearchBox extends BaseFormControl(ControlInterface) {
 
 	getControl() {
 		super.getControl();
-		this.ctrl.find('.control-group').append(`<input type="text" class="form-control"/>
+		this.ctrl.find('.control-group').append(`<input type="text" class="form-control">
 			<span class="icon">
-				<i class="la la-search"/>
+				<i class="la la-search"></i>
 			</span>`);
 		return this.ctrl;
 	}

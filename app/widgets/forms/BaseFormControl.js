@@ -4,7 +4,7 @@ export const BaseFormControl = (superclass) => class BaseFormControl extends sup
 
 	get_settings() {
 		//LABEL
-		var label = $(`<input type="text"/>`)
+		var label = $(`<input type="text">`)
 			.addClass('form-control')
 			.val(this.label)
 			.on('input', function (evt) {

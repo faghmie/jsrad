@@ -42,7 +42,7 @@ var control_auto_complete = {
 				input_size.find('option').eq(0).attr('selected', 'selected');
 			
 			//PLACEHOLDER
-			var placeholder = $('<input type=\'text\' class=\'form-control\'/>').val(this.value.placeholder);
+			var placeholder = $('<input type=\'text\' class=\'form-control\'>').val(this.value.placeholder);
 			
 			placeholder.on('keyup', function(evt){
                 evt.stopPropagation();
@@ -51,7 +51,7 @@ var control_auto_complete = {
 			});
 			
 			//ADD-ON TEXT
-			var add_on_text = $("<input type='text' class='form-control'/>").val(this.value.text);
+			var add_on_text = $("<input type='text' class='form-control'>").val(this.value.text);
 			
 			add_on_text.on('keyup', function(evt){
                 evt.stopPropagation();
@@ -104,7 +104,7 @@ var control_auto_complete = {
 				
 				var cls = value;
 				var opt = $("<option value='"+cls+"'>")
-							.append("<span><i class='"+cls+"'/> "+cls.replace(/btn-/g, '')+'</span>')
+							.append("<span><i class='"+cls+"'></i> "+cls.replace(/btn-/g, '')+'</span>')
 							.appendTo(color_select);
 				
 				if (cls === $this.value.theme){
@@ -206,12 +206,11 @@ var control_auto_complete = {
 	getControl : function(owner){
 		this.ctrl = $('<div class=\'input-group\'>'+
 						'<span class=\'input-group-addon\'>'+
-							'<i class=\'la la-pencil\'/>'+
+							'<i class=\'la la-pencil\'></i>'+
 						'</span>'+
-						'<input type=\'text\' autocomplete=\'off\' class=\'main-control form-control\'/>'+
+						'<input type=\'text\' autocomplete=\'off\' class=\'main-control form-control\'>'+
 					'</div>');
 					
-		//this.ctrl = $("<input type='text' autocomplete='off' class='form-control' />");
 		return this.ctrl;
 	}
 };

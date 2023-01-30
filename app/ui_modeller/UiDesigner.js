@@ -42,9 +42,9 @@ export default class UiDesigner {
 		return $(`<div class="jsrad-ui-designer ui-designer">
 				<div class="design-work-area">
 					<div class="workspace">
-						<div class="app-area"/>
+						<div class="app-area"></div>
 						<div class="design-area design-controls">
-							<div class="design-tab-canvas" />
+							<div class="design-tab-canvas" ></div>
 						</div>
 					</div>
 				</div>

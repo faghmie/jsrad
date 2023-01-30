@@ -161,8 +161,8 @@ export class BaseChart extends ControlInterface {
 
 	getControl() {
 		this.ctrl = $(`<div class="chart">
-					<div class="chart-caption"/>
-					<div class="chart-container"/>
+					<div class="chart-caption"></div>
+					<div class="chart-container"></div>
 				</div>`);
 
 		this.chart_area = this.ctrl.find('.chart-container');

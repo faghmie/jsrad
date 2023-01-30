@@ -467,7 +467,7 @@ var control_table = {
 		if (list.length >= 1 && ignore_header === false){
 			this.ctrl.find('thead').remove();
 			
-			var thead = $('<thead><tr/></thead>').appendTo(this.ctrl.find('table'));
+			var thead = $('<thead><tr></tr></thead>').appendTo(this.ctrl.find('table'));
 			if (hdr instanceof Array){
 				for(index = 0; index < hdr.length; index++){
 					if (hdr[index].indexOf('reference-key/') !== -1) continue;
@@ -509,9 +509,9 @@ var control_table = {
 
 	getControl	: function(owner){
 		this.ctrl = $('<div class="card">' +
-						'<div class="card--header caption h4 text-center"/>' +
+						'<div class="card--header caption h4 text-center"></div>' +
 						'<div class="card-body p-2 table-container">'+
-							'<table>'+
+							'<table>></table>'+
 						'</div>'+
 					'</div>');
 		this.ctrl.find('table')

@@ -31,7 +31,7 @@ export default class IconSelector {
         });
 
         var div = $(`<div class="icon-selector">`);
-        var search = $("<input class='form-control' placeholder='type to search...' />").appendTo(div);
+        var search = $("<input class='form-control' placeholder='type to search...' >").appendTo(div);
         search.on('input', function (evt) {
             var find = evt.target.value;
 

@@ -19,7 +19,7 @@ export default class ProjectOpenDialog {
                         </div>
 					</div>
                     <div class="title">Existing projects</div>
-                    <div class="prj-list" />
+                    <div class="prj-list" ></div>
                 </div>`);
     }
 

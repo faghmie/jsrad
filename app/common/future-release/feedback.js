@@ -3,7 +3,7 @@ var jsrad_feedback = function(){
 		var input_row = $('<div>').addClass('row').css('padding-bottom','15px').appendTo(email);
 		var comment_row = $('<div>').addClass('row').appendTo(email);
 		
-		var body = $('<select/>')
+		var body = $('<select></select>')
 					.append('<option>Your feedback relates to?</option>')
 					.append('<option>Cosmetic</option>')
 					.append('<option>UI Designer</option>')
@@ -25,7 +25,7 @@ var jsrad_feedback = function(){
 					
 		var send = $('<a>')
 					.addClass('btn btn-success btn btn-flat btn-outline col-2')
-					.html('post <i class="la la-fw la-send"/>')
+					.html('post <i class="la la-fw la-send></i>')
 					.appendTo(input_row);
 		
 		var comments = $('<ul>')

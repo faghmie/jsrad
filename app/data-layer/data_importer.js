@@ -33,8 +33,8 @@ var DataImporter = {
 							'<input type="file" size=100 id="file_to_import" name="myfile"><br>'+
 							'<button class="btn btn-primary" id="import_load_file">Load File</button>'+
 						'</div>'+
-						'<br/>'+
-						'<br />'+
+						'<br></br>'+
+						'<br ></br>'+
 						'<p style="font-size:14px;font-weight:bold;">'+
 						'<a id="import_sample_url" href="samples/members.csv">Click here to download a sample file</a>'+
 						'</p>'+
@@ -43,11 +43,11 @@ var DataImporter = {
 						'<fieldset>'+
 							'<p>'+
 							'<label for="import_has_header">First row is header</label>'+
-							'<input id="import_has_header" type="checkbox" checked/>'+
+							'<input id="import_has_header" type="checkbox" checked>'+
 							'</p>'+
 							'<p>'+
 							'<label for="ignore_dups">Ignore duplicates (in file)</label>'+
-							'<input id="for="ignore_dups" "class="ignore_duplicates" type="checkbox" checked/>'+
+							'<input id="for="ignore_dups" "class="ignore_duplicates" type="checkbox" checked>'+
 							'</p>'+
 						'</fieldset>'+
 						'<p>'+
@@ -304,7 +304,7 @@ var DataImporter = {
 					if (errors.length === 0)
 						post_import(data);
 					else
-						App.MessageError(errors.join('<br/>'));
+						App.MessageError(errors.join('<br></br>'));
 				});
 			}
 		}

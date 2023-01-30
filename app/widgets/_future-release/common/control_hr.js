@@ -16,7 +16,7 @@ var control_hr = {
 		],
 	
 	getControl	: function(owner){
-		this.ctrl = $('<hr/>');
+		this.ctrl = $('<hr>');
 		
 		return this.ctrl;
 	}
