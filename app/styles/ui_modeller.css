@@ -2560,7 +2560,7 @@ ARROW*/
   top: 0;
   left: calc(100vw - 300px);
   max-height: calc(100vh - 48px);
-  overflow: hidden;
+  overflow: visible;
   width: 300px;
   min-width: 50px;
   color: #53809e;
@@ -2606,62 +2606,58 @@ ARROW*/
 }
 
 .design-toolbox-panel .toolbox-body {
-  margin-left: 10px;
-  margin-right: 10px;
-  overflow: auto;
+  padding: 10px;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .design-toolbox-panel .toolbox-body.no-overflow {
   overflow: hidden;
 }
 
-.popup-toolbox-panel {
+.text-formater .form-control {
+  margin: 0 !important;
+}
+
+.text-formater .row {
+  padding-left: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  gap: 10px;
-  overflow: auto;
-  min-width: 300px;
-  max-width: 300px;
-  color: #53809e;
-  background-color: #e4e6e8;
-  border-radius: 5px;
-  -webkit-box-shadow: 0px 0px 15px #53809e;
-          box-shadow: 0px 0px 15px #53809e;
-  width: 350px;
-  max-width: 350px;
-  min-width: 350px;
-  height: 80vh;
-  min-height: 80vh;
-  max-height: 80vh;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  gap: 5px;
 }
 
-.popup-toolbox-panel .title-line {
-  font-size: 1em;
-}
-
-.popup-toolbox-panel .checkbox,
-.popup-toolbox-panel input {
-  font-size: 0.85em;
-}
-
-.popup-toolbox-panel .title-line,
 .text-formater .title-line {
   width: 100%;
   font-size: 12px;
   font-weight: bold;
   color: #2c3643;
   border-top: 1px solid #53809e;
-  padding-top: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-.popup-toolbox-panel .checkbox,
-.popup-toolbox-panel .form-control,
-.popup-toolbox-panel input,
+.text-formater input[type='color'] {
+  width: 40px;
+  max-height: 18px;
+}
+
+.text-formater .btn-group-toggle,
+.text-formater .btn-group {
+  width: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .text-formater .checkbox,
 .text-formater .form-control,
 .text-formater input {
@@ -2672,7 +2668,6 @@ ARROW*/
   border-width: 1px !important;
 }
 
-.popup-toolbox-panel button,
 .text-formater button {
   margin: 5px;
   font-size: 0.8rem;
@@ -2681,14 +2676,22 @@ ARROW*/
   border: 1px solid #799cb4;
 }
 
-.popup-toolbox-panel button:hover,
 .text-formater button:hover {
   cursor: pointer;
   background-color: #53809e;
   color: white;
 }
 
-.popup-toolbox-panel .control-with-label,
+.text-formater button.la {
+  height: 28px;
+  min-height: 28px;
+  max-height: 28px;
+  width: 28px;
+  min-width: 28px;
+  max-width: 28px;
+  padding: 0;
+}
+
 .text-formater .control-with-label {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2699,13 +2702,9 @@ ARROW*/
           flex-direction: row;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: start;
+  margin: 5px;
 }
 
-.popup-toolbox-panel .control-with-label label,
-.popup-toolbox-panel .control-with-label .label,
 .text-formater .control-with-label label,
 .text-formater .control-with-label .label {
   display: block;
@@ -2716,7 +2715,11 @@ ARROW*/
   font-weight: bold;
   width: 40% !important;
   min-width: 80px !important;
-  max-width: 50% !important;
+  max-width: 40% !important;
+}
+
+.text-formater .control-with-label input {
+  max-width: 60%;
 }
 
 .design-toolbox-widgets {
@@ -2833,78 +2836,9 @@ ARROW*/
   font-size: 25px;
 }
 
-.design-props-group {
-  padding: 5px;
-  min-height: 30px;
-}
-
-.design-props-group input,
-.design-props-group select,
-.design-props-group .btn {
-  padding: 1px 5px;
-  min-height: 22px;
-}
-
-.design-props-label {
-  text-transform: uppercase;
-  display: table-cell;
-  font-size: 9px;
-  overflow: hidden;
-}
-
 .active {
   background-color: #53809e !important;
   color: white !important;
-}
-
-.text-formater {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  gap: 5px;
-}
-
-.text-formater .form-control {
-  margin: 0 !important;
-}
-
-.text-formater input[type='color'] {
-  width: 40px;
-  max-height: 18px;
-}
-
-.text-formater .btn-group-toggle,
-.text-formater .btn-group {
-  width: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.text-formater.row {
-  padding: 15px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-}
-
-.text-formater button {
-  border: 0;
-}
-
-.btn-font-family {
-  font-size: 12px;
 }
 
 .popup-card {

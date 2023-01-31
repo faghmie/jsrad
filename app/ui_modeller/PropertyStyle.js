@@ -1,26 +1,30 @@
 export default class StyleProperties {
 
 	attach = function(obj){
-		var widget = $('<div class="text-formater row">');
+		let props = $(`<div class="text-formater">`);
 
-		widget.append(`<div class="title-line">border</div>`);
+		let widget = $(`<div class="row">`);
+		let div = null;
+
+		props.append(`<div class="title-line">border</div>`);
+		props.append(widget);
 		widget.append(this.get_border_style(obj));
 		widget.append(this.get_border_width(obj));
 		widget.append(this.get_border_color(obj));
 		
-		widget.append(`<div class="title-line"></div>`);
-		var div = $(`<div class="control-with-label"><label>background</label></div>`).append(this.get_background_color(obj));
-		widget.append(div);
+		props.append(`<div class="title-line"></div>`);
+		div = $(`<div class="control-with-label"><label>background</label></div>`).append(this.get_background_color(obj));
+		props.append(div);
 		
-		var div = $(`<div class="control-with-label"><label>opacity</label></div>`).append(this.get_opacity(obj));
-		widget.append(div);
+		div = $(`<div class="control-with-label"><label>opacity</label></div>`).append(this.get_opacity(obj));
+		props.append(div);
 
-		var div = $(`<div class="control-with-label"><label>rotation</label></div>`).append(this.get_rotation(obj));
-		widget.append(div);
+		div = $(`<div class="control-with-label"><label>rotation</label></div>`).append(this.get_rotation(obj));
+		props.append(div);
 
-		// _init_fields(obj, widget);
 		obj.setControlStyle();
-		return widget;
+		
+		return props;
 	};
 
 	_init_fields(obj, widget){
@@ -52,13 +56,13 @@ export default class StyleProperties {
 	}
 	
 	get_opacity(obj){
-		var opacity = $(`<div><input  class="form-control" type="number" min="0" max="100" value=100 ></div>`);
-		var num = 100;
-		if (!isNaN(parseFloat(obj.opacity)))
+		let num = 100;
+		if (!isNaN(parseFloat(obj.opacity))){
 			num = parseFloat(obj.opacity)*100;
+		}
 		
-		var op = opacity.find('input')
-			.val(obj.opacity*100)
+		let opacity = $(`<input  class="form-control" type="number" min="0" max="100" value=100 >`)
+			.val(num)
 			.on('input', function(evt){
 				obj.opacity = parseFloat(evt.target.value)/100;
 				obj.format();
@@ -68,9 +72,7 @@ export default class StyleProperties {
 	}
 	
 	get_rotation(obj){
-		var rotation = $(`<div><input class="form-control" type="number" min="0" max="360" value=0 ></div>`);
-		
-		rotation.find("input")
+		let rotation = $(`<input class="form-control" type="number" min="0" max="360" value=0 >`)
 			.val(obj.rotation)
 			.on("input", function(evt){
 				obj.rotation = parseFloat(evt.target.value);
@@ -82,7 +84,7 @@ export default class StyleProperties {
 	
 	get_background_color(obj){
 		
-		var fc = $(`<input type="color">`)
+		let fc = $(`<input type="color">`)
 					.attr("value", obj.style['background-color'])
 					.on("input", obj, function(evt){
 						evt.data.style['background-color'] = evt.target.value;
@@ -93,7 +95,7 @@ export default class StyleProperties {
 	}
 	
 	get_border_color(obj){
-		var prop = $(`<input type="color">`)
+		let prop = $(`<input type="color">`)
 					.attr("value", obj.style['border-color'])
 					.on("input", obj, function(evt){
 						evt.data.style['border-color'] = this.value;
@@ -104,8 +106,8 @@ export default class StyleProperties {
 	}
 	
 	get_border_style(obj){
-		var border_style = ['', 'solid', 'dashed', 'dotted', 'double', 'groove', 'ridge', 'inset', 'outset'];
-		var prop = $('<select class="form-control form-select">')
+		let border_style = ['', 'solid', 'dashed', 'dotted', 'double', 'groove', 'ridge', 'inset', 'outset'];
+		let prop = $('<select class="form-control form-select">')
 			.css({
 				width: '80px',
 				'max-width': '80px'
@@ -129,7 +131,7 @@ export default class StyleProperties {
 	}
 	
 	get_border_width(obj){
-		var prop = $(`<input type="number" class="form-control" min=0>`)
+		let prop = $(`<input type="number" class="form-control" min=0>`)
 			.val(parseInt(obj.style['border-width']))
 			.css({
 				width: '50px',

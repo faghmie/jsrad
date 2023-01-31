@@ -5,7 +5,8 @@
 	top: 0;
 	left: calc(100vw - 300px);
 	max-height: calc(100vh - 48px);
-	overflow: hidden;
+	// overflow: hidden;
+	overflow: visible;
 	width: 300px;
 	min-width: 50px;
 	color: $color-primary;
@@ -41,57 +42,89 @@
 	}
 
 	.toolbox-body {
-		// padding: 10px;
-		margin-left: 10px;
-		margin-right: 10px;
-		overflow: auto;
-		&.no-overflow{
+		padding: 10px;
+		width: 100%;
+		// margin-left: 10px;
+		// margin-right: 10px;
+		// overflow: auto;
+		overflow-x: hidden;
+		overflow-y: auto;
+
+		&.no-overflow {
 			overflow: hidden;
 		}
-		// overflow-x: hidden;
-		// overflow-y: auto;
 	}
 }
 
-.popup-toolbox-panel {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	overflow: auto;
-	min-width: 300px;
-	max-width: 300px;
-	color: $color-primary;
-	background-color: $side-panel-color;
+// .popup-toolbox-panel {
+// 	display: flex;
+// 	flex-direction: column;
+// 	gap: 10px;
+// 	overflow: auto;
+// 	min-width: 300px;
+// 	max-width: 300px;
+// 	color: $color-primary;
+// 	background-color: $side-panel-color;
 
-	border-radius: 5px;
-	box-shadow: 0px 0px 15px $color-primary;
+// 	border-radius: 5px;
+// 	box-shadow: 0px 0px 15px $color-primary;
 
-	width: 350px;
-	max-width: 350px;
-	min-width: 350px;
-	
-			height: 80vh;
-			min-height: 80vh;
-			max-height: 80vh;
-	.title-line {
-		font-size: 1em;
-	}
+// 	width: 350px;
+// 	max-width: 350px;
+// 	min-width: 350px;
 
-	.checkbox,
-	input {
-		font-size: 0.85em;
-	}
-}
+// 			height: 80vh;
+// 			min-height: 80vh;
+// 			max-height: 80vh;
+// 	.title-line {
+// 		font-size: 1em;
+// 	}
 
-.popup-toolbox-panel,
+// 	.checkbox,
+// 	input {
+// 		font-size: 0.85em;
+// 	}
+// }
+
+// .popup-toolbox-panel,
 .text-formater {
+	// display: flex;
+	// flex-direction: column;
+	// flex-wrap: wrap;
+	// gap: 5px;
+
+	.form-control {
+		margin: 0 !important;
+	}
+
+	.row {
+		padding-left: 5px;
+		display: flex;
+		flex-direction: row;
+		justify-content: start;
+		gap: 5px;
+	}
+
 	.title-line {
 		width: 100%;
 		font-size: 12px;
 		font-weight: bold;
 		color: $base-text-color;
 		border-top: 1px solid $color-primary;
-		padding-top: 10px;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+
+	input[type='color'] {
+		width: 40px;
+		max-height: 18px;
+	}
+
+	.btn-group-toggle,
+	.btn-group {
+		width: auto;
+		// margin: 0;
+		display: flex;
 	}
 
 	.checkbox,
@@ -118,13 +151,26 @@
 			background-color: $color-primary;
 			color: $inverse-text-color;
 		}
+
+		&.la {
+			height: 28px;
+			min-height: 28px;
+			max-height: 28px;
+
+			width: 28px;
+			min-width: 28px;
+			max-width: 28px;
+
+			padding: 0;
+		}
 	}
 
 	.control-with-label {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: nowrap;
-		justify-content: start;
+		// justify-content: start;
+		margin: 5px;
 
 		label,
 		.label {
@@ -136,7 +182,11 @@
 			font-weight: bold;
 			width: 40% !important;
 			min-width: 80px !important;
-			max-width: 50% !important;
+			max-width: 40% !important;
+		}
+
+		input {
+			max-width: 60%;
 		}
 	}
 }
@@ -245,69 +295,7 @@
 
 }
 
-.design-props-group {
-	padding: 5px;
-	min-height: 30px;
-}
-
-.design-props-group input,
-.design-props-group select,
-.design-props-group .btn {
-	padding: 1px 5px;
-	min-height: 22px;
-}
-
-.design-props-label {
-	text-transform: uppercase;
-	display: table-cell;
-
-	font-size: 9px;
-
-	overflow: hidden;
-}
-
 .active {
 	background-color: $color-primary !important;
 	color: $inverse-text-color !important;
-}
-
-
-.text-formater {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	gap: 5px;
-
-	// margin: 10px;
-	// padding-right: 5px;
-	.form-control {
-		margin: 0 !important;
-	}
-
-	input[type='color'] {
-		width: 40px;
-		max-height: 18px;
-	}
-
-	.btn-group-toggle,
-	.btn-group {
-		width: auto;
-		// margin: 0;
-		display: flex;
-	}
-
-	&.row {
-		padding: 15px;
-		display: flex;
-		flex-direction: row;
-	}
-
-	button{
-		border: 0;
-	}
-}
-
-.btn-font-family {
-	font-size: 12px;
 }

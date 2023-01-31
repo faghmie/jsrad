@@ -1,8 +1,8 @@
 export default class FormatProperties {
 
 	attach(obj) {
-		var widget = $('<div class="text-formater row">');
-		var font_list = [
+		let widget = $(`<div class="text-formater"></div>`);
+		let font_list = [
 			this.get_font_family(obj),
 			this.get_font_size(obj),
 			this.get_font_color(obj),
@@ -12,17 +12,18 @@ export default class FormatProperties {
 			this.get_font_decoration(obj),
 		];
 
+		
 		widget.append(`<div class="title-line">font</div>`);
-		for (var i = 0; i < font_list.length; i++) {
-			widget.append(font_list[i]);
-		}
+		
+		let body = $(`<div class="row">`).appendTo(widget);
+		font_list.forEach(item => body.append(item));
 
 		obj.setControlStyle();
 		return widget;
 	};
 
 	get_font_alignment(obj) {
-		var div = $(`<div class="btn-group-toggle" data-toggle="buttons">
+		let div = $(`<div class="btn-group-toggle" data-toggle="buttons">
 						<label class="text-align btn" css-value="left">
 							<input type="radio" class="btn-check">
 							<i class="la la-align-left" ></i>
@@ -62,8 +63,8 @@ export default class FormatProperties {
 	}
 
 	get_font_decoration(obj) {
-		var font_decoration = ['none', 'underline', 'line-through', 'overline'];
-		var prop = $('<select class="form-control form-select">')
+		let font_decoration = ['none', 'underline', 'line-through', 'overline'];
+		let prop = $('<select class="form-control form-select"></select>')
 			.css({
 				width: '80px',
 				'max-width': '80px'
@@ -87,8 +88,8 @@ export default class FormatProperties {
 	}
 
 	get_vertical_align(obj) {
-		var list = ['top', 'middle', 'bottom'];
-		var prop = $('<select class="form-control form-select">')
+		let list = ['top', 'middle', 'bottom'];
+		let prop = $('<select class="form-control form-select"></select>')
 			.css({
 				width: '80px',
 				'max-width': '80px'
@@ -112,11 +113,10 @@ export default class FormatProperties {
 	}
 
 	get_font_style(obj) {
-		let div = $(`<div class="btn-group-toggle" role="group">
-				<label class="la la-bold font-weight btn" css-type="font-weight" css-value="bold">
-				</label>
-				<label class="la la-italic font-style btn" css-type="font-style" css-value="italic">
-				</label>
+		let div = $(`
+			<div class="btn-group-toggle" role="group">
+				<label class="la la-bold font-weight btn" css-type="font-weight" css-value="bold"></label>
+				<label class="la la-italic font-style btn" css-type="font-style" css-value="italic"></label>
 			</div>`);
 
 		if (obj.style['font-weight'] == 'bold') {
@@ -144,14 +144,14 @@ export default class FormatProperties {
 	}
 
 	get_font_family(obj) {
-		var font_family = ['Arial', 'Helvetica', 'Times New Roman',
+		let font_family = ['Arial', 'Helvetica', 'Times New Roman',
 			'Times', 'Courier New', 'Courier', 'Verdana',
 			'Georgia', 'Palatino', 'Garamond', 'Bookman',
 			'Trebuchet MS', 'Arial Black', 'Impact',
 			'Gadget', 'Comic Sans MS', 'sans-serif', 'serif',
 			'monospace', 'inherit'];
 
-		var prop = $('<select class="form-control form-select">')
+		let prop = $('<select class="form-control form-select"></select>')
 			.css({
 				width: '120px',
 				'max-width': '120px'
@@ -175,7 +175,7 @@ export default class FormatProperties {
 	}
 
 	get_font_size(obj) {
-		var prop = $(`<input type="number" class="form-control" min=0>`)
+		let prop = $(`<input type="number" class="form-control" min=0>`)
 			.val(parseInt(obj.style['font-size']))
 			.css({
 				width: '50px',
@@ -190,7 +190,7 @@ export default class FormatProperties {
 	}
 
 	get_font_color(obj) {
-		var fc = $('<input type="color">')
+		let fc = $('<input type="color">')
 			.attr("value", obj.style.color)
 			.on("input", function (event) {
 				obj.style.color = event.target.value;
