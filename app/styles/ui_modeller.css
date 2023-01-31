@@ -2611,6 +2611,10 @@ ARROW*/
   overflow: auto;
 }
 
+.design-toolbox-panel .toolbox-body.no-overflow {
+  overflow: hidden;
+}
+
 .popup-toolbox-panel {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2864,7 +2868,7 @@ ARROW*/
           flex-direction: column;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  gap: 10px;
+  gap: 5px;
 }
 
 .text-formater .form-control {
@@ -2885,6 +2889,7 @@ ARROW*/
 }
 
 .text-formater.row {
+  padding: 15px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2892,6 +2897,10 @@ ARROW*/
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+}
+
+.text-formater button {
+  border: 0;
 }
 
 .btn-font-family {

@@ -25,7 +25,7 @@ export default class FormOverview {
 						</div>`)
 			.appendTo(overview);
 
-		btn_add.on('click', this, async function(evt) {
+		btn_add.on('click', this, async function (evt) {
 			await evt.data.Forms.addForm();
 			overview.hide();
 			overview.remove();
@@ -69,7 +69,7 @@ export default class FormOverview {
 				document.dispatchEvent(new CustomEvent('ui-form-show', {
 					detail: evt.data
 				}));
-				
+
 				overview.remove();
 			});
 			li.find('.ui-icon-close').on('click', {
@@ -88,7 +88,7 @@ export default class FormOverview {
 		return overview;
 	}
 
-	get_buttons(){
+	get_buttons() {
 		let actions = $(`<div class="actions">`);
 
 		let btn_add = $(`<button title="add new form">
@@ -101,7 +101,7 @@ export default class FormOverview {
 						</button>`)
 			.appendTo(actions);
 
-		btn_add.on('click', this, async function(evt) {
+		btn_add.on('click', this, async function (evt) {
 			await evt.data.Forms.addForm();
 		});
 
@@ -113,14 +113,14 @@ export default class FormOverview {
 
 	}
 
-	get(){
+	get() {
 		let $this = this;
 
 		/** @type{Form | undefined} */
 		let form = null;
-		
+
 		let overview = $(`<div class="form-overview toolbox">`);
-		
+
 		/** @type{Form | undefined} */
 		let active_form = this.Forms.getActiveForm();
 
@@ -128,7 +128,7 @@ export default class FormOverview {
 
 		for (form of this.Forms) {
 			let prefix = `<i class="la la-wpforms"></i>`;
-			if (form.is_a_process === true){
+			if (form.is_a_process === true) {
 				prefix = `<i class="la la-code"></i>`;
 				// prefix = '[P] ';
 			}
@@ -138,7 +138,7 @@ export default class FormOverview {
 							<i class="ui-icon-close la la-times"></i>
 					</div>`).appendTo(overview);
 
-			if (form.uuid == active_form.uuid){
+			if (form.uuid == active_form.uuid) {
 				li.addClass('active');
 			}
 
@@ -169,8 +169,8 @@ export default class FormOverview {
 		let overview = this.refresh();
 
 		this.#update_form_preview().then(() => {
-				overview.show('blind');
-			})
+			overview.show('blind');
+		})
 			.catch(msg => {
 				console.log(msg);
 			});
@@ -186,22 +186,21 @@ export default class FormOverview {
 				// return reject('No Active Form');
 			}
 
-			html2canvas(form.ctrl, {
-				onrendered: function (canvas) {
-					try {
-						form.preview = canvas.toDataURL();
-						resolve();
-					} catch (e) {
-						App.MessageError('Failed to update preview of form');
-						console.log(e);
-					}
-				}
-
-			}, {
+			let options = {
 				allowTaint: true,
 				useCORS: true,
 				height: 50,
 				width: 30
+			};
+
+			html2canvas(form.ctrl[0], options).then((canvas) => {
+				try {
+					form.preview = canvas.toDataURL();
+					resolve();
+				} catch (e) {
+					App.MessageError('Failed to update preview of form');
+					console.log(e);
+				}
 			});
 		});
 	}

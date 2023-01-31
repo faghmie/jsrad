@@ -282,28 +282,29 @@ export default class SidePanel {
             }
         }
 
-        this.panel_container.find('.design-area-overview .toolbox-body').children(':not(h4)').remove();
+        this.panel_container.find('.design-area-overview .toolbox-body').children().remove();
         this.panel_container.find('.design-area-overview .toolbox-body').append(form_overview.get());
 
-        this.panel_container.find('.design-area-text .toolbox-body').children(':not(h4)').remove();
+        this.panel_container.find('.design-area-text .toolbox-body').children().remove();
         this.panel_container.find('.design-area-text .toolbox-body').append(fonts.attach(ctrl).append(styler.attach(ctrl)).append(this.AlignmentManager.attach(ctrl)));
 
         // this.panel_container.find('.design-area-database .toolbox-body').children(':not(h4)').remove();
         // this.panel_container.find('.design-area-database .toolbox-body').append(editor.attach(ctrl));
 
-        this.panel_container.find('.design-area-docs .toolbox-body').children(':not(h4)').remove();
+        this.panel_container.find('.design-area-docs .toolbox-body').children().remove();
         this.panel_container.find('.design-area-docs .toolbox-body').append(docs.attach(ctrl));
 
-        this.panel_container.find('.design-area-comments .toolbox-body').children(':not(h4)').remove();
+        this.panel_container.find('.design-area-comments .toolbox-body').children().remove();
         this.panel_container.find('.design-area-comments .toolbox-body').append(comments.attach(form));
 
-        this.panel_container.find('.design-area-widgets .toolbox-body').children(':not(h4)').remove();
+        this.panel_container.find('.design-area-widgets .toolbox-body').children().remove();
+        this.panel_container.find('.design-area-widgets .toolbox-body').addClass('no-overflow');
         this.panel_container.find('.design-area-widgets .toolbox-body').append(this.Toolbox.Get());
 
-        this.panel_container.find('.design-area-project-settings .toolbox-body').children(':not(h4)').remove();
+        this.panel_container.find('.design-area-project-settings .toolbox-body').children().remove();
         this.panel_container.find('.design-area-project-settings .toolbox-body').append(prj_props.attach(this.Project, this.Forms));
 
-        this.panel_container.find('.design-area-props .toolbox-body').children(':not(h4)').remove();
+        this.panel_container.find('.design-area-props .toolbox-body').children().remove();
         this.panel_container.find('.design-area-props .toolbox-body').append(widget_props.attach(ctrl));
     };
 

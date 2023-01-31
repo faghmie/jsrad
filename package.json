@@ -19,7 +19,6 @@
     ],
     "libs": [
       "libs/jquery-bar-rating-master/jquery.barrating.js",
-      "libs/html2canvas-0.4.1/build/html2canvas.js",
       "libs/jqplot/jquery.jqplot.js",
       "libs/jqplot/plugins/jqplot.dateAxisRenderer.js",
       "libs/jqplot/plugins/jqplot.highlighter.js",

@@ -1,11 +1,11 @@
-export default class DataMenu{
-    constructor(designer, container){
-        this.container = container;
+export default class DataMenu {
+	constructor(designer, container) {
+		this.container = container;
 		this.designer = designer;
-    }
+	}
 
-    #get_menu(){
-        return $(`<div class="dropdown">
+	#get_menu() {
+		return $(`<div class="dropdown">
                     <div class="workspace-button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="la la-fw la-bars"></i>
                     </div>
@@ -21,10 +21,10 @@ export default class DataMenu{
                         <li class="dropdown-item btn_generate_sql" href="#"><i class="la la-database"></i> Export SQL</;>
 					</ul>
 				</div>`);
-    }
+	}
 
-    GetMenu() {
-		var menu = this.#get_menu();
+	GetMenu() {
+		let menu = this.#get_menu();
 
 		menu.find('.tb_save_to_disk').off('click').on('click', function () {
 			document.dispatchEvent(new CustomEvent('project-save-to-disk'));
@@ -32,14 +32,14 @@ export default class DataMenu{
 
 		menu.find('.switch-diagram').on('click', function () {
 			document.dispatchEvent(new CustomEvent('ide-switch-context', {
-                detail: {
-                    context: 'UI'
-                }
-            }));
+				detail: {
+					context: 'UI'
+				}
+			}));
 		});
 
 		menu.find('.new-diagram').on('click', function () {
-			var erd = new erd_merge($this);
+			let erd = new erd_merge($this);
 			erd.open();
 		});
 
@@ -50,13 +50,13 @@ export default class DataMenu{
 		});
 
 		menu.find('.btn_generate_sql').off('click').on('click', function () {
-			var $dlg = $('<div>').attr('title', 'SQL Code');
-			var $txt = $('<select>')
+			let $dlg = $('<div>').attr('title', 'SQL Code');
+			let $txt = $('<select>')
 				.addClass('form-control')
 				.append('<option>mysql</option>')
 				.append('<option>mssql</option>')
 				.appendTo($dlg);
-			var btn = $('<a>')
+			let btn = $('<a>')
 				.addClass('btn btn-light')
 				.text('Generate SQL')
 				.appendTo($dlg);
@@ -66,8 +66,8 @@ export default class DataMenu{
 				card.close();
 			});
 
-			var _export_sql = function (db_type) {
-				var translator = mysql_datatypes;
+			let _export_sql = function (db_type) {
+				let translator = mysql_datatypes;
 				switch (db_type) {
 					case 'mssql':
 						translator = mssql_datatypes;
@@ -79,13 +79,13 @@ export default class DataMenu{
 
 
 				DataInterface.select_multiple(null, $this, function () {
-					var text = translator.getStructure($this.TableManager);
+					let text = translator.getStructure($this.TableManager);
 					text += translator.getData($this.TableManager);
 					text += translator.getConstraints($this.TableManager);
 
 					$txt.val(text);
 
-					var blob = new Blob([text], {
+					let blob = new Blob([text], {
 						type: 'text/sql;charset=utf-8'
 					});
 
@@ -93,7 +93,7 @@ export default class DataMenu{
 				});
 			};
 
-			var card = open_card($dlg, {
+			let card = open_card($dlg, {
 				'max-width': 200,
 				'min-width': 200,
 				'height': '100px',
@@ -105,12 +105,12 @@ export default class DataMenu{
 
 		menu.find('.btn_generate_doc').off('click').on('click', function () {
 			//FIND THE HEIGHT AND WIDTH TO RESIZE TO A SENSIBLE SIZE.
-			var width = 0,
+			let width = 0,
 				height = 0,
 				w = 0,
 				h = 0;
-			for (var t in $this.tables) {
-				var table = $this.tables[t].dom.container;
+			for (let t in $this.tables) {
+				let table = $this.tables[t].dom.container;
 
 				w = parseFloat(table.css('left')) + parseFloat(table.css('width'));
 				h = parseFloat(table.css('top')) + parseFloat(table.css('height'));
@@ -124,43 +124,43 @@ export default class DataMenu{
 				'width': width
 			});
 
-			var obj = html2canvas($this.dom.container, {
-				onrendered: function (canvas) {
-					var div = $('<div>')
-						.addClass('docs')
-						.css({
-							overflow: 'auto'
-						});
-					div.append('<h1>' + $this.project.name + '</h1>');
-					div.append('<hr>');
-					div.append('<p>' + $this.project.description + '</p>');
-					var img = $('<img>')
-						.css({
-							border: '1px solid lightgrey'
-						})
-						.appendTo(div);
-					img.attr('src', canvas.toDataURL());
-					div.append($this.getDocumentation());
-					div.append('<hr><br>');
-					$dlg.append(div);
-					$this.dom.container.css({
-						'height': DB_DESIGN_AREA.height,
-						'width': DB_DESIGN_AREA.width
-					});
-					var file_data = '<html>' + div.html() + '</html>';
-
-					var blob = new Blob([file_data], {
-						type: 'text/html;charset=utf-8'
-					});
-
-					saveAs(blob, 'documentation.html');
-				}
-			}, {
+			let options = {
 				allowTaint: true,
 				useCORS: true
+			};
+
+			html2canvas($this.dom.container[0], options).then((canvas) => {
+				let div = $('<div>')
+					.addClass('docs')
+					.css({
+						overflow: 'auto'
+					});
+				div.append('<h1>' + $this.project.name + '</h1>');
+				div.append('<hr>');
+				div.append('<p>' + $this.project.description + '</p>');
+				let img = $('<img>')
+					.css({
+						border: '1px solid lightgrey'
+					})
+					.appendTo(div);
+				img.attr('src', canvas.toDataURL());
+				div.append($this.getDocumentation());
+				div.append('<hr><br>');
+				$dlg.append(div);
+				$this.dom.container.css({
+					'height': DB_DESIGN_AREA.height,
+					'width': DB_DESIGN_AREA.width
+				});
+				let file_data = '<html>' + div.html() + '</html>';
+
+				let blob = new Blob([file_data], {
+					type: 'text/html;charset=utf-8'
+				});
+
+				saveAs(blob, 'documentation.html');
 			});
 
-			var $dlg = $('<div>').attr('title', 'Documentation');
+			let $dlg = $('<div>').attr('title', 'Documentation');
 			open_card($dlg, {
 				title: 'Documentation'
 			});
@@ -168,11 +168,11 @@ export default class DataMenu{
 		});
 
 		menu.find('.btn_generate_code').off('click').on('click', function () {
-			var sel = [];
-			var text = '';
-			var tables = $this.tables;
-			for (var i in tables) {
-				var table = tables[i];
+			let sel = [];
+			let text = '';
+			let tables = $this.tables;
+			for (let i in tables) {
+				let table = tables[i];
 				if (table.selected === true)
 					text += JSON.stringify(table.toObject(), null, '\t');
 			}
@@ -181,9 +181,9 @@ export default class DataMenu{
 			if (text === '')
 				text = $this.toJSON();
 
-			var $dlg = $('<div>').attr('title', 'Javascript Code');
+			let $dlg = $('<div>').attr('title', 'Javascript Code');
 
-			var $txt = $('<textarea>')
+			let $txt = $('<textarea>')
 				.css({
 					width: '100%',
 					height: '300px',
@@ -191,7 +191,7 @@ export default class DataMenu{
 				.appendTo($dlg);
 			$txt.val(text);
 
-			var blob = new Blob([text], {
+			let blob = new Blob([text], {
 				type: 'text/json;charset=utf-8'
 			});
 
