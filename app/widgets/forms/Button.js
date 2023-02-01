@@ -9,7 +9,7 @@ export default class Button extends ControlInterface {
 		label_align: 'hide',
 		edit_field: 'label',
 		hover: false,
-		
+
 		type: 'btn btn-light',
 		use_icon: false,
 		check_button: false,
@@ -18,7 +18,7 @@ export default class Button extends ControlInterface {
 		data: null,
 		flat: false,
 		db_action: ''
-		
+
 	};
 	style = {
 		'text-align': 'center',
@@ -47,7 +47,8 @@ export default class Button extends ControlInterface {
 		let $this = this;
 
 		//ICON POSITION
-		let icon_position = $('<select>').addClass('form-control input-sm')
+		let icon_position = $('<select>')
+			.addClass('form-control')
 			.append('<option>left</option>')
 			.append('<option>right</option>');
 
@@ -62,16 +63,15 @@ export default class Button extends ControlInterface {
 			});
 
 		//ICONS
-		let icon_select = $('<a>')
-			.addClass('btn btn-outline')
-			.html("<i class='la la-fw " + this.icon + "'>")
-			.css('width', '40px');
+		let icon_select = $('<button>')
+			.html("<i class='la la-fw" + this.icon + "'>");
+			// .css('width', '40px');
 
 		if (false === this.use_icon)
 			icon_select.html('No Icon');
 
 		icon_select.on('click', function () {
-			let icons = new IconSelector({
+			new IconSelector({
 				on_selected: function (icon_class, use_icon) {
 					$this.icon = icon_class;
 					$this.use_icon = use_icon;
@@ -86,10 +86,11 @@ export default class Button extends ControlInterface {
 			}).open();
 		});
 
-		let icon = $('<div><div>' +
-			"<div class='pull-left icon'></div>" +
-			"<div class='pull-left icon-pos'></div>" +
-			'</div></div>');
+		let icon = $(`
+			<div class="inline-controls">
+				<div class="icon"></div>
+				<div class="icon-pos"></div>
+			</div>`);
 		icon.find('.icon').append(icon_select);
 		icon.find('.icon-pos').append(icon_position);
 

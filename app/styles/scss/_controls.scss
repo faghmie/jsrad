@@ -1,16 +1,17 @@
-@mixin width($w){
+@mixin width($w) {
   width: $w;
   min-width: $w;
   max-width: $w;
 }
-@mixin height($h){
+
+@mixin height($h) {
   height: $h;
   min-height: $h;
   max-height: $h;
 }
 
-html { 
-  margin-left: calc(100vw - 100%); 
+html {
+  margin-left: calc(100vw - 100%);
   color: $base-text-color;
   font-weight: 600;
 }
@@ -51,55 +52,60 @@ dl {
   display: block;
   float: right;
 
-  p{
+  p {
     margin-bottom: 15px;
   }
-  dt{
-  @include width(180px);
-  font-weight: bold;
-  display: inline-block;
-  text-transform: uppercase;
-  padding-right: 10px;
+
+  dt {
+    @include width(180px);
+    font-weight: bold;
+    display: inline-block;
+    text-transform: uppercase;
+    padding-right: 10px;
   }
-  dd{
-  display: inline;
-  text-align:left;
+
+  dd {
+    display: inline;
+    text-align: left;
   }
 }
 
-button{
+button {
   background-color: transparent;
   border: 1px solid $color-primary;
   border-radius: 5px;
   color: $color-primary;
   font-weight: bold;
-  
+
   &:hover,
   &:focus,
-  &:active{
+  &:active {
     border: 1px solid $color-primary;
     background-color: $color-primary;
     color: $inverse-text-color;
   }
 }
 
-fieldset{
+fieldset {
   border: 1px solid $color-border;
   margin: 15px;
   padding: 15px;
-  legend{
+
+  legend {
     padding: 5px 10px;
     font-size: 1rem;
     font-weight: bold;
-    width:auto;
+    width: auto;
   }
-  label{
+
+  label {
     width: 120px;
     min-width: 120px;
     max-width: 120px;
     font-size: 0.85rem;
   }
-  p{
+
+  p {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -107,18 +113,20 @@ fieldset{
     margin: 0;
     margin-bottom: 5px;
   }
-  textarea{
+
+  textarea {
     width: 95% !important;
     max-width: 95% !important;
   }
 }
 
-.checkbox{
+.checkbox {
+
   // display: flex;
   // flex-direction: row;
   // flex-wrap: nowrap;
   // align-items: baseline;
-  label{
+  label {
     color: $base-text-color;
   }
 }
@@ -140,7 +148,7 @@ input[type='checkbox']:after {
   font-size: 20px;
   line-height: 20px;
   vertical-align: middle;
-  
+
   content: ' ';
   display: inline-block;
   visibility: visible;
@@ -156,13 +164,40 @@ input[type='checkbox']:checked:after {
   border: 0;
 }
 
+select[multiple] {
+  border: 1px solid $color-border;
+  border-radius: 5px;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+
+  option {
+    padding: 10px;
+    margin: 5px;
+    width: 100%;
+    margin: 0;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $color-border;
+    }
+  }
+}
+
+.inline-controls {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  
+}
+
 .tabs {
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
-  
-  & > .toolbar {
+
+  &>.toolbar {
     width: 100%;
     height: 30px;
     display: flex;
@@ -172,22 +207,25 @@ input[type='checkbox']:checked:after {
     background: transparent;
     border-bottom: 1px solid $color-border;
 
-    .item{
+    .item {
       height: 100%;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      i{
+
+      i {
         padding: 5px;
         margin-top: 2px;
         margin-left: 10px;
         border-radius: 30px;
+
         // font-weight: normal;
-        &:hover{
+        &:hover {
           background-color: $color-border;
         }
       }
     }
+
     .item,
     a {
       height: 100%;
@@ -202,11 +240,13 @@ input[type='checkbox']:checked:after {
       align-items: center;
       padding-left: 15px;
       padding-right: 15px;
-      
+
       cursor: pointer;
+
       &:hover {
         border-bottom: 3px solid $color-secondary;
       }
+
       &.active {
         border-bottom: 3px solid $color-secondary;
         font-weight: bold !important;
@@ -216,38 +256,43 @@ input[type='checkbox']:checked:after {
   }
 }
 
-.page-tabs{
+.page-tabs {
   @extend .tabs;
-  
-  & .toolbar{
+
+  & .toolbar {
     border: 0;
     padding-left: 10px;
-    .la-times{
+
+    .la-times {
       font-size: 1rem;
     }
   }
-  .page-tabs-body{
+
+  .page-tabs-body {
     padding-top: 10px;
-    position:relative;
+    position: relative;
   }
 }
 
-.ui-tabs{
+.ui-tabs {
   border: 0 !important;
-  .ui-tabs-nav{
+
+  .ui-tabs-nav {
     background-color: transparent !important;
     border: 0 !important;
     border-radius: 0 !important;
     border-bottom: 2px solid $color-primary !important;
   }
-  .ui-tabs-tab{
+
+  .ui-tabs-tab {
     background-color: $color-border !important;
     border: 0px;
     font-size: 0.75rem;
     border-top-left-radius: 5px !important;
     border-top-right-radius: 5px !important;
   }
-  .ui-tabs-active{
+
+  .ui-tabs-active {
     font-weight: bold !important;
     background-color: $color-primary !important;
     color: $inverse-text-color !important;
@@ -297,7 +342,8 @@ input::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: $faded-text-color;
   font-style: italic;
-  opacity: 1; /* Firefox */
+  opacity: 1;
+  /* Firefox */
 }
 
 input:-ms-input-placeholder,
@@ -314,14 +360,14 @@ input::-ms-input-placeholder {
 .form-control,
 .form-control-sm {
   border: 0 !important;
-  border-bottom: 3px solid $color-border !important;
+  border-bottom: 1px solid $color-secondary !important;
   border-radius: 0 !important;
   padding: 5px !important;
 
-  &:hover{
+  &:hover {
     background-color: $color-border;
   }
-  
+
   &:focus {
     @extend .box-shadow;
     outline: none !important;
@@ -331,11 +377,11 @@ input::-ms-input-placeholder {
   }
 }
 
-.required{
+.required {
   border-left: 3px solid red !important;
 }
 
-.dropdown-menu{
+.dropdown-menu {
   border-radius: 0;
   border: 0;
   // border-radius: 5px;
@@ -343,21 +389,22 @@ input::-ms-input-placeholder {
   box-shadow: 0px 0px 2px $color-primary;
 }
 
-.dropdown-item-text{
+.dropdown-item-text {
   color: $color-primary;
   font-weight: bold;
   font-size: 0.95rem;
   padding-left: 5px;
 }
 
-.dropdown-item{
+.dropdown-item {
   font-size: 0.9rem;
 
-  .la, .las{
+  .la,
+  .las {
     margin-right: 10px;
   }
 
-  &:hover{
+  &:hover {
     background-color: $color-secondary;
     color: $inverse-text-color !important;
     cursor: pointer;
@@ -368,20 +415,21 @@ input::-ms-input-placeholder {
 .ss-content .ss-search .ss-addable,
 .ss-content .ss-search input,
 .ss-content,
-.ss-main .ss-multi-selected{
+.ss-main .ss-multi-selected {
   border: 1px solid $color-border !important;
 }
 
-.ss-main .ss-single-selected{
-  height:38px !important;
+.ss-main .ss-single-selected {
+  height: 38px !important;
 }
 
-.number-control{
+.number-control {
   width: 100px;
   display: flex;
   justify-content: space-between;
+
   .minus,
-  .plus{
+  .plus {
     padding-top: 5px;
     padding-left: 5px;
     padding-right: 5px;
@@ -392,28 +440,30 @@ input::-ms-input-placeholder {
     background-color: $color-secondary;
   }
 
-  .minus{
+  .minus {
     border-radius: 0;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
   }
-  .plus{
+
+  .plus {
     border-radius: 0;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
   }
 
-  .value{
+  .value {
     border: 1px solid $color-secondary;
     text-align: center;
     width: 100%;
   }
 }
 
-.datepicker{
-  table{
+.datepicker {
+  table {
     font-size: 1rem;
-    tr:hover{
+
+    tr:hover {
       background: transparent !important;
       color: $base-text-color !important;
     }
@@ -421,7 +471,7 @@ input::-ms-input-placeholder {
 }
 
 label {
-  color: $faded-text-color;
+  color: $label-color;
 }
 
 p.setting {
@@ -431,6 +481,7 @@ p.setting {
   text-transform: uppercase;
   border-bottom: 1px solid $border-color;
 }
+
 label.setting {
   // color: $base-text-color;
   // color: $faded-text-color;
@@ -453,6 +504,7 @@ input.setting {
   transition: all 0.1s ease 0.5s;
   visibility: visible;
 }
+
 [data-title]:after {
   content: attr(data-title);
   background-color: $color-primary;
@@ -469,6 +521,7 @@ input.setting {
   z-index: 99999;
   visibility: hidden;
 }
+
 [data-title] {
   position: relative;
 }

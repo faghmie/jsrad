@@ -1,18 +1,8 @@
 export const BaseFormControl = (superclass) => class BaseFormControl extends superclass {
-	label_alignment = 'left';
+	label_alignment = 'right';
 	label_position = 'left';
 
 	get_settings() {
-		//LABEL
-		var label = $(`<input type="text">`)
-			.addClass('form-control')
-			.val(this.label)
-			.on('input', function (evt) {
-				evt.stopPropagation();
-				this.label = evt.target.value;
-				this.format();
-			}.bind(this));
-
 		//LABEL ALIGNMENT
 		var label_alignment = $('<select>')
 			.addClass('form-control')
@@ -59,7 +49,6 @@ export const BaseFormControl = (superclass) => class BaseFormControl extends sup
 		
 
 		return [
-			['label', label],
 			['label alignment', label_alignment],
 			['label position', label_position]
 		];
@@ -91,11 +80,10 @@ export const BaseFormControl = (superclass) => class BaseFormControl extends sup
 	}
 
 	getControl() {
-		this.ctrl = $(`<div class="labelled-control">
+		this.ctrl = $(`
+			<div class="labelled-control">
 				<label>Label</label>
-				<div class="control-group">
-					
-				</div>
+				<div class="control-group"></div>
 			</div>`);
 
 		return this.ctrl;

@@ -1,6 +1,6 @@
 export default class PropertyBase {
 	_append_item(text, control, attribute, widget){
-			var ignore_properties = [];
+			let ignore_properties = [];
 			
 			if (this.attached_object) ignore_properties = this.attached_object.ignore_properties;
 			
@@ -12,7 +12,7 @@ export default class PropertyBase {
 			}
 			
 			control = $(control).addClass('form-control');
-			var div = $(`<div class="control-with-label"><label>${text}</label></div>`)
+			let div = $(`<div class="control-with-label"><label>${text.trim()}</label></div>`)
 				.append(control)
 				.appendTo(widget);
 	}

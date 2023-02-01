@@ -466,6 +466,37 @@ input[type='checkbox']:checked:after {
   border: 0;
 }
 
+select[multiple] {
+  border: 1px solid #e7eef3;
+  border-radius: 5px;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+select[multiple] option {
+  padding: 10px;
+  margin: 5px;
+  width: 100%;
+  margin: 0;
+}
+
+select[multiple] option:hover {
+  cursor: pointer;
+  background-color: #e7eef3;
+}
+
+.inline-controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 8px;
+}
+
 .tabs, .page-tabs {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -693,7 +724,7 @@ input::-ms-input-placeholder {
 .form-control,
 .form-control-sm {
   border: 0 !important;
-  border-bottom: 3px solid #e7eef3 !important;
+  border-bottom: 1px solid #799cb4 !important;
   border-radius: 0 !important;
   padding: 5px !important;
 }
@@ -733,7 +764,8 @@ input::-ms-input-placeholder {
   font-size: 0.9rem;
 }
 
-.dropdown-item .la, .dropdown-item .las {
+.dropdown-item .la,
+.dropdown-item .las {
   margin-right: 10px;
 }
 
@@ -805,7 +837,7 @@ input::-ms-input-placeholder {
 }
 
 label {
-  color: silver;
+  color: #929292;
 }
 
 p.setting {
@@ -925,6 +957,7 @@ input.setting {
       -ms-flex-align: center;
           align-items: center;
   color: silver;
+  font-size: 0.75rem;
   font-weight: bold;
   padding-right: 5px;
   width: 33%;
@@ -974,6 +1007,7 @@ input.setting {
   padding-left: 5px;
   padding-right: 5px;
   border: 0 !important;
+  font-size: 1.2rem;
 }
 
 .labelled-control .control-group input,
@@ -994,26 +1028,6 @@ input.setting {
 .labelled-control .control-group input[type='checkbox'] {
   width: 48px;
   max-width: 48px;
-}
-
-select[multiple] {
-  border: 1px solid #e7eef3;
-  border-radius: 5px;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-}
-
-select[multiple] option {
-  padding: 10px;
-  margin: 5px;
-  width: 100%;
-  margin: 0;
-}
-
-select[multiple] option:hover {
-  cursor: pointer;
-  background-color: #e7eef3;
 }
 
 .bg-primary {
@@ -1399,6 +1413,7 @@ select[multiple] option:hover {
       -ms-flex-align: center;
           align-items: center;
   color: silver;
+  font-size: 0.75rem;
   font-weight: bold;
   padding-right: 5px;
   width: 33%;
@@ -1448,6 +1463,7 @@ select[multiple] option:hover {
   padding-left: 5px;
   padding-right: 5px;
   border: 0 !important;
+  font-size: 1.2rem;
 }
 
 .labelled-control .control-group input,
@@ -1468,26 +1484,6 @@ select[multiple] option:hover {
 .labelled-control .control-group input[type='checkbox'] {
   width: 48px;
   max-width: 48px;
-}
-
-select[multiple] {
-  border: 1px solid #e7eef3;
-  border-radius: 5px;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-}
-
-select[multiple] option {
-  padding: 10px;
-  margin: 5px;
-  width: 100%;
-  margin: 0;
-}
-
-select[multiple] option:hover {
-  cursor: pointer;
-  background-color: #e7eef3;
 }
 
 .jsrad-ui-designer {
@@ -2616,10 +2612,6 @@ ARROW*/
   overflow: hidden;
 }
 
-.text-formater .form-control {
-  margin: 0 !important;
-}
-
 .text-formater .row {
   padding-left: 5px;
   display: -webkit-box;
@@ -2640,7 +2632,7 @@ ARROW*/
   font-size: 12px;
   font-weight: bold;
   color: #2c3643;
-  border-top: 1px solid #53809e;
+  border-bottom: 1px solid #53809e;
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -2661,6 +2653,7 @@ ARROW*/
 .text-formater .checkbox,
 .text-formater .form-control,
 .text-formater input {
+  margin: 0 !important;
   font-size: 0.8rem !important;
   padding: 0 !important;
   background-color: #e7eef3 !important;
@@ -2702,6 +2695,9 @@ ARROW*/
           flex-direction: row;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
   margin: 5px;
 }
 
@@ -2710,16 +2706,13 @@ ARROW*/
   display: block;
   text-align: right;
   padding-right: 10px;
-  font-size: 0.75rem !important;
-  color: #2c3643;
-  font-weight: bold;
-  width: 40% !important;
-  min-width: 80px !important;
-  max-width: 40% !important;
-}
-
-.text-formater .control-with-label input {
-  max-width: 60%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 0.8rem !important;
+  color: #929292;
+  font-weight: 500;
+  width: 120px !important;
+  min-width: 120px !important;
+  max-width: 120px !important;
 }
 
 .design-toolbox-widgets {

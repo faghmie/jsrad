@@ -152,7 +152,7 @@ export default class SearchBox extends BaseFormControl(ControlInterface) {
 
 	getControl() {
 		super.getControl();
-		this.ctrl.find('.control-group').append(`<input type="text" class="form-control">
+		this.ctrl.find('.control-group').append(`<input type="search" class="form-control">
 			<span class="icon">
 				<i class="la la-search"></i>
 			</span>`);
