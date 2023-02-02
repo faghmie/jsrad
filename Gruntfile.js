@@ -242,7 +242,7 @@ module.exports = function (grunt) {
 			'htmlbuild',
 			//'service_worker',
 			// 'php',
-			'watch'
+			// 'watch'
 		]
 	);
 };

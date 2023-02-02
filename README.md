@@ -71,7 +71,7 @@ The system can import a CSV file and auto-create the table with its data.
 | JQuery              |  3.6.3  | To ease DOM manipulation          |
 | Bootstrap           |  5.2.3  | Basic formatting of some elements |
 | FileSaver.js        |  2.0.5  | To save project to disk           |
-| Html2Canvas         |  0.4.1  | Create image of current screen    |
+| Html2Canvas         |  1.4.1  | Create image of current screen    |
 | JQuery-UI           | 1.13.2  | Mostly only for resizing          |
 | Line-Awesome        |  1.3.0  | All the icons being used          |
 
