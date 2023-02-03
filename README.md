@@ -97,6 +97,8 @@ Sass generates all the required CSS files
 - [ ] Define process to allow developers to add new widgets easily. The code-base is currently shared, so need to think of where and how to keep those widgets
 
 ## Usability
+- [ ] Add touch events (read up on 
+[Add touch to your site](https://web.dev/add-touch-to-your-site/))
 - [ ] Create a wiki for the tool
 - [ ] Create a web-page for the tool
 - [ ] Generate Documentation: relook at the structure of the documentation being generated
