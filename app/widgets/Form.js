@@ -1,4 +1,3 @@
-import UiDesigner from "../ui_modeller/UiDesigner.js";
 import ControlInterface from "./_base/ControlInterface.js";
 
 export default class Form extends ControlInterface {
@@ -65,25 +64,7 @@ export default class Form extends ControlInterface {
 		//Ensure form from a previous run is not loaded by accident
 		this.designer.dom.app_area.removeData('form');
 
-		if (true === this.in_run_mode) {
-			if (true !== this.is_a_process) {	
-				// this.ctrl.removeClass('design-mode');
-				// if (this.dom.container.hasClass('ui-selectable'))
-				// 	this.dom.container.selectable('destroy');
-
-				// for (let f in this.controls) {
-				// 	if (!this.controls[f].dom) continue;
-
-				// 	this.controls[f].dom.container.addClass('app-run-mode');
-				// 	this.controls[f].dom.control.addClass('app-run-mode');
-				// 	this.controls[f].ctrl.addClass('app-run-mode');
-				// }
-
-				// if (this.ctrl.hasClass('ui-selectable')) {
-				// 	this.ctrl.selectable('destroy');
-				// }
-			}
-		} else {
+		if (false === this.in_run_mode) {
 			this.ctrl.addClass('design-mode');
 			this.ctrl.removeClass('app-run-mode');
 
@@ -108,10 +89,8 @@ export default class Form extends ControlInterface {
 
 	//Populate form with any message that was passed to the form
 	pre_load(message) {
-		// if ((true !== this.in_run_mode) && (this.is_a_process === true)) return;
-		
-		this.pre_message = Object.assign(this.pre_message, message||{});
-		
+		this.pre_message = Object.assign(this.pre_message, message || {});
+
 		this.message = Object.assign({}, this.pre_message);
 
 		this.ctrl.find('input, textarea, select').each(function () {
@@ -138,7 +117,7 @@ export default class Form extends ControlInterface {
 
 	//
 	//
-	
+
 	/**
 	 * Build message to pass from current form onto next form
 	 * Message should contain key-value pair of all current controls on the form
@@ -180,13 +159,12 @@ export default class Form extends ControlInterface {
 
 
 				//MAKE ALL ARRAYS FLAT
-				if (context.message[name] instanceof Array){
+				if (context.message[name] instanceof Array) {
 					context.message[name] = context.message[name][0];
 				}
 			}
 		}
-		// console.log(`PRE-CLOSE: [${this.label}]; CONTEXT: ${context.label}`);
-		// console.log(Object.assign({}, context.message));
+		
 		context.post_message = Object.assign({}, context.message);
 
 		return context.post_message;
@@ -225,7 +203,7 @@ export default class Form extends ControlInterface {
 			this.setValue();
 			return;
 		}
-		
+
 		this.ctrl.addClass('run-mode');
 		//NEED TO DO THE MESSAGE SAVING STUFF HERE 
 		//CAUSE THE CHANGE-MODE FUNCTION ABOVE RESETS
@@ -245,19 +223,19 @@ export default class Form extends ControlInterface {
 
 		//Call this to build message of form that was previous open
 		this.pre_message = {};
-		if (prev){
+		if (prev) {
 			this.pre_message = Object.assign(prev.pre_close());
 		}
 
 		this.pre_load(message);
 
 		this._on_done_function_ = on_done;
-		if (typeof this._on_done_function_ !== 'function'){
-			this._on_done_function_ = () =>{};
+		if (typeof this._on_done_function_ !== 'function') {
+			this._on_done_function_ = () => { };
 		}
 
 		//SAVE REFERENCE TO FORM - MUST HAPPEN HERE
-		if (designer.dom){
+		if (designer.dom) {
 			designer.dom.app_area.data('form', this);
 		}
 
@@ -287,8 +265,8 @@ export default class Form extends ControlInterface {
 				if (this.is_a_process === false) {
 					designer.dom.app_area
 						.css({
-							width: this.width+5,
-							height: this.height+5
+							width: this.width + 5,
+							height: this.height + 5
 						});
 					designer.dom.app_area.children().hide();
 					designer.dom.app_area.append(this.dom.container);
@@ -405,7 +383,7 @@ export default class Form extends ControlInterface {
 			}
 		}
 
-		start_process.execute();		
+		start_process.execute();
 	}
 
 	set_responsive(is_responsive) {
@@ -437,23 +415,16 @@ export default class Form extends ControlInterface {
 		});
 
 		this.ctrl.children().remove();
-		for (let index = 0; index < list.length; index++) {
-			let ctrl = list[index];
-
+		list.forEach(function(ctrl){
 			if (true === is_responsive) {
 				this.ctrl.append(ctrl.dom.container);
 				ctrl.dom.container
 					.addClass('row')
 					.css({
-						//position: 'relative',
 						left: '',
 						top: '',
 						width: '100%',
 					});
-				ctrl.ctrl.css({
-					//width: '100%', 
-					//height: '',
-				});
 			} else {
 				this.append(ctrl);
 				ctrl.dom.container.removeClass('row');
@@ -462,7 +433,7 @@ export default class Form extends ControlInterface {
 				ctrl.resize();
 				ctrl.move();
 			}
-		}
+		}.bind(this));
 
 		return this;
 	}
