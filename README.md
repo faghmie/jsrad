@@ -8,6 +8,8 @@ I will get around to the documentation at some point, if there is enough interes
 
 Any issues can be mailed to me: faghmie@gmail.com
 
+Visit [http://doagileprojects.com](http://doagileprojects.com) for a online version of the tool
+
 I needed some sort of diagram tool which I could easily generate my SQL from and also play with the data in the tables to get a feel for how effective my ERD is.
 
 I hope you find the project usefull :-)
