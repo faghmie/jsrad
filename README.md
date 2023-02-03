@@ -89,7 +89,7 @@ Sass generates all the required CSS files
 
 ## General
 
-- [ ] Distribution: Setup Github-Actions for CI/CD to auto-build the distribution and then push it to [https://www.doagileprojects.com/](https://www.doagileprojects.com/)
+- [x] Distribution: Setup Github-Actions for CI/CD to auto-build the distribution and then push it to [https://www.doagileprojects.com/](https://www.doagileprojects.com/)
 - [ ] Allow work to be save to your personal cloud-storage the way [https://www.diagrams.net/](https://www.diagrams.net/) does it
 - [ ] See if same code can be used to create a desktop version using Electron
 - [ ] Define process to allow developers to add new widgets easily. The code-base is currently shared, so need to think of where and how to keep those widgets
