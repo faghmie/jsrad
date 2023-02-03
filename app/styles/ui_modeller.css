@@ -4592,10 +4592,51 @@ textarea.stickynotes {
   height: 80vh;
   max-height: 80vh;
   overflow: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 8px;
+}
+
+.jsrad-project-open .prj-list .list-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #799cb4;
 }
 
 .jsrad-project-open .prj-list .list-item:hover {
   cursor: pointer;
+  background-color: #e7eef3;
+  color: #53809e;
+  font-weight: bold;
+}
+
+.jsrad-project-open .prj-list .list-item span {
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  font-style: italic;
+  color: #53809e;
+  display: block;
+}
+
+.jsrad-project-open .prj-list .list-item span:hover {
+  background-color: #53809e;
+  color: white;
 }
 
 .process-busy {

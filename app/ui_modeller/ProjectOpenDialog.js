@@ -49,16 +49,25 @@ export default class ProjectOpenDialog {
             if (!(data instanceof Array)) return;
 
             data.forEach((item) => {
-                map[item.name] = item;
-                the_list.append('<li class="list-item list-group-item list-group-item-action" value="' +
-                    item.name + '">' +
-                    item.name +
-                    '</li>');
+                console.log(item)
+                map[item.uuid] = item;
+                the_list.append(`
+                    <div class="list-item" value="${item.uuid}">
+                        ${item.name}
+                        <span class="remove">remove</span>
+                    </div>`);
             });
 
-            the_list.find('li').on('click', function (evt) {
-                this.project.Open(map[evt.target.textContent]);
+            the_list.find('.list-item').on('click', function (evt) {
+                this.project.Open(map[evt.target.getAttribute('value')]);
                 this.card.close();
+            }.bind(this));
+
+            the_list.find('.remove').on('click', function (evt) {
+                evt.stopPropagation();
+                console.log(evt.target.parentElement.getAttribute('value'))
+                // this.project.Open(map[evt.target.getAttribute('value')]);
+                // this.card.close();
             }.bind(this));
         });
     }
@@ -107,11 +116,11 @@ export default class ProjectOpenDialog {
                 dlg.find('.prj-btn-bar').append(this.#get_btn_close());
             }
 
-            let my_list = $('<ul class="list-group">').appendTo(row_list);
+            // let my_list = $('<ul class="list-group">').appendTo(row_list);
 
             $this.#enable_local_file_load(dlg);
 
-            $this.#make_list(my_list, resolve);
+            $this.#make_list(row_list, resolve);
 
             $this.card = open_card(dlg, {
                 no_header: true,
