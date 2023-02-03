@@ -179,16 +179,49 @@ export default class ProjectManager {
                 const request = objectStore.put(json);
                 request.onsuccess = event => {
                     $this.designer.is_dirty = false;
+                    resolve();
                 };
 
                 request.onerror = event => {
                     console.log("error saving record");
                     console.log(event);
+                    reject(event);
                 };
             };
 
             db.onerror = (err) => {
-                resolve(null);
+                reject(err);
+            };
+        });
+    }
+
+    Remove(project_uuid) {
+        let $this = this;
+        return new Promise((resolve, reject) => {
+            let db = window.indexedDB.open(this.browserDbName);
+
+            db.onupgradeneeded = (event) => {
+                // Save the IDBDatabase interface
+                const db = event.target.result;
+
+                // Create an objectStore for this database
+                db.createObjectStore("projects", {
+                    keyPath: "uuid"
+                });
+            };
+
+            db.onsuccess = (event) => {
+                const db = event.target.result;
+                const transaction = db.transaction(["projects"], "readwrite");
+                const objectStore = transaction.objectStore("projects");
+                objectStore.delete(project_uuid);
+                transaction.oncomplete = event => {
+                    resolve();
+                };
+            };
+
+            db.onerror = (err) => {
+                reject(err);
             };
         });
     }

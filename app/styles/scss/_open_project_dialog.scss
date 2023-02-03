@@ -58,8 +58,8 @@
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            
-            padding: 10px;
+
+            padding: 5px;
             border-radius: 5px;
             border: 1px solid $color-secondary;
             &:hover {
@@ -70,7 +70,7 @@
             }
 
             span{
-                padding: 10px;
+                padding: 5px;
                 border-radius: 5px;
                 font-size: 0.8rem;
                 font-weight: bold;

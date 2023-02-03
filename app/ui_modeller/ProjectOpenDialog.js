@@ -65,7 +65,10 @@ export default class ProjectOpenDialog {
 
             the_list.find('.remove').on('click', function (evt) {
                 evt.stopPropagation();
-                console.log(evt.target.parentElement.getAttribute('value'))
+                console.log(evt.target.parentElement.getAttribute('value'));
+                this.project.Remove(evt.target.parentElement.getAttribute('value')).then(()=>{
+                    evt.target.parentElement.remove();
+                });
                 // this.project.Open(map[evt.target.getAttribute('value')]);
                 // this.card.close();
             }.bind(this));

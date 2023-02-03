@@ -4612,7 +4612,7 @@ textarea.stickynotes {
   -webkit-box-align: baseline;
       -ms-flex-align: baseline;
           align-items: baseline;
-  padding: 10px;
+  padding: 5px;
   border-radius: 5px;
   border: 1px solid #799cb4;
 }
@@ -4625,7 +4625,7 @@ textarea.stickynotes {
 }
 
 .jsrad-project-open .prj-list .list-item span {
-  padding: 10px;
+  padding: 5px;
   border-radius: 5px;
   font-size: 0.8rem;
   font-weight: bold;
