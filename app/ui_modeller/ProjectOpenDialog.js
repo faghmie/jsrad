@@ -54,7 +54,7 @@ export default class ProjectOpenDialog {
                 the_list.append(`
                     <div class="list-item" value="${item.uuid}">
                         ${item.name}
-                        <span class="remove">remove</span>
+                        <span class="remove la la-remove"></span>
                     </div>`);
             });
 

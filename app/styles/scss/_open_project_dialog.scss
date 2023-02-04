@@ -37,8 +37,9 @@
         width: 100%;
         text-align: center;
         font-weight: bold;
-        color: $color-secondary;
+        font-size: 1.1rem;
         padding: 10px;
+        color: $label-color;
         border-top: 1px solid $color-border;
         margin-top: 10px
     }
@@ -65,19 +66,19 @@
             &:hover {
                 cursor: pointer;
                 background-color: $color-border;
-                color: $color-primary;
                 font-weight: bold;
             }
-
+            
             span{
+                border: 1px solid $color-secondary;
                 padding: 5px;
                 border-radius: 5px;
                 font-size: 0.8rem;
-                font-weight: bold;
-                font-style: italic;
                 color: $color-primary;
                 display: block;
                 &:hover{
+                    font-weight: bold;
+                    font-style: normal;
                     background-color: $color-primary;
                     color: $inverse-text-color;
                 }

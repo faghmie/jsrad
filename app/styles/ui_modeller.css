@@ -4580,8 +4580,9 @@ textarea.stickynotes {
   width: 100%;
   text-align: center;
   font-weight: bold;
-  color: #799cb4;
+  font-size: 1.1rem;
   padding: 10px;
+  color: #929292;
   border-top: 1px solid #e7eef3;
   margin-top: 10px;
 }
@@ -4620,21 +4621,21 @@ textarea.stickynotes {
 .jsrad-project-open .prj-list .list-item:hover {
   cursor: pointer;
   background-color: #e7eef3;
-  color: #53809e;
   font-weight: bold;
 }
 
 .jsrad-project-open .prj-list .list-item span {
+  border: 1px solid #799cb4;
   padding: 5px;
   border-radius: 5px;
   font-size: 0.8rem;
-  font-weight: bold;
-  font-style: italic;
   color: #53809e;
   display: block;
 }
 
 .jsrad-project-open .prj-list .list-item span:hover {
+  font-weight: bold;
+  font-style: normal;
   background-color: #53809e;
   color: white;
 }
