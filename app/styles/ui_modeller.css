@@ -2299,14 +2299,15 @@ textarea.stickynotes {
       -ms-flex-align: baseline;
           align-items: baseline;
   padding: 5px;
-  border-radius: 5px;
-  border: 1px solid #799cb4;
+  border-bottom: 1px solid silver;
+  font-size: 0.9rem;
 }
 
 .jsrad-project-open .prj-list .list-item:hover {
+  border: 1px solid #e7eef3;
+  border-radius: 5px;
   cursor: pointer;
   background-color: #e7eef3;
-  font-weight: bold;
 }
 
 .jsrad-project-open .prj-list .list-item span {

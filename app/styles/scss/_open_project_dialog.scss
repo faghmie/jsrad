@@ -59,12 +59,14 @@
             align-items: baseline;
 
             padding: 5px;
-            border-radius: 5px;
-            border: 1px solid $color-secondary;
+            border-bottom: 1px solid $faded-text-color;
+            font-size: 0.9rem;
             &:hover {
+                border: 1px solid $color-border;
+                border-radius: 5px;
                 cursor: pointer;
                 background-color: $color-border;
-                font-weight: bold;
+                // font-weight: bold;
             }
             
             span{
