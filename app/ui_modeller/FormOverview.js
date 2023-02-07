@@ -78,7 +78,7 @@ export default class FormOverview {
 			}, function (evt) {
 				let data = evt.data;
 				evt.stopPropagation();
-				App.Confirm('Are you sure you want remove the form?', 'Remove Form', function () {
+				App.Confirm('Are you sure you want remove the form?', function () {
 					$this.Forms.removeForm(data.form);
 					data.item.remove();
 				});
@@ -155,7 +155,7 @@ export default class FormOverview {
 			}, function (evt) {
 				let data = evt.data;
 				evt.stopPropagation();
-				App.Confirm('Are you sure you want remove the form?', 'Remove Form', function () {
+				App.Confirm('Are you sure you want remove the form?', function () {
 					$this.Forms.removeForm(data.form);
 					data.item.remove();
 				});

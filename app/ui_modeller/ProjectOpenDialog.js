@@ -73,7 +73,6 @@ export default class ProjectOpenDialog {
         let project_uuid = list_item.getAttribute('value');
         App.Confirm(
             'Are you sure you want to remove this project?<br>This operations cannot be reversed.',
-            'Remove Project',
             function () {
                 this.project.Remove(project_uuid).then(function () {
                     list_item.remove();

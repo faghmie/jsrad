@@ -190,15 +190,9 @@ let App = {
 		});
 	},
 
-	Confirm: function (msg, title, on_done, ok_button, cancel_button) {
-		let no_header = false;
-
+	Confirm: function (msg, on_done, ok_button, cancel_button) {
 		if (typeof ok_button !== 'string') ok_button = 'Yes';
 		if (typeof cancel_button !== 'string') cancel_button = 'No';
-		if (typeof title !== 'string') {
-			title = 'Confirm';
-			no_header = true;
-		}
 
 		let dlg = $(`
 			<div class="confirm-card">
@@ -225,9 +219,7 @@ let App = {
 		});
 
 		let card = open_card(dlg, {
-			title: title,
 			no_header: true,
-			
 		});
 
 		return card;
