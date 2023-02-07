@@ -1,0 +1,30 @@
+.widget {
+	outline: 0;
+	outline: none;
+}
+
+.widget-manager {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	opacity: 0.5;
+    
+    &.selected,
+    &.hover,
+    &:hover,
+    &:focus{
+        opacity: 0.5;
+        border: 3px solid #55C8FF !important;
+    }
+}
+
+.locked {
+	border: 2px solid #FF0000;
+}
+
+.required {
+	border-left: 2px solid #FF0000 !important;
+}

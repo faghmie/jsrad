@@ -103,12 +103,12 @@ Sass generates all the required CSS files
 - [ ] Create a web-page for the tool
 - [ ] Generate Documentation: relook at the structure of the documentation being generated
 - [ ] Allow documentation to be written in markdown (my biznous.net tool already does this, so I need to port it)
-- [ ] Ability to remove a project from the browser-storage
+- [x] Ability to remove a project from the browser-storage
 - [ ] Open New Project dialogue should have a section that allows user to select "system examples/templates"
    - [ ] Create an example or template for each type of element to illustrate how it is used in app-mode and with code-snippets connected
 
 ## Code Cleanup
-- [ ] General: remove all unused 3rd party libraries
+- [x] General: remove all unused 3rd party libraries
 - [ ] UI-Product-Tour: refactor this and see if still applicable - initial idea was for this functionality to introduce new users to the tool.
 - [ ] Feedback.js - is meant to allow users to send feedback to my email, but need to consider an "About" dialog with a link to github where they can leave comments?
 - [ ] General: remove all code that was meant to read data from the server.
