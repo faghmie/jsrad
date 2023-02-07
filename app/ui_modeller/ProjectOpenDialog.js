@@ -34,8 +34,8 @@ export default class ProjectOpenDialog {
     }
 
     #get_btn_close() {
-        return $('<div>')
-            .addClass('btn')
+        return $('<button>')
+            .addClass('btn close-btn')
             .html('Close')
             .on('click', function () {
                 this.card.close();
@@ -49,7 +49,6 @@ export default class ProjectOpenDialog {
             if (!(data instanceof Array)) return;
 
             data.forEach((item) => {
-                console.log(item)
                 map[item.uuid] = item;
                 the_list.append(`
                     <div class="list-item" value="${item.uuid}">
@@ -65,14 +64,25 @@ export default class ProjectOpenDialog {
 
             the_list.find('.remove').on('click', function (evt) {
                 evt.stopPropagation();
-                console.log(evt.target.parentElement.getAttribute('value'));
-                this.project.Remove(evt.target.parentElement.getAttribute('value')).then(()=>{
-                    evt.target.parentElement.remove();
-                });
-                // this.project.Open(map[evt.target.getAttribute('value')]);
-                // this.card.close();
+                this.#remove_project(evt.target.parentElement);
             }.bind(this));
         });
+    }
+
+    #remove_project(list_item) {
+        let project_uuid = list_item.getAttribute('value');
+        App.Confirm(
+            'Are you sure you want to remove this project?<br>This operations cannot be reversed.',
+            'Remove Project',
+            function () {
+                this.project.Remove(project_uuid).then(function () {
+                    list_item.remove();
+                    if (this.project.project.uuid == project_uuid) {
+                        this.card.container.find('.close-btn').remove();
+                        this.project.Close();
+                    }
+                }.bind(this));
+            }.bind(this));
     }
 
     #load_local_file(files) {
@@ -114,7 +124,7 @@ export default class ProjectOpenDialog {
                 row_list = dlg.find('.prj-list');
 
             dlg.find('.prj-btn-bar').append(this.#get_btn_new_project());
-            
+
             if (true === allow_close) {
                 dlg.find('.prj-btn-bar').append(this.#get_btn_close());
             }
