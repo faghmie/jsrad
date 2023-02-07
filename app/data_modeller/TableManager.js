@@ -120,7 +120,7 @@ export default class TableManager{
 	}
 
 	clear(e) {
-		App.Confirm("Are your sure you want to remove all the tables" + " ?", null, this.ClearTables);
+		App.Confirm("Are your sure you want to remove all the tables" + " ?", this.ClearTables);
 	}
 
 	ClearTables(){
@@ -153,7 +153,7 @@ export default class TableManager{
 	}
 	
 	removeTable(table){
-		App.Confirm('Are you sure you want to remove table: ' + ' [' + table.title + '] ?', 'Remove table?', function () {
+		App.Confirm('Are you sure you want to remove table: ' + ' [' + table.title + '] ?', function () {
 			delete this.tables[table.uuid];
 			table.destroy();
 			document.dispatchEvent(new CustomEvent('ide-is-dirty'));

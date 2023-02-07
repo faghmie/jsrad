@@ -57,7 +57,7 @@ var DataEditor = {	//YOU ARE MEANT TO EXTEND THE JSON DATA WITH THIS OBJECT TO C
 			return;
 		}
 		
-		App.Confirm('Are you sure you want to remove the selected item(s)?', 'Remove', function(){
+		App.Confirm('Are you sure you want to remove the selected item(s)?', function(){
 			$this.options.table.find('tr td input[type=checkbox]:checked').each(function(){
 				var row = $(this).parents('tr');
 

@@ -77,7 +77,7 @@ export default class SqlField extends SqlBase{
 		this.dom.container.find('.la-times').on('click tap', this, function(evt){
 			evt.stopPropagation();
 
-			App.Confirm('Are you sure you want to remove the field' + ' [' + evt.data.name + '] ?', 'Remove field?', function () {
+			App.Confirm('Are you sure you want to remove the field' + ' [' + evt.data.name + '] ?', function () {
 				evt.data.destroy();
 			});
 		});

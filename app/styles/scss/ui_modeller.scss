@@ -6,6 +6,7 @@
 @import 'form_overview';
 @import 'toolbox';
 @import 'popup_card';
+@import 'confirm_card';
 @import 'button_switch';
 @import 'slider';
 @import 'chart';
@@ -18,13 +19,6 @@
 
 @import 'activity_confirmation';
 
-
-body {
-	background: $color-primary;
-	color: $base-text-color;
-	font-size: 16px !important;
-	font-family: Segoe UI, Roboto, Helvetica Neue, Helvetica, Arial, sans-serif !important;
-}
 
 * {
 	outline: 0;

@@ -34,8 +34,8 @@ export default class ProjectOpenDialog {
     }
 
     #get_btn_close() {
-        return $('<div>')
-            .addClass('btn')
+        return $('<button>')
+            .addClass('btn close-btn')
             .html('Close')
             .on('click', function () {
                 this.card.close();
@@ -49,18 +49,39 @@ export default class ProjectOpenDialog {
             if (!(data instanceof Array)) return;
 
             data.forEach((item) => {
-                map[item.name] = item;
-                the_list.append('<li class="list-item list-group-item list-group-item-action" value="' +
-                    item.name + '">' +
-                    item.name +
-                    '</li>');
+                map[item.uuid] = item;
+                the_list.append(`
+                    <div class="list-item" value="${item.uuid}">
+                        ${item.name}
+                        <span class="remove la la-remove"></span>
+                    </div>`);
             });
 
-            the_list.find('li').on('click', function (evt) {
-                this.project.Open(map[evt.target.textContent]);
+            the_list.find('.list-item').on('click', function (evt) {
+                this.project.Open(map[evt.target.getAttribute('value')]);
                 this.card.close();
             }.bind(this));
+
+            the_list.find('.remove').on('click', function (evt) {
+                evt.stopPropagation();
+                this.#remove_project(evt.target.parentElement);
+            }.bind(this));
         });
+    }
+
+    #remove_project(list_item) {
+        let project_uuid = list_item.getAttribute('value');
+        App.Confirm(
+            'Are you sure you want to remove this project?<br>This operations cannot be reversed.',
+            function () {
+                this.project.Remove(project_uuid).then(function () {
+                    list_item.remove();
+                    if (this.project.project.uuid == project_uuid) {
+                        this.card.container.find('.close-btn').remove();
+                        this.project.Close();
+                    }
+                }.bind(this));
+            }.bind(this));
     }
 
     #load_local_file(files) {
@@ -102,16 +123,16 @@ export default class ProjectOpenDialog {
                 row_list = dlg.find('.prj-list');
 
             dlg.find('.prj-btn-bar').append(this.#get_btn_new_project());
-            
+
             if (true === allow_close) {
                 dlg.find('.prj-btn-bar').append(this.#get_btn_close());
             }
 
-            let my_list = $('<ul class="list-group">').appendTo(row_list);
+            // let my_list = $('<ul class="list-group">').appendTo(row_list);
 
             $this.#enable_local_file_load(dlg);
 
-            $this.#make_list(my_list, resolve);
+            $this.#make_list(row_list, resolve);
 
             $this.card = open_card(dlg, {
                 no_header: true,

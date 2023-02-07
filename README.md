@@ -116,7 +116,7 @@ Sass generates all the required CSS files
 - [ ] User-Menu: remove class - not used currently - might use later when user-cloud-storage is introduced
 - [ ] Mobile-Toolbar - remove this class and find way to auto-scale SidePanel.js class for mobile
 - [ ] Card.js - convert to a class and module
-- [ ] App.js - conver to class and module. Also remove all "data-awareness code.
+- [ ] App.js - convert to class and module. Also remove all "data-awareness code.
 - [ ] Find a better line drawing library - current one is custom written:
    - [ ] JsPlumb - used before but felt clunky and "heavy"
 
