@@ -156,10 +156,10 @@ export default class FormOverview {
 				let data = evt.data;
 				evt.stopPropagation();
 				App.Confirm('Are you sure you want remove the form?', function () {
-					$this.Forms.removeForm(data.form);
+					this.Forms.removeForm(data.form);
 					data.item.remove();
-				});
-			});
+				}.bind(this));
+			}.bind(this));
 		}
 
 		return overview;

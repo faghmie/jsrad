@@ -1452,6 +1452,14 @@ ARROW*/
   border: 0;
 }
 
+.form-overview.toolbox .actions button,
+.form-overview.toolbox .form-overview-item button {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  min-width: 120px;
+}
+
 .design-toolbox-panel {
   position: absolute;
   top: 0;
@@ -1692,7 +1700,7 @@ ARROW*/
 }
 
 .design-toolbox-widgets .widget-template .widget-caption {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   padding-left: 10px;
   text-transform: uppercase;
   text-align: center;
