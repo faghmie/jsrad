@@ -1,4 +1,4 @@
-import { TextEntry } from "./TextEntry.js";
+import TextEntry from "./TextEntry.js";
 
 
 export default class TimeControl extends TextEntry {

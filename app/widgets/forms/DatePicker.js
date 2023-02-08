@@ -1,4 +1,4 @@
-import { TextEntry } from "./TextEntry.js";
+import TextEntry from "./TextEntry.js";
 
 export default class DateControl extends TextEntry {
 	properties = {
