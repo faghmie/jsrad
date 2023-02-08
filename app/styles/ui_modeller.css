@@ -1563,7 +1563,7 @@ ARROW*/
 .text-formater input {
   margin: 0 !important;
   font-size: 0.8rem !important;
-  padding: 0 !important;
+  padding: 5px !important;
   background-color: #e7eef3 !important;
   border-color: #799cb4 !important;
   border-width: 1px !important;
@@ -1571,6 +1571,7 @@ ARROW*/
 
 .text-formater button {
   margin: 5px;
+  padding: 5px;
   font-size: 0.8rem;
   background-color: #e7eef3;
   border-radius: 5px;

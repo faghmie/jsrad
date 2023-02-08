@@ -26,24 +26,27 @@ export default class CustomProperties extends PropertyBase {
 
 		if (!(s instanceof Array)) s = [];
 
-		this.add_separator('general', widget);
-
-		this.set_type(obj, widget);
-		this.edit_name(obj, widget);
-		this.edit_label(obj, widget);
-		this.edit_value(obj, widget);
-		this.on_click_event(obj, widget);
-
-		if (s.length > 0){
+		
+		// if (s.length > 0){
 			this.add_separator('widget specific', widget)
-		}
+		// }
+		
+		this.edit_label(obj, widget);
+		
 		s.forEach(item => {
 			if (!(item instanceof Array) || item.length < 2) {
 				return;
 			}
-
+			
 			this._append_item(item[0], item[1], null, widget);
 		});
+
+		this.add_separator('generic / technical', widget);
+		this.set_type(obj, widget);
+
+		this.on_click_event(obj, widget);
+		this.edit_name(obj, widget);
+		this.edit_value(obj, widget);
 
 		return widget;
 	}

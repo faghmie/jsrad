@@ -3,7 +3,6 @@
 	top: 0;
 	left: calc(100vw - 300px);
 	max-height: calc(100vh - 48px);
-	// overflow: hidden;
 	overflow: visible;
 	width: 300px;
 	min-width: 50px;
@@ -42,9 +41,6 @@
 	.toolbox-body {
 		padding: 10px;
 		width: 100%;
-		// margin-left: 10px;
-		// margin-right: 10px;
-		// overflow: auto;
 		overflow-x: hidden;
 		overflow-y: auto;
 
@@ -128,7 +124,7 @@
 	input {
 		margin: 0 !important;
 		font-size: 0.8rem !important;
-		padding: 0 !important;
+		padding: 5px !important;
 		background-color: $color-border !important;
 		border-color: $color-secondary !important;
 		border-width: 1px !important;
@@ -136,7 +132,7 @@
 
 	button {
 		margin: 5px;
-		// padding: 5px;
+		padding: 5px;
 		font-size: 0.8rem;
 
 		background-color: $color-border;
