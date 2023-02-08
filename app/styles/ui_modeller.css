@@ -434,7 +434,7 @@ fieldset textarea {
 }
 
 .checkbox label {
-  color: #2c3643;
+  color: #929292;
 }
 
 input[type='checkbox'] {
@@ -852,7 +852,7 @@ label.setting {
   width: 50px;
   text-align: right;
   padding-right: 5px;
-  color: #2c3643 !important;
+  color: #929292 !important;
 }
 
 input.setting {
@@ -942,7 +942,7 @@ input.setting {
 
 .labelled-control.checkbox label, .labelled-control.checkbox .label {
   width: calc(100% - 40px);
-  color: silver;
+  color: #929292;
 }
 
 .labelled-control.checkbox .control-group {
@@ -957,11 +957,10 @@ input.setting {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  color: silver;
-  font-size: 0.75rem;
-  font-weight: bold;
+  color: #929292;
+  font-size: 0.85rem;
   padding-right: 5px;
-  width: 33%;
+  width: 40%;
   height: 100%;
 }
 

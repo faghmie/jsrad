@@ -26,7 +26,7 @@
     &.checkbox{
         label, .label{
             width: calc(100% - 40px);
-            color: $faded-text-color;
+            color: $label-color;
         }
 
         .control-group{
@@ -38,11 +38,11 @@
     .label {
         display: flex;
         align-items: center;
-        color: $faded-text-color;
-        font-size: 0.75rem;
-        font-weight: bold;
+        color: $label-color;
+        font-size: 0.85rem;
+        // font-weight: bold;
         padding-right: 5px;
-        width: 33%;
+        width: 40%;
         height: 100%;
 
         &.center{
