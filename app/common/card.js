@@ -4,6 +4,13 @@ function open_card(content, on_show, on_close) {
 
 function Card(content, on_show, on_close) {
 	let overlay = $('<div>').addClass('ui-overlay').appendTo('body').show();
+	let options = {
+		overflow: 'auto',
+		width: '40vw',
+		no_header: false,
+		on_close: () => { },
+		on_show: () => { }
+	};
 
 	if (typeof on_show === 'function' || typeof on_close === 'function') {
 		options.on_show = on_show;
@@ -11,15 +18,6 @@ function Card(content, on_show, on_close) {
 	} else {
 		options = { ...options, ...on_show };
 	}
-
-	let options = {
-		overflow: 'auto',
-		width: '40vw',
-		no_header: false,
-		on_close: () => { },
-		on_show: () => { },
-		...options
-	};
 
 	let div = $(`<div class="popup-card">
 					<div class="header-row">

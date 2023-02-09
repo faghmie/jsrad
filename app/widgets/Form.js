@@ -1,4 +1,5 @@
 import ControlInterface from "./_base/ControlInterface.js";
+import resolutions from '../../config/device_resolutions.js';
 
 export default class Form extends ControlInterface {
 
@@ -481,43 +482,7 @@ export default class Form extends ControlInterface {
 			index = null,
 			item = null;
 		let select = $('<select>').addClass('form-control');
-		let resolutions = [
-			['Desktop 1', 640, 480],
-			['Desktop 2', 800, 600],
-			['Desktop 3', 768, 1024],
-			['Apple iPhone 6 Plus, 6s Plus', 414, 736],
-			['Apple iPhone 6, 6s, 7', 375, 667],
-			['Apple iPhone 5, iPod Touch', 320, 568],
-			['Apple iPhone 3, 4', 320, 480],
-			['LG G4, G4, G5', 360, 640],
-			['LG Optimus G', 384, 640],
-			['Samsung Galaxy S3 +', 360, 640],
-			['Samsung Galaxy S, 2, 3-mini', 320, 533],
-			['Samsung Galaxy Nexus', 360, 600],
-			['Samsung Galaxy Note 2, 3, 4', 360, 640],
-			['Samsung Galaxy Note', 400, 640],
-			['LG Nexus 5', 360, 640],
-			['LG Nexus 4', 384, 640],
-			['Microsoft Lumia 1520', 432, 768],
-			['Microsoft Lumia 620 +', 320, 480],
-			['Motorola Nexus 6', 412, 690],
-			['HTC Evo 3D, One', 360, 640],
-			['HTC 8X', 320, 480],
-			['Sony Xperia Z3', 360, 598],
-			['Sony Xperia P, S, Z', 360, 640],
-			['Xiaomi Mi 3, 4', 360, 640],
-			['Lenovo K900', 360, 640],
-			['Pantech Vega no6', 360, 640],
-			['Blackberry Leap', 390, 695],
-			['Blackberry Passport', 504, 504],
-			['Blackberry Classic', 390, 390],
-			['Blackberry Q10', 346, 346],
-			['Blackberry Z30', 360, 640],
-			['Blackberry Z10', 384, 640],
-			['Blackberry Torch 9800', 360, 480],
-			['ZTE Grand S', 360, 640],
-			['ZTE Open (Firefox OS)', 320, 480],
-		];
+		
 
 		let cmb_refresh = $('<select>').addClass('form-control');
 		let refresh_intervals = [
@@ -548,7 +513,6 @@ export default class Form extends ControlInterface {
 		select.append('<option>Custom[' + $this.width + ' x ' + $this.height + ']</option>');
 		let opt = select.find('option:last');
 		opt.prop('resolution', ['Custom', $this.width, $this.height]);
-
 		for (index = 0; index < resolutions.length; index++) {
 			item = resolutions[index];
 			select.append('<option>' + item[0] + ' [' + item[1] + ' x ' + item[2] + ']</option>');
