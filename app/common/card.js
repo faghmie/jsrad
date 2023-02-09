@@ -5,16 +5,6 @@ function open_card(content, on_show, on_close) {
 function Card(content, on_show, on_close) {
 	let overlay = $('<div>').addClass('ui-overlay').appendTo('body').show();
 
-	let options = {
-		// width: '40vw',
-		// 'min-width': '40vw',
-		// 'max-width': '100vw',
-		// height: '40vh',
-		// 'max-height': '50vh',
-		// 'min-height': '40vh',
-		overflow: 'auto',
-	};
-
 	if (typeof on_show === 'function' || typeof on_close === 'function') {
 		options.on_show = on_show;
 		options.on_close = on_close;
@@ -22,7 +12,8 @@ function Card(content, on_show, on_close) {
 		options = { ...options, ...on_show };
 	}
 
-	options = {
+	let options = {
+		overflow: 'auto',
 		width: '40vw',
 		no_header: false,
 		on_close: () => { },
@@ -85,7 +76,6 @@ function Card(content, on_show, on_close) {
 		let height = dims.height;
 		let width = dims.width;
 		if (options.no_header !== true) {
-			console.log(div.find('.header-row').height())
 			height += div.find('.header-row').height() + 30;
 			width += 20;
 		}
@@ -94,6 +84,7 @@ function Card(content, on_show, on_close) {
 			//Honor dimensions sent in
 			return;
 		}
+
 		if (dims.width > 0) {
 			div.css({
 				width: width,

@@ -128,7 +128,7 @@ fieldset {
   // flex-wrap: nowrap;
   // align-items: baseline;
   label {
-    color: $base-text-color;
+    color: $label-color;
   }
 }
 
@@ -490,7 +490,7 @@ label.setting {
   width: 50px;
   text-align: right;
   padding-right: 5px;
-  color: $base-text-color !important;
+  color: $label-color !important;
 }
 
 

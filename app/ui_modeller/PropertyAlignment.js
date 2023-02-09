@@ -9,6 +9,7 @@ export default class AlignmentManager {
 
 		widget.append(`<div class="title-line">alignment</div>`);
 		widget.append(this.get_alignment(obj));
+		widget.append(this.get_spacing(obj));
 		widget.append(this.get_order(obj));
 		widget.append(this.get_sizer(obj));
 		widget.append(this.get_styler(obj));
@@ -34,6 +35,24 @@ export default class AlignmentManager {
 		return prop;
 	}
 
+	get_spacing(obj) {
+		let prop = $(`
+			<div>
+				<button class="space-v">space vetically</button>
+				<button class="space-h">space horizontally</button>
+            </div>`);
+
+		prop.find('.space-v').on('click', obj, function (evt) {
+			this.spaceVertically(evt.data);
+		}.bind(this));
+
+		prop.find('.space-h').on('click', obj, function (evt) {
+			this.spaceHorizontally(evt.data);
+		}.bind(this));
+
+		return prop;
+	}
+
 	get_sizer(obj) {
 		let prop = $(`
 			<div>
@@ -52,7 +71,7 @@ export default class AlignmentManager {
 			}
 
 			let form = evt.data.getForm();
-			
+
 			for (let f in form.controls) {
 				let ctrl = form.controls[f];
 				if (ctrl.selected === true) {
@@ -83,7 +102,7 @@ export default class AlignmentManager {
 			}
 
 			let form = evt.data.getForm();
-			
+
 			for (let f in form.controls) {
 				let ctrl = form.controls[f];
 				if (ctrl.selected === true) {
@@ -97,7 +116,7 @@ export default class AlignmentManager {
 
 		prop.find('.default').on('click', obj, function (evt) {
 			let form = evt.data.getForm();
-			
+
 			for (let f in form.controls) {
 				let ctrl = form.controls[f];
 				if (ctrl.selected === true && ctrl.default_style) {
@@ -140,8 +159,140 @@ export default class AlignmentManager {
 		return prop;
 	}
 
-	sendBack() {
-		let form = ctrl.getForm();
+	spaceVertically(src) {
+		let f = null,
+			form = src.getForm(),
+			ctrl = null,
+			top = null,
+			bottom = null,
+			height_sum = 0,
+			ctrl_count = 0,
+			top_ctrl = null,
+			list = [];
+
+		for (f in form.controls) {
+			ctrl = form.controls[f];
+
+			if (ctrl.selected === true) {
+				list.push(ctrl);
+				let cur_bottom = ctrl.top + ctrl.height;
+				height_sum += ctrl.height;
+				ctrl_count++;
+				if (top == null || ctrl.top < top) {
+					top_ctrl = ctrl;
+
+					//remove the top control from the list
+					list.pop();
+					top = ctrl.top;
+				}
+
+				if (bottom == null || cur_bottom > bottom) {
+					bottom = cur_bottom;
+				}
+			}
+		}
+
+		if (ctrl_count == 0) {
+			return;
+		}
+
+		let delta = Math.ceil((bottom - top - height_sum) / ctrl_count);
+
+		while (list.length > 0) {
+			let idx = null;
+			top = null;
+			//First find the heighest control
+			list.forEach((ctrl, index) => {
+				if (top == null || ctrl.top < top) {
+					top = ctrl.top;
+					idx = index;
+				}
+			});
+
+			if (idx == null) {
+				//Fail safe to prevent infinite loop
+				break;
+			}
+
+			list[idx].top = top_ctrl.top + top_ctrl.height + delta;
+			list[idx].format();
+
+			//This now becomes the top control for the next one to be set
+			top_ctrl = list[idx];
+
+			//Remove it from the list of controls to still adjust
+			list.splice(idx, 1);
+		}
+	}
+
+	spaceHorizontally(src) {
+		let f = null,
+			form = src.getForm(),
+			ctrl = null,
+			left = null,
+			right = null,
+			width_sum = 0,
+			ctrl_count = 0,
+			left_ctrl = null,
+			list = [];
+
+		for (f in form.controls) {
+			ctrl = form.controls[f];
+
+			if (ctrl.selected === true) {
+				list.push(ctrl);
+				let cur_right = ctrl.left + ctrl.width;
+				width_sum += ctrl.width;
+				ctrl_count++;
+				if (left == null || ctrl.left < left) {
+					left_ctrl = ctrl;
+
+					//remove the left-ist control from the list
+					list.pop();
+					left = ctrl.left;
+				}
+
+				if (right == null || cur_right > right) {
+					right = cur_right;
+				}
+			}
+		}
+
+		if (ctrl_count == 0) {
+			return;
+		}
+
+		let delta = Math.ceil((right - left - width_sum) / ctrl_count);
+
+		while (list.length > 0) {
+			let idx = null;
+			left = null;
+			//First find the left-ist control
+			list.forEach((ctrl, index) => {
+				if (left == null || ctrl.left < left) {
+					left = ctrl.left;
+					idx = index;
+				}
+			});
+
+			if (idx == null) {
+				//Fail safe to prevent infinite loop
+				break;
+			}
+
+			list[idx].left = left_ctrl.left + left_ctrl.width + delta;
+			list[idx].format();
+
+			//This now becomes the left control for the next one to be set
+			left_ctrl = list[idx];
+
+			//Remove it from the list of controls to still adjust
+			list.splice(idx, 1);
+		}
+	}
+
+	sendBack(src) {
+		let form = src.getForm();
 
 		//NOW CHECK IF A CONTROL WAS SELECTED
 		for (let c in form.controls) {
@@ -151,8 +302,8 @@ export default class AlignmentManager {
 		}
 	}
 
-	bringForward() {
-		let form = ctrl.getForm();
+	bringForward(src) {
+		let form = src.getForm();
 
 		//NOW CHECK IF A CONTROL WAS SELECTED
 		for (let c in form.controls) {
@@ -162,9 +313,9 @@ export default class AlignmentManager {
 		}
 	}
 
-	toTop() {
+	toTop(src) {
 		let f = null,
-			form = ctrl.getForm(),
+			form = src.getForm(),
 			ctrl = null,
 			top = null;
 
@@ -185,9 +336,9 @@ export default class AlignmentManager {
 		}
 	}
 
-	toLeft() {
+	toLeft(src) {
 		let f = null,
-			form = ctrl.getForm(),
+			form = src.getForm(),
 			ctrl = null,
 			left = null;
 
@@ -208,9 +359,9 @@ export default class AlignmentManager {
 		}
 	}
 
-	toRight() {
+	toRight(src) {
 		let f = null,
-			form = ctrl.getForm(),
+			form = src.getForm(),
 			ctrl = null,
 			right = null;
 
