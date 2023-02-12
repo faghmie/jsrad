@@ -1,6 +1,7 @@
 import BaseActivity from "../BaseActivity.js";
 
 export default class DataUpdate extends BaseActivity {
+	is_data_aware = true;
 	execute() {
 		let record = {};
 		for (let f in this.message_map) {

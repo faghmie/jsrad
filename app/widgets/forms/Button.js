@@ -10,16 +10,14 @@ export default class Button extends ControlInterface {
 		edit_field: 'label',
 		hover: false,
 
-		type: 'btn btn-light',
+		type: 'btn btn-primary',
 		use_icon: false,
 		check_button: false,
 		icon: '',
 		icon_position: 'left',
 		data: null,
-		flat: false,
-		db_action: ''
-
 	};
+
 	style = {
 		'text-align': 'center',
 	};
@@ -104,16 +102,6 @@ export default class Button extends ControlInterface {
 			evt.data.format();
 		});
 
-		//FLAT
-		let is_flat = $("<input type='checkbox'>");
-		if (this.flat === true)
-			is_flat.attr('checked', 'checked');
-
-		is_flat.on('click', this, function (evt) {
-			evt.data.flat = $(this).is(':checked');
-			evt.data.format();
-		});
-
 		//COLOR SELECTION
 		let color_select = $('<select>').addClass('form-control');
 
@@ -157,7 +145,6 @@ export default class Button extends ControlInterface {
 			['icon', icon],
 			['size', size_select],
 			['outline?', is_outline],
-			['flat?', is_flat],
 		];
 	}
 
@@ -170,7 +157,6 @@ export default class Button extends ControlInterface {
 		if (typeof this.size !== 'string') this.size = 'btn-lg';
 		if (typeof this.icon_position !== 'string') this.icon_position = 'left';
 		if (typeof this.icon !== 'string') this.icon = '';
-		if (typeof this.flat !== 'boolean') this.flat = false;
 
 		this.ctrl.removeClass(this.color_list.join(' '));
 		this.ctrl
@@ -182,10 +168,6 @@ export default class Button extends ControlInterface {
 		this.ctrl.removeClass('btn-outline');
 		if (this.outline === true)
 			this.ctrl.addClass('btn-outline');
-
-		this.ctrl.removeClass('btn-flat');
-		if (this.flat === true)
-			this.ctrl.addClass('btn-flat');
 
 		if (this.use_icon === true && this.icon !== '') {
 			let icon = "<i class='" + this.icon + "'";

@@ -1,6 +1,8 @@
 import BaseActivity from "../BaseActivity.js";
 
 export default class DataRead extends BaseActivity {
+	is_data_aware = true;
+	
 	execute() {
 
 		this.read_records().then(function(result){

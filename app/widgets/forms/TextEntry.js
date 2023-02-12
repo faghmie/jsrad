@@ -6,7 +6,8 @@ export default class TextEntry extends BaseFormControl(ControlInterface) {
 
 	//This tells the data-aware code to only return a single value
 	data_single_field = true;
-
+	is_data_aware = true;
+	
 	style_to_exclude = ['border-width', 'border-color'];
 
 	properties = {

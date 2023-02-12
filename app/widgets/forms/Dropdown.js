@@ -5,6 +5,7 @@ import ControlInterface from "../_base/ControlInterface.js";
 export default class DropDown extends BaseFormControl(ControlInterface) {
 
 	data_list_field = true;
+	is_data_aware = true;
 
 	style_to_exclude = ['border-width', 'border-color'];
 

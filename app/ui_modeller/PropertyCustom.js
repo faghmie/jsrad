@@ -129,9 +129,10 @@ export default class CustomProperties extends PropertyBase {
 
 	// Data aware properties
 	data_awareness(widget){
-		if (!this.ctrl || !this.ctrl.datamodel){
+		if (!this.ctrl || !this.ctrl.datamodel || !this.ctrl.is_data_aware){
 			return;
 		}
+
 
 		this.ctrl.filter ||= {};
 
