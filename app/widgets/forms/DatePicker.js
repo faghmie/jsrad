@@ -11,6 +11,7 @@ export default class DateControl extends TextEntry {
 		use_icon: false
 
 	};
+	
 	getControl() {
 		super.getControl();
 		this.ctrl.find('input').remove();

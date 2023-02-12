@@ -13,6 +13,7 @@ export default class ControlFactory {
 		} else {
 			ctrl.form = owner;
 			ctrl.designer = null;
+			ctrl.datamodel = owner.designer.DataModeller;
 		}
 
 		ctrl.selected = false;

@@ -15,6 +15,19 @@ export default class TableManager{
 		this.#listen_for_events();
 	}
 
+	[Symbol.iterator]() {
+        let index = -1;
+        let data = Object.keys(this.tables);
+        let $this = this;
+
+        return {
+            next: () => ({
+                value: $this.tables[data[++index]],
+                done: !(index in data)
+            })
+        };
+    }
+
 	#listen_for_events(){
 		let $this = this;
 

@@ -154,13 +154,7 @@ var data_aware_base = {
 		
 		$table = App.datasources[this.datasource.name].entities[this.datasource.entity];
 		
-		this.get_datasource(null, true, function(data){
-			
-			if (data) data = data[0];
-			
-			$table.showUpdate(data);
-		});
-		
+
 		
 	},
 	

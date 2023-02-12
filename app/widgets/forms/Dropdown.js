@@ -2,8 +2,10 @@ import { BaseFormControl } from "./BaseFormControl.js";
 import ControlInterface from "../_base/ControlInterface.js";
 
 
-export default class control_select extends BaseFormControl(ControlInterface) {
-	
+export default class DropDown extends BaseFormControl(ControlInterface) {
+
+	data_list_field = true;
+
 	style_to_exclude = ['border-width', 'border-color'];
 
 	properties = {
@@ -23,7 +25,7 @@ export default class control_select extends BaseFormControl(ControlInterface) {
 		return super.get_settings();
 	}
 
-	format(){
+	format() {
 		super.format();
 		this.setValue();
 	}
@@ -38,7 +40,7 @@ export default class control_select extends BaseFormControl(ControlInterface) {
 
 	val(string) {
 		if (typeof string !== 'undefined')
-		this.setSelected(string);
+			this.setSelected(string);
 		else
 			return this.ctrl.find('option:selected').val();
 	}
@@ -47,67 +49,43 @@ export default class control_select extends BaseFormControl(ControlInterface) {
 	//LIST BOX
 	on(event_name, data, callback) {
 		this.ctrl.on(event_name, 'option', data, callback);
-		
+
 		return this;
 	}
-	
+
 	setValue(value) {
 		this.value = typeof value !== 'undefined' ? value : this.value;
-		var $this = this;
 
-		this.get_datasource(function (data_) {
-			var hdr = [];
+		this.read_records().then(function (data) {
+			let parts =[];
 
-			if (data_) {
-				$this.value = data_;
-				hdr = $this.value.shift();
+			if (data) {
+				this.value = data;
 			}
 
-
-			var parts = [];
-			if ($this.value instanceof Array) {
-				parts = $this.value;
-			} else if (typeof $this.value === "string") {
-				parts = $this.value.split(/\n|\r|,/);
+			if (this.value instanceof Array) {
+				parts = this.value;
+			} else if (typeof this.value === "string") {
+				parts = this.value.split(/\n|\r|,/);
 			}
 
-			$this.SetFromArray(parts, hdr);
-		});
+			this.SetFromArray(parts);
+		}.bind(this));
 
 		return this;
 	}
 
-	SetFromArray(items, hdr) {
+	SetFromArray(items) {
 		var select = this.ctrl.find('select');
 
 		select.find("option").remove();
-		select.append('<option value="{null}">');
+		select.append('<option>');
 
-		for (var index = 0; index < items.length; index++) {
-			var item = items[index];
-			if (item instanceof Array) {
-				if (item.length < 2) {
-					select.append('<option>' + item[0] + '</option>');
-				} else {
-
-					var ref_index = -1;
-					if (hdr.length > 0) {
-						ref_index = hdr[hdr.length - 1].indexOf('reference-key/');
-					}
-
-					if (ref_index !== -1) {
-						select.append("<option value='" + item[item.length - 1] + "'>" + item[0] + "</option>");
-					} else {
-						select.append("<option>" + item[0] + "</option>");
-					}
-				}
-
-			} else if (typeof item === "string") {
-				select.append("<option>" + item + "</option>");
-
-			}
-		}
+		items.forEach(item => {
+			select.append(`<option>${item}</option>`);
+		});
 	}
+
 	setDefault(value) {
 		this.setValue(value);
 		return this;
@@ -130,7 +108,7 @@ export default class control_select extends BaseFormControl(ControlInterface) {
 
 	getControl() {
 		super.getControl();
-		this.ctrl.find('.control-group').append('<select class="form-control">');
+		this.ctrl.find('.control-group').append('<select class="form-control form-select">');
 
 		return this.ctrl;
 	}

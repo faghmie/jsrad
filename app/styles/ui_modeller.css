@@ -2549,6 +2549,25 @@ textarea.stickynotes {
   outline: none;
 }
 
+.process-atrr-map {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 30%;
+      grid-template-columns: 1fr 1fr 30%;
+  gap: 10px;
+}
+
+.process-atrr-map .header {
+  font-weight: bold;
+  border-bottom: 1px solid #53809e;
+  text-align: center;
+}
+
+.process-atrr-map .first-col {
+  text-align: center;
+  font-weight: bold;
+}
+
 .process-mode {
   background-color: #c9c9c9 !important;
 }

@@ -27,11 +27,9 @@ function Card(content, on_show, on_close) {
 						</div>
 					</div>
 					<div class="body-wrapper">
-						<div class="body-content">
-						</div>
+						<div class="body-content"></div>
 					</div>
-					<div class="drag-me" style="cursor: move;min-height:15px;max-height:15px;">
-					</div>
+					<div class="drag-me" style="cursor: move;min-height:15px;max-height:15px;"></div>
 				</div>`)
 		.css({
 			'width': parseFloat(options.width) + 25,
@@ -56,7 +54,7 @@ function Card(content, on_show, on_close) {
 		
 	div.draggable({ handle: '.drag-me' });
 	if (options.title) {
-		div.find('.header').append(options.title);
+		div.find('.header-row .header').append(options.title);
 	}
 
 	if (options.no_header === true) {
@@ -73,7 +71,7 @@ function Card(content, on_show, on_close) {
 		let dims = content[0].getBoundingClientRect();
 		let height = dims.height;
 		let width = dims.width;
-		if (options.no_header !== true) {
+		if (options.no_header !== true && div) { //This seems odd...not sure why this sometimes fails to find div
 			height += div.find('.header-row').height() + 30;
 			width += 20;
 		}

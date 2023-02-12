@@ -166,15 +166,7 @@ export default class BigText extends ControlInterface {
     var $this = this;
     this.value = typeof value !== 'undefined' ? value : this.value;
 
-    this.get_datasource(function (data_) {
-      var val = $this.value;
 
-      if (data_) {
-        val = data_[1];
-      }
-
-      $this.ctrl.find('.card-text').html(val);
-    });
   }
 
   getControl() {

@@ -30,6 +30,32 @@
 	outline: none;
 }
 
+.process-atrr-map {
+    display: grid;
+    grid-template-columns: 1fr 1fr 30%; 
+	gap: 10px;
+    
+	.header{
+		font-weight: bold;
+		border-bottom: 1px solid $color-primary;
+		text-align: center;
+	}
+
+	.first-col{
+		text-align: center;
+		font-weight: bold;
+	}
+}
+
+.process-field-selector{
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	.item{
+		
+	}
+}
+
 .process-mode {
 	// background-color: $inverse-text-color;
 	background-color: $border-color !important;

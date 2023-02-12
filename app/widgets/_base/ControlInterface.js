@@ -1,9 +1,10 @@
 // import Form from "../form.js";
+import { ControlActivityBase } from "./ControlActivityBase.js";
 import ControlBase from "./ControlBase.js";
 import { ControlDatasource } from "./ControlDatasource.js";
 import { ControlJquery } from "./ControlJquery.js";
 
-export default class ControlInterface extends ControlDatasource(ControlJquery(ControlBase)) {
+export default class ControlInterface extends ControlDatasource(ControlActivityBase(ControlJquery(ControlBase))) {
 	name = '';
 	value = null;
 	required = false;
@@ -334,7 +335,7 @@ export default class ControlInterface extends ControlDatasource(ControlJquery(Co
 		}.bind(this));
 
 		btn.on('click', function (evt) {
-			if (form.designer.Forms.Exists(this.linked_form)){
+			if (form.designer.Forms.Exists(this.linked_form)) {
 				form.designer.Forms.showForm(this.linked_form);
 			}
 		}.bind(this));

@@ -118,10 +118,8 @@ export default class Button extends ControlInterface {
 		let color_select = $('<select>').addClass('form-control');
 
 		$(this.color_list).each(function (key, value) {
-			let selected = '';
-
 			let cls = value;
-			let opt = $("<option value='" + cls + "'>></option>")
+			let opt = $("<option value='" + cls + "'></option>")
 				.append("<span><i class='" + cls + "'></i> " + cls.replace(/btn-/g, '') + '</span>')
 				.appendTo(color_select);
 
@@ -139,8 +137,6 @@ export default class Button extends ControlInterface {
 		let size_select = $('<select>').addClass('form-control');
 
 		$(this.size_list).each(function (key, value) {
-			let selected = '';
-
 			let cls = value;
 			let opt = $("<option value='" + cls + "'>")
 				.text(cls)

@@ -4,7 +4,11 @@ import IconSelector from "../IconSelector.js";
 
 export default class TextEntry extends BaseFormControl(ControlInterface) {
 
+	//This tells the data-aware code to only return a single value
+	data_single_field = true;
+
 	style_to_exclude = ['border-width', 'border-color'];
+
 	properties = {
 		height: 35,
 		width: 200,
@@ -103,11 +107,11 @@ export default class TextEntry extends BaseFormControl(ControlInterface) {
 		});
 
 		return [...settings,
-			['place-holder', placeholder],
-			['add-on text', add_on_text],
-			['icon', icon_select],
-			['icon position', icon_position],
-			['clear on show', clear_on_show],
+		['place-holder', placeholder],
+		['add-on text', add_on_text],
+		['icon', icon_select],
+		['icon position', icon_position],
+		['clear on show', clear_on_show],
 		];
 	}
 
@@ -156,30 +160,31 @@ export default class TextEntry extends BaseFormControl(ControlInterface) {
 		this.label = this.name;
 	}
 
-	setDefault(txt){
+	setDefault(txt) {
 		this.ctrl.find('input').val(txt);
 	}
 
 	setValue(string) {
-		if (typeof (this.value) === 'string'){
+		if (typeof (this.value) === 'string') {
 			this.value = string;
 		}
 
 		this.val(typeof string !== 'undefined' ?
 			string :
 			typeof this.default_value === 'string' ?
-			this.default_value :
-			'');
+				this.default_value :
+				'');
 
 		let $this = this;
-		if (true === $this.clear_on_show)
+		if (true === $this.clear_on_show){
 			$this.val('');
+		}
 
-		this.get_datasource(function (data_) {
-			if (data_) {
-				$this.val(data_[1]);
-			}
-		});
+		this.read_records().then(function (data) {
+			console.log(data)
+			this.val(data);
+			
+		}.bind(this));
 	}
 
 	getControl() {

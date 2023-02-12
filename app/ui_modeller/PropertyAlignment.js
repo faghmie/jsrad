@@ -61,6 +61,8 @@ export default class AlignmentManager {
             </div>`);
 
 		prop.find('.copy').on('click', obj, function (evt) {
+			console.log(obj)
+			this.resize_type = obj.type;
 			this.width = evt.data.width;
 			this.height = evt.data.height;
 		}.bind(this));
@@ -68,6 +70,11 @@ export default class AlignmentManager {
 		prop.find('.paste').on('click', obj, function (evt) {
 			if (this.height == null || this.width == null) {
 				return console.log('no resizing allowed');
+			}
+
+			if (obj.type === this.resize_type && obj.type.includes('./Form')){
+				obj.resize(this.width, this.height);
+				return;
 			}
 
 			let form = evt.data.getForm();

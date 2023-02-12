@@ -171,30 +171,7 @@ var control_auto_complete = {
 	setValue : function(value){
 		this.value.data = (typeof value !== 'undefined' && value !== null) ? value : this.value.data;
 		var $this = this;
-		this.get_datasource(null, null, function(data_){
-			if (data_){
-				$this.value.data = data_[1];
-			}
-
-			var tags = [];
-			if (typeof $this.value.data === 'string')
-				tags = $this.value.data.split(/\n|\r|,/);
-			else if ($this.value.data instanceof Array) {
-				tags = $this.value.data;
-				tags[0] = '';
-			}
-			
-			var text = $this.ctrl.find('input');
-			
-            if (text.data('typeahead')){
-				text.data('typeahead').source = tags;
-            } else {
-                text.typeahead({source: tags});
-                if (!text.hasClass('typeahead')) text.addClass('typeahead');
-            }
-
-			$this._format();	
-		});
+		
 		
 		},
 	

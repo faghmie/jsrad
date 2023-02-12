@@ -32,14 +32,7 @@ export default class LabelControl extends ControlInterface {
 			this.default_value :
 			this.label;
 		var $this = this;
-		this.get_datasource(null, null, function (data_) {
 
-			if (data_) {
-				$this.label = data_[1];
-			}
-
-			$this.ctrl.html($this.label);
-		});
 	}
 
 	getControl() {
