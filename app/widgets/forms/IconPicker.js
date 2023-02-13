@@ -13,7 +13,7 @@ export default class IconControl extends ControlInterface {
 	}
 
 	ignore_properties = [
-		//'when the user click go to....',
+		//'on-click',
 		'make it a card',
 		'display name',
 		'name',

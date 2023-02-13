@@ -18,6 +18,7 @@
 @import 'icon_selectorscss';
 @import 'activity_confirmation';
 @import 'widget';
+@import 'toaster';
 
 
 * {
@@ -226,32 +227,6 @@ GRIP FOR RESIZING CONTROLS
 
 .text-outline {
 	border: 2px solid #008000;
-}
-
-
-.notify {
-	width: 350px;
-	position: fixed;
-	top: 40px;
-	right: 10px;
-	z-index: 99999;
-	padding: 10px;
-	margin-bottom: 15px;
-	background: #FFFFFF;
-	color: #4D4D4D;
-
-}
-
-.notify .content {
-	padding: 10px;
-}
-
-.notify .side-bar {
-	width: 10px;
-	height: 100%;
-	position: absolute;
-	left: 0;
-	top: 0;
 }
 
 .table {

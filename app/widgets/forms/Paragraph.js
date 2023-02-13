@@ -10,7 +10,7 @@ export default class Paragraph extends ControlInterface {
 	};
 
 	ignore_properties = [
-		'when the user click go to....',
+		'on-click',
 		'display name',
 		'value',
 		//'allow inline editor',

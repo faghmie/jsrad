@@ -23,7 +23,7 @@ export default class TextEntry extends BaseFormControl(ControlInterface) {
 	};
 
 	ignore_properties = [
-		'when the user click go to....',
+		'on-click',
 		'display name',
 		'allow inline editor',
 	];

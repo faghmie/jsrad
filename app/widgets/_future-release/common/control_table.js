@@ -14,7 +14,7 @@ var control_table = {
 	panel_types		: ['none', 'bg-light', 'bg-primary', 'bg-success', 'bg-info', 'bg-warning', 'bg-danger'],
 	
     ignore_properties: [
-			'when the user click go to....',
+			'on-click',
 			//'name',
 			'allow inline editor',
 		],

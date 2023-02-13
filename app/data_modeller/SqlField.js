@@ -305,7 +305,4 @@ export default class SqlField extends SqlBase{
 		return this.keys.length > 0;
 	};
 
-	// this.build();
-	// this.set_title(this.name);
-
 }

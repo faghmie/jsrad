@@ -7,7 +7,7 @@ var ButtonCloseForm = class ButtonCloseForm extends Button {
 	static control_thumbnail = "images/widgets/button.png";
 
 	ignore_properties = [
-		'when the user click go to....',
+		'on-click',
 		'name',
 		'allow inline editor',
 	];

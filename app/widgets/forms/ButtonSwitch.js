@@ -11,7 +11,7 @@ export default class ButtonSwitch extends ControlInterface {
     };
 
     ignore_properties = [
-        'when the user click go to....',
+        'on-click',
         'display name',
         'allow inline editor',
     ];

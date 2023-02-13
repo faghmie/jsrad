@@ -13,7 +13,7 @@ var control_ol = {
 	style_list	: ['list-unstyled', 'list-group', 'list-inline'],
 	
 	ignore_properties: [
-			'when the user click go to....',
+			'on-click',
 			'display name',
 			'allow inline editor',
 		],

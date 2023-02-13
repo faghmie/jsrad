@@ -1,13 +1,12 @@
 import PropertyBase from "./PropertyBase.js";
 
-export default class CustomProperties extends PropertyBase {
+export default class CustomProperties {
 	widget = null;
 
 	/** @type{ControlInterface|undefined} */
 	ctrl = null;
 
 	constructor(_designer) {
-		super();
 		this._designer = _designer;
 	}
 
@@ -38,22 +37,35 @@ export default class CustomProperties extends PropertyBase {
 				return;
 			}
 			
-			this._append_item(item[0], item[1], null, widget);
+			this.#append_item(item[0], item[1], widget);
 		});
 
+		this.remove_empty_group(widget);
+		
 		this.add_separator('generic / technical', widget);
-
+		
 		this.on_click_event(obj, widget);
 		this.edit_name(obj, widget);
 		this.edit_value(obj, widget);
 
+		this.remove_empty_group(widget);
+		
 		this.data_awareness(widget);
-
+		
+		this.remove_empty_group(widget);
+		
 		return widget;
 	}
 
 	add_separator(title, widget) {
 		widget.append(`<div class="title-line">${title}</div>`);
+	}
+
+	remove_empty_group(widget){
+		let last_child = widget.children().last();
+		if (last_child.hasClass('title-line')){
+			last_child.remove();
+		}
 	}
 
 	set_type(obj, widget) {
@@ -70,7 +82,7 @@ export default class CustomProperties extends PropertyBase {
 	on_click_event(obj, widget) {
 		let prop = obj.get_link_form(false);
 
-		this._append_item('when the user click go to....', prop, null, widget);
+		this.#append_item('on-click', prop, widget);
 	}
 
 	allow_inline_edit(obj, widget) {
@@ -88,7 +100,7 @@ export default class CustomProperties extends PropertyBase {
 		if (obj.inline_editing === true)
 			prop.attr('checked', 'checked');
 
-		this._append_item('allow inline editor', prop, null, widget);
+		this.#append_item('allow inline editor', prop, widget);
 	}
 
 	edit_label(obj, widget) {
@@ -100,7 +112,7 @@ export default class CustomProperties extends PropertyBase {
 				this.ctrl.setLabel(evt.target.value);
 			}.bind(this));
 
-		this._append_item('label', prop, null, widget);
+		this.#append_item('label', prop, widget);
 	}
 
 	edit_name(obj, widget) {
@@ -112,7 +124,7 @@ export default class CustomProperties extends PropertyBase {
 				this.ctrl.setName(evt.target.value);
 			}.bind(this));
 
-		this._append_item('name', prop, null, widget);
+		this.#append_item('name', prop, widget);
 	}
 
 	edit_value(obj, widget) {
@@ -124,7 +136,7 @@ export default class CustomProperties extends PropertyBase {
 				this.ctrl.setValue(evt.target.value);
 			}.bind(this));
 
-		this._append_item('value', prop, null, widget);
+		this.#append_item('value', prop, widget);
 	}
 
 	// Data aware properties
@@ -138,10 +150,10 @@ export default class CustomProperties extends PropertyBase {
 
 		this.add_separator('data model', widget);
 
-		this._append_item('entity', this.#make_table_selector(), null, widget);
-		this._append_item('filter', this.#make_filter_mapper_button(), null, widget);
-		this._append_item('values', this.#make_mapper_button(), null, widget);
-		this._append_item('fields', this.#make_field_mapper_button(), null, widget);
+		this.#append_item('entity', this.#make_table_selector(), widget);
+		this.#append_item('filter', this.#make_filter_mapper_button(), widget);
+		this.#append_item('values', this.#make_mapper_button(), widget);
+		this.#append_item('fields', this.#make_field_mapper_button(), widget);
 
 	}
 
@@ -173,7 +185,7 @@ export default class CustomProperties extends PropertyBase {
 				chk[0].checked = true;
 			}
 	
-			this._append_item(col.title, chk, null, mapper);
+			this.#append_item(col.title, chk, mapper);
 		}.bind(this));
 
 		mapper.find('input').on('click', function(evt){
@@ -392,5 +404,22 @@ export default class CustomProperties extends PropertyBase {
 		}.bind(this));
 
 		return btn;
+	}
+
+	#append_item(text, control, widget) {
+		if (!this.ctrl){
+			return;
+		}
+
+		if (this.ctrl.ignore_properties instanceof Array) {
+			if (this.ctrl.ignore_properties.indexOf(text) !== -1) {
+				return;
+			}
+		}
+
+		control = $(control).addClass('form-control');
+		let div = $(`<div class="control-with-label"><label>${text.trim()}</label></div>`)
+			.append(control)
+			.appendTo(widget);
 	}
 }

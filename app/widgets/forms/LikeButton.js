@@ -19,7 +19,7 @@ export default class LikeButton extends ControlInterface {
 	size_list = ['btn-lg', 'btn-md', 'btn-sm', 'btn-xs'];
 
 	ignore_properties = [
-		'when the user click go to....',
+		'on-click',
 		'display name',
 		'allow inline editor',
 	];

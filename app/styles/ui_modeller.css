@@ -2570,6 +2570,123 @@ textarea.stickynotes {
   border-left: 2px solid #FF0000 !important;
 }
 
+/* The snackbar - position it at the bottom and in the middle of the screen */
+.snackbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: white;
+  border: 1px solid #799cb4;
+  border-radius: 5px;
+  position: fixed;
+  z-index: 999999;
+  left: 50%;
+  bottom: 30px;
+  /* Show the snackbar when clicking on a button (class added with JavaScript) */
+}
+
+.snackbar.error {
+  border-color: red;
+}
+
+.snackbar.warning {
+  border-color: orange;
+}
+
+.snackbar.info {
+  border-color: green;
+}
+
+.snackbar.show {
+  visibility: visible;
+  /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+        However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+.snackbar .content {
+  text-align: center;
+  padding: 10px;
+}
+
+.snackbar .side-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  width: 10px;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+}
+
+.snackbar .side-bar.error {
+  background-color: red;
+}
+
+.snackbar .side-bar.warning {
+  background-color: orange;
+}
+
+.snackbar .side-bar.info {
+  background-color: green;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
 * {
   outline: 0;
   outline: none;
@@ -2775,30 +2892,6 @@ GRIP FOR RESIZING CONTROLS
 
 .text-outline {
   border: 2px solid #008000;
-}
-
-.notify {
-  width: 350px;
-  position: fixed;
-  top: 40px;
-  right: 10px;
-  z-index: 99999;
-  padding: 10px;
-  margin-bottom: 15px;
-  background: #FFFFFF;
-  color: #4D4D4D;
-}
-
-.notify .content {
-  padding: 10px;
-}
-
-.notify .side-bar {
-  width: 10px;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
 }
 
 .table {

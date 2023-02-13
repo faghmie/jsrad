@@ -38,7 +38,7 @@ export default class AlignmentManager {
 	get_spacing(obj) {
 		let prop = $(`
 			<div>
-				<button class="space-v">space vetically</button>
+				<button class="space-v">space vertically</button>
 				<button class="space-h">space horizontally</button>
             </div>`);
 

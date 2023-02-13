@@ -16,7 +16,7 @@ export default class BaseActivity extends ControlActivityBase(ControlInterface) 
 	};
 
 	ignore_properties = [
-		'when the user click go to....',
+		'on-click',
 		'name',
 		'value',
 		'tab index',

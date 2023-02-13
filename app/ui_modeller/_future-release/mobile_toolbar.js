@@ -85,7 +85,7 @@ var mobile_toolbar = function(_designer) {
 			s.unshift(['allow inline editor','<input type=\'checkbox\' id=\'inline-editor\' >']);
 		
 		s.unshift(['name',"<input type='text' class='' id='name'>"]);
-		s.unshift(['when the user click go to....', base_activity.get_link_form(false, obj)]);
+		s.unshift(['on-click', base_activity.get_link_form(false, obj)]);
 		
 		// if (typeof obj.dm_is_data_aware === 'function'){
 		// 	s.unshift(['map fields', btn_field_map]);
@@ -105,7 +105,7 @@ var mobile_toolbar = function(_designer) {
 					
 				$this._append_item(s[index][0], s[index][1], attribute, widget);
 				
-				if (s[index][0] == 'when the user click go to....'){
+				if (s[index][0] == 'on-click'){
 					var el = widget.find('.design-props-group:last-child');
 					el.find('label').html('on click');
 				}

@@ -16,7 +16,7 @@ export default class PanelControl extends ControlInterface {
 	panel_types = ['well', 'bg-light', 'bg-primary', 'bg-success', 'bg-info', 'bg-warning', 'bg-danger', 'bg-dark'];
 
 	ignore_properties = [
-		'when the user click go to....',
+		'on-click',
 		'name',
 		'value',
 		'allow inline editor',

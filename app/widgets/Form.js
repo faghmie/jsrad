@@ -26,7 +26,7 @@ export default class Form extends ControlInterface {
 	designer = null;
 
 	ignore_properties = [
-		'when the user click go to....',
+		'on-click',
 		'name',
 		'allow inline editor',
 		'value',

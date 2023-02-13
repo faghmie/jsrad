@@ -1,0 +1,119 @@
+/* The snackbar - position it at the bottom and in the middle of the screen */
+.snackbar {
+    display:flex;
+    flex-direction: row;
+
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: $inverse-text-color;
+    border: 1px solid $color-secondary;
+    border-radius: 5px;
+    position: fixed;
+    z-index: 999999;
+    left: 50%;
+    bottom: 30px;
+
+    &.error{
+        border-color: red;
+    }
+
+    &.warning{
+        border-color: orange;
+    }
+
+    &.info{
+        border-color: green;
+    }
+
+    
+    /* Show the snackbar when clicking on a button (class added with JavaScript) */
+    &.show {
+        visibility: visible;
+        /* Show the snackbar */
+        /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+        However, delay the fade out process for 2.5 seconds */
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+    
+    .content {
+        text-align: center;
+        padding: 10px;
+    }
+    
+    .side-bar {
+        display: flex;
+        align-items: stretch;
+        width: 10px;
+        // height: 100%;
+        // position: absolute;
+        // left: 0;
+        // top: 0;
+
+        border-bottom-left-radius: 4px;
+        border-top-left-radius: 4px;
+
+        &.error{
+            background-color: red;
+        }
+
+        &.warning{
+            background-color: orange;
+        }
+
+        &.info{
+            background-color: green;
+        }
+    }
+}
+
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
