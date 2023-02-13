@@ -18,10 +18,13 @@ export default class SqlDesigner extends SqlBase {
 	Show() {
 		this.dom.workspace.show();
 		this.TableManager.Sync();
-	}
 
+		$('.design-toolbox-panel.sql-props').show();
+	}
+	
 	Hide() {
 		this.dom.workspace.hide();
+		$('.design-toolbox-panel.sql-props').hide();
 	}
 
 	ClearTables() {

@@ -143,4 +143,10 @@ export default [
     label: 'Paragraph',
     thumbnail: 'class: la la-paragraph',
   },
+  {
+    category: 'Forms',
+    type: 'forms/Table',
+    label: 'Table',
+    thumbnail: 'class: la la-table',
+  },
 ];

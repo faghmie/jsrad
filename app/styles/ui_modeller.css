@@ -1061,6 +1061,59 @@ input.setting {
   max-width: 48px;
 }
 
+.table-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: white !important;
+  border-radius: 5px;
+  padding: 0;
+}
+
+.table-container .caption {
+  width: 100%;
+  word-wrap: break-word;
+}
+
+.table-container .body {
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  overflow: auto;
+}
+
+.table-container .body table {
+  font-size: 0.8rem;
+  font-style: normal !important;
+  font-weight: normal !important;
+  text-align: left !important;
+  color: #2c3643 !important;
+  background-color: transparent !important;
+  width: 100%;
+}
+
+.table-container .body table th {
+  color: #53809e;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.table-container .body table tbody tr:nth-child(even) {
+  background-color: rgba(121, 156, 180, 0.1);
+}
+
+.table-container .body table tbody tr:hover {
+  background-color: rgba(121, 156, 180, 0.5);
+}
+
+.table-container .body table tbody td {
+  word-wrap: break-word;
+}
+
 .jsrad-ui-designer {
   background-color: #e4e6e8;
   display: -webkit-box;
@@ -1622,7 +1675,7 @@ ARROW*/
   width: 28px;
   min-width: 28px;
   max-width: 28px;
-  padding: 0;
+  padding: 3px;
 }
 
 .text-formater .control-with-label {
@@ -2892,24 +2945,6 @@ GRIP FOR RESIZING CONTROLS
 
 .text-outline {
   border: 2px solid #008000;
-}
-
-.table {
-  border-color: #7F7F7F;
-}
-
-.table th {
-  background-color: #BFBFBF;
-  color: #4D4D4D;
-}
-
-.table td {
-  word-wrap: break-word;
-}
-
-.table .row-active {
-  background-color: #E5E5E5;
-  color: #4D4D4D;
 }
 
 /* COMMENT BOX */

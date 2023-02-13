@@ -31,6 +31,7 @@ export default class ButtonDataInsert extends Button {
 
 		this.insert_record(record).then(() =>{
 			App.notifyInfo('Record inserted');
+			this.ctrl.hide();
 		});
 	}
 	

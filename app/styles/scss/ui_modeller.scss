@@ -1,6 +1,7 @@
 @import 'colors';
 @import 'controls';
 @import 'labelled_control';
+@import 'table';
 @import 'workspace';
 @import 'annotations';
 @import 'form_overview';
@@ -32,29 +33,28 @@
 }
 
 .process-atrr-map {
-    display: grid;
-    grid-template-columns: 1fr 1fr 30%; 
+	display: grid;
+	grid-template-columns: 1fr 1fr 30%;
 	gap: 10px;
-    
-	.header{
+
+	.header {
 		font-weight: bold;
 		border-bottom: 1px solid $color-primary;
 		text-align: center;
 	}
 
-	.first-col{
+	.first-col {
 		text-align: center;
 		font-weight: bold;
 	}
 }
 
-.process-field-selector{
+.process-field-selector {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	.item{
-		
-	}
+
+	.item {}
 }
 
 .process-mode {
@@ -229,23 +229,7 @@ GRIP FOR RESIZING CONTROLS
 	border: 2px solid #008000;
 }
 
-.table {
-	border-color: #7F7F7F;
-}
 
-.table th {
-	background-color: #BFBFBF;
-	color: #4D4D4D;
-}
-
-.table td {
-	word-wrap: break-word;
-}
-
-.table .row-active {
-	background-color: #E5E5E5;
-	color: #4D4D4D;
-}
 
 /* COMMENT BOX */
 

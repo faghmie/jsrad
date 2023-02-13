@@ -18,10 +18,10 @@ export const ControlDatasource = (superclass) => class extends superclass {
 	read_records(){
 		return new Promise((resolve, reject)=>{
 			let ds = this.datamodel.TableManager.tables;
-			if (!ds) return [];
+			if (!ds) return resolve(null);
 	
 			let table = ds[this.entity];
-			if (!table) return [];
+			if (!table) return resolve(null);
 	
 			table.data ||= [];
 			let result = table.data.filter(this.apply_filter.bind(this));
@@ -127,6 +127,8 @@ export const ControlDatasource = (superclass) => class extends superclass {
 			return this.transform_to_single_value(records);
 		} else if (this.data_list_field === true) {
 			return this.transform_to_list(records);
+		} else if (this.data_table_field === true) {
+			return this.transform_to_table(records);
 		}
 	}
 	
@@ -151,6 +153,31 @@ export const ControlDatasource = (superclass) => class extends superclass {
 				result.push(item[key]);
 				break;
 			}
+		});
+		
+		return result;
+	}
+
+	transform_to_table(records){
+		let result = [];
+
+		let hdr = [];
+
+		records.forEach(item =>{
+			if (hdr.length == 0){
+				for (let key in item) {
+					hdr.push(key);
+				}
+				
+				result.push(hdr);
+			}
+			
+			let row = [];
+			for (let key in item) {
+				row.push(item[key]);
+			}
+
+			result.push(row);
 		});
 		
 		return result;
