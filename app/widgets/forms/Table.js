@@ -217,7 +217,6 @@ export default class PanelControl extends ControlInterface {
 	
 	setValue (value){
 		this.value = typeof value !== 'undefined' ? value : this.value;
-		console.log('got here')
 		this.read_records().then(function(data){
 			if (data){
 				this.value = data;
@@ -225,8 +224,7 @@ export default class PanelControl extends ControlInterface {
 
 			if (this.in_run_mode === false){
 				this.value = this.default_value;
-				console.log(this.value)
-			} 
+			}
 
 			if (typeof this.value === 'string'){
 				this.value = this.value.trim().split(/\n|\r/g);
@@ -250,6 +248,8 @@ export default class PanelControl extends ControlInterface {
 		let list = value,
 			hdr = null;
 		
+		let fields_to_ignore = ['__system_id__'];
+
 		if (!(value instanceof Array)) list = this.value;
 
 		if (!(list instanceof Array)) 
@@ -264,7 +264,12 @@ export default class PanelControl extends ControlInterface {
 		hdr = list.shift();
 		let thead = $(`<thead>`);
 		let tr = $(`<tr>`).appendTo(thead);
-		hdr.forEach(col => {
+		let skip_list = [];
+		hdr.forEach((col, index) => {
+			if (fields_to_ignore.indexOf(col) !== -1){
+				skip_list.push(index);
+				return;
+			}
 			tr.append(`<th>${col}</th>`);
 		});
 
@@ -272,7 +277,11 @@ export default class PanelControl extends ControlInterface {
 		let tbody = $('<tbody>');
 		list.forEach(row =>{
 			tr = $(`<tr>`).appendTo(tbody);
-			row.forEach(col => {
+			row.forEach((col, index) => {
+				if (skip_list.indexOf(index) !== -1){
+					return;
+				}
+				
 				tr.append(`<td>${col}</td>`)
 			});
 		});

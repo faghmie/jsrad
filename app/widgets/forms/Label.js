@@ -7,9 +7,9 @@ export default class LabelControl extends ControlInterface {
 	};
 
 	ignore_properties = [
-		'on-click',
-		//'display name',
+		//'on-click',
 		'name',
+		'value',
 		'allow inline editor',
 	];
 

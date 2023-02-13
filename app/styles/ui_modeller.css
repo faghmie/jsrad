@@ -1108,6 +1108,7 @@ input.setting {
 
 .table-container .body table tbody tr:hover {
   background-color: rgba(121, 156, 180, 0.5);
+  cursor: pointer;
 }
 
 .table-container .body table tbody td {

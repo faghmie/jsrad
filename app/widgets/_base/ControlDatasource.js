@@ -9,7 +9,10 @@ export const ControlDatasource = (superclass) => class extends superclass {
 			if (!table) return resolve();
 	
 			table.data ||= [];
-	
+			
+			//Give the record a system-id
+			record.__system_id__ = generate_uuid();
+
 			table.data.push(record);
 			resolve();	
 		});
@@ -30,7 +33,11 @@ export const ControlDatasource = (superclass) => class extends superclass {
 				.map(item => {
 					let rec = {};
 					for (let uuid in item) {
-						rec[table.fields[uuid].title] = item[uuid];
+						if (table.fields[uuid]){
+							rec[table.fields[uuid].title] = item[uuid];
+						} else {
+							rec[uuid] = item[uuid];
+						}
 					}
 	
 					return rec;
@@ -111,7 +118,10 @@ export const ControlDatasource = (superclass) => class extends superclass {
 		}
 
 		let result = records.map(function(item){
-			let rec = {};
+			let rec = {
+				__system_id__: item.__system_id__
+			};
+
 			this.data_fields.forEach(uuid=>{
 				rec[uuid] = item[uuid];
 			})
