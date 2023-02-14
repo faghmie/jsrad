@@ -39,6 +39,19 @@ export default class SqlTable extends SqlBase {
 		this.#build(left, top);
 	}
 
+	[Symbol.iterator]() {
+        let index = -1;
+        let data = Object.keys(this.fields);
+        let $this = this;
+
+        return {
+            next: () => ({
+                value: $this.fields[data[++index]],
+                done: !(index in data)
+            })
+        };
+    }
+
 	setName(string) {
 		var result = false;
 

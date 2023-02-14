@@ -1,32 +1,32 @@
 @mixin width($w) {
-  width: $w;
-  min-width: $w;
-  max-width: $w;
+    width: $w;
+    min-width: $w;
+    max-width: $w;
 }
 
 @mixin height($h) {
-  height: $h;
-  min-height: $h;
-  max-height: $h;
+    height: $h;
+    min-height: $h;
+    max-height: $h;
 }
 
 html {
-  margin-left: calc(100vw - 100%);
-  color: $base-text-color;
-  font-weight: 600;
+    margin-left: calc(100vw - 100%);
+    color: $base-text-color;
+    font-weight: 600;
 }
 
 body {
-  font-size: 1em;
-  line-height: 1.4;
+    font-size: 1em;
+    line-height: 1.4;
 
-  // font-family: "Trebuchet MS", Helvetica, sans-serif;
-  font-family: 'Oxygen', Helvetica, sans-serif;
-  // font-family: 'Open Sans', sans-serif;
-  font-weight: 300;
-  color: $base-text-color;
-  background-color: $base-bg-color;
-  // background-color: $color-border;
+    // font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-family: 'Oxygen', Helvetica, sans-serif;
+    // font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    color: $base-text-color;
+    background-color: $base-bg-color;
+    // background-color: $color-border;
 }
 
 h1,
@@ -35,381 +35,410 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 300;
-  color: $base-text-color;
+    font-weight: 300;
+    color: $base-text-color;
 }
 
 strong {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 blockquote {
-  padding-left: 1.5rem;
-  border-left: 4px solid $color-border;
+    padding-left: 1.5rem;
+    border-left: 4px solid $color-border;
 }
 
 dl {
-  display: block;
-  float: right;
+    display: block;
+    float: right;
 
-  p {
-    margin-bottom: 15px;
-  }
+    p {
+        margin-bottom: 15px;
+    }
 
-  dt {
-    @include width(180px);
-    font-weight: bold;
-    display: inline-block;
-    text-transform: uppercase;
-    padding-right: 10px;
-  }
+    dt {
+        @include width(180px);
+        font-weight: bold;
+        display: inline-block;
+        text-transform: uppercase;
+        padding-right: 10px;
+    }
 
-  dd {
-    display: inline;
-    text-align: left;
-  }
+    dd {
+        display: inline;
+        text-align: left;
+    }
 }
 
 button {
-  background-color: transparent;
-  border: 1px solid $color-primary;
-  border-radius: 5px;
-  color: $color-primary;
-  font-weight: bold;
-  padding: 10px;
-
-  &:hover,
-  &:focus,
-  &:active {
+    background-color: transparent;
     border: 1px solid $color-primary;
-    background-color: $color-primary;
-    color: $inverse-text-color;
-  }
+    border-radius: 5px;
+    color: $color-primary;
+    font-weight: bold;
+    padding: 10px;
+
+    &:hover,
+    &:focus,
+    &:active {
+        border: 1px solid $color-primary;
+        background-color: $color-primary;
+        color: $inverse-text-color;
+    }
 }
 
 fieldset {
-  border: 1px solid $color-border;
-  margin: 15px;
-  padding: 15px;
+    border: 1px solid $color-border;
+    margin: 15px;
+    padding: 15px;
 
-  legend {
-    padding: 5px 10px;
-    font-size: 1rem;
-    font-weight: bold;
-    width: auto;
-  }
+    legend {
+        padding: 5px 10px;
+        font-size: 1rem;
+        font-weight: bold;
+        width: auto;
+    }
 
-  label {
-    width: 120px;
-    min-width: 120px;
-    max-width: 120px;
-    font-size: 0.85rem;
-  }
+    label {
+        width: 120px;
+        min-width: 120px;
+        max-width: 120px;
+        font-size: 0.85rem;
+    }
 
-  p {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    padding: 0;
-    margin: 0;
-    margin-bottom: 5px;
-  }
+    p {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        padding: 0;
+        margin: 0;
+        margin-bottom: 5px;
+    }
 
-  textarea {
-    width: 95% !important;
-    max-width: 95% !important;
-  }
+    textarea {
+        width: 95% !important;
+        max-width: 95% !important;
+    }
 }
 
 .checkbox {
 
-  // display: flex;
-  // flex-direction: row;
-  // flex-wrap: nowrap;
-  // align-items: baseline;
-  label {
-    color: $label-color;
-  }
+    // display: flex;
+    // flex-direction: row;
+    // flex-wrap: nowrap;
+    // align-items: baseline;
+    label {
+        color: $label-color;
+    }
 }
 
 input[type='checkbox'] {
-  width: 25px;
-  height: 20px;
-  margin-right: 8px;
-  cursor: pointer;
-  // font-size: 1rem;
-  padding: 0;
-  visibility: hidden;
-  // -moz-appearance:initial;
+    width: 25px;
+    height: 20px;
+    margin-right: 8px;
+    cursor: pointer;
+    // font-size: 1rem;
+    padding: 0;
+    visibility: hidden;
+    // -moz-appearance:initial;
 }
 
 input[type='checkbox']:after {
-  width: 20px;
-  height: 20px;
-  font-size: 20px;
-  line-height: 20px;
-  vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    line-height: 20px;
+    vertical-align: middle;
 
-  content: ' ';
-  display: inline-block;
-  visibility: visible;
-  border: 1px solid $color-secondary;
-  border-radius: 5px;
-  cursor: pointer;
+    content: ' ';
+    display: inline-block;
+    visibility: visible;
+    border: 1px solid $color-secondary;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 input[type='checkbox']:checked:after {
-  content: '\2714';
-  color: green;
-  font-weight: bold;
-  border: 0;
+    content: '\2714';
+    color: green;
+    font-weight: bold;
+    border: 0;
 }
 
 select[multiple] {
-  border: 1px solid $color-border;
-  border-radius: 5px;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-
-  option {
-    padding: 10px;
-    margin: 5px;
-    width: 100%;
+    border: 1px solid $color-border;
+    border-radius: 5px;
+    padding: 0;
     margin: 0;
+    width: 100%;
 
-    &:hover {
-      cursor: pointer;
-      background-color: $color-border;
+    option {
+        padding: 10px;
+        margin: 5px;
+        width: 100%;
+        margin: 0;
+
+        &:hover {
+            cursor: pointer;
+            background-color: $color-border;
+        }
     }
-  }
 }
 
 .inline-controls {
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+
 }
 
 .tabs {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
-
-  &>.toolbar {
-    width: 100%;
-    height: 30px;
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-    background: transparent;
-    border-bottom: 1px solid $color-border;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
 
-    .item {
-      height: 100%;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
+    &>.toolbar {
+        width: 100%;
+        height: 30px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        background: transparent;
+        border-bottom: 1px solid $color-border;
 
-      i {
-        padding: 5px;
-        margin-top: 2px;
-        margin-left: 10px;
-        border-radius: 30px;
+        .item {
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
 
-        // font-weight: normal;
-        &:hover {
-          background-color: $color-border;
+            i {
+                padding: 5px;
+                margin-top: 2px;
+                margin-left: 10px;
+                border-radius: 30px;
+
+                // font-weight: normal;
+                &:hover {
+                    background-color: $color-border;
+                }
+            }
         }
-      }
+
+        .item,
+        a {
+            height: 100%;
+            text-align: center;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            margin-right: 5px;
+            overflow: hidden;
+            width: fit-content;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-left: 15px;
+            padding-right: 15px;
+
+            cursor: pointer;
+
+            &:hover {
+                border-bottom: 3px solid $color-secondary;
+            }
+
+            &.active {
+                border-bottom: 3px solid $color-secondary;
+                font-weight: bold !important;
+                color: $color-primary;
+            }
+        }
     }
-
-    .item,
-    a {
-      height: 100%;
-      text-align: center;
-      font-size: 0.9rem;
-      white-space: nowrap;
-      margin-right: 5px;
-      overflow: hidden;
-      width: fit-content;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding-left: 15px;
-      padding-right: 15px;
-
-      cursor: pointer;
-
-      &:hover {
-        border-bottom: 3px solid $color-secondary;
-      }
-
-      &.active {
-        border-bottom: 3px solid $color-secondary;
-        font-weight: bold !important;
-        color: $color-primary;
-      }
-    }
-  }
 }
 
 .page-tabs {
-  @extend .tabs;
+    @extend .tabs;
 
-  & .toolbar {
-    border: 0;
-    padding-left: 10px;
+    & .toolbar {
+        border: 0;
+        padding-left: 10px;
 
-    .la-times {
-      font-size: 1rem;
+        .la-times {
+            font-size: 1rem;
+        }
     }
-  }
 
-  .page-tabs-body {
-    padding-top: 10px;
-    position: relative;
-  }
+    .page-tabs-body {
+        padding-top: 10px;
+        position: relative;
+    }
 }
 
 .ui-tabs {
-  border: 0 !important;
-
-  .ui-tabs-nav {
-    background-color: transparent !important;
     border: 0 !important;
-    border-radius: 0 !important;
-    border-bottom: 2px solid $color-primary !important;
-  }
 
-  .ui-tabs-tab {
-    background-color: $color-border !important;
-    border: 0px;
-    font-size: 0.75rem;
-    border-top-left-radius: 5px !important;
-    border-top-right-radius: 5px !important;
-  }
+    .ui-tabs-nav {
+        background-color: transparent !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        border-bottom: 2px solid $color-primary !important;
+    }
 
-  .ui-tabs-active {
-    font-weight: bold !important;
-    background-color: $color-primary !important;
-    color: $inverse-text-color !important;
-  }
+    .ui-tabs-tab {
+        background-color: $color-border !important;
+        border: 0px;
+        font-size: 0.75rem;
+        border-top-left-radius: 5px !important;
+        border-top-right-radius: 5px !important;
+    }
+
+    .ui-tabs-active {
+        font-weight: bold !important;
+        background-color: $color-primary !important;
+        color: $inverse-text-color !important;
+    }
 }
 
 .toolbar {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
 
-  .btn-nav {
-    background-color: transparent;
-    border: 0;
+    .btn-nav {
+        background-color: transparent;
+        border: 0;
 
-    &:hover {
-      background-color: $color-primary;
+        &:hover {
+            background-color: $color-primary;
+        }
     }
-  }
 }
 
 .box-shadow {
-  box-shadow: 0px 0px 2px $color-primary;
+    box-shadow: 0px 0px 2px $color-primary;
 }
 
+.btn-outline {
+    background-color: transparent;
+    color: inherit;
+    transition: all .5s;
+
+    &.btn-primary {
+        color: #428bca;
+    }
+
+    &.btn-success {
+        color: #5cb85c;
+    }
+
+    &.btn-info {
+        color: #5bc0de;
+    }
+
+    &.btn-warning {
+        color: #f0ad4e;
+    }
+
+    &.btn-danger {
+        color: #d9534f;
+    }
+
+    &:hover {
+        color: #fff;
+    }
+}
 
 ::-webkit-scrollbar-track {
-  border-radius: 10px;
-  background-color: transparent;
+    border-radius: 10px;
+    background-color: transparent;
 }
 
 ::-webkit-scrollbar {
-  width: 12px;
-  background-color: transparent;
+    width: 12px;
+    background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: rgba($color-secondary, 0.2);
+    border-radius: 10px;
+    background-color: rgba($color-secondary, 0.2);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: $color-secondary;
+    background-color: $color-secondary;
 }
 
 input::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: $faded-text-color;
-  font-style: italic;
-  opacity: 1;
-  /* Firefox */
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: $faded-text-color;
+    font-style: italic;
+    opacity: 1;
+    /* Firefox */
 }
 
 input:-ms-input-placeholder,
 input::-ms-input-placeholder {
-  font-style: italic;
+    font-style: italic;
 }
 
 .form-control,
 .form-control-sm,
 .setting {
-  font-size: 0.8rem !important;
+    font-size: 0.8rem !important;
 }
 
 .form-control,
 .form-control-sm {
-  border: 0 !important;
-  border-bottom: 1px solid $color-secondary !important;
-  border-radius: 0 !important;
-  padding: 5px !important;
-
-  &:hover {
-    background-color: $color-border;
-  }
-
-  &:focus {
-    @extend .box-shadow;
-    outline: none !important;
+    border: 0 !important;
+    border-bottom: 1px solid $color-secondary !important;
     border-radius: 0 !important;
-    // border: 0 !important;
-    border-color: $color-primary !important;
-  }
+    padding: 5px !important;
+
+    &:hover {
+        background-color: $color-border;
+    }
+
+    &:focus {
+        @extend .box-shadow;
+        outline: none !important;
+        border-radius: 0 !important;
+        // border: 0 !important;
+        border-color: $color-primary !important;
+    }
 }
 
 .required {
-  border-left: 3px solid red !important;
+    border-left: 3px solid red !important;
 }
 
 .dropdown-menu {
-  border-radius: 0;
-  border: 0;
-  // border-radius: 5px;
-  border-top: 5px solid $color-primary;
-  box-shadow: 0px 0px 2px $color-primary;
+    border-radius: 0;
+    border: 0;
+    // border-radius: 5px;
+    border-top: 5px solid $color-primary;
+    box-shadow: 0px 0px 2px $color-primary;
 }
 
 .dropdown-item-text {
-  color: $color-primary;
-  font-weight: bold;
-  font-size: 0.95rem;
-  padding-left: 5px;
+    color: $color-primary;
+    font-weight: bold;
+    font-size: 0.95rem;
+    padding-left: 5px;
 }
 
 .dropdown-item {
-  font-size: 0.9rem;
+    font-size: 0.9rem;
 
-  .la,
-  .las {
-    margin-right: 10px;
-  }
+    .la,
+    .las {
+        margin-right: 10px;
+    }
 
-  &:hover {
-    background-color: $color-secondary;
-    color: $inverse-text-color !important;
-    cursor: pointer;
-  }
+    &:hover {
+        background-color: $color-secondary;
+        color: $inverse-text-color !important;
+        cursor: pointer;
+    }
 }
 
 .ss-main .ss-single-selected,
@@ -417,121 +446,121 @@ input::-ms-input-placeholder {
 .ss-content .ss-search input,
 .ss-content,
 .ss-main .ss-multi-selected {
-  border: 1px solid $color-border !important;
+    border: 1px solid $color-border !important;
 }
 
 .ss-main .ss-single-selected {
-  height: 38px !important;
+    height: 38px !important;
 }
 
 .number-control {
-  width: 100px;
-  display: flex;
-  justify-content: space-between;
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
 
-  .minus,
-  .plus {
-    padding-top: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: $inverse-text-color;
-    cursor: pointer;
-    background-color: $color-secondary;
-  }
+    .minus,
+    .plus {
+        padding-top: 5px;
+        padding-left: 5px;
+        padding-right: 5px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: $inverse-text-color;
+        cursor: pointer;
+        background-color: $color-secondary;
+    }
 
-  .minus {
-    border-radius: 0;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-  }
+    .minus {
+        border-radius: 0;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
 
-  .plus {
-    border-radius: 0;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-  }
+    .plus {
+        border-radius: 0;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
 
-  .value {
-    border: 1px solid $color-secondary;
-    text-align: center;
-    width: 100%;
-  }
+    .value {
+        border: 1px solid $color-secondary;
+        text-align: center;
+        width: 100%;
+    }
 }
 
 .datepicker {
-  table {
-    font-size: 1rem;
+    table {
+        font-size: 1rem;
 
-    tr:hover {
-      background: transparent !important;
-      color: $base-text-color !important;
+        tr:hover {
+            background: transparent !important;
+            color: $base-text-color !important;
+        }
     }
-  }
 }
 
 label {
-  color: $label-color;
+    color: $label-color;
 }
 
 p.setting {
-  color: $base-text-color;
+    color: $base-text-color;
 
-  font-weight: bold;
-  text-transform: uppercase;
-  border-bottom: 1px solid $border-color;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 1px solid $border-color;
 }
 
 label.setting {
-  // color: $base-text-color;
-  // color: $faded-text-color;
+    // color: $base-text-color;
+    // color: $faded-text-color;
 
-  width: 50px;
-  text-align: right;
-  padding-right: 5px;
-  color: $label-color !important;
+    width: 50px;
+    text-align: right;
+    padding-right: 5px;
+    color: $label-color !important;
 }
 
 
 
 input.setting {
-  width: 80px !important;
-  min-width: 80px !important;
+    width: 80px !important;
+    min-width: 80px !important;
 }
 
 [data-title]:hover:after {
-  opacity: 1;
-  transition: all 0.1s ease 0.5s;
-  visibility: visible;
+    opacity: 1;
+    transition: all 0.1s ease 0.5s;
+    visibility: visible;
 }
 
 [data-title]:after {
-  content: attr(data-title);
-  background-color: $color-primary;
-  color: $inverse-text-color;
-  font-size: 150%;
-  position: absolute;
-  padding: 1px 5px 2px 5px;
-  bottom: -1.6em;
-  left: 100%;
-  white-space: nowrap;
-  box-shadow: 1px 1px 3px #222222;
-  opacity: 0;
-  border: 1px solid #111111;
-  z-index: 99999;
-  visibility: hidden;
+    content: attr(data-title);
+    background-color: $color-primary;
+    color: $inverse-text-color;
+    font-size: 150%;
+    position: absolute;
+    padding: 1px 5px 2px 5px;
+    bottom: -1.6em;
+    left: 100%;
+    white-space: nowrap;
+    box-shadow: 1px 1px 3px #222222;
+    opacity: 0;
+    border: 1px solid #111111;
+    z-index: 99999;
+    visibility: hidden;
 }
 
 [data-title] {
-  position: relative;
+    position: relative;
 }
 
 
 @media screen and (max-width: 500px) {
-  .popup-card {
-    width: 100vw !important;
-    max-width: 100vw !important;
-    min-width: 100vw !important;
-  }
+    .popup-card {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        min-width: 100vw !important;
+    }
 }

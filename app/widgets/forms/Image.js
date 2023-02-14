@@ -12,7 +12,7 @@ export default class Image extends ControlInterface {
 	};
 
 	ignore_properties = [
-		//'when the user click go to....',
+		//'on-click',
 		'display name',
 		'allow inline editor',
 	];
@@ -82,12 +82,7 @@ export default class Image extends ControlInterface {
 		this.image = typeof value !== 'undefined' ? value : this.image;
 
 		let $this = this;
-		this.get_datasource(null, null, function (data_) {
-			if (data_) {
-				$this.image = data_[1];
-			}
-			$this.format();
-		});
+
 	}
 
 	getControl() {

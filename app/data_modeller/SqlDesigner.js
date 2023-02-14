@@ -18,14 +18,17 @@ export default class SqlDesigner extends SqlBase {
 	Show() {
 		this.dom.workspace.show();
 		this.TableManager.Sync();
-	}
 
+		$('.design-toolbox-panel.sql-props').show();
+	}
+	
 	Hide() {
 		this.dom.workspace.hide();
+		$('.design-toolbox-panel.sql-props').hide();
 	}
 
 	ClearTables() {
-		for (var table in this.TableManager.tables) {
+		for (let table in this.TableManager.tables) {
 			this.TableManager.tables[table].destroy();
 		}
 	}
@@ -36,7 +39,7 @@ export default class SqlDesigner extends SqlBase {
 			return this.tables[table.uuid].showEditor();
 		}
 
-		for (var key in this.tables) {
+		for (let key in this.tables) {
 			if (this.tables[key].selected === true) {
 				this.tables[key].database.entities = this.tables;
 				this.tables[key].showEditor();
@@ -46,12 +49,12 @@ export default class SqlDesigner extends SqlBase {
 	}
 
 	toObject() {
-		var obj = {
+		let obj = {
 			entities: {},
 		};
 
-		for (var t in this.TableManager.tables) {
-			var table = this.TableManager.tables[t];
+		for (let t in this.TableManager.tables) {
+			let table = this.TableManager.tables[t];
 			obj.entities[table.uuid] = table.toObject();
 			if (!this.is_json) delete obj.entities[table.uuid].data;
 		}
@@ -61,10 +64,10 @@ export default class SqlDesigner extends SqlBase {
 	}
 
 	getDocumentation() {
-		var html = '<html>';
+		let html = '<html>';
 		html += documentation_style.get_header(this.project.name);
 		html += '<body><div class="docs"><h1>' + this.project.name + '</h1>';
-		for (var t in this.tables) {
+		for (let t in this.tables) {
 			html += this.tables[t].toString();
 		}
 
@@ -74,7 +77,7 @@ export default class SqlDesigner extends SqlBase {
 
 	fromObject(node, clear_existing) {
 		return new Promise((resolve, reject) => {
-			var $this = this,
+			let $this = this,
 				table = null,
 				field = null,
 				t = null,
@@ -99,7 +102,7 @@ export default class SqlDesigner extends SqlBase {
 			// 	this.project.database_type = 'json';
 			// }
 
-			for (var uuid in node.entities) {
+			for (let uuid in node.entities) {
 				table = this.TableManager.addTable(
 					node.entities[uuid].title,
 					0,
@@ -126,12 +129,12 @@ export default class SqlDesigner extends SqlBase {
 					if (!(field.foreign_key.sql_table in this.TableManager.tables))
 						continue;
 
-					var t1 = this.TableManager.tables[field.foreign_key.sql_table];
+					let t1 = this.TableManager.tables[field.foreign_key.sql_table];
 
 					if (!t1) continue;
 
 					if (!(field.foreign_key.key in t1.fields)) {
-						for (var fx in t1.fields) {
+						for (let fx in t1.fields) {
 							if (t1.fields[fx].name == field.foreign_key.key) {
 								field.foreign_key.key = fx;
 							} else if (t1.fields[fx].name == field.foreign_key.value) {
@@ -140,13 +143,13 @@ export default class SqlDesigner extends SqlBase {
 						}
 					}
 
-					var r1 = t1.fields[field.foreign_key.key];
+					let r1 = t1.fields[field.foreign_key.key];
 
-					var t2 = this.TableManager.tables[table.uuid];
+					let t2 = this.TableManager.tables[table.uuid];
 
 					if (!t2) continue;
 
-					var r2 = t2.fields[field.uuid];
+					let r2 = t2.fields[field.uuid];
 
 					if (!r2) continue;
 
@@ -182,7 +185,7 @@ export default class SqlDesigner extends SqlBase {
 	}
 
 	#side_panel_toolbar(container) {
-		var format_tb = $(`<div class="workspace-button add-table" title="add table">
+		let format_tb = $(`<div class="workspace-button add-table" title="add table">
 							<i class="la la-plus"></i>
 						</div>`);
 
@@ -198,8 +201,8 @@ export default class SqlDesigner extends SqlBase {
 	}
 
 	#get_search_box(list) {
-		var $this = this;
-		var search_box = $(`<input type="text" class="table-search" placeholder="Search" >`);
+		let $this = this;
+		let search_box = $(`<input type="text" class="table-search" placeholder="Search" >`);
 
 		search_box
 			.on('keydown', function (evt) {
@@ -208,23 +211,23 @@ export default class SqlDesigner extends SqlBase {
 			.on('input', function (evt) {
 				evt.stopPropagation();
 				evt.preventDefault();
-				var find_me = evt.target.value.toLowerCase().trim();
+				let find_me = evt.target.value.toLowerCase().trim();
 
 				list.children().each(function () {
-					var item = $(this);
+					let item = $(this);
 					item.show();
-					var text = item.text().toLowerCase();
+					let text = item.text().toLowerCase();
 
 					if (find_me.length !== 0 && text.indexOf(find_me) === -1) {
 						item.hide();
 					}
 				});
 
-				for (var tbl in $this.TableManager.tables) {
-					var table = $this.TableManager.tables[tbl];
+				for (let tbl in $this.TableManager.tables) {
+					let table = $this.TableManager.tables[tbl];
 
 					table.show();
-					var text = table.title.toLowerCase();
+					let text = table.title.toLowerCase();
 					if (find_me.length !== 0 && text.indexOf(find_me) === -1) {
 						table.hide();
 					}
@@ -235,9 +238,9 @@ export default class SqlDesigner extends SqlBase {
 	}
 
 	#build() {
-		var $this = this;
+		let $this = this;
 
-		var workspace = this.#get_workspace().appendTo(this.container);
+		let workspace = this.#get_workspace().appendTo(this.container);
 
 		this.dom.workspace = workspace;
 		this.dom.container = workspace.find('.design-mode');
@@ -257,7 +260,7 @@ export default class SqlDesigner extends SqlBase {
 			.on('click', function () {
 				//NOW CHECK IF A CONTROL WAS SELECTED
 				$this.clipboard = [];
-				for (var t in $this.TableManager.tables) {
+				for (let t in $this.TableManager.tables) {
 					if (true === $this.tables[t].selected)
 						$this.clipboard.push($this.TableManager.tables[t].toObject());
 				}
@@ -269,7 +272,7 @@ export default class SqlDesigner extends SqlBase {
 			.find('#tb_paste_control')
 			.off('click')
 			.on('click', function () {
-				var found = true,
+				let found = true,
 					t = null,
 					ctrl = null,
 					offset = 20;
@@ -311,38 +314,38 @@ export default class SqlDesigner extends SqlBase {
 	}
 
 	#listen_for_events() {
-		var $this = this;
+		let $this = this;
 
 		document.addEventListener('table-added', (evt) =>
 			this.#table_list_update(evt.detail.table),
 		);
 
 		document.addEventListener('table-changed', function (evt) {
-			var table = evt.detail.table;
+			let table = evt.detail.table;
 
-			var found_table = $this.dom.toolbox.find('.' + table.uuid);
+			let found_table = $this.dom.toolbox.find('.' + table.uuid);
 
 			found_table.find('.table-list-title').html(table.title);
 		});
 
 		document.addEventListener('table-removed', function (evt) {
-			var table = evt.detail.table;
+			let table = evt.detail.table;
 
 			$this.dom.toolbox.find('.' + table.uuid).remove();
 		});
 	}
 
 	#import_csv() {
-		var _load_local_file = function () {
-			var files = $dlg.find('#fileInput')[0].files;
+		let _load_local_file = function () {
+			let files = $dlg.find('#fileInput')[0].files;
 			if (files.length === 0) {
 				return App.MessageError('No file selected.');
 			}
 			table_name = files[0].name;
 
-			var reader = new FileReader();
+			let reader = new FileReader();
 			reader.onload = function () {
-				var json = $.trim(reader.result);
+				let json = $.trim(reader.result);
 				card.close(function () {
 					_import_from_text(json);
 				});
@@ -351,23 +354,23 @@ export default class SqlDesigner extends SqlBase {
 			reader.readAsText(files[0]);
 		};
 
-		var _import_from_text = function (text) {
-			var lines = csv_to_array(text);
+		let _import_from_text = function (text) {
+			let lines = csv_to_array(text);
 
-			var headers = lines[0];
-			for (var index = 0; index < headers.length; index++) {
+			let headers = lines[0];
+			for (let index = 0; index < headers.length; index++) {
 				headers[index] = $.trim(headers[index]).replace(/ |\(|\)/g, '_');
 			}
-			var t = $this.addTable(table_name, 40, 40);
-			var col_opts = {
+			let t = $this.addTable(table_name, 40, 40);
+			let col_opts = {
 				ai: false,
 				show_on_editor: true,
 				show_on_grid: true,
 				show_on_import: true,
 			};
-			var captions = lines[0];
+			let captions = lines[0];
 			for (index = 0; index < headers.length; index++) {
-				var col = t.addRow(headers[index], col_opts);
+				let col = t.addRow(headers[index], col_opts);
 				col.title = captions[index];
 				col.reset_index();
 				col.set_title();
@@ -376,9 +379,9 @@ export default class SqlDesigner extends SqlBase {
 			t.data = [];
 			for (index = 1; index < lines.length; index++) {
 				t.data.push({});
-				var line_data = lines[index];
-				for (var key = 0; key < headers.length; key++) {
-					var value = '';
+				let line_data = lines[index];
+				for (let key = 0; key < headers.length; key++) {
+					let value = '';
 					if (key < line_data.length) value = line_data[key];
 
 					t.data[t.data.length - 1][headers[key]] = value;
@@ -386,8 +389,8 @@ export default class SqlDesigner extends SqlBase {
 			}
 		};
 
-		var $dlg = $('<div>').attr('title', 'Convert CSV to a table');
-		var table_name = null;
+		let $dlg = $('<div>').attr('title', 'Convert CSV to a table');
+		let table_name = null;
 
 		if (window.File && window.FileReader && window.FileList && window.Blob) {
 			$dlg.append("<input type='file' id='fileInput' style='width:100%;'>");
@@ -397,18 +400,18 @@ export default class SqlDesigner extends SqlBase {
 			});
 		}
 
-		var $txt = $('<textarea>')
+		let $txt = $('<textarea>')
 			.css({
 				height: '100%',
 				width: '300px',
 			})
 			.appendTo($dlg);
 
-		var button = $('<a>Import Text</a>')
+		let button = $('<a>Import Text</a>')
 			.addClass('pull-right btn btn-light')
 			.appendTo($dlg);
 		button.on('click', function () {
-			var json = $.trim($dlg.find('textarea').val());
+			let json = $.trim($dlg.find('textarea').val());
 			card.close(function () {
 				_import_from_text(json);
 			});
@@ -419,15 +422,15 @@ export default class SqlDesigner extends SqlBase {
 	}
 
 	#import_json() {
-		var _load_local_file = function () {
-			var files = $dlg.find('#fileInput')[0].files;
+		let _load_local_file = function () {
+			let files = $dlg.find('#fileInput')[0].files;
 			if (files.length === 0) {
 				MessageError('No file selected.');
 				return;
 			}
-			var reader = new FileReader();
+			let reader = new FileReader();
 			reader.onload = function () {
-				var json = $.trim(reader.result);
+				let json = $.trim(reader.result);
 				card.close(function () {
 					_import_from_text(json);
 				});
@@ -436,19 +439,19 @@ export default class SqlDesigner extends SqlBase {
 			reader.readAsText(files[0]);
 		};
 
-		var _import_from_text = function (json) {
+		let _import_from_text = function (json) {
 			if (typeof json === 'undefined' || null === json || json.length === 0) {
 				alert('No JSON text provided');
 				return;
 			}
 
-			var obj = '';
-			var obj_name = '';
-			var bracket_cnt = 0;
-			var prev_char = '';
-			var obj_start = false;
-			var entities = [];
-			for (var index = 0; index < json.length; index++) {
+			let obj = '';
+			let obj_name = '';
+			let bracket_cnt = 0;
+			let prev_char = '';
+			let obj_start = false;
+			let entities = [];
+			for (let index = 0; index < json.length; index++) {
 				switch (json[index]) {
 					case '{':
 						if (bracket_cnt === 0) {
@@ -466,7 +469,7 @@ export default class SqlDesigner extends SqlBase {
 						//IF BRACKET COUNT IS STILL ZERO IT MEANS WE HAVE REACHED THE
 						//OBJECT NAME
 						if (bracket_cnt === 0) {
-							obj_name = obj.replace('var ', '');
+							obj_name = obj.replace('let ', '');
 						}
 						break;
 				}
@@ -480,7 +483,7 @@ export default class SqlDesigner extends SqlBase {
 					/*jshint evil:true */
 					obj = eval('(' + obj + ')');
 					if (obj.type !== 'datamodel') {
-						var t = $this.addTable(obj_name, 40, 40);
+						let t = $this.addTable(obj_name, 40, 40);
 						t.fromObject(obj);
 						entities.push(obj);
 
@@ -496,23 +499,23 @@ export default class SqlDesigner extends SqlBase {
 
 			//NOW TRY TO RE-CREATE THE RELATIONSHIPS
 			$(entities).each(function () {
-				var table = this;
-				var fields = this.fields;
+				let table = this;
+				let fields = this.fields;
 
-				for (var f in fields) {
-					var field = fields[f];
+				for (let f in fields) {
+					let field = fields[f];
 
 					if (!field.foreign_key) continue;
 
-					var t1 = $this.tables[field.foreign_key.sql_table];
+					let t1 = $this.tables[field.foreign_key.sql_table];
 					if (!t1) continue;
 
-					var r1 = t1.fields[field.foreign_key.key];
+					let r1 = t1.fields[field.foreign_key.key];
 
-					var t2 = $this.tables[table.uuid];
+					let t2 = $this.tables[table.uuid];
 					if (!t2) continue;
 
-					var r2 = t2.fields[field.uuid];
+					let r2 = t2.fields[field.uuid];
 					if (!r2) continue;
 
 					//r1.foreign_key.value = field.foreign_key.value;
@@ -521,8 +524,8 @@ export default class SqlDesigner extends SqlBase {
 			});
 		};
 
-		var $dlg = $('<div>').attr('title', 'Convert JSON to a table');
-		var card = null;
+		let $dlg = $('<div>').attr('title', 'Convert JSON to a table');
+		let card = null;
 
 		if (window.File && window.FileReader && window.FileList && window.Blob) {
 			$dlg.append(
@@ -537,7 +540,7 @@ export default class SqlDesigner extends SqlBase {
 				});
 		}
 
-		var $txt = $('<textarea>')
+		let $txt = $('<textarea>')
 			.addClass('form-control')
 			.css({
 				width: '100%',
@@ -545,11 +548,11 @@ export default class SqlDesigner extends SqlBase {
 			})
 			.appendTo($dlg);
 
-		var button = $('<a>Import Text</a>')
+		let button = $('<a>Import Text</a>')
 			.addClass('pull-right btn btn-light')
 			.appendTo($dlg);
 		button.on('click', function () {
-			var json = $.trim($dlg.find('textarea').val());
+			let json = $.trim($dlg.find('textarea').val());
 			card.close(function () {
 				_import_from_text(json);
 			});
@@ -563,12 +566,12 @@ export default class SqlDesigner extends SqlBase {
 		if (table.uuid.trim() === '') {
 			return;
 		}
-		var icon_class = 'la-eye';
+		let icon_class = 'la-eye';
 		if (table.visible !== true) {
 			table.hide();
 			icon_class = 'la-eye-slash text-danger';
 		}
-		var designer = this,
+		let designer = this,
 			table_list = this.dom.toolbox,
 			found_table = null;
 
@@ -597,8 +600,8 @@ export default class SqlDesigner extends SqlBase {
 			.find('a')
 			.off('click')
 			.on('click', function () {
-				var $this = $(this);
-				var table = designer.TableManager.tables[$this.data('table')];
+				let $this = $(this);
+				let table = designer.TableManager.tables[$this.data('table')];
 				if ($this.find('.check-icon').hasClass('la-eye')) {
 					table.hide();
 					$this

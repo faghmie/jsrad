@@ -8,7 +8,7 @@ export default class RatingControl extends ControlInterface {
 	};
 
 	ignore_properties = [
-		'when the user click go to....',
+		'on-click',
 		'name',
 		'allow inline editor',
 		// 'value',

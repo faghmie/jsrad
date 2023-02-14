@@ -22,15 +22,12 @@ function Card(content, on_show, on_close) {
 	let div = $(`<div class="popup-card">
 					<div class="header-row">
 						<div class="drag-me header title"></div>
-						<div class="">
-							<i class="close-btn las la-fw la-lg la-times"></i>
+						<div class="action-list">
+							<i class="close-btn la la-times"></i>
 						</div>
 					</div>
 					<div class="body-wrapper">
-						<div class="body-content">
-						</div>
-					</div>
-					<div class="drag-me" style="cursor: move;min-height:15px;max-height:15px;">
+						<div class="body-content"></div>
 					</div>
 				</div>`)
 		.css({
@@ -56,7 +53,11 @@ function Card(content, on_show, on_close) {
 		
 	div.draggable({ handle: '.drag-me' });
 	if (options.title) {
-		div.find('.header').append(options.title);
+		div.find('.header-row .header').append(options.title);
+	}
+
+	if (options.action_list) {
+		div.find('.header-row .action-list').prepend(options.action_list);
 	}
 
 	if (options.no_header === true) {
@@ -73,7 +74,7 @@ function Card(content, on_show, on_close) {
 		let dims = content[0].getBoundingClientRect();
 		let height = dims.height;
 		let width = dims.width;
-		if (options.no_header !== true) {
+		if (options.no_header !== true && div) { //This seems odd...not sure why this sometimes fails to find div
 			height += div.find('.header-row').height() + 30;
 			width += 20;
 		}

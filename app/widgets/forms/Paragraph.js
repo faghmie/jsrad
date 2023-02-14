@@ -10,7 +10,7 @@ export default class Paragraph extends ControlInterface {
 	};
 
 	ignore_properties = [
-		'when the user click go to....',
+		'on-click',
 		'display name',
 		'value',
 		//'allow inline editor',
@@ -37,24 +37,16 @@ export default class Paragraph extends ControlInterface {
 		}
 	}
 
-	setDefault(){
+	setDefault() {
 		//prevent run-mode from clearing text
 	}
 
 	setValue(string) {
 		this.value = (typeof string !== 'undefined' ? string : this.value);
 
-		var $this = this;
-		this.get_datasource(null, null, function (data_) {
-			if (data_) {
-				$this.value = data_[1];
-			}
-
-			$this.ctrl.html($this.value);
-		});
 	}
 
-	format(){
+	format() {
 		super.format();
 
 		this.ctrl.html(this.value);

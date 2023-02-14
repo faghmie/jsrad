@@ -11,8 +11,9 @@ export default class HeadingControl extends ControlInterface {
 	};
 
 	ignore_properties = [
-		//'when the user click go to....',
-		//'display name',
+		//'on-click',
+		'name',
+		'value',
 		'allow inline editor',
 	];
 

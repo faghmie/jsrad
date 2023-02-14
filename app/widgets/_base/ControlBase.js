@@ -81,6 +81,7 @@ export default class ControlBase {
 
         delete obj.dom;
         delete obj.designer;
+        delete obj.datamodel;
         delete obj.ctrl;
         delete obj.prototype;
         delete obj.properties;
@@ -101,8 +102,6 @@ export default class ControlBase {
         delete obj.post_message;
         delete obj.navigation;
 
-        if (obj.datasource && obj.datasource.name === null)
-            delete obj.datasource;
 
         for (let key in this.controls) {
             let ctrl = this.controls[key];

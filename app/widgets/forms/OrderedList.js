@@ -13,7 +13,7 @@ var control_ol = {
 	style_list	: ['list-unstyled', 'list-group', 'list-inline'],
 	
 	ignore_properties: [
-			'when the user click go to....',
+			'on-click',
 			'display name',
 			'allow inline editor',
 		],
@@ -364,68 +364,7 @@ var control_ol = {
 				item = null;
 			this.value = typeof value !== 'undefined' ? value : this.value;
 			
-			this.get_datasource(null, null, function(data_){
-				var list = $this.value;
-				
-				if (data_){
-					list = [];
-					var header = data_[0];
-					
-					var heading = header.indexOf($this.get_attribute('heading'));
-					var text = header.indexOf($this.get_attribute('text'));
-					var key = header.indexOf($this.get_attribute('key'));
-
-					for(index = 1; index < data_.length; index++){
-						var row = data_[index];
-						
-						item = {heading:null, text:null, key:null};
-						
-						if (row instanceof Array){
-							if (heading !== -1)
-								item.heading = row[heading];
-							if (text !== -1)
-								item.text = row[text];
-							if (key !== -1)
-								item.key = row[key];
-						} else {
-							item.text = row;
-						}
-						
-						list.push(item);
-					}
-					$this.value = list;
-				}
-				
-				$this.ctrl.children().remove();
-				
-				if (typeof $this.value === 'string'){
-					$this.value = $.trim($this.value);
-					if ($this.value.length === 0) $this.value = $this.default_value;
-					list = [];
-					var parts = $this.value.split(/\n|\r/);
-					for(var i = 0; i < parts.length; i++){
-						list.push({text: parts[i], image: null});
-					}
-				} else if (!($this.value instanceof Array)) {
-					App.MessageError('Value must be of type array or string');
-					return;
-				}
-				console.log($this.value);
-				$this.value = [];
-				for(index = 0; index < list.length; index++){
-					item = list[index];
-					
-					if (list[index] instanceof Array)
-						item = list[index][0];
-
-					if (typeof item === 'object')
-						$this.append_item(item);
-					else
-						$this.append_item({text:item,image:null});
-				}
-				
-				$this.ctrl.show();
-			});
+			
 		},
 	
 	getControl	: function(owner){

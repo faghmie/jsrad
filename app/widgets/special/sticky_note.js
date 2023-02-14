@@ -9,7 +9,7 @@ export default class StickyNote extends ControlInterface {
 
 	style_to_exclude = ['border-width', 'border-color'];
 	ignore_properties = [
-		'when the user click go to....',
+		'on-click',
 		'display name',
 		'value',
 		'allow inline editor',

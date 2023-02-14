@@ -11,7 +11,7 @@ var control_calendar = class Calendar extends ControlInterface {
 	};
 
 	ignore_properties = [
-		'when the user click go to....',
+		'on-click',
 		'display name',
 		'required',
 		'make it a card',

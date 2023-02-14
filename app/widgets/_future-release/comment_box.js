@@ -277,47 +277,6 @@ var control_comment_box = {
 		this.value = typeof value !== 'undefined' ? value : this.value;
 		var $this = this;
 		
-		this.get_datasource(function(data_){
-			if (!data_) return;
-			$this.value = data_;
-			
-			if (!($this.value instanceof Array)) return;
-			
-			var item = {username:null, message: null, timestamp: null};
-			var map = $this.field_mapping;
-
-			var col = null,
-				key = 0,
-				fields = [],
-				tbl = $this.datasource.entity,
-				mapper = $('<div>');
-			
-			var ds = App.datasources[$this.datasource.name];
-			if (!ds) return;
-			
-			fields = ds.entities[tbl].fields;
-			var titles = {};
-			var hdr = $this.value[0];
-			
-			for(var m in map){
-				if (map[m] in fields){
-					titles[m] = hdr.indexOf(fields[map[m]].title);
-				}
-			}
-			for(key = 1; key < $this.value.length; key++){
-				var row = $this.value[key];
-				if (!(row instanceof Array)) row = [row];
-				
-				for(m in map){
-					if (titles[m] !== -1)
-						item[m] = row[titles[m]];
-					else
-						item[m] = '';
-				}
-				$this.append_comment_line(item);
-			}
-			
-		});
 	},
 	
 	_format: function(){

@@ -100,18 +100,18 @@ export default class SqlBase {
 	redraw() {}
 
 	add_panel(title, body) {
-        let panel = $(`<div class="design-toolbox-panel">
+        let panel = $(`<div class="design-toolbox-panel sql-props">
                     <div class="design-toolbox-title">
                         <span>${title}</span>
                         <div class="panel-controls">
-                            <i class="la la-chevron-down show-hide></i>
+                            <i class="la la-chevron-down show-hide"></i>
                             <i class="la la-times close-panel"></i>
                         </div>
                     </div>
                     <div class="toolbox-body"></div>
                 </div>`)
             .appendTo($('body'))
-            // .resizable()
+            .resizable()
             .draggable({
                 handle: '.design-toolbox-title'
             });

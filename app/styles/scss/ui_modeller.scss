@@ -1,6 +1,7 @@
 @import 'colors';
 @import 'controls';
 @import 'labelled_control';
+@import 'table';
 @import 'workspace';
 @import 'annotations';
 @import 'form_overview';
@@ -18,6 +19,7 @@
 @import 'icon_selectorscss';
 @import 'activity_confirmation';
 @import 'widget';
+@import 'toaster';
 
 
 * {
@@ -30,6 +32,31 @@
 	outline: none;
 }
 
+.process-atrr-map {
+	display: grid;
+	grid-template-columns: 1fr 1fr 30%;
+	gap: 10px;
+
+	.header {
+		font-weight: bold;
+		border-bottom: 1px solid $color-primary;
+		text-align: center;
+	}
+
+	.first-col {
+		text-align: center;
+		font-weight: bold;
+	}
+}
+
+.process-field-selector {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+
+	.item {}
+}
+
 .process-mode {
 	// background-color: $inverse-text-color;
 	background-color: $border-color !important;
@@ -40,6 +67,35 @@
 		font-style: italic;
 		color: $border-color;
 		content: 'PROCESS';
+	}
+}
+
+.data-form{
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+
+	width: 400px;
+
+	max-height: 80vh;
+
+	.button-list{
+		display: flex;
+		flex-direction: row;
+		width: 400px !important;
+		background-color: #008000;
+		// justify-content: space-between;
+		// margin-top: 15px;
+		gap: 10px;
+		
+		button{
+			padding: 5px !important;
+			border: 0;
+			margin: 0;
+			min-width: 80px;
+			margin: 0;
+			margin-right: 10px !important;
+		}
 	}
 }
 
@@ -203,48 +259,6 @@ GRIP FOR RESIZING CONTROLS
 }
 
 
-.notify {
-	width: 350px;
-	position: fixed;
-	top: 40px;
-	right: 10px;
-	z-index: 99999;
-	padding: 10px;
-	margin-bottom: 15px;
-	background: #FFFFFF;
-	color: #4D4D4D;
-
-}
-
-.notify .content {
-	padding: 10px;
-}
-
-.notify .side-bar {
-	width: 10px;
-	height: 100%;
-	position: absolute;
-	left: 0;
-	top: 0;
-}
-
-.table {
-	border-color: #7F7F7F;
-}
-
-.table th {
-	background-color: #BFBFBF;
-	color: #4D4D4D;
-}
-
-.table td {
-	word-wrap: break-word;
-}
-
-.table .row-active {
-	background-color: #E5E5E5;
-	color: #4D4D4D;
-}
 
 /* COMMENT BOX */
 

@@ -19,7 +19,7 @@ export default class LikeButton extends ControlInterface {
 	size_list = ['btn-lg', 'btn-md', 'btn-sm', 'btn-xs'];
 
 	ignore_properties = [
-		'when the user click go to....',
+		'on-click',
 		'display name',
 		'allow inline editor',
 	];
@@ -146,27 +146,7 @@ export default class LikeButton extends ControlInterface {
 		if (typeof this.like_state === 'undefined') this.like_state = this.properties.default_value;
 		//if (typeof this.value !== 'object') this.value = {};
 		var $this = this;
-		this.get_datasource(null, null, function (data_) {
-			try {
-				if (data_) {
-					$this.like_state = data_[1];
-				}
-
-				if ($this.in_run_mode === false) $this.like_state = $this.default_value;
-
-				$this.value.type = 'btn-light';
-				if (isNaN(parseInt($this.like_state))) {
-					$this.like_state = 0;
-				}
-
-				if ($this.like_state > 0)
-					$this.value.type = 'btn-success';
-
-				$this.format();
-			} catch (err) {
-				console.log(err);
-			}
-		});
+		
 	}
 
 	setDefault(value) {

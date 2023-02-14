@@ -26,7 +26,7 @@ export default class Form extends ControlInterface {
 	designer = null;
 
 	ignore_properties = [
-		'when the user click go to....',
+		'on-click',
 		'name',
 		'allow inline editor',
 		'value',
@@ -39,6 +39,13 @@ export default class Form extends ControlInterface {
 		'make it a card',
 	];
 
+	setValue(){
+		for (let f in this.controls) {
+			if (typeof this.controls[f].setValue === 'function')
+				this.controls[f].setValue();
+		}
+	}
+	
 	format() {
 		super.format();
 		for (let f in this.controls) {
@@ -446,15 +453,15 @@ export default class Form extends ControlInterface {
 		let $this = this;
 
 		let refresh_controls = function () {
-			for (let f in $this.controls) {
-				if (typeof $this.controls[f].setValue === 'function')
-					$this.controls[f].setValue();
+			for (let f in this.controls) {
+				if (typeof this.controls[f].setValue === 'function')
+					this.controls[f].setValue();
 			}
 
-			if ($this.in_run_mode === false) return;
+			if (this.in_run_mode === false) return;
 
-			setTimeout(refresh_controls, 1000 * $this.refresh_rate);
-		};
+			setTimeout(refresh_controls, 1000 * this.refresh_rate);
+		}.bind(this);
 
 		setTimeout(refresh_controls, 1000 * $this.refresh_rate);
 	}

@@ -19,7 +19,7 @@ export class BaseChart extends ControlInterface {
 	};
 
 	ignore_properties = [
-		'when the user click go to....',
+		'on-click',
 		'name',
 		'value',
 		'tab index',
@@ -122,41 +122,41 @@ export class BaseChart extends ControlInterface {
 		this.value = typeof value !== "undefined" ? value : this.value;
 		var $this = this;
 
-		this.get_datasource(function (data_) {
-			var datasource = [];
-			if (data_) {
-				datasource = data_.slice(1);
-			} else {
-				if ($this.value instanceof Array)
-					datasource = $this.value.slice(0);
-				else
-					datasource = Object.assign({}, $this.value);
-			}
-			if (datasource instanceof Array) {
-				$this.value = {
-					data: [],
-					ticks: []
-				};
-				for (var index = 0; index < datasource.length; index++) {
-					var row = datasource[index];
+		// this.get_datasource(function (data_) {
+		// 	var datasource = [];
+		// 	if (data_) {
+		// 		datasource = data_.slice(1);
+		// 	} else {
+		// 		if ($this.value instanceof Array)
+		// 			datasource = $this.value.slice(0);
+		// 		else
+		// 			datasource = Object.assign({}, $this.value);
+		// 	}
+		// 	if (datasource instanceof Array) {
+		// 		$this.value = {
+		// 			data: [],
+		// 			ticks: []
+		// 		};
+		// 		for (var index = 0; index < datasource.length; index++) {
+		// 			var row = datasource[index];
 
-					if (isNaN(parseFloat(row[1])) === true) continue;
+		// 			if (isNaN(parseFloat(row[1])) === true) continue;
 
-					$this.value.ticks.push(row[0]);
-					$this.value.data.push(parseFloat(row[1]));
-				}
-				console.log(datasource)
-			}
+		// 			$this.value.ticks.push(row[0]);
+		// 			$this.value.data.push(parseFloat(row[1]));
+		// 		}
+		// 		console.log(datasource)
+		// 	}
 			
-			if (!($this.value.data instanceof Array)) $this.value = Object.assign({}, $this.properties.value);
+		// 	if (!($this.value.data instanceof Array)) $this.value = Object.assign({}, $this.properties.value);
 			
-			if ($("#" + $($this.chart_area).attr("id")).length === 0) {
-				return console.log('Cannot find chart area');
-			}
+		// 	if ($("#" + $($this.chart_area).attr("id")).length === 0) {
+		// 		return console.log('Cannot find chart area');
+		// 	}
 			
-			$this.resize();
-			$this.format();
-		});
+		// 	$this.resize();
+		// 	$this.format();
+		// });
 	}
 
 	getControl() {

@@ -1,16 +1,7 @@
 if (typeof FD === 'undefined') FD = {};
 
 let App = {
-	message_div: $('<div class="card notify">' +
-		'<div class="side-bar"></div>' +
-		'<div class="content">' +
-		'<a class="pull-right close-btn"><i class="la la-fw la-times"></i></a>' +
-		'<h3 class="title">#{title}</h3>' +
-		'<p class="message">#{text}</p>' +
-		'</div>' +
-		'</div>')
-		.appendTo('body')
-		.hide(),
+
 	MessageTypes: {
 		INFO: 0,
 		WARNING: 1,
@@ -225,64 +216,79 @@ let App = {
 		return card;
 	},
 
+	notifyError: function (message) {
+		this.notify({
+			message: message,
+			type: this.MessageTypes.ERROR
+		})
+	},
+
+	notifyInfo: function (message) {
+		this.notify({
+			message: message,
+			type: this.MessageTypes.INFO
+		})
+	},
+
+	notifyWarning: function (message) {
+		this.notify({
+			message: message,
+			type: this.MessageTypes.WARNING
+		})
+	},
+
 	notify: function (defaults) {
-		let options = $.extend(
+
+		let options = Object.assign(
 			{
 				message: '',
-				title: null,
 				type: App.MessageTypes.INFO,
 				auto_close: true,
 				timeout: 5000,
 			},
 			defaults
-		),
-			$this = this;
+		);
 
+		let message_div = $(`
+				<div class="snackbar">
+					<div class="side-bar"></div>
+					<div class="content">${options.message}</div>
+				</div>`)
+			.appendTo('body');
 
-		if (typeof options.title === 'undefined' || options.title === null) {
-			this.message_div.find('.title').hide();
-		}
-		this.message_div.removeClass('text-success text-info text-danger');
 		switch (options.type) {
 			case this.MessageTypes.ERROR:
-				this.message_div.find('.side-bar').css('background', 'red');
-				this.message_div.addClass('text-danger');
-				this.message_div.find('.message').css('font-weight', 'bold');
-				this.message_div.css({
-					border: '2px solid red'
-				});
-
+				message_div.find('.side-bar').addClass('error');
+				message_div.addClass('error');
 				break;
 			case this.MessageTypes.WARNING:
-				this.message_div.find('.side-bar').css('background', '#FFA500');
-				this.message_div.css({
-					border: '2px solid #FFA500'
-				});
-
+				message_div.find('.side-bar').addClass('warning');
+				message_div.addClass('warning');
 				break;
 
 			case this.MessageTypes.INFO:
-				this.message_div.find('.side-bar').css('background', '#0BAD0B');
-				this.message_div.css({
-					border: '2px solid #0BAD0B'
-				});
+				message_div.find('.side-bar').addClass('info');
+				message_div.addClass('info');
 				break;
 		}
-		this.message_div.find('.title').html(options.title);
-		this.message_div.find('.message').html(options.message);
-		this.message_div.show('blind');
 
-		this.message_div.find('.close-btn').off('click').on('click', this.message_div, function (evt) {
-			evt.data.hide();
+		message_div.on('click', function (evt) {
+			message_div.hide(() => {
+				message_div.remove();
+			});
 		});
 
 		if (options.auto_close === true) {
 			setTimeout(function () {
-				$this.message_div.hide('blind');
+				message_div.hide(() => {
+					message_div.remove();
+				});
 			}, options.timeout);
 		}
 
-		return this.message_div;
+		message_div.addClass('show');
+
+		return message_div;
 	},
 
 	MessageInfo: function (msg, title) {

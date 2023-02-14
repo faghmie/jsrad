@@ -10,7 +10,7 @@ export default class Audio extends ControlInterface {
 	};
 
 	ignore_properties = [
-		'when the user click go to....',
+		'on-click',
 		'label',
 		'allow inline editor',
 	];
