@@ -1,5 +1,12 @@
 export const ControlDatasource = (superclass) => class extends superclass {
 
+	get_data_entity(){
+		let ds = this.datamodel.TableManager.tables;
+		if (!ds) return null;
+
+		return ds[this.entity];
+	}
+
 	insert_record(record){
 		return new Promise((resolve, reject)=>{
 			let ds = this.datamodel.TableManager.tables;
@@ -14,7 +21,8 @@ export const ControlDatasource = (superclass) => class extends superclass {
 			record.__system_id__ = generate_uuid();
 
 			table.data.push(record);
-			resolve();	
+
+			resolve(record);	
 		});
 	}
 
@@ -43,8 +51,6 @@ export const ControlDatasource = (superclass) => class extends superclass {
 					return rec;
 				});
 	
-			console.log(result);
-			
 			result = this.transform_result(result);
 
 			resolve(result);
@@ -68,8 +74,6 @@ export const ControlDatasource = (superclass) => class extends superclass {
 					list_to_remove.push(index);
 				}
 			}.bind(this));
-	
-			console.log(list_to_remove);
 	
 			list_to_remove.forEach(function(idx){
 				table.data.splice(idx, 1);
@@ -96,10 +100,7 @@ export const ControlDatasource = (superclass) => class extends superclass {
 					list_to_update.push(index);
 				}
 			}.bind(this));
-	
-			console.log(record)
-			console.log(list_to_update);
-	
+
 			list_to_update.forEach(function (idx) {
 				for (let uuid in record) {
 					table.data[idx][uuid] = record[uuid];
@@ -147,6 +148,10 @@ export const ControlDatasource = (superclass) => class extends superclass {
 
 		if (records.length > 0){
 			for (let key in records[0]) {
+				if (key == '__system_id__'){
+					continue;
+				}
+
 				result = records[0][key];
 			}
 		}
@@ -160,6 +165,9 @@ export const ControlDatasource = (superclass) => class extends superclass {
 
 		records.forEach(item =>{
 			for (let key in item) {
+				if (key == '__system_id__'){
+					continue;
+				}
 				result.push(item[key]);
 				break;
 			}

@@ -1,4 +1,5 @@
 import ControlInterface from "../_base/ControlInterface.js";
+import DataForm from "../_base/DataForm.js";
 
 export default class PanelControl extends ControlInterface {
 
@@ -52,58 +53,6 @@ export default class PanelControl extends ControlInterface {
 		caption.css({
 			'background-color': this.style['background-color']
 		});
-
-		// this.setValue();
-		//  
-			
-		// this.ctrl.find('.table-container').css({
-		// 	height: (parseFloat(this.dom.container.css('height')) - parseFloat(caption.css('height')) - 20),
-		// 	overflow : 'auto',
-		// 	display : 'block',
-		// });
-	
-		// this.ctrl.find('table').css({
-		// 	'max-height' : parseFloat(this.dom.container.css('height')),
-		// });
-		
-		// this.ctrl.removeClass(this.panel_types.join(' ').replace(/bg-/g, 'border-'));
-		// this.ctrl.removeClass('border-none none');
-		// // this.ctrl.removeClass('card');
-		
-		// caption.removeClass('bg-heading').addClass('h4');
-		// // this.ctrl.find('.table-container').removeClass('bg-body');
-		// caption.removeClass(this.panel_types.join(' '));
-		// caption.removeClass('text-dark text-light');
-		// if (this.panel_type !== 'none'){
-		// 	caption.addClass(this.panel_type);
-		
-		// 	caption.addClass(this.panel_type === 'bg-light' ? 'text-dark' : 'text-white');
-		// 	this.ctrl.addClass(this.panel_type.replace('bg-', 'border-'));
-	
-		// 	caption.addClass('bg-heading').removeClass('h4');
-		// 	// this.ctrl.find('.table-container').addClass('bg-body');
-		// }
-
-		// console.log('class ',this.ctrl.attr('class'));
-		
-		// $table
-		// 	.on('click', 'tr', function(evt){
-		// 		evt.stopPropagation();
-		// 		let is_active = $(this).hasClass('row-is-selected');
-				
-		// 		$table.find('tr').removeClass('row-active row-is-selected');
-				
-		// 		if (false === is_active || evt.ctrlKey === true)
-		// 			$(this).addClass('row-active row-is-selected');
-		// 	})
-		// 	.on('mouseleave', 'tr', function(){
-		// 		let row = $(this);
-				
-		// 		if (row.hasClass('row-is-selected') !== true)
-		// 			row.removeClass('row-active');
-		// 	});
-		
-		// let td_height = parseFloat($table.find('.td-content:first-child').closest('td').css('height'));
 	}
 	
 	make_sortable(){
@@ -162,59 +111,6 @@ export default class PanelControl extends ControlInterface {
 		});		
 	}
 	
-	// get_settings (){
-	// 	if (typeof this.value !== 'object') this.value = {};
-	// 	if (typeof this.label !== 'string') this.label = '';
-		
-	// 	let $this = this;
-
-	// 	let type_list = $('<select>').addClass('form-control');
-	// 	type_list.append('<option>');
-	// 	for(let i = 0; i < this.panel_types.length; i++){
-	// 		type_list.append('<option>'+this.panel_types[i]+'</option>');
-	// 	}
-		
-	// 	type_list.find('option').each(function(){
-	// 		let opt = $(this);
-	// 		if (opt.val() === $this.panel_type) opt.attr('selected', 'selected');
-	// 	});
-		
-	// 	type_list.on('change', function(){
-	// 		$this.panel_type = $(this).val();
-	// 		$this._format();
-	// 	});
-		
-	// 	//UNIQUE LIST
-	// 	let unique_list = $("<input type='checkbox'>");
-	// 	if (this.unique_list === true)
-	// 		unique_list.attr("checked", "checked");
-		
-	// 	unique_list.on("click", this, function(evt){
-	// 		evt.data.unique_list = $(this).is(":checked");
-	// 		evt.data.setValue();
-	// 	});
-		
-	// 	//TEXT
-	// 	let text = $('<textarea>').val(this.default_value);
-		
-	// 	text.on('input', function(evt){
-	// 		evt.stopPropagation();
-	// 		$this.default_value = $(this).val();
-	// 		$this.setValue($this.default_value);
-	// 	});
-		
-	// 	return [
-	// 		['unique table list', unique_list],
-	// 		['panel type', type_list],
-	// 		['default data', text],
-	// 	];
-	// }
-	
-	// setLabel (value){
-	// 	this.label = typeof value !== 'undefined' ? $.trim(value) : this.label;
-	// 	this.format();
-	// }
-	
 	setValue (value){
 		this.value = typeof value !== 'undefined' ? value : this.value;
 		this.read_records().then(function(data){
@@ -261,13 +157,15 @@ export default class PanelControl extends ControlInterface {
 		
 		table.children().remove();
 
-		hdr = list.shift();
+		hdr = list.shift()||[];
 		let thead = $(`<thead>`);
 		let tr = $(`<tr>`).appendTo(thead);
 		let skip_list = [];
+		let system_id_key = null;
 		hdr.forEach((col, index) => {
 			if (fields_to_ignore.indexOf(col) !== -1){
 				skip_list.push(index);
+				system_id_key = index;
 				return;
 			}
 			tr.append(`<th>${col}</th>`);
@@ -277,16 +175,23 @@ export default class PanelControl extends ControlInterface {
 		let tbody = $('<tbody>');
 		list.forEach(row =>{
 			tr = $(`<tr>`).appendTo(tbody);
+			tr.attr('datamodel-system-id', row[system_id_key]);
+
 			row.forEach((col, index) => {
 				if (skip_list.indexOf(index) !== -1){
 					return;
 				}
-				
+
 				tr.append(`<td>${col}</td>`)
 			});
 		});
 		
 		table.append(thead).append(tbody);
+
+		tbody.on('dblclick', 'td', function(evt){
+			let dataForm = new DataForm();
+			dataForm.Open(this, evt.target.parentElement.getAttribute('datamodel-system-id'));
+		}.bind(this));
 
 		this.ctrl.show();
 	}

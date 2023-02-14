@@ -22,14 +22,13 @@ function Card(content, on_show, on_close) {
 	let div = $(`<div class="popup-card">
 					<div class="header-row">
 						<div class="drag-me header title"></div>
-						<div class="">
-							<i class="close-btn las la-fw la-lg la-times"></i>
+						<div class="action-list">
+							<i class="close-btn la la-times"></i>
 						</div>
 					</div>
 					<div class="body-wrapper">
 						<div class="body-content"></div>
 					</div>
-					<div class="drag-me" style="cursor: move;min-height:15px;max-height:15px;"></div>
 				</div>`)
 		.css({
 			'width': parseFloat(options.width) + 25,
@@ -55,6 +54,10 @@ function Card(content, on_show, on_close) {
 	div.draggable({ handle: '.drag-me' });
 	if (options.title) {
 		div.find('.header-row .header').append(options.title);
+	}
+
+	if (options.action_list) {
+		div.find('.header-row .action-list').prepend(options.action_list);
 	}
 
 	if (options.no_header === true) {

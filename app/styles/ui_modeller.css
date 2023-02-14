@@ -1875,20 +1875,20 @@ ARROW*/
   color: white !important;
 }
 
-.las .popup-card .header-row .icon {
-  margin-top: 0 !important;
-  font-size: 1.2rem;
-  padding-left: 10px;
-}
-
-.las .popup-card .header-row .icon:hover {
-  color: white !important;
+.popup-card .header-row .action-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 
 .popup-card .header-row .title {
   width: 100%;
   cursor: move;
-  padding: 5px;
+  padding-left: 5px;
   height: 35px;
   min-height: 35px;
   max-height: 35px;
@@ -1898,17 +1898,20 @@ ARROW*/
   color: silver;
 }
 
+.popup-card .header-row .la,
 .popup-card .header-row .close-btn {
   color: #799cb4;
   cursor: pointer;
   font-size: 1.5rem;
+  margin: 0;
+  margin-right: 10px;
   padding: 5px;
   border-radius: 10px;
 }
 
+.popup-card .header-row .la:hover,
 .popup-card .header-row .close-btn:hover {
   background-color: #e7eef3;
-  font-size: 2rem;
   color: #53809e;
 }
 
@@ -2789,6 +2792,41 @@ textarea.stickynotes {
   font-style: italic;
   color: #c9c9c9;
   content: 'PROCESS';
+}
+
+.data-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 5px;
+  width: 400px;
+  max-height: 80vh;
+}
+
+.data-form .button-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 400px !important;
+  background-color: #008000;
+  gap: 10px;
+}
+
+.data-form .button-list button {
+  padding: 5px !important;
+  border: 0;
+  margin: 0;
+  min-width: 80px;
+  margin: 0;
+  margin-right: 10px !important;
 }
 
 .form-title {

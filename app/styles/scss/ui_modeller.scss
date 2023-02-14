@@ -70,6 +70,35 @@
 	}
 }
 
+.data-form{
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+
+	width: 400px;
+
+	max-height: 80vh;
+
+	.button-list{
+		display: flex;
+		flex-direction: row;
+		width: 400px !important;
+		background-color: #008000;
+		// justify-content: space-between;
+		// margin-top: 15px;
+		gap: 10px;
+		
+		button{
+			padding: 5px !important;
+			border: 0;
+			margin: 0;
+			min-width: 80px;
+			margin: 0;
+			margin-right: 10px !important;
+		}
+	}
+}
+
 .form-title {
 	font-size: 0.8em;
 	font-weight: bold;
