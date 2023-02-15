@@ -13,7 +13,6 @@ export default class TextEntry extends BaseFormControl(ControlInterface) {
 	properties = {
 		height: 35,
 		width: 200,
-		// height_fixed: true,
 		label: 'Label',
 		value: '',
 		placeholder: 'start typing...',
@@ -156,11 +155,6 @@ export default class TextEntry extends BaseFormControl(ControlInterface) {
 		}
 	}
 
-	setName(string) {
-		super.setName(string)
-		this.label = this.name;
-	}
-
 	setDefault(txt) {
 		this.ctrl.find('input').val(txt);
 	}
@@ -176,13 +170,11 @@ export default class TextEntry extends BaseFormControl(ControlInterface) {
 				this.default_value :
 				'');
 
-		let $this = this;
-		if (true === $this.clear_on_show){
-			$this.val('');
+		if (true === this.clear_on_show){
+			this.val('');
 		}
 
 		this.read_records().then(function (data) {
-			console.log(data)
 			this.val(data);
 			
 		}.bind(this));
