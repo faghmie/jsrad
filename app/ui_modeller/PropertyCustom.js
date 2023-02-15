@@ -27,33 +27,33 @@ export default class CustomProperties {
 		if (!(s instanceof Array)) s = [];
 
 		this.set_type(obj, widget);
-		
+
 		this.add_separator('widget specific', widget)
-		
+
 		this.edit_label(obj, widget);
-		
+
 		s.forEach(item => {
 			if (!(item instanceof Array) || item.length < 2) {
 				return;
 			}
-			
+
 			this.#append_item(item[0], item[1], widget);
 		});
 
 		this.remove_empty_group(widget);
-		
+
 		this.add_separator('generic / technical', widget);
-		
+
 		this.on_click_event(obj, widget);
 		this.edit_name(obj, widget);
 		this.edit_value(obj, widget);
 
 		this.remove_empty_group(widget);
-		
+
 		this.data_awareness(widget);
-		
+
 		this.remove_empty_group(widget);
-		
+
 		return widget;
 	}
 
@@ -61,9 +61,9 @@ export default class CustomProperties {
 		widget.append(`<div class="title-line">${title}</div>`);
 	}
 
-	remove_empty_group(widget){
+	remove_empty_group(widget) {
 		let last_child = widget.children().last();
-		if (last_child.hasClass('title-line')){
+		if (last_child.hasClass('title-line')) {
 			last_child.remove();
 		}
 	}
@@ -71,11 +71,11 @@ export default class CustomProperties {
 	set_type(obj, widget) {
 		let s = obj.type.replaceAll('./', '').split('/');
 		let idx = 0;
-		while(s.length > 2 && idx < 10){
+		while (s.length > 2 && idx < 10) {
 			s.shift();
 			idx++;
 		}
-		
+
 		widget.append(`<span> ${s.join('/').toTitle().trim()}</span>`);
 	}
 
@@ -140,8 +140,8 @@ export default class CustomProperties {
 	}
 
 	// Data aware properties
-	data_awareness(widget){
-		if (!this.ctrl || !this.ctrl.datamodel || !this.ctrl.is_data_aware){
+	data_awareness(widget) {
+		if (!this.ctrl || !this.ctrl.datamodel || !this.ctrl.is_data_aware) {
 			return;
 		}
 
@@ -177,25 +177,25 @@ export default class CustomProperties {
 		fields = fields.sort(function (a, b) {
 			return (a.title || '').localeCompare(b.title);
 		});
-		
+
 		fields.forEach(function (col) {
 			let chk = $(`<input type="checkbox" value="${col.uuid}">`);
-			
-			if (this.ctrl.data_fields.indexOf(col.uuid) != -1){
+
+			if (this.ctrl.data_fields.indexOf(col.uuid) != -1) {
 				chk[0].checked = true;
 			}
-	
-			this.#append_item(col.title, chk, mapper);
+
+			this.#append_item(col.title, chk, mapper, true);
 		}.bind(this));
 
-		mapper.find('input').on('click', function(evt){
+		mapper.find('input').on('click', function (evt) {
 			console.log(evt.target);
 			let ctrl = this.ctrl;
 
-			if (this.ctrl.data_single_field_selector === true){
-				mapper.find('input').each(function(){
+			if (this.ctrl.data_single_field_selector === true) {
+				mapper.find('input').each(function () {
 					console.log(this)
-					if (this != evt.target){
+					if (this != evt.target) {
 						this.checked = false;
 					}
 				});
@@ -203,9 +203,9 @@ export default class CustomProperties {
 
 			//Reset list and only added selected items
 			ctrl.data_fields = [];
-			mapper.find('input').each(function(){
+			mapper.find('input').each(function () {
 				console.log(this)
-				if (this.checked){
+				if (this.checked) {
 					ctrl.data_fields.push(this.value);
 				}
 			});
@@ -406,15 +406,15 @@ export default class CustomProperties {
 		return btn;
 	}
 
-	#append_item(text, control, widget) {
-		if (!this.ctrl){
+	#append_item(text, control, widget, skip_ignore = false) {
+		if (!this.ctrl) {
 			return;
 		}
 
-		if (this.ctrl.ignore_properties instanceof Array) {
-			if (this.ctrl.ignore_properties.indexOf(text) !== -1) {
-				return;
-			}
+		if (skip_ignore !== true &&
+			(this.ctrl.ignore_properties instanceof Array) &&
+			(this.ctrl.ignore_properties.indexOf(text) !== -1)) {
+			return;
 		}
 
 		control = $(control).addClass('form-control');

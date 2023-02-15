@@ -77,7 +77,7 @@ export default class DataForm {
         let btn = $(`<i class="btn-action la la-save"  title="update record">`)
             .on('click', function () {
                 let data = this.#form_to_record();
-                this.#update_record().then(() => {
+                this.#update_record(data).then(() => {
                     App.notifyInfo('Record updated');
                     this.ctrl.setValue();
                 });
@@ -92,6 +92,7 @@ export default class DataForm {
                 this.#remove_record().then(() => {
                     App.notifyInfo('Record removed');
                     this.ctrl.setValue();
+                    this.card.close();
                 });
             }.bind(this));
 

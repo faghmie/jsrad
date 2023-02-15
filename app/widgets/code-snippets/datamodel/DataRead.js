@@ -7,7 +7,7 @@ export default class DataRead extends BaseActivity {
 
 		this.read_records().then(function(result){
 			this.message[this.get_attribute('result')] = result;
-	
+			console.log(result)
 			this.next();
 		}.bind(this))
 	}
