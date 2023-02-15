@@ -149,4 +149,10 @@ export default [
     label: 'Table',
     thumbnail: 'class: la la-table',
   },
+  {
+    category: 'Forms',
+    type: 'forms/HorizontalLine',
+    label: 'HR',
+    thumbnail: 'class: la la-minus',
+  },
 ];

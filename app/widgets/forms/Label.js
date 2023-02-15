@@ -22,17 +22,18 @@ export default class LabelControl extends ControlInterface {
 		this.setLabel();
 	}
 
-	setValue() {}
+	setValue() {
+		this.ctrl.html(this.label);
+	 }
 
 	setLabel(string) {
-
 		this.label = typeof string !== 'undefined' ?
 			string :
 			this.default_value.length !== 0 ?
-			this.default_value :
-			this.label;
-		var $this = this;
-
+				this.default_value :
+				this.label;
+	
+		this.setValue()
 	}
 
 	getControl() {

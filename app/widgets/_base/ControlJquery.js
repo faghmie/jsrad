@@ -154,4 +154,25 @@ export const ControlJquery = (superclass) => class extends superclass {
 		return this;
 	}
 
+	extend(dest, src, exclude_list) {
+		//SIMPLY USING JQUERY EXTEND CAUSES TO-OBJECT TO FAIL.
+
+		if (!(exclude_list instanceof Array)) exclude_list = [];
+
+		for (let prop in src) {
+			if (exclude_list.indexOf(prop) !== -1) continue;
+
+			if (src[prop] instanceof Array) {
+				dest[prop] = src[prop].slice(0);
+
+			} else if (typeof src[prop] === 'object') {
+				dest[prop] = Object.assign(dest[prop], src[prop]);
+
+			} else {
+				dest[prop] = src[prop];
+			}
+		}
+
+		return dest;
+	}
 }

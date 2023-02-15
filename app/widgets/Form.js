@@ -3,7 +3,7 @@ import resolutions from '../../config/device_resolutions.js';
 
 export default class Form extends ControlInterface {
 
-	static control_description = 'resolutions was retrieved from: https://mydevice.io/devices/#sortSmartphones';
+	static control_description = 'resolutions was retrieved from: https://www.mydevice.io/';
 
 	properties = {
 		height: 480,
