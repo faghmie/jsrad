@@ -27,12 +27,13 @@ export default class LabelControl extends ControlInterface {
 	 }
 
 	setLabel(string) {
-
 		this.label = typeof string !== 'undefined' ?
 			string :
 			this.default_value.length !== 0 ?
 				this.default_value :
 				this.label;
+	
+		this.setValue()
 	}
 
 	getControl() {
