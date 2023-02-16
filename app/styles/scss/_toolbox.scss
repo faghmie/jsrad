@@ -1,4 +1,7 @@
 .design-toolbox-panel {
+	display: flex;
+	flex-direction: column;
+	z-index: 9999;
 	position: absolute;
 	top: 0;
 	left: calc(100vw - 300px);
@@ -11,8 +14,6 @@
 
 	border-radius: 5px;
 	box-shadow: 0px 0px 15px $color-primary;
-	display: flex;
-	flex-direction: column;
 
 	.design-toolbox-title {
 		font-size: 0.9rem;
@@ -50,45 +51,7 @@
 	}
 }
 
-// .popup-toolbox-panel {
-// 	display: flex;
-// 	flex-direction: column;
-// 	gap: 10px;
-// 	overflow: auto;
-// 	min-width: 300px;
-// 	max-width: 300px;
-// 	color: $color-primary;
-// 	background-color: $side-panel-color;
-
-// 	border-radius: 5px;
-// 	box-shadow: 0px 0px 15px $color-primary;
-
-// 	width: 350px;
-// 	max-width: 350px;
-// 	min-width: 350px;
-
-// 			height: 80vh;
-// 			min-height: 80vh;
-// 			max-height: 80vh;
-// 	.title-line {
-// 		font-size: 1em;
-// 	}
-
-// 	.checkbox,
-// 	input {
-// 		font-size: 0.85em;
-// 	}
-// }
-
-// .popup-toolbox-panel,
 .text-formater {
-	// display: flex;
-	// flex-direction: column;
-	// flex-wrap: wrap;
-	// gap: 5px;
-
-
-
 	.row {
 		padding-left: 5px;
 		display: flex;
@@ -238,11 +201,9 @@
 		background: transparent;
 		height: 30px;
 		width: 100%;
-		// width: 60px;
 
 		white-space: normal;
 		word-wrap: break-word;
-		// border-radius: 5px;
 
 		.widget-caption {
 			font-size: 0.7rem;
