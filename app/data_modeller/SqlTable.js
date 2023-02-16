@@ -1,13 +1,9 @@
+import DataForm from "../widgets/_base/DataForm.js";
 import SqlBase from "./SqlBase.js";
 import SqlField from "./SqlField.js";
 import TableProperties from "./TableProperties.js";
 
 export default class SqlTable extends SqlBase {
-	// this.prototype = $.extend(true, this, DataInterface);
-	// this.prototype = $.extend(true, this, DataEditor);
-	// this.prototype = $.extend(true, this, DataImporter);
-
-	// owner		= owner;
 	object_type = 'TABLE';
 
 	fields = {};
@@ -40,17 +36,17 @@ export default class SqlTable extends SqlBase {
 	}
 
 	[Symbol.iterator]() {
-        let index = -1;
-        let data = Object.keys(this.fields);
-        let $this = this;
+		let index = -1;
+		let data = Object.keys(this.fields);
+		let $this = this;
 
-        return {
-            next: () => ({
-                value: $this.fields[data[++index]],
-                done: !(index in data)
-            })
-        };
-    }
+		return {
+			next: () => ({
+				value: $this.fields[data[++index]],
+				done: !(index in data)
+			})
+		};
+	}
 
 	setName(string) {
 		var result = false;
@@ -156,13 +152,59 @@ export default class SqlTable extends SqlBase {
 			}));
 		});
 
-		this.dom.container.find('.table-data').on('click', this, function (evt) {
-			evt.stopPropagation();
-			// owner.showDataTable(evt.data);
-		});
+		this.dom.container.find('.table-data').on('click', this, this.show_table_data.bind(this));
 
 
 		this.ListenToFieldEvents();
+	}
+
+	show_table_data() {
+		let ctrl = $(`
+					<div class="table-container">
+						<div class="caption"></div>
+						<div class="body">
+							<table></table>
+						</div>
+					</div>`);
+
+		let fields_to_ignore = ['__system_id__'];
+
+		let table = ctrl.find('table');
+
+		let thead = $(`<thead>`);
+		let tr = $(`<tr>`).appendTo(thead);
+		for(let uuid in this.fields){
+			let col = this.fields[uuid];
+			if (fields_to_ignore.indexOf(uuid) !== -1) {
+				continue;
+			}
+			tr.append(`<th>${col.title}</th>`);
+		}
+
+
+		let tbody = $('<tbody>');
+		this.data.forEach(row => {
+			tr = $(`<tr>`).appendTo(tbody);
+			tr.attr('datamodel-system-id', row.__system_id__);
+
+			for(let uuid in this.fields){
+				if (fields_to_ignore.indexOf(uuid) !== -1) {
+					continue;
+				}
+				tr.append(`<td>${row[uuid]}</td>`);
+			}
+		});
+
+		table.append(thead).append(tbody);
+
+		open_card(ctrl,{
+			width: '80vw',
+			'min-width': '80vw',
+			'max-width': '80vw',
+			height: '80vh',
+			'min-height': '80vh',
+			'max-height': '80vh',
+		});
 	}
 
 	#make_droppable() {

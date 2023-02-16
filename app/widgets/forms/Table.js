@@ -1,7 +1,7 @@
 import ControlInterface from "../_base/ControlInterface.js";
 import DataForm from "../_base/DataForm.js";
 
-export default class PanelControl extends ControlInterface {
+export default class TableControl extends ControlInterface {
 
 	data_table_field = true;
 	is_data_aware = true;
@@ -28,11 +28,7 @@ export default class PanelControl extends ControlInterface {
 	value-7,value-8,value-9
 	value-7,value-8,value-9`;
 
-	// style_to_exclude	= ['border-width', 'border-color'];
-	
-	// panel_types		= ['none', 'bg-light', 'bg-primary', 'bg-success', 'bg-info', 'bg-warning', 'bg-danger'];
-	
-    ignore_properties= [
+	ignore_properties= [
 			'on-click',
 			//'name',
 			'allow inline editor',
@@ -138,7 +134,6 @@ export default class PanelControl extends ControlInterface {
 		
 		return this;
 	}
-	
 	
 	SetFromArray (value){
 		let list = value,

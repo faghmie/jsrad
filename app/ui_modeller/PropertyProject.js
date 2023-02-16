@@ -1,59 +1,77 @@
-import PropertyBase from "./PropertyBase.js";
+export default class ProjectProperties {
 
-export default class ProjectProperties extends PropertyBase {
-
-	attached_object		= null;
+	attached_object = null;
 	project = null;
-	
-	attach(project_manager, forms){
+
+	attach(project_manager, forms) {
 		let widget = $('<div class="text-formater">');
 		let project = project_manager.project;
 
-		let s = [
-				['project name', '<input class="project-name">'],
-				['version', '<input class="project-version">'],
-				['notes', '<textarea class="project-notes"></textarea>'],
-				['startup form', '<select class="project-startup"></select>'],
-			];
-		
-		s.forEach(function(item){
-			this._append_item(item[0], item[1], null, widget);
-		}.bind(this))
-		
-		widget.find('.project-name').val(project.name);
-		widget.find('.project-version').val(project.version);
-		widget.find('.project-notes').val(project.description);
-		
-		let select = widget.find('.project-startup');
-		select.append('<option>');
+		this.#edit_project_name(widget, project_manager.project);
+		this.#edit_version(widget, project_manager.project);
+		this.#edit_startup(widget, project_manager.project, forms);
+		this.#edit_notes(widget, project_manager.project);
 
-		for(let form of forms){
-			select.append(`<option value="${form.uuid}">${form.label}</option>`);
-			if (form.uuid == project.startup){
-				select.find('option:last-child').attr('selected', 'selected');
+		return widget;
+	}
+
+	#edit_project_name(widget, project) {
+		let prop = $(`<input class="form-control">`)
+			.val(project.name)
+			.on('input', function (evt) {
+				project.name = evt.target.value;
+				document.dispatchEvent(new CustomEvent('ide-is-dirty'));
+			}.bind(this));
+
+		return $(`<div class="control-with-label"><label>name</label></div>`)
+			.append(prop)
+			.appendTo(widget);
+	}
+
+	#edit_version(widget, project) {
+		let prop = $(`<input class="form-control">`)
+			.val(project.version)
+			.on('input', function (evt) {
+				project.version = evt.target.value;
+				document.dispatchEvent(new CustomEvent('ide-is-dirty'));
+			}.bind(this));
+
+		return $(`<div class="control-with-label"><label>version</label></div>`)
+			.append(prop)
+			.appendTo(widget);
+	}
+
+	#edit_notes(widget, project) {
+		let prop = $(`<textarea class="form-control project-notes">`)
+			.val(project.description)
+			.on('input', function (evt) {
+				project.description = evt.target.value;
+				document.dispatchEvent(new CustomEvent('ide-is-dirty'));
+			}.bind(this));
+
+		return $(`<div class="control-with-label"><label>notes</label></div>`)
+			.append(prop)
+			.appendTo(widget);
+	}
+
+	#edit_startup(widget, project, forms) {
+		let prop = $(`<select class="form-control form-select">`)
+			.on('change', function (evt) {
+				project.startup = evt.target.value;
+				document.dispatchEvent(new CustomEvent('ide-is-dirty'));
+			}.bind(this));
+
+		prop.append('<option>');
+
+		for (let form of forms) {
+			prop.append(`<option value="${form.uuid}">${form.label}</option>`);
+			if (form.uuid == project.startup) {
+				prop.find('option:last-child').attr('selected', 'selected');
 			}
 		}
-		
-		widget.on('change', '.project-startup', function(evt){
-			project.startup = evt.target.value;
-			document.dispatchEvent(new CustomEvent('ide-is-dirty'));
-		}.bind(this));
-		
-		widget.on('input', '.project-name', function(evt){
-			project.name = evt.target.value;
-			document.dispatchEvent(new CustomEvent('ide-is-dirty'));
-		}.bind(this));
-		
-		widget.on('input', '.project-version', function(evt){
-			project.version = evt.target.value;
-			document.dispatchEvent(new CustomEvent('ide-is-dirty'));
-		}.bind(this));
-		
-		widget.on('input', '.project-notes', function(evt){
-			project.description = evt.target.value;
-			document.dispatchEvent(new CustomEvent('ide-is-dirty'));
-		}.bind(this));
-		
-		return widget;
+
+		return $(`<div class="control-with-label"><label>start-up form</label></div>`)
+			.append(prop)
+			.appendTo(widget);
 	}
 }

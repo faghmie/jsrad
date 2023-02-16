@@ -1,4 +1,5 @@
 import PropertyBase from "./PropertyBase.js";
+import Toolbox from "./Toolbox.js";
 
 export default class CustomProperties {
 	widget = null;
@@ -76,7 +77,27 @@ export default class CustomProperties {
 			idx++;
 		}
 
-		widget.append(`<span> ${s.join('/').toTitle().trim()}</span>`);
+		let type = $(`<span> ${s.join('/').toTitle().trim()}</span>`);
+		this.show_description(obj, type);
+
+		widget.append(type)
+	}
+	
+	show_description(obj, widget){
+		Toolbox.FetchWidgetInfo(obj.type).then(widget_info => {
+			if (!widget_info.description){
+				return;
+			}
+			let info = $(`<button><i class="la la-info-circle"></i></button>`)
+				.on('click', function(){
+					open_card($(`<p>${widget_info.description.trim()}</p>`),{
+						'width': '40vw',
+						'min-width': '40vw',
+						'max-width': '40vw'
+					});
+				});
+			widget.after(info);
+		});
 	}
 
 	on_click_event(obj, widget) {
