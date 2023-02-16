@@ -3,6 +3,7 @@ import ControlFactory from '../widgets/ControlFactory.js';
 export default class Toolbox {
 
     toolbox = null;
+    static widget_list = [];
 
     constructor() {
         this.#create();
@@ -16,6 +17,32 @@ export default class Toolbox {
 
     Show() {
         this.#filter_widgets();
+    }
+
+    static FetchWidgetInfo(widget_type){
+        return new Promise((resolve, reject)=>{
+            if (this.widget_list.length > 0){
+                return this.#get_widget_info(widget_type, resolve);
+            }
+
+            //Only do this the first time around
+            import('../widgets/widgets.js').then(function (plugins) {
+                this.widget_list = plugins.default;
+                this.#get_widget_info(widget_type, resolve);
+            }.bind(this)).catch(ex => {
+                console.log(ex);
+                reject(ex);
+            });
+        });
+    }
+
+    static #get_widget_info(widget_type, resolve){
+        for(let idx = 0; idx < this.widget_list.length; idx++){
+            if (this.widget_list[idx].type.includes(widget_type)){
+                resolve(this.widget_list[idx]);
+                break;
+            }
+        }
     }
 
     #create() {

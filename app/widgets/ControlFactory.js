@@ -34,8 +34,9 @@ export default class ControlFactory {
 		let ctrl = await this.getControl(control_info.type);
 
 		this.#set_control_defaults(ctrl, owner, control_info.type, control_info.left, control_info.top);
-		
+
 		ctrl.label = control_info.label;
+		ctrl.description = control_info.description;
 
 		// @ts-ignore
 		ctrl.dom.container = $(`<div class="widget">
@@ -140,7 +141,7 @@ export default class ControlFactory {
 	}
 
 	#enable_line_connectors(ctrl) {
-		if (ctrl.is_an_activity === true){
+		if (ctrl.is_an_activity === true) {
 			//Don't allow this for code-snippets
 			//first need to figure out how to do it visually
 			//for now activities can only be connected via their property window
@@ -204,34 +205,14 @@ export default class ControlFactory {
 				console.log(e);
 			});
 		});
-
-		// for (let key in window) {
-		//     if (typeof window[key] !== 'function' || window[key] === null) continue;
-
-		//     let plugin = window[key];
-
-
-		// 	if (plugin.type != type){
-		// 		continue;
-		//     }
-
-		// 	ctrl = Function(`return new ${key}()`)();
-
-		//     break;
-		// }
-
-		// if (!ctrl){
-		// 	throw `Could not find control of type [${type}]`;
-		// }
-
-		// return ctrl;
 	}
 }
 
-export class ControlInfo{
+export class ControlInfo {
 	type = "";
 	label = "";
 	category = "";
+	description = "";
 	thumbnail = "";
 	left = 0;
 	top = 0;

@@ -30,7 +30,7 @@ export default class DataForm {
 
         this.entity = entity;
         this.row_system_id = row_system_id;
-        this.record = data[0];
+        this.record = data[0] || {};
         this.ctrl = ctrl;
 
         this.MakeForm();
@@ -41,7 +41,7 @@ export default class DataForm {
 
         for (let col of this.entity) {
             div.append(`<label>${col.title}</label>`);
-            div.append(`<input class="form-control data-field" value="${this.record[col.uuid]}" col-uuid="${col.uuid}">`);
+            div.append(`<input class="form-control data-field" value="${this.record[col.uuid]||''}" col-uuid="${col.uuid}">`);
         }
 
         this.card = open_card(div, {
@@ -77,6 +77,9 @@ export default class DataForm {
         let btn = $(`<i class="btn-action la la-save"  title="update record">`)
             .on('click', function () {
                 let data = this.#form_to_record();
+                if (!this.row_system_id){
+                    return App.notifyWarning('No record to update');
+                }
                 this.#update_record(data).then(() => {
                     App.notifyInfo('Record updated');
                     this.ctrl.setValue();
@@ -89,6 +92,9 @@ export default class DataForm {
     #btn_remove() {
         let btn = $(`<i class="btn-action la la-trash"  title="remove record">`)
             .on('click', function () {
+                if (!this.row_system_id){
+                    return App.notifyWarning('No record to remove');
+                }
                 this.#remove_record().then(() => {
                     App.notifyInfo('Record removed');
                     this.ctrl.setValue();

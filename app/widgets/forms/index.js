@@ -10,6 +10,14 @@ export default [
     type: 'forms/ButtonDataInsert',
     label: 'Button (Data Insert)',
     thumbnail: 'images/widgets/button.png',
+    description: `Use this button to map control on your form to a specific entity for insertion. Don't forget to use the ***control map*** button to map each control to a specific field on the entity.`
+  },
+  {
+    category: 'Forms',
+    type: 'forms/ButtonDataFormInsert',
+    label: 'Button (DataForm Insert)',
+    thumbnail: 'images/widgets/button.png',
+    description: 'Convenience button that will build a data-form that can be used to insert new records into a specific data entity'
   },
   {
     category: 'Forms',
@@ -148,6 +156,7 @@ export default [
     type: 'forms/Table',
     label: 'Table',
     thumbnail: 'class: la la-table',
+    description: 'when connected to an entity, the table allows you to double-click on a row to edit the underlying data'
   },
   {
     category: 'Forms',

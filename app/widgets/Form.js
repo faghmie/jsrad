@@ -113,7 +113,6 @@ export default class Form extends ControlInterface {
 			}
 		});
 
-		console.log(this.message)
 		for (let key in this.message) {
 			let ctrl = this.findControlByName(key);
 			if (!ctrl) continue;
@@ -123,8 +122,6 @@ export default class Form extends ControlInterface {
 
 	}
 
-	//
-	//
 
 	/**
 	 * Build message to pass from current form onto next form

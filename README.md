@@ -2,18 +2,42 @@
 
 > **Disclaimer:** This will be my first open-source project where I would like to learn how to manage a project in the open-source manner. Also, please remember that this is only a fun project for me, right now :wink:
 
-A short informal description would be: *A tool to visually create screen and process maps. It is a kind of a low/no code project*
+A short informal description would be: *A tool to visually create screen and process maps. It is a kind-of low/no code project*
 
 I will get around to the documentation at some point, if there is enough interest in the project.
 
 Any issues can be mailed to me: faghmie@gmail.com
 
-Visit [http://doagileprojects.com](http://doagileprojects.com) for a online version of the tool
+Visit [http://doagileprojects.com](http://doagileprojects.com) for an online version of the tool
 
 I needed some sort of diagram tool which I could easily generate my SQL from and also play with the data in the tables to get a feel for how effective my ERD is.
 
 I hope you find the project usefull :-)
 
+# Running locally
+
+## Simplest
+1. Download the code
+2. Unzip into your web-folder
+3. Open your browser and navigate to http://localhost/jsrad
+   1. The above assumes that you unzipped the code into a folder called `jsrad`
+
+## Pre-requistes
+
+1. You need to run this tool via your local web-server (Apache/IIS/etc.)
+   1. Needed for the javascript modules to be loaded
+2. Disable caching for the site
+   1. This allows for changes to javascript modules to be loaded immediately without being cached 
+3. You will need to install node and npm
+
+
+## Build System
+
+1. Grunt is used as the build system.
+   - You only need to do this if you going to change the HTML file structure....I need to rethink whether this is still needed now it uses javascript modules.
+
+2. Sass generates all the required CSS files
+   - You should use this if you want to edit any of the styles
 
 # Introduction 
 
@@ -80,14 +104,8 @@ The system can import a CSV file and auto-create the table with its data.
 | JQuery-UI           | 1.13.2  | Mostly only for resizing          |
 | Line-Awesome        |  1.3.0  | All the icons being used          |
 
-## Build System
 
-Grunt is used as the build system.
-
-Sass generates all the required CSS files
-
-
-# TODO
+# Features / Issues / Bugs
 
 ## General
 
@@ -111,12 +129,12 @@ Sass generates all the required CSS files
 - [x] General: remove all unused 3rd party libraries
 - [ ] UI-Product-Tour: refactor this and see if still applicable - initial idea was for this functionality to introduce new users to the tool.
 - [ ] Feedback.js - is meant to allow users to send feedback to my email, but need to consider an "About" dialog with a link to github where they can leave comments?
-- [ ] General: remove all code that was meant to read data from the server.
-- [ ] General: remove all "data-aware" code. This was only applicable because of the "server" component that use to exist
+- [x] General: remove all code that was meant to read data from the server.
+- [x] General: remove all "data-aware" code. This was only applicable because of the "server" component that use to exist
 - [ ] User-Menu: remove class - not used currently - might use later when user-cloud-storage is introduced
 - [ ] Mobile-Toolbar - remove this class and find way to auto-scale SidePanel.js class for mobile
 - [ ] Card.js - convert to a class and module
-- [ ] App.js - convert to class and module. Also remove all "data-awareness code.
+- [x] App.js - convert to class and module. Also remove all "data-awareness code.
 - [ ] Find a better line drawing library - current one is custom written:
    - [ ] JsPlumb - used before but felt clunky and "heavy"
 
@@ -130,7 +148,7 @@ Sass generates all the required CSS files
 - [ ] Shape-widgets: understand and implement a way to create rounded corners for the shapes 
 - [ ] Shape-widgets: understand and implement a way to create allow borders to have same styles as normal html/css borders (e.g. dashed vs solid vs dotted)
 - [ ] UI-Modeller: fix z-index of "design-mode" form so that resizer is below toolboxes
-- [ ] Icon-Selector: refactor to "class" and change from font-awesome to line-awesome
+- [x] Icon-Selector: refactor to "class" and change from font-awesome to line-awesome
 - [ ] Widget-Context-Menu: either refactor or remove this functionality
 - [ ] Image-Selector - not sure if should still be used. Might drop this, cause the way the product works now it is online only - thus image selector will be as simple as setting URL to image and not selecting a file from disk. Initially, this functionality would take an image and then upload it to "your area" and then allow then user to use that image from a link in "your space".
 - [ ] Logger.js - Meant to be a "debug-window" for code-snippets so that you can view the messages flowing. Might need to re-introduce this, but it first needs to be refactored.
@@ -138,4 +156,4 @@ Sass generates all the required CSS files
 ## Data Modeller
 - [ ] Data-Modeller: fix z-index of menu to be above lines
 - [ ] Data-Modeller: Import CSV - use to allow you to import structure
-- [ ] Re-introduce the data-aware functionality for widgets, and then let it read and write to the data-model (in-memory only)
+- [x] Re-introduce the data-aware functionality for widgets, and then let it read and write to the data-model (in-memory only)
