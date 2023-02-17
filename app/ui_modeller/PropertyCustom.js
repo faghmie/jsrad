@@ -173,7 +173,7 @@ export default class CustomProperties extends PropertyDatasource{
 			return;
 		}
 
-		control = $(control).addClass('form-control');
+		// control = $(control).addClass('form-control');
 		let div = $(`<div class="control-with-label"><label>${text.trim()}</label></div>`)
 			.append(control)
 			.appendTo(widget);

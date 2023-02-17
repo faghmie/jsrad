@@ -152,13 +152,13 @@ export default class SqlTable extends SqlBase {
 			}));
 		});
 
-		this.dom.container.find('.table-data').on('click', this, this.show_table_data.bind(this));
+		this.dom.container.find('.table-data').on('click', this, this.show_data.bind(this));
 
 
 		this.ListenToFieldEvents();
 	}
 
-	show_table_data() {
+	show_data() {
 		let ctrl = $(`
 					<div class="table-container">
 						<div class="caption"></div>
