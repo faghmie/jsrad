@@ -1,5 +1,35 @@
 export const ControlDatasource = (superclass) => class extends superclass {
 
+	/**
+	 * Reference to the `SqlTable` to which this control is potentially linked
+	 * Set to `null` if it is not needed
+	 *
+	 */
+	entity = null;
+
+
+	/**
+	 * A JSON object with the list of filters that should be applied when selecting one or more records.
+	 * Each element has the following format: 
+	 * ```
+	 * {
+	 * 		"uuid-of-field-in-table":{
+	 * 			"type": "'equals' / 'not equal' / 'is empty' / 'contains'",
+	 * 			"value": "value-to-find"
+	 * 		}
+	 * }
+	 * ```
+	 *
+	 */
+	filter = {};
+
+
+	/**
+	 * Array of field UUIDs that should be selected from the entity
+	 *
+	 */
+	data_fields = [];
+
 	get_data_entity() {
 		let ds = this.datamodel.TableManager.tables;
 		if (!ds) return null;
