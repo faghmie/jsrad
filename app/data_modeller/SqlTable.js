@@ -191,7 +191,7 @@ export default class SqlTable extends SqlBase {
 				if (fields_to_ignore.indexOf(uuid) !== -1) {
 					continue;
 				}
-				tr.append(`<td>${row[uuid]}</td>`);
+				tr.append(`<td>${row[uuid]||''}</td>`);
 			}
 		});
 

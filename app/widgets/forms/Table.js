@@ -177,7 +177,7 @@ export default class TableControl extends ControlInterface {
 					return;
 				}
 
-				tr.append(`<td>${col}</td>`)
+				tr.append(`<td>${col||''}</td>`)
 			});
 		});
 		
