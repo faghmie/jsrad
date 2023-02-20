@@ -70,7 +70,6 @@ export default class ButtonDataInsert extends Button {
 
 		for (let key in this.control_map) {
 			let ctrl = form.controls[this.control_map[key]];
-			console.log(ctrl)
 			if (ctrl){
 				record[key] = ctrl.val();
 			}
