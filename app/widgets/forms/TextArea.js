@@ -10,6 +10,7 @@ export default class TextArea extends TextEntry {
 	};
 
 	setDefault(txt){
+		console.log(txt)
 		this.ctrl.find('textarea').val(txt);
 	}
 	
@@ -23,7 +24,7 @@ export default class TextArea extends TextEntry {
 	getControl() {
 		super.getControl();
 		this.ctrl.find('input').remove();
-		this.ctrl.find('.control-group').append(`<textarea style='resize:none' class='form-control'></textarea>`);
+		this.ctrl.find('.control-group').append(`<textarea style='resize:none' class='form-control'>`);
 		
 		return this.ctrl;
 	}

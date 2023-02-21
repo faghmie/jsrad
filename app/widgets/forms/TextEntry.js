@@ -7,7 +7,7 @@ export default class TextEntry extends BaseFormControl(ControlInterface) {
 	//This tells the data-aware code to only return a single value
 	data_single_field = true;
 	is_data_aware = true;
-	
+
 	style_to_exclude = ['border-width', 'border-color'];
 
 	properties = {
@@ -160,23 +160,26 @@ export default class TextEntry extends BaseFormControl(ControlInterface) {
 	}
 
 	setValue(string) {
+		console.log(string)
 		if (typeof (this.value) === 'string') {
 			this.value = string;
 		}
 
-		this.val(typeof string !== 'undefined' ?
-			string :
-			typeof this.default_value === 'string' ?
-				this.default_value :
-				'');
+		this.val(
+			typeof string !== 'undefined'
+				? string
+				: typeof this.default_value === 'string'
+					? this.default_value
+					: ''
+		);
 
-		if (true === this.clear_on_show){
-			this.val('');
+		if (typeof string === 'string') {
+			return;
 		}
 
 		this.read_records().then(function (data) {
+			console.log(data)
 			this.val(data);
-			
 		}.bind(this));
 	}
 

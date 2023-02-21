@@ -50,12 +50,12 @@ export default class HeadingControl extends ControlInterface {
 			.text(this.label);
 	}
 
-	setDefault(){
-		//Prevent run-mode from overriding header
-	}
-
 	setValue(string) {
-		if (typeof string !== 'undefined') this.label = string;
+		if (typeof string !== 'undefined' &&
+			string.trim().length > 0){
+			this.label = string;
+		} 
+		
 		this.format();
 	}
 

@@ -18,8 +18,18 @@ export default class ProjectOpenDialog {
 						  <input type="file" id="fileInput">
                         </div>
 					</div>
-                    <div class="title">Existing projects</div>
-                    <div class="prj-list" ></div>
+                    <div  class="body">
+                        <div class="nav nav-tabs" role="tablist">
+                            <button class="nav-link active" id="jsrad-nav-tab-existing-tab" data-bs-toggle="tab" data-bs-target="#jsrad-nav-tab-existing" type="button" role="tab" aria-controls="jsrad-nav-tab-existing" aria-selected="true">My Projects</button>
+                            <button class="nav-link" id="jsrad-nav-tab-template-tab" data-bs-toggle="tab" data-bs-target="#jsrad-nav-tab-template" type="button" role="tab" aria-controls="jsrad-nav-tab-template" aria-selected="false">Samples</button>
+                        </div>
+                        <div class="tab-content">
+                            <div id="jsrad-nav-tab-existing" class="prj-list tab-pane fade show active" role="tabpanel" aria-labelledby="jsrad-nav-tab-existing-tab"></div>
+                            <div id="jsrad-nav-tab-template" class="tab-pane fade" role="tabpanel" aria-labelledby="jsrad-nav-tab-template-tab">
+                                <div class="template-list"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>`);
     }
 
@@ -42,7 +52,7 @@ export default class ProjectOpenDialog {
             }.bind(this));
     }
 
-    #make_list(the_list) {
+    #make_project_list(the_list) {
         this.project.List().then(data => {
             let map = {};
 
@@ -60,6 +70,32 @@ export default class ProjectOpenDialog {
             the_list.find('.list-item').on('click', function (evt) {
                 this.project.Open(map[evt.target.getAttribute('value')]);
                 this.card.close();
+            }.bind(this));
+
+            the_list.find('.remove').on('click', function (evt) {
+                evt.stopPropagation();
+                this.#remove_project(evt.target.parentElement);
+            }.bind(this));
+        });
+    }
+
+    #make_sample_list(the_list) {
+        this.project.ListSamples().then(data => {
+            if (!(data instanceof Array)) return;
+            
+            data.forEach((item) => {
+                the_list.append(`
+                    <div class="list-item" value="${item.file}">
+                        ${item.name}
+                        <p>${item.description}</p>
+                    </div>`);
+            });
+
+            the_list.find('.list-item').on('click', function (evt) {
+                evt.stopPropagation();
+                this.project.OpenSample(evt.target.getAttribute('value')).then(()=>{
+                    this.card.close();
+                });
             }.bind(this));
 
             the_list.find('.remove').on('click', function (evt) {
@@ -117,10 +153,10 @@ export default class ProjectOpenDialog {
     }
 
     Show(allow_close) {
-        let $this = this;
         return new Promise((resolve, reject) => {
-            let dlg = $this.#build_ui(),
-                row_list = dlg.find('.prj-list');
+            let dlg = this.#build_ui(),
+                row_list = dlg.find('.prj-list'),
+                sample_list = dlg.find('.template-list');
 
             dlg.find('.prj-btn-bar').append(this.#get_btn_new_project());
 
@@ -128,15 +164,14 @@ export default class ProjectOpenDialog {
                 dlg.find('.prj-btn-bar').append(this.#get_btn_close());
             }
 
-            // let my_list = $('<ul class="list-group">').appendTo(row_list);
+            this.#enable_local_file_load(dlg);
 
-            $this.#enable_local_file_load(dlg);
+            this.#make_project_list(row_list, resolve);
 
-            $this.#make_list(row_list, resolve);
+            this.#make_sample_list(sample_list, resolve);
 
-            $this.card = open_card(dlg, {
+            this.card = open_card(dlg, {
                 no_header: true,
-                title: 'Open Project',
             });
 
         });

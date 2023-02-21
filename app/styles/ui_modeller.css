@@ -1824,11 +1824,6 @@ ARROW*/
   font-size: 25px;
 }
 
-.active {
-  background-color: #53809e !important;
-  color: white !important;
-}
-
 .popup-card {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2313,13 +2308,6 @@ textarea.stickynotes {
 }
 
 .jsrad-project-open {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   width: 60vw;
   max-width: 100vw;
   height: 100vh;
@@ -2340,6 +2328,7 @@ textarea.stickynotes {
       -ms-flex-pack: justify;
           justify-content: space-between;
   margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 .jsrad-project-open .prj-btn-bar .btn {
@@ -2356,6 +2345,10 @@ textarea.stickynotes {
   background-color: #53809e;
   color: white !important;
   cursor: pointer;
+}
+
+.jsrad-project-open .body {
+  display: inline;
 }
 
 .jsrad-project-open .title {
@@ -2375,13 +2368,6 @@ textarea.stickynotes {
   height: 80vh;
   max-height: 80vh;
   overflow: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   gap: 8px;
 }
 
@@ -2417,6 +2403,70 @@ textarea.stickynotes {
 }
 
 .jsrad-project-open .prj-list .list-item span:hover {
+  font-weight: bold;
+  font-style: normal;
+  background-color: #53809e;
+  color: white;
+}
+
+.jsrad-project-open .template-list {
+  margin-top: 10px;
+  margin-right: 10px;
+  height: 80vh;
+  max-height: 80vh;
+  overflow: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 8px;
+}
+
+.jsrad-project-open .template-list .list-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  gap: 10px;
+  padding: 5px;
+  border: 1px solid silver;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  height: 150px;
+  max-height: 150px;
+  width: 180px;
+  max-width: 180px;
+}
+
+.jsrad-project-open .template-list .list-item:hover {
+  border: 1px solid #e7eef3;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #e7eef3;
+}
+
+.jsrad-project-open .template-list .list-item p {
+  margin: 0;
+  font-size: 0.7rem;
+  font-style: italic;
+  pointer-events: none;
+}
+
+.jsrad-project-open .template-list .list-item span {
+  pointer-events: none;
+  border: 1px solid #799cb4;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  color: #53809e;
+}
+
+.jsrad-project-open .template-list .list-item span:hover {
   font-weight: bold;
   font-style: normal;
   background-color: #53809e;
