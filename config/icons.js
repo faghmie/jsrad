@@ -1,4 +1,4 @@
-export default fa_icon_list = {
+export default {
   "la-500px": "500px",
   "la-adjust": "Adjust",
   "la-adn": "Adn",

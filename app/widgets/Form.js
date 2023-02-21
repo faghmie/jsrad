@@ -39,13 +39,14 @@ export default class Form extends ControlInterface {
 		'make it a card',
 	];
 
-	setValue(){
+	setValue() {
+		this.message ||= {};
+		
 		for (let f in this.controls) {
-			if (typeof this.controls[f].setValue === 'function')
-				this.controls[f].setValue();
+			this.controls[f].setValue(this.message[this.controls[f].name]);
 		}
 	}
-	
+
 	format() {
 		super.format();
 		for (let f in this.controls) {
@@ -116,10 +117,10 @@ export default class Form extends ControlInterface {
 		for (let key in this.message) {
 			let ctrl = this.findControlByName(key);
 			if (!ctrl) continue;
-			if (typeof ctrl.setDefault === 'function')
-				ctrl.setDefault(this.message[key]);
+			if (typeof ctrl.setDefault === 'function') {
+				ctrl.setValue(this.message[key]);
+			}
 		}
-
 	}
 
 
@@ -162,14 +163,13 @@ export default class Form extends ControlInterface {
 						break;
 				}
 
-
 				//MAKE ALL ARRAYS FLAT
 				if (context.message[name] instanceof Array) {
 					context.message[name] = context.message[name][0];
 				}
 			}
 		}
-		
+
 		context.post_message = Object.assign({}, context.message);
 
 		return context.post_message;
@@ -342,7 +342,6 @@ export default class Form extends ControlInterface {
 		if (true === this.is_a_process) {
 			this.ctrl
 				.addClass('process-mode')
-			// .removeClass('design-mode');
 		}
 	}
 
@@ -420,7 +419,7 @@ export default class Form extends ControlInterface {
 		});
 
 		this.ctrl.children().remove();
-		list.forEach(function(ctrl){
+		list.forEach(function (ctrl) {
 			if (true === is_responsive) {
 				this.ctrl.append(ctrl.dom.container);
 				ctrl.dom.container
@@ -486,7 +485,7 @@ export default class Form extends ControlInterface {
 			index = null,
 			item = null;
 		let select = $('<select>').addClass('form-control');
-		
+
 
 		let cmb_refresh = $('<select>').addClass('form-control');
 		let refresh_intervals = [

@@ -59,10 +59,14 @@ export const ControlDatasource = (superclass) => class extends superclass {
 	read_records() {
 		return new Promise((resolve, reject) => {
 			let ds = this.datamodel.TableManager.tables;
-			if (!ds) return resolve(null);
+			if (!ds){
+				return resolve(null);	
+			} 
 
 			let table = ds[this.entity];
-			if (!table) return resolve(null);
+			if (!table){
+				return resolve(null);
+			} 
 
 			table.data ||= [];
 			let result = table.data.filter(this.apply_filter.bind(this));
@@ -177,7 +181,6 @@ export const ControlDatasource = (superclass) => class extends superclass {
 
 	transform_to_single_value(records) {
 		let result = null;
-
 		if (records.length > 0) {
 			for (let key in records[0]) {
 				if (key == '__system_id__') {

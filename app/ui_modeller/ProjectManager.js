@@ -65,10 +65,7 @@ export default class ProjectManager {
         this.save_timer = window.setInterval(function(){
             
             if (this.designer.is_dirty === false){
-                // console.log('nothing to save...');
                 return;
-            // } else {
-            //     console.log(`saving... [${this.designer.is_dirty}]`)
             }
 
             this.designer.toObject().then(function(data){
@@ -123,6 +120,29 @@ export default class ProjectManager {
             db.onerror = (err) => {
                 resolve(null);
             };
+        });
+    }
+
+    ListSamples() {
+        return new Promise((resolve, reject) => {
+            import('../../samples/index.js').then(function (list) {
+                resolve(list.default);
+            }.bind(this)).catch(ex => {
+                console.log(ex);
+                reject(ex);
+            });
+        });
+    }
+
+    OpenSample(filename) {
+        return new Promise((resolve, reject) => {
+            import(`../../samples/${filename}`).then(function (list) {
+                this.Open(list.default);
+                resolve(list.default);
+            }.bind(this)).catch(ex => {
+                App.notifyError(ex);
+                reject(ex);
+            });
         });
     }
 
@@ -196,7 +216,6 @@ export default class ProjectManager {
     }
 
     Remove(project_uuid) {
-        let $this = this;
         return new Promise((resolve, reject) => {
             let db = window.indexedDB.open(this.browserDbName);
 
