@@ -108,7 +108,7 @@ module.exports = function (grunt) {
 					},
 					{
 						expand: true,
-						src: 'api/**',
+						src: 'samples/**',
 						dest: 'dist'
 					},
 					{
@@ -130,28 +130,6 @@ module.exports = function (grunt) {
 						dest: 'dist/app/ui_modeller'
 					}
 				]
-			}
-		},
-		connect: {
-			server: {
-				options: {
-					keepalive: true,
-					port: 80,
-					open: true,
-					base: 'dist'
-				}
-			}
-		},
-		php: {
-			server: {
-				options: {
-					keepalive: true,
-					port: 80,
-					open: true,
-					base: '.',
-					ini: 'c:/php/php.ini',
-					bin: 'c:/php/php.exe',
-				}
 			}
 		},
 		clean: {
@@ -202,17 +180,7 @@ module.exports = function (grunt) {
 					}
 				},
 			},
-		},
-
-		service_worker: {
-			options: {
-				baseDir: 'dist',
-				workerFile: 'sw.js'
-				//staticFileGlobs: [
-				//	'**/*.{gif,jpg,png}'
-				//]
-			}
-		},
+		}
 	});
 
 	// grunt.loadNpmTasks('grunt-service-worker');
@@ -224,7 +192,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-copy');
-	grunt.loadNpmTasks('grunt-contrib-connect');
+	// grunt.loadNpmTasks('grunt-contrib-connect');
 	// grunt.loadNpmTasks('grunt-php');
 	grunt.loadNpmTasks('grunt-newer');
 	grunt.loadNpmTasks('grunt-html-build');
