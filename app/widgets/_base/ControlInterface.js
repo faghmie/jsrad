@@ -79,7 +79,7 @@ export default class ControlInterface extends ControlDatasource(ControlActivityB
 		//Do this timeout to prevent UI from locking
 		//It allows for the UI to be more responsive
 		window.setTimeout(function () {
-			document.dispatchEvent(new CustomEvent('ui-set-properties', {
+			document.dispatchEvent(new CustomEvent('ui-show-properties', {
 				detail: this
 			}));
 		}.bind(this), 10);

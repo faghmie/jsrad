@@ -50,6 +50,7 @@ export default class DocumentGenerator {
         dlg.append(await this.#get_datamodel_docs())
 
         this.Forms.showForm(current_active_form);
+        
         open_card(dlg, {
             title: 'Documentation',
             'width': '80vw',

@@ -68,11 +68,12 @@ export default class ControlFactory {
 		}
 
 		this.#enable_manager(ctrl);
-		this.#enable_inline_editor(ctrl);
-		this.#enable_line_connectors(ctrl);
+		// this.#enable_inline_editor(ctrl);
+		// this.#enable_line_connectors(ctrl);
 
 		return ctrl;
 	}
+
 
 	#enable_manager(ctrl) {
 		if (!ctrl.form) {

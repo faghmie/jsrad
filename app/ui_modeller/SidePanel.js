@@ -61,6 +61,12 @@ export default class SidePanel {
         document.addEventListener('ui-set-properties', function (evt) {
             this.set_properties(evt.detail);
         }.bind(this));
+
+        document.addEventListener('ui-show-properties', function (evt) {
+            console.log('got here')
+            this.#show_panel('.design-area-text');
+            this.set_properties(evt.detail);
+        }.bind(this));
     }
 
     #get_buttons() {
@@ -160,7 +166,7 @@ export default class SidePanel {
                         panel.attr('current-height', panel.css('height'));
                         panel.css('height', 40);
                         panel.find('.toolbox-body').addClass('no-resize');
-                        
+
                     } else if (evt.target.className.includes('la-chevron-up')) {
                         evt.target.classList.remove('la-chevron-up');
                         evt.target.classList.add('la-chevron-down');
@@ -245,9 +251,10 @@ export default class SidePanel {
         document.dispatchEvent(new CustomEvent('ui-form-show'));
     }
 
-    get_tabbed_ui(){
-        return $(`
+    get_tabbed_ui(widget_props, ctrl) {
+        let props = $(`
             <div>
+                <div class="control-type-name"></div>
                 <div class="nav nav-tabs" role="tablist">
                     <button title="font" class="nav-link active" id="jsrad-edit-font" data-bs-toggle="tab" data-bs-target="#jsrad-edit-font-tab" type="button" role="tab" aria-controls="jsrad-edit-font-tab" aria-selected="true">
                         <i class="la la-font"></i>
@@ -269,6 +276,10 @@ export default class SidePanel {
                     <div id="jsrad-edit-docs-tab" class="tab-pane fade" role="tabpanel" aria-labelledby="jsrad-edit-docs"></div>
                 </div>
             </div>`);
+
+        widget_props.set_type(ctrl, props.find('.control-type-name'));
+        
+        return props;
     }
 
     set_properties(control) {
@@ -300,7 +311,7 @@ export default class SidePanel {
         this.panel_container.find('.design-area-overview .toolbox-body').append(form_overview.get());
 
         this.panel_container.find('.design-area-text .toolbox-body').children().remove();
-        let tabs = this.get_tabbed_ui();
+        let tabs = this.get_tabbed_ui(widget_props, ctrl);
         tabs.find('#jsrad-edit-font-tab').append(fonts.attach(ctrl)).append(styler.attach(ctrl));
         tabs.find('#jsrad-edit-dims-tab').append(this.AlignmentManager.attach(ctrl));
         tabs.find('#jsrad-edit-props-tab').append(widget_props.attach(ctrl));
