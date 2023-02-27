@@ -1,3 +1,202 @@
+.table {
+    $row-highlight: $color-border;
+
+    font-size: 0.7rem;
+    table-layout: fixed;
+    background-color: transparent;
+
+    // max-width: 100vw;
+    &.table-auto {
+        table-layout: auto;
+    }
+
+    border-radius: 5px;
+
+    td>div {
+        // min-width: 120px;
+        max-width: 50vw;
+        @include height(20px);
+        height: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    th,
+    td {
+        padding: 0.5em;
+        border: 1px solid $color-secondary;
+    }
+
+    th {
+        $bg: rgb(241, 241, 241);
+        border: 1px solid $bg;
+        // background: linear-gradient(to top, rgba($bg, 0.6), rgba($bg, 1));
+        color: $color-primary;
+        position: -webkit-sticky;
+        /* for Safari */
+        position: sticky;
+    }
+
+    thead {
+        th {
+            top: 0;
+            z-index: 5;
+            border-bottom: 2px solid $color-secondary;
+            vertical-align: text-top;
+        }
+
+        th:first-child {
+            vertical-align: middle;
+        }
+
+        th:first-child {
+            left: 0;
+            top: 0;
+            z-index: 10;
+        }
+
+        th.num-col {
+            width: 35px !important;
+            max-width: 35px !important;
+            min-width: 35px !important;
+        }
+
+        .table-add-entry {
+            cursor: pointer;
+            line-height: 1rem;
+        }
+    }
+
+    tbody {
+        th:first-child {
+            left: 0;
+            z-index: 1;
+            overflow: visible;
+        }
+
+
+        tr:hover,
+        tr.active {
+            box-shadow: 0px 0px 10px $color-primary;
+            background-color: $row-highlight !important;
+        }
+
+        td {
+            word-wrap: break-word;
+            // width: 120px;
+            // min-width: 120px;
+        }
+
+    }
+
+    .row-editor {
+        margin: 0 !important;
+        padding: 0 !important;
+
+        position: absolute;
+        top: 0;
+        left: 40px;
+        z-index: 50;
+        height: 100%;
+
+        // background: $row-highlight;
+        background: inherit;
+
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-items: center;
+        align-items: center;
+
+        button,
+        i,
+        .las {
+            height: 30px;
+            // vertical-align: middle;
+            padding-right: 10px !important;
+            padding-left: 10px !important;
+            font-size: 1.5rem;
+            color: $color-secondary !important;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .col-filter {
+        margin-left: 10px;
+        cursor: pointer;
+    }
+}
+
+.table-filter {
+    display: inline-block;
+    padding: 10px;
+    width: 280px;
+    max-width: 280px;
+    overflow: hidden;
+    // font-size: 0.85rem;
+    // color: $base-text-color !important;
+
+    label {
+        color: $base-text-color;
+    }
+
+    .select-all {
+        margin-top: 15px;
+        // color: red !important;
+    }
+
+    ul {
+        border-top: 1px solid $color-border;
+        border-bottom: 1px solid $color-border;
+        padding-top: 10px;
+        height: 230px;
+        max-height: 230px;
+        overflow: auto;
+
+        li {
+            margin-bottom: 10px;
+        }
+    }
+
+    .filter-buttons {
+        display: flex;
+        flex-direction: row;
+        flex-flow: row-reverse;
+
+        .btn {
+            background-color: transparent;
+            color: $color-primary !important;
+            @include width(80px);
+            @include height(25px);
+        }
+    }
+}
+
+.table-data-container {
+    // display: inline-block;
+    height: 100%;
+    max-height: 100%;
+    clear: both;
+    overflow: auto;
+    // .table-data {
+    //   height: 100%;
+    //   width: 100%;
+    //   max-width: 100%;
+    //   overflow: auto;
+    //   border-radius: 5px;
+    // }
+}
+
+.table-edit-div {
+    padding: 10px;
+}
+
+
 .table-container {
     display: flex;
     flex-direction: column;

@@ -38,6 +38,12 @@
         .workspace {
             padding: 0 !important;
             width: 100vw;
+            height: 100%;
+            margin-top: 10px;
+            display: flex;
+            // align-items: center;
+            justify-content: center;
+
             // margin-left: auto;
             // margin-right: auto;
             
@@ -48,8 +54,11 @@
             }
             
             .app-area {
-                margin: auto;
-                background: $base-bg-color;
+                // margin: auto;
+                // background: $base-bg-color;
+                // background: yellow;
+                // width: 100%;
+                // height: 100%;
             }
             
             .jsrad-form{

@@ -7,7 +7,7 @@ export default class AlignmentManager {
 	attach(obj) {
 		let widget = $(`<div class="text-formater">`);
 
-		widget.append(`<div class="title-line">alignment</div>`);
+		// widget.append(`<div class="title-line">alignment</div>`);
 		widget.append(this.get_alignment(obj));
 		widget.append(this.get_spacing(obj));
 		widget.append(this.get_order(obj));

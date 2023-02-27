@@ -1,5 +1,3 @@
-import ControlFactory from '../widgets/ControlFactory.js';
-
 export default class Toolbox {
 
     toolbox = null;
@@ -37,12 +35,11 @@ export default class Toolbox {
     }
 
     static #get_widget_info(widget_type, resolve){
-        for(let idx = 0; idx < this.widget_list.length; idx++){
-            if (this.widget_list[idx].type.includes(widget_type)){
-                resolve(this.widget_list[idx]);
-                break;
+        this.widget_list.forEach(item =>{
+            if (item.type.includes(widget_type)){
+                resolve(item);
             }
-        }
+        });
     }
 
     #create() {
@@ -67,11 +64,11 @@ export default class Toolbox {
         });
         let cats = [];
 
-        for (let c = 0; c < plugins.length; c++) {
-            if (cats.indexOf(plugins[c].category) === -1) {
-                cats.push(plugins[c].category);
+        plugins.forEach(item =>{
+            if (cats.indexOf(item.category) === -1) {
+                cats.push(item.category);
             }
-        }
+        });
 
         cats = cats.sort(function (a, b) {
             return a.localeCompare(b);
@@ -94,13 +91,13 @@ export default class Toolbox {
 
         let select = this.toolbox.find('select');
         select.append('<option>ALL</option>');
-        for (let c = 0; c < cats.length; c++) {
-            select.append('<option>' + cats[c] + '</option>');
-            if (cats[c] == 'ALL') {
+        cats.forEach(function(item){
+            select.append('<option>' + item + '</option>');
+            if (item == 'ALL') {
                 select.find('option:last').attr('selected', 'selected');
                 this.#filter_widgets();
             }
-        }
+        });
     }
 
     #filter_widgets() {
@@ -155,25 +152,41 @@ export default class Toolbox {
             }));
         });
 
-        this.toolbox.find('.toolbox-area .widget-template').draggable({
-            revert: 'invalid',
-            helper: function (evt) {
-                let helper = $(`<div>`)
-                    .css({
-                        position: 'absolute',
-                        left: 0,
-                        top: 0,
-                        height: '50px',
-                    })
-                    .html(this.getAttribute('type').replaceAll('./', ''))
-                    .attr('widget', this.getAttribute('widget'))
-                    .addClass('widget-template');
-                $('body').append(helper);
-                return helper;
-            },
+        this.toolbox.find('.toolbox-area .widget-template').attr('draggable', 'true');
 
-            containment: 'body'
-        });
+        let ctrls = this.toolbox.find('.toolbox-area .widget-template').toArray();
+
+        ctrls.forEach(function(ctrl){
+            ctrl.addEventListener('dragstart', function(evt){
+                let style = window.getComputedStyle(evt.target, null);
+    
+                evt.dataTransfer.setData("text/plain", JSON.stringify({
+                    left:  (parseInt(style.getPropertyValue("left"), 10) - evt.clientX),
+                    top: (parseInt(style.getPropertyValue("top"), 10) - evt.clientY),
+                    widget: evt.target.getAttribute('widget')
+                }));
+            }.bind(this));
+        }.bind(this))
+
+        // this.toolbox.find('.toolbox-area .widget-template').draggable({
+        //     revert: 'invalid',
+        //     helper: function (evt) {
+        //         let helper = $(`<div>`)
+        //             .css({
+        //                 position: 'absolute',
+        //                 left: 0,
+        //                 top: 0,
+        //                 height: '50px',
+        //             })
+        //             .html(this.getAttribute('type').replaceAll('./', ''))
+        //             .attr('widget', this.getAttribute('widget'))
+        //             .addClass('widget-template');
+        //         $('body').append(helper);
+        //         return helper;
+        //     },
+
+        //     containment: 'body'
+        // });
     }
 
     #add_widget(widget, target) {

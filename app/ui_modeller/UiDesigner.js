@@ -6,6 +6,7 @@ import SidePanel from "./SidePanel.js";
 import ControlFactory from "../widgets/ControlFactory.js";
 import SqlDesigner from "../data_modeller/SqlDesigner.js";
 import Form from "../widgets/Form.js";
+import DocumentGenerator from "../common/DocumentGeneratorjs.js";
 
 export default class UiDesigner {
 
@@ -16,6 +17,8 @@ export default class UiDesigner {
 	 * @memberof UiDesigner
 	 */
 	is_dirty = false;
+
+	current_context = 'UI';
 
 	constructor() {
 		this.context = this;
@@ -28,7 +31,7 @@ export default class UiDesigner {
 		this.undo_stack = [];
 		this.datasources = {};
 		this.save_timer = null;
-		this.ProjectMenu = new ProjectMenu (this);
+		this.ProjectMenu = new ProjectMenu(this);
 		this.Forms = new FormManager(this);
 		this.Project = new ProjectManager(this, this.Forms);
 		this.ProjectDialog = new ProjectOpenDialog(this, this.Project);
@@ -62,8 +65,8 @@ export default class UiDesigner {
 		this.dom.app_area.hide();
 
 		this.SidePanel = new SidePanel(this.Project, this.ProjectMenu, this.Forms);
-		
-		this.Forms.addForm().then(function(){
+
+		this.Forms.addForm().then(function () {
 			this.switch_context();
 		}.bind(this));
 
@@ -74,6 +77,10 @@ export default class UiDesigner {
 
 		this.ProjectDialog.Show();
 
+		this.#list_for_events();
+	}
+
+	#list_for_events(){
 		document.addEventListener('ide-switch-context', function (evt) {
 			this.switch_context(evt.detail.context);
 		}.bind(this));
@@ -89,6 +96,11 @@ export default class UiDesigner {
 		document.addEventListener('ide-is-dirty', function (evt) {
 			this.is_dirty = true;
 		}.bind(this));
+
+		document.addEventListener('ide-generate-docs', function (evt) {
+			let doc_gen = new DocumentGenerator(this);
+            doc_gen.Show();
+		}.bind(this));
 	}
 
 	Show() {
@@ -97,7 +109,7 @@ export default class UiDesigner {
 	}
 
 	switch_context(context) {
-		if (context == 'DATA-MODEL') {
+		if (context == 'DATA') {
 			this.dom.designer.hide();
 			this.DataModeller.Show();
 			this.SidePanel.HideAll();
@@ -107,15 +119,15 @@ export default class UiDesigner {
 			this.dom.design_forms.show();
 			this.DataModeller.Hide();
 			this.SidePanel.Show();
-	
+
 			if (this.current_form) {
 				this.current_form.show();
 			} else {
 				let form = this.Forms.getActiveForm();
 				if (form) {
 					form.show();
-				} else if (this.Forms.Count() > 0){
-					for(form of this.Forms){
+				} else if (this.Forms.Count() > 0) {
+					for (form of this.Forms) {
 						form.show();
 						break;
 					}
@@ -189,7 +201,7 @@ export default class UiDesigner {
 						break;
 				}
 			}
-			
+
 			switch (evt.which) {
 				case 113: //F2 - edit label
 					for (ctrl in form.controls) {
@@ -224,7 +236,7 @@ export default class UiDesigner {
 						this.clipboard.forEach(json => {
 							json.top += json.height + 20;
 							json.left += 20;
-							
+
 							this.#paste_control(json);
 
 						});
@@ -234,16 +246,16 @@ export default class UiDesigner {
 		}.bind(this));
 	}
 
-	async #paste_control(json){
+	async #paste_control(json) {
 		delete json.uuid;
 		delete json.form;
-		
+
 		let props_to_copy = Object.assign({}, json);
 
 		let ctrl = await this.addControl(json);
 
 		await ctrl.fromObject(props_to_copy);
-		 
+
 		ctrl.format();
 	}
 
@@ -262,7 +274,7 @@ export default class UiDesigner {
 	}
 
 	async addControl(control_info) {
-		if (!control_info.form){
+		if (!control_info.form) {
 			control_info.form = this.Forms.getActiveForm();
 		}
 
@@ -288,8 +300,8 @@ export default class UiDesigner {
 		let active_form = null;
 
 		if (typeof this.in_run_mode !== 'boolean') this.in_run_mode = false;
-		
-		// //GET THE ACTIVE FORM
+
+		// GET THE ACTIVE FORM
 		if (this.Forms.Exists(this.Project.project.startup)) {
 			active_form = this.Forms.Get(this.Project.project.startup);
 		} else {
@@ -318,15 +330,26 @@ export default class UiDesigner {
 	async fromObject(json, in_run_mode) {
 		if (typeof in_run_mode === 'undefined') in_run_mode = false;
 
-		let frm_found = null,
-			forms = json.forms,
-			form = null;
-
 		if (!json.project || ['application', 'module'].indexOf(json.project.type) === -1) {
 			return App.MessageError('This is not an application file');
 		}
 
-		if (!forms) forms = json;
+		await this.#restore_forms(json, in_run_mode);
+
+		this.DataModeller.fromObject(json.datamodels, true);
+		if (json.connections instanceof Array) {
+			json.connections.forEach(function(conn){
+				let frm = this.Forms.Get(conn.container);
+				if (!frm) return;
+				this.Forms.AddConnector(frm, frm.controls[conn.from], frm.controls[conn.to], conn.style);
+			}.bind(this));
+		}
+	}
+
+	async #restore_forms(json, in_run_mode){
+		let frm_found = null,
+			forms = json.forms || {},
+			form = null;
 
 		if (true !== in_run_mode) {
 			for (form in forms) {
@@ -343,13 +366,13 @@ export default class UiDesigner {
 
 			let prj = json.project;
 			if (prj) {
-				if (typeof prj.type !== 'string'){
+				if (typeof prj.type !== 'string') {
 					prj.type = 'application';
 				}
 			}
 
 			//Open the last form, that was worked on
-			if (json.design_settings){
+			if (json.design_settings) {
 				this.Forms.showForm(json.design_settings.last_open_form);
 			}
 
@@ -360,16 +383,6 @@ export default class UiDesigner {
 			for (form in forms) {
 				await this.Forms.addForm(forms[form]);
 			}
-		}
-
-		this.DataModeller.fromObject(json.datamodels, true);
-		let $this = this;
-		if (json.connections instanceof Array) {
-			json.connections.forEach(conn => {
-				let frm = $this.Forms.Get(conn.container);
-				if (!frm) return;
-				$this.Forms.AddConnector(frm, frm.controls[conn.from], frm.controls[conn.to], conn.style);
-			});
 		}
 	}
 
@@ -384,8 +397,10 @@ export default class UiDesigner {
 
 		for (let form of this.Forms) {
 			const form_to_json = new Promise((resolve, reject) => {
-				window.setTimeout(function(){
-					json.forms[form.uuid] = form.toObject();
+				window.setTimeout(function () {
+					if (form) {
+						json.forms[form.uuid] = form.toObject();
+					}
 					resolve();
 				}, 100)
 			});
@@ -394,7 +409,7 @@ export default class UiDesigner {
 		}
 
 		let form = this.Forms.getActiveForm();
-		if (form){
+		if (form) {
 			json.design_settings = {
 				last_open_form: form.uuid
 			}

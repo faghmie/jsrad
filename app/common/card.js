@@ -52,6 +52,7 @@ function Card(content, on_show, on_close) {
 		});
 		
 	div.draggable({ handle: '.drag-me' });
+	
 	if (options.title) {
 		div.find('.header-row .header').append(options.title);
 	}

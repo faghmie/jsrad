@@ -41,7 +41,7 @@ export default class Form extends ControlInterface {
 
 	setValue() {
 		this.message ||= {};
-		
+
 		for (let f in this.controls) {
 			this.controls[f].setValue(this.message[this.controls[f].name]);
 		}
@@ -201,15 +201,12 @@ export default class Form extends ControlInterface {
 		this.change_mode(designer.in_run_mode);
 
 		if (designer.in_run_mode === false) {
-			this.close();
-			this.panel.show(); //Must show form before doing anything else, some controls must be visible to render (e.g. jqplot)
-			this.ctrl.removeClass('run-mode');
-			this.select();
-			this.setValue();
+			this.enable_design_mode();
 			return;
 		}
 
 		this.ctrl.addClass('run-mode');
+
 		//NEED TO DO THE MESSAGE SAVING STUFF HERE 
 		//CAUSE THE CHANGE-MODE FUNCTION ABOVE RESETS
 		//THE MESSAGE TO NULL
@@ -275,7 +272,7 @@ export default class Form extends ControlInterface {
 						});
 					designer.dom.app_area.children().hide();
 					designer.dom.app_area.append(this.dom.container);
-
+					
 					this.dom.container.show();
 					this.format();
 
@@ -286,6 +283,14 @@ export default class Form extends ControlInterface {
 		}
 
 		//NOW ALLOW ALL CONTROLS TO UPDATE THEIR VALUES
+		this.setValue();
+	}
+
+	enable_design_mode() {
+		this.close();
+		this.panel.show(); //Must show form before doing anything else, some controls must be visible to render (e.g. jqplot)
+		this.ctrl.removeClass('run-mode');
+		this.select();
 		this.setValue();
 	}
 

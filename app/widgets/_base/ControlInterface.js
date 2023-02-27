@@ -15,6 +15,9 @@ export default class ControlInterface extends ControlDatasource(ControlActivityB
 	/** @type {Form | undefined} */
 	form = null;
 
+	/** @type{ResizeObserver|undefined} */
+	resizeObserver = null;
+
 	left = 10;
 	top = 10;
 	width = 200;
@@ -60,18 +63,14 @@ export default class ControlInterface extends ControlDatasource(ControlActivityB
 		}
 
 		if (this.resizable === undefined || this.resizable === true) {
-			if (this.dom.container.is('.ui-resizable')) {
-				this.dom.container.resizable('enable');
-			} else {
-				this.make_resizable();
-			}
+			this.make_resizable();
 		}
 
-		if (this.dom.container.is('.ui-resizable') && this.is_locked) {
-			this.dom.container.resizable('disable');
+		if (this.is_locked) {
+			this.remove_resizable();
 		}
 
-		if (!this.dom.container.is('.ui-draggable')) {
+		if (this.draggable !== false) {
 			this.make_draggable();
 		}
 
@@ -94,8 +93,7 @@ export default class ControlInterface extends ControlDatasource(ControlActivityB
 
 		this.selected = false;
 
-		if (this.dom.container.is('.ui-resizable'))
-			this.dom.container.resizable('disable');
+		this.remove_resizable();
 
 		this.dom.manager.removeClass('selected locked');
 		this.dom.manager.children().hide();
@@ -112,63 +110,6 @@ export default class ControlInterface extends ControlDatasource(ControlActivityB
 		//Controls must override this with their settings
 	}
 
-	get_documentation() {
-		let html = '';
-
-		//TITLE
-		html += '<h2>Description</h2>';
-		html += '<p>' + this.description + '</p>';
-
-		//COLUMNS
-		html += '<h2>Elements</h2>';
-
-		for (let key in this.controls) {
-			let ctrl = this.controls[key];
-			html += '<h3>' + ctrl.label + '</h3>';
-			html += '<table>';
-			html += '<thead><tr>';
-			html += '</tr></thead>';
-
-			html += '<tbody>';
-
-			html += '<tr>' +
-				'<th style="width:80px;">Type</th>' +
-				'<td>' + ctrl.type + '</td>' +
-				'</tr>';
-
-			html += '<tr>' +
-				'<th>Required</th>' +
-				'<td>' + (true === ctrl.required ? 'YES' : '') + '</td>' +
-				'</tr>';
-
-			html += '<tr>' +
-				'<th>Default</th>' +
-				'<td>' + ctrl.default_value + '</td>' +
-				'</tr>';
-
-			html += '<tr>' +
-				'<th>Behaviour</th>' +
-				'<td>' + ctrl.behaviour + '</td>' +
-				'</tr>';
-
-			html += '<tr>' +
-				'<th>Description</th>' +
-				'<td>' + ctrl.description + '</td>' +
-				'</tr>';
-
-			if (ctrl.datasource.name) {
-				html += '<tr>' +
-					'<th>Datasource</th>' +
-					'<td>Yes</td>' +
-					'</tr>';
-			}
-			html += '</tbody></table>';
-		}
-
-
-
-		return html;
-	}
 
 	setDisabled(bool) {
 		this.disabled = typeof bool !== 'undefined' ? bool : this.disabled;
@@ -188,19 +129,18 @@ export default class ControlInterface extends ControlDatasource(ControlActivityB
 		this.is_locked = bool;
 
 		if (this.is_locked === true) {
-			if (this.dom.container.is('.ui-draggable') === true) {
-				this.dom.container.draggable('destroy');
-			}
+			this.remove_draggable();
 			this.dom.manager.addClass('locked');
-
 		} else {
-			if (this.dom.container.is('.ui-draggable') === false)
+			if (this.draggable !== false){
 				this.make_draggable();
+			}
 
 			this.dom.manager.removeClass('locked');
 
-			if (!this.isForm())
+			if (!this.isForm()){
 				this.dom.manager.addClass('selected');
+			}
 		}
 	}
 
@@ -378,14 +318,17 @@ export default class ControlInterface extends ControlDatasource(ControlActivityB
 	}
 
 	resize(width, height) {
-		if (typeof width !== 'undefined' && typeof height !== 'undefined') {
+		if (width !== undefined && height !== undefined) {
 			this.width = width;
-			if (false === this.height_fixed)
+			if (false === this.height_fixed){
 				this.height = height;
+			}
 		}
 
 		if (!isNaN(parseFloat(this.min_height))) {
-			if (this.height < this.min_height) this.height = this.min_height;
+			if (this.height < this.min_height){
+				this.height = this.min_height;
+			} 
 		}
 
 		if (this.height <= 0) this.height = 26;
@@ -395,11 +338,12 @@ export default class ControlInterface extends ControlDatasource(ControlActivityB
 			height: this.height
 		});
 
-		this.dom.container.css({
-			width: (parseFloat(this.dom.control.css('width')) + 4),
-			height: (parseFloat(this.dom.control.css('height')) + 4)
-		});
-
+		if (width > 0 && height > 0) {
+			this.dom.container.css({
+				width: this.width,
+				height: this.height
+			});
+		}
 		if (!this.ctrl) return;
 
 		this.ctrl.css({
@@ -448,6 +392,7 @@ export default class ControlInterface extends ControlDatasource(ControlActivityB
 		} else {
 			this.deselect();
 			this.dom.manager.hide();
+			this.remove_draggable();
 			if (this.linked_form) {
 				let next_form = form.designer.Forms.Get(this.linked_form);
 				if (next_form) {
@@ -468,9 +413,6 @@ export default class ControlInterface extends ControlDatasource(ControlActivityB
 							$(this).css('cursor', 'pointer');
 						});
 				}
-			} else if (this.data_model_action && (typeof this.dm_is_data_aware === 'function')) {
-				//logger.log('setting up the data-model action');
-				this.dm_execute();
 			}
 
 			//LINK PARENT-CHILD CONTROLS TOGETHER
@@ -527,8 +469,6 @@ export default class ControlInterface extends ControlDatasource(ControlActivityB
 		}, function (evt) {
 			let link = evt.data;
 			let obj = link.child;
-			let form = obj.getForm();
-			let uuid = $(this).val();
 			let filter_on = link.parent.name;
 			let filter_value = link.parent.val();
 
@@ -542,7 +482,6 @@ export default class ControlInterface extends ControlDatasource(ControlActivityB
 				obj.datasource.filter[filter_on] = filter_value;
 				obj.datasource.filter_type = link.filter_type;
 			}
-			console.log(obj.datasource.filter);
 			obj.setValue();
 		});
 	}
@@ -692,198 +631,73 @@ export default class ControlInterface extends ControlDatasource(ControlActivityB
 		return this;
 	}
 
+	remove_resizable() {
+		this.dom.container.css({
+			'resize': 'none',
+			'overflow': 'visible'
+		});
+
+		if (this.resizeObserver && this.resizeObserver.unobserve) {
+			this.resizeObserver.unobserve(this.dom.container[0]);
+		}
+	}
+
 	make_resizable() {
-		let $this = this,
-			form = this.getForm();
 		if (true === this.is_locked) return;
 
-		if (this.dom.container.is('.ui-resizable')) return;
-		let handlers = 'all',
-			contain_to = form.dom.container;
-
-		handlers = {
-			'nw': '.nwgrip',
-			'ne': '.negrip',
-			'sw': '.swgrip',
-			'se': '.segrip',
-			'n': '.ngrip',
-			'e': '.egrip',
-			's': '.sgrip',
-			'w': '.wgrip'
-		};
-		if (!this.form) {
-			handlers = 'e, s, se';
-			contain_to = null;
-		} else {
-			this.create_resize_handles();
-		}
-
-		this.dom.container.resizable({
-			handles: handlers,
-			aspectRatio: this.aspect_ratio,
-			// containment: contain_to,
-			resize: function (evt, ui) {
-				if ($this.width !== ui.size.width)
-					$this.width = ui.size.width;
-
-				if (false === $this.height_fixed && $this.height !== ui.size.height)
-					$this.height = ui.size.height;
-				$this.resize();
-			}
+		this.dom.container.css({
+			'resize': 'both',
+			'overflow': 'hidden'
 		});
+
+		this.resizeObserver = new ResizeObserver(function (entries) {
+			for (const entry of entries) {
+				let width = this.width,
+					height = this.height;
+
+				if (entry.contentRect.width <= 0 || entry.contentRect.height <= 0){
+					return; //Ignore rezising to zero, to prevent unwanted UI behaviour
+				}
+
+				if (this.width === entry.contentRect.width && this.height == entry.contentRect.height) {
+					break;
+				}
+
+				if (this.width !== entry.contentRect.width) {
+					width = entry.contentRect.width;
+				}
+
+				if (false === this.height_fixed && this.height !== entry.contentRect.height) {
+					height = entry.contentRect.height;
+				}
+
+				this.resize(width, height);
+			}
+		}.bind(this));
+
+		this.resizeObserver.observe(this.dom.container[0]);
+
 		return this;
 	}
 
-	create_resize_handles() {
-		let container = this.dom.container;
-
-		let handle = $('<div>')
-			.addClass('ui-resizable-handle ui-resizable-nw nwgrip jsrad-resize-handles')
-			.appendTo(container);
-
-		handle = $('<div>')
-			.addClass('ui-resizable-handle ui-resizable-ne negrip jsrad-resize-handles')
-			.appendTo(container);
-		handle = $('<div>')
-			.addClass('ui-resizable-handle ui-resizable-sw swgrip jsrad-resize-handles')
-			.appendTo(container);
-		handle = $('<div>')
-			.addClass('ui-resizable-handle ui-resizable-se segrip jsrad-resize-handles')
-			.appendTo(container);
-
-		handle = $('<div>')
-			.addClass('ui-resizable-handle ui-resizable-n ngrip jsrad-resize-handles')
-			.appendTo(container);
-
-		handle = $('<div>')
-			.addClass('ui-resizable-handle ui-resizable-s sgrip jsrad-resize-handles')
-			.appendTo(container);
-
-		handle = $('<div>')
-			.addClass('ui-resizable-handle ui-resizable-e egrip jsrad-resize-handles')
-			.appendTo(container);
-		handle = $('<div>')
-			.addClass('ui-resizable-handle ui-resizable-w wgrip jsrad-resize-handles')
-			.appendTo(container);
-
+	remove_draggable(){
+		this.dom.container.attr('draggable', 'false');
 	}
 
 	make_draggable() {
-		if (App.is_mobile) return this.make_draggable_mobile();
-
 		if (this.isForm() === true || true === this.is_locked) return this;
 
-		this.dom.container.on('mousedown touchstart', this, function (evt) {
-			let $this = evt.data,
-				form = $this.getForm(),
-				startpoint = {},
-				offset = {};
-			evt.stopPropagation();
-			if (true === $this.busy_resizing) return;
+		this.dom.container.attr('draggable', 'true');
 
-			$this.select();
-			$this.dom.container.draggable({
-				handle: '.widget-manager',
-				cursor: 'move',
-				distance: 10,
-				//snap           : true,
-				//smartguides    : '.widget',
-				tolerance: 2,
-				margin_top: parseFloat(form.dom.container.offset().top),
-				margin_left: parseFloat(form.dom.container.offset().left),
-				helper: evt.ctrlKey ? 'clone' : 'original',
-				containment: [
-					0, 45,
-					parseFloat(form.width) + parseFloat(form.dom.container.offset().left) - parseFloat($this.width),
-					parseFloat(form.height) + parseFloat(form.dom.container.offset().top) - parseFloat($this.height),
-				],
+		this.dom.container[0].addEventListener('dragstart', function (evt) {
+			let style = window.getComputedStyle(evt.target, null);
 
-				start: function (event, ui) {
-					startpoint = ui.position;
-				},
-
-				drag: function (event, ui) {
-					let id = ui.helper.find('.main-control').attr('id');
-					if (!(id in form.controls)) {
-						return;
-					}
-					let obj = form.controls[id];
-					if (obj.is_locked === true) {
-						return false;
-					}
-
-					let offset = Object.assign({}, ui.position);
-
-					if (event.ctrlKey === true) return true;
-
-					offset.top -= startpoint.top;
-					offset.left -= startpoint.left;
-					for (let key in form.controls) {
-						let ctrl = form.controls[key];
-						if (ctrl.selected !== true) continue;
-						ctrl.move(ctrl.left + offset.left, ctrl.top + offset.top);
-					}
-					startpoint = Object.assign({}, ui.position);
-				},
-
-				stop: function (event, ui) {
-					let form = $this.getForm(),
-						f = null,
-						ctrl = null,
-						pos = null,
-						id = 0,
-						json = null;
-
-					if (event.ctrlKey === true) {
-						//COPY THE ORIGINAL ITEM
-						id = ui.helper.find('.main-control').attr('id');
-
-						if (!(id in form.controls)) {
-							App.MessageError('Some went wrong with copying the control. Could not find the ID');
-							return;
-						}
-						json = form.controls[id].toObject();
-						ctrl = new FD.Control(form, json.type, ui.position.left, ui.position.top);
-						ctrl.setUUID();
-						ctrl.setValue();
-						json.top = ui.position.top;
-						json.left = ui.position.left;
-						json.uuid = ctrl.uuid;
-						form.controls[ctrl.uuid] = ctrl.fromObject(json, form);
-						form.controls[ctrl.uuid].change_mode(false);
-					} else {
-						pos = $this.dom.container.position();
-						$this.move(pos.left, pos.top);
-						document.dispatchEvent(new CustomEvent('ui-control-redraw-connector', {
-							detail: {
-								form: form
-							}
-						}));
-					}
-				}
-			});
-		});
-
-		return this;
-	}
-
-	make_draggable_mobile() {
-		if (this.isForm() === true || true === this.is_locked) return this;
-		let $this = this,
-			form = this.getForm(),
-			startpoint = {},
-			offset = {};
-		$this.dom.container.draggable({
-			handle: '.widget-manager',
-			cursor: 'move',
-			distance: 10,
-			tolerance: 2,
-
-			stop: function (event, ui) {
-				pos = $this.dom.container.position();
-				$this.move(pos.left, pos.top);
-			}
-		});
+			evt.dataTransfer.setData("text/plain", JSON.stringify({
+				left: (parseInt(style.getPropertyValue("left"), 10) - evt.clientX),
+				top: (parseInt(style.getPropertyValue("top"), 10) - evt.clientY),
+				uuid: this.uuid
+			}));
+		}.bind(this));
 
 		return this;
 	}
@@ -1063,32 +877,33 @@ export default class ControlInterface extends ControlDatasource(ControlActivityB
 	}
 
 	make_droppable(ctrl) {
-		let $this = this;
 		let form = this.getForm() || ctrl;
 		if (!ctrl) return;
 
-		ctrl.droppable({
-			greedy: true,
-			drop: function (event, ui) {
-				if (ui.draggable.is('.widget-template') === false) return;
-				let item = ui.draggable;
+		ctrl.on('dragover', function (evt) {
+			evt.preventDefault(); // stops the browser from redirecting.
+			return false;
+		}.bind(this));
 
-				let offset = $(this).offset(),
-					left = ui.position.left - offset.left,
-					top = ui.position.top - offset.top;
+		ctrl[0].addEventListener('drop', function (evt) {
+			let info = JSON.parse(evt.dataTransfer.getData("text/plain"));
+			if (info.uuid) {
+				let ctrl = this.getForm().controls[info.uuid];
+				let left = (evt.clientX + parseInt(info.left, 10));
+				let top = (evt.clientY + parseInt(info.top, 10));
 
-				let control_info = JSON.parse(item.attr('widget'));
-				control_info.left = left;
-				control_info.top = top;
-
-				if (!form.designer) return;
-
-				//fire off an event
+				ctrl.move(left, top);
+			} else if (info.widget) {
+				let widget = JSON.parse(info.widget);
+				widget.left = evt.offsetX;
+				widget.top = evt.offsetY;
 				document.dispatchEvent(new CustomEvent('ide-control-add', {
-					detail: control_info
+					detail: widget
 				}));
 			}
-		});
+			evt.stopPropagation(); // stops the browser from redirecting.
+			return false;
+		}.bind(this));
 
 		return this;
 	}

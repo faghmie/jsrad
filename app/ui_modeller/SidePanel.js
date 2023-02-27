@@ -80,7 +80,7 @@ export default class SidePanel {
                         title="project settings"><i class="la la-fw la-gear"></i>
                     </div>
 
-                    <div class="workspace-button design-controls btn-design-area-overview" 
+                    <div class="workspace-button design-controls" 
                         data-page=".design-area-overview"
                         title="forms & processes"><i class="la la-fw la-tv"></i>
                     </div>
@@ -92,12 +92,7 @@ export default class SidePanel {
 
                     <div class="workspace-button design-controls"
                         data-page=".design-area-text"
-                        title="formating"><i class="la la-fw la-paint-brush"></i>
-                    </div>
-
-                    <div class="workspace-button design-controls"
-                        data-page=".design-area-props" 
-                        title="properties"><i class="la la-fw la-pencil-alt"></i>
+                        title="widget properties"><i class="la la-fw la-pencil-alt"></i>
                     </div>
 
                     <div class="workspace-button design-controls" 
@@ -105,17 +100,12 @@ export default class SidePanel {
                         title="comments"><i class="la la-fw la-comments"></i>
                     </div>
 
-                    <div class="workspace-button design-controls" 
+                    <div class="workspace-button design-controls btn-gen-doc no-panel" 
                         data-page=".design-area-docs"
-                        title="documentation"><i class="la la-fw la-file-text"></i>
+                        title="project documentation"><i class="lab la-readme"></i>
                     </div>
+
                     </div>`);
-
-
-        // <a class="workspace-button design-controls" 
-        //     data-page=".design-area-database"
-        //     title="database connection"><i class="la la-fw la-plug"></i>
-        // </a>
     }
 
     #create_panels() {
@@ -156,7 +146,6 @@ export default class SidePanel {
             .appendTo(this.panel_container);
 
         panel
-            .resizable()
             .draggable({
                 handle: '.design-toolbox-title'
             })
@@ -170,13 +159,13 @@ export default class SidePanel {
                         evt.target.classList.add('la-chevron-up');
                         panel.attr('current-height', panel.css('height'));
                         panel.css('height', 40);
-                        panel.resizable('destroy');
-
+                        panel.find('.toolbox-body').addClass('no-resize');
+                        
                     } else if (evt.target.className.includes('la-chevron-up')) {
                         evt.target.classList.remove('la-chevron-up');
                         evt.target.classList.add('la-chevron-down');
                         panel.css('height', panel.attr('current-height'));
-                        panel.resizable();
+                        panel.find('.toolbox-body').removeClass('no-resize');
                     }
                 } else {
                     this.#show_panel(evt.data.className);
@@ -199,9 +188,9 @@ export default class SidePanel {
             evt.data.set_properties();
         });
 
-        // this.container.find('.btn-design-area-overview').on('click', function () {
-        // 	(new FormOverview(this.Forms)).show();
-        // }.bind(this));
+        this.container.find('.btn-gen-doc').on('click', function () {
+            document.dispatchEvent(new CustomEvent('ide-generate-docs'));
+        }.bind(this));
 
         this.container.find('.btn-design-present').off('click').on('click', function (evt) {
             evt.stopPropagation();
@@ -256,9 +245,34 @@ export default class SidePanel {
         document.dispatchEvent(new CustomEvent('ui-form-show'));
     }
 
-    set_properties(control, default_pane) {
+    get_tabbed_ui(){
+        return $(`
+            <div>
+                <div class="nav nav-tabs" role="tablist">
+                    <button title="font" class="nav-link active" id="jsrad-edit-font" data-bs-toggle="tab" data-bs-target="#jsrad-edit-font-tab" type="button" role="tab" aria-controls="jsrad-edit-font-tab" aria-selected="true">
+                        <i class="la la-font"></i>
+                    </button>
+                    <button title="alignment" class="nav-link" id="jsrad-edit-dims" data-bs-toggle="tab" data-bs-target="#jsrad-edit-dims-tab" type="button" role="tab" aria-controls="jsrad-edit-dims-tab" aria-selected="false">
+                        <i class="la la-arrows"></i>
+                    </button>
+                    <button title="widget specific properties" class="nav-link" id="jsrad-edit-props" data-bs-toggle="tab" data-bs-target="#jsrad-edit-props-tab" type="button" role="tab" aria-controls="jsrad-edit-props-tab" aria-selected="false">
+                        <i class="la la-sliders"></i>
+                    </button>
+                    <button title="documentation" class="nav-link" id="jsrad-edit-docs" data-bs-toggle="tab" data-bs-target="#jsrad-edit-docs-tab" type="button" role="tab" aria-controls="jsrad-edit-docs-tab" aria-selected="false">
+                        <i class="la la-file-text"></i>
+                    </button>
+                </div>
+                <div class="tab-content">
+                    <div id="jsrad-edit-font-tab" class="tab-pane fade show active" role="tabpanel" aria-labelledby="jsrad-edit-props"></div>
+                    <div id="jsrad-edit-dims-tab" class="tab-pane fade" role="tabpanel" aria-labelledby="jsrad-edit-dims"></div>
+                    <div id="jsrad-edit-props-tab" class="tab-pane fade" role="tabpanel" aria-labelledby="jsrad-edit-props"></div>
+                    <div id="jsrad-edit-docs-tab" class="tab-pane fade" role="tabpanel" aria-labelledby="jsrad-edit-docs"></div>
+                </div>
+            </div>`);
+    }
+
+    set_properties(control) {
         let docs = new DocsProperties(),
-            // editor = new DatabaseProperties(),
             comments = new CommentsEditor(),
             fonts = new FormatProperties(),
             styler = new StyleProperties(),
@@ -286,13 +300,13 @@ export default class SidePanel {
         this.panel_container.find('.design-area-overview .toolbox-body').append(form_overview.get());
 
         this.panel_container.find('.design-area-text .toolbox-body').children().remove();
-        this.panel_container.find('.design-area-text .toolbox-body').append(fonts.attach(ctrl).append(styler.attach(ctrl)).append(this.AlignmentManager.attach(ctrl)));
+        let tabs = this.get_tabbed_ui();
+        tabs.find('#jsrad-edit-font-tab').append(fonts.attach(ctrl)).append(styler.attach(ctrl));
+        tabs.find('#jsrad-edit-dims-tab').append(this.AlignmentManager.attach(ctrl));
+        tabs.find('#jsrad-edit-props-tab').append(widget_props.attach(ctrl));
+        tabs.find('#jsrad-edit-docs-tab').append(docs.attach(ctrl));
 
-        // this.panel_container.find('.design-area-database .toolbox-body').children(':not(h4)').remove();
-        // this.panel_container.find('.design-area-database .toolbox-body').append(editor.attach(ctrl));
-
-        this.panel_container.find('.design-area-docs .toolbox-body').children().remove();
-        this.panel_container.find('.design-area-docs .toolbox-body').append(docs.attach(ctrl));
+        this.panel_container.find('.design-area-text .toolbox-body').append(tabs);
 
         this.panel_container.find('.design-area-comments .toolbox-body').children().remove();
         this.panel_container.find('.design-area-comments .toolbox-body').append(comments.attach(form));
@@ -303,9 +317,6 @@ export default class SidePanel {
 
         this.panel_container.find('.design-area-project-settings .toolbox-body').children().remove();
         this.panel_container.find('.design-area-project-settings .toolbox-body').append(prj_props.attach(this.Project, this.Forms));
-
-        this.panel_container.find('.design-area-props .toolbox-body').children().remove();
-        this.panel_container.find('.design-area-props .toolbox-body').append(widget_props.attach(ctrl));
     };
 
 }

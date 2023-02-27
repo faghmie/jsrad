@@ -18,8 +18,7 @@ var logger = {
 				border: '1px solid #BFBFBF'
 			})
 			.appendTo('body')
-			.show('blind')
-			.resizable({handles: 'n, w, nw'});
+			.show('blind');
 			
 		var header = $('<div>')
 			.css({

@@ -1,0 +1,264 @@
+@import 'colors';
+@import 'controls';
+
+.report {
+  $font-size: 14px;
+  font-size: $font-size;
+  $width: 70vw;
+  line-height: 2;
+  text-align: justify;
+  font-family: 'Lato', Helvetica, sans-serif;
+  font-family: 'Georgia', Calibri, sans-serif;
+
+  dl,
+  .dl {
+    @include width(400px);
+    display: block;
+    float: right;
+    padding: 15px;
+    border: 1px solid $color-border;
+    border-radius: 5px;
+    @extend .box-shadow;
+    background-color: $inverse-text-color;
+    margin: 10px;
+
+    p {
+      margin-bottom: 15px;
+    }
+
+    dt {
+      @include width(180px);
+      font-weight: bold;
+      display: inline-block;
+      text-transform: capitalize;
+      padding-right: 10px;
+    }
+
+    dd {
+      display: inline;
+      text-align: left;
+    }
+  }
+
+  p,
+  ul,
+  ol {
+    font-size: 1rem;
+  }
+
+  .cover {
+    color: $base-text-color;
+
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 30px;
+    width: $width;
+    border: 0;
+  }
+
+  .toc {
+    font-size: 1rem;
+    padding: 30px;
+    margin-bottom: 30px;
+    width: 100%;
+
+    border: 0;
+    border-bottom-width: 2px;
+    border-style: solid;
+    border-color: $color-border;
+  }
+
+  hr {
+    padding-bottom: 30px;
+  }
+
+  .capability-list {
+    display: table;
+    table-layout: fixed;
+    width: 95%;
+
+    .item {
+      display: table-cell;
+      font-weight: bold;
+      color: $base-text-color;
+
+      overflow: hidden;
+      text-align: center;
+      align-items: center;
+      margin: 0;
+      border: 0;
+      border-color: $color-border;
+      border-style: solid;
+      border-top-width: 2px;
+      border-bottom-width: 2px;
+      border-right-width: 2px;
+
+      &:first-child {
+        border-left-width: 2px;
+      }
+    }
+  }
+
+  table {
+    width: 90%;
+    max-width: 90%;
+
+    th {
+      text-align: center;
+      color: $color-primary;
+    }
+
+    @extend .table;
+
+    font-size: $font-size;
+  }
+
+  counter-reset: h1counter h2counter h3counter h4counter h5counter h6counter;
+
+  h1 {
+    counter-reset: h2counter;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: $color-primary;
+  }
+
+  h2 {
+    counter-reset: h3counter;
+    font-size: 18px;
+    font-weight: bold;
+    color: $color-primary;
+  }
+
+  h3 {
+    counter-reset: h4counter;
+    font-size: 16px;
+    font-style: italic;
+  }
+
+  h4 {
+    counter-reset: h5counter;
+    font-size: 14px;
+  }
+
+  h5 {
+    font-size: 12px;
+  }
+
+  h1:before {
+    counter-increment: h1counter;
+    content: counter(h1counter) '.\0000a0\0000a0';
+  }
+
+  h2:before {
+    counter-increment: h2counter;
+    content: counter(h1counter) '.'counter(h2counter) '.\0000a0\0000a0';
+  }
+
+  blockquote {
+    border: 0;
+    margin-left: 20px;
+  }
+}
+
+.entity-report {
+  @extend .report;
+
+  font-size: 12px;
+
+  .cover {
+    // color: $color-primary;
+    color: $base-text-color;
+
+    font-size: 1.5rem;
+    padding: 20px;
+    margin-bottom: 15px;
+  }
+
+
+  img {
+    display: block;
+    margin: auto;
+    // width: max(680px, 50vw);
+    max-width: 50vw;
+    height: auto;
+    border-radius: 5px;
+    border: 2px solid $color-primary;
+  }
+
+  blockquote {
+    background-color: $color-border;
+    border: 0;
+    border-left: 20px solid $color-secondary;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    // margin-left: 40px;
+    margin-left: 50px;
+    // padding-left: 10px;
+  }
+
+  code,
+  pre {
+    background-color: $color-secondary;
+    border: 0;
+    border-radius: 10px;
+    color: $inverse-text-color;
+    margin-left: 50px;
+    // padding: 15px;
+    font-size: 0.9rem;
+    line-height: 1rem;
+  }
+
+  hr {
+    padding: 2px;
+    border: 0;
+    background-color: rgba($color-primary, 0.2);
+  }
+
+  h1,
+  h2,
+  h3 {
+    padding: 10px;
+    margin-bottom: 20px;
+    font-weight: normal;
+  }
+
+  h3 {
+    // border-top: 2px dashed rgba($color-primary, 0.2);
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  h3 {
+    font-size: 16px;
+  }
+
+  h4 {
+    font-size: 14px;
+  }
+
+  h5 {
+    font-size: 12px;
+  }
+}
+
+.btn-grp-title {
+  position: fixed;
+  background-color: $base-bg-color;
+  color: $color-primary;
+  font-size: 0.75rem !important;
+  line-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+}

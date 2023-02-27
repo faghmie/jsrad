@@ -103,11 +103,6 @@ export default class ParallelActivity extends BaseActivity {
 			'z-index': 0
 		});
 
-		this.aspect_ratio = 1;
-		if (this.dom.container.is('.ui-resizable')) {
-			this.dom.container.resizable('option', 'aspectRatio', this.aspect_ratio);
-		}
-
 		let marker = $('<span>').addClass('my-caption');
 		marker
 			.text('P')

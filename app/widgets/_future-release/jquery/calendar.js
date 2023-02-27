@@ -7,7 +7,6 @@ var control_calendar = class Calendar extends ControlInterface {
 	properties = {
 		height: 280,
 		width: 230,
-		resizable: false
 	};
 
 	ignore_properties = [

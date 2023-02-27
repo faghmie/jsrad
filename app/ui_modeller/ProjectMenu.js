@@ -7,8 +7,6 @@ export default class ProjectMenu {
     }
 
     Build() {
-        let $this = this;
-
         let menu = $(`<ul class="dropdown-menu">
                             <li class="dropdown-item switch-diagram" title="open datasource" href="#"><i class="la la-exchange"></i> Switch to Data Modeller</li>
                             <li class="dropdown-divider"></li>
@@ -16,9 +14,9 @@ export default class ProjectMenu {
                             <li class="dropdown-divider"></li>
                             <li class="dropdown-item tb_save_to_disk"><i class="la la-fw la-save save-to-disk" title="save to local disk" ></i> Save to Disk</li>
                             <li class="dropdown-divider"></li>
-                            <li class="dropdown-item " id="tb_snapshot" title="generate documentation"><i class="la la-fw la-newspaper-o"></i> Generate Documentation</li>
                             <li class="dropdown-item " id="tb_image" title="generate image"><i class="la la-fw la-file-image-o"> </i> Export as Image</li>
                             </ul>`);
+                            // <li class="dropdown-item " id="tb_snapshot" title="generate documentation"><i class="la la-fw la-newspaper-o"></i> Generate Documentation</li>
         // <a class="dropdown-item reuse_ui"><i class="la la-fw la-puzzle-piece"></i> Re-use from existing...</a>
 
         menu.find('.tb_save_to_disk').off('click').on('click', function () {
@@ -28,7 +26,7 @@ export default class ProjectMenu {
         menu.find('.switch-diagram').on('click', function () {
             document.dispatchEvent(new CustomEvent('ide-switch-context', {
                 detail: {
-                    context: 'DATA-MODEL'
+                    context: 'DATA'
                 }
             }));
         });
@@ -36,7 +34,7 @@ export default class ProjectMenu {
 
         menu.find('.open-diagram').off('click').on('click', () => this.owner.ProjectDialog.Show(true));
 
-        menu.find('#tb_snapshot').off('click').on('click', () => this.owner.Project.GenerateDocument());
+        // menu.find('#tb_snapshot').off('click').on('click', () => this.owner.Project.GenerateDocument());
 
         menu.find('#tb_image').off('click').on('click', () => this.ExportToPng());
 

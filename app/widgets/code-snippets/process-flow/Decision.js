@@ -235,11 +235,6 @@ export default class Decision extends BaseActivity {
 			top: size * 0.125,
 		});
 
-		this.aspect_ratio = 1;
-		if (this.dom.container.is('.ui-resizable')) {
-			this.dom.container.resizable('option', 'aspectRatio', this.aspect_ratio);
-		}
-
 		let marker = $('<div>').addClass('my-caption').appendTo(this.ctrl);
 		let deg = -1 * this.rotation;
 		marker
