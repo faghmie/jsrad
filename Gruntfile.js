@@ -128,6 +128,12 @@ module.exports = function (grunt) {
 						cwd: 'app/ui_modeller',
 						src: '**',
 						dest: 'dist/app/ui_modeller'
+					},
+					{
+						expand: true,
+						cwd: 'app/common',
+						src: 'DocumentGenerator.js',
+						dest: 'dist/app/common'
 					}
 				]
 			}
