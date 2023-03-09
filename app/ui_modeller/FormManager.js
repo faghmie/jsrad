@@ -109,7 +109,6 @@ export default class FormManager {
     }
 
     async addForm(node) {
-
         let form = await new ControlFactory().Get(this.designer, { type: './Form', label: 'Form' });
         if (typeof node !== 'undefined') {
             await form.fromObject(node);
@@ -130,6 +129,8 @@ export default class FormManager {
 
         if (App.is_mobile) {
             form.resize(parseFloat(document.documentElement.clientWidth) - 10, 2 * parseFloat(document.documentElement.clientHeight));
+        } else if (node) {
+            form.resize(node.width, node.height);
         }
 
         return form;
@@ -157,15 +158,13 @@ export default class FormManager {
     }
 
     showForm(form) {
-        let $this = this.designer;
-
         if (typeof form === 'string') {
             form = this.controls[form];
         } else if (typeof form === 'undefined' || form == null) {
             form = this.getActiveForm();
         }
 
-        if (!form) return console.log('no form');
+        if (!form) return;
 
         this.designer.project_change_mode(!this.designer.in_run_mode);
         this.designer.dom.design_forms.children().hide();
@@ -176,7 +175,7 @@ export default class FormManager {
             }
         });
 
-        return $this;
+        return this.designer;
     }
 
     cloneForm() {
@@ -200,42 +199,6 @@ export default class FormManager {
         let active_form = this.designer.dom.design_forms.find('.form-canvas:visible');
         return active_form.data('form');
     };
-
-    GenerateDocument(form) {
-        return new Promise((resolve, reject) => {
-
-            form.show();
-
-            if (typeof form.deselect === 'function') form.deselect();
-
-            for (let ctrl in form.controls) {
-                if (typeof form.controls[ctrl].deselect === 'function') {
-                    form.controls[ctrl].deselect();
-                }
-            }
-
-            form.ctrl.removeClass('design-mode');
-            let options = {
-                allowTaint: true,
-                useCORS: true
-            };
-
-            html2canvas(form.ctrl[0], options).then((canvas) => {
-                form.ctrl.addClass('design-mode');
-
-                let div = $('<div>').addClass('docs');
-                div.append('<h1>' + form.label + '</h1>');
-
-                let img = $('<img>').appendTo(div);
-                img.attr('src', canvas.toDataURL());
-
-                div.append(form.get_documentation());
-                div.append('<hr><br>');
-
-                resolve(div.html());
-            });
-        });
-    }
 
     #remove_connector_for_control(ctrl) {
         for (let idx = 0; idx < this.connections.length; idx++) {

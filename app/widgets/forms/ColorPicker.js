@@ -5,8 +5,6 @@ export default class ColorPicker extends BaseFormControl(ControlInterface) {
 	properties = {
 		height: 30,
 		width: 180,
-		// height_fixed	: true,
-		// resizable: false
 	};
 
 	get_settings() {

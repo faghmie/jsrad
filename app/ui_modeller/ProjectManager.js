@@ -72,7 +72,7 @@ export default class ProjectManager {
                 this.Save(data);
             }.bind(this));
             
-        }.bind(this), 5000);
+        }.bind(this), 2000);
     }
 
     async Open(json) {

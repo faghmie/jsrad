@@ -29,7 +29,7 @@ export default class CustomProperties extends PropertyDatasource{
 
 		if (!(s instanceof Array)) s = [];
 
-		this.set_type(obj, widget);
+		// this.set_type(obj, widget);
 
 		this.add_separator('widget specific', widget)
 

@@ -13,7 +13,7 @@ export default class FormatProperties {
 		];
 
 		
-		widget.append(`<div class="title-line">font</div>`);
+		// widget.append(`<div class="title-line">font</div>`);
 		
 		let body = $(`<div class="row">`).appendTo(widget);
 		font_list.forEach(item => body.append(item));

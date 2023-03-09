@@ -160,7 +160,6 @@ export default class TextEntry extends BaseFormControl(ControlInterface) {
 	}
 
 	setValue(string) {
-		console.log(string)
 		if (typeof (this.value) === 'string') {
 			this.value = string;
 		}
@@ -178,7 +177,6 @@ export default class TextEntry extends BaseFormControl(ControlInterface) {
 		}
 
 		this.read_records().then(function (data) {
-			console.log(data)
 			this.val(data);
 		}.bind(this));
 	}

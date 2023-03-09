@@ -21,7 +21,7 @@ export default class SqlDesigner extends SqlBase {
 
 		$('.design-toolbox-panel.sql-props').show();
 	}
-	
+
 	Hide() {
 		this.dom.workspace.hide();
 		$('.design-toolbox-panel.sql-props').hide();
@@ -63,18 +63,6 @@ export default class SqlDesigner extends SqlBase {
 		return obj;
 	}
 
-	getDocumentation() {
-		let html = '<html>';
-		html += documentation_style.get_header(this.project.name);
-		html += '<body><div class="docs"><h1>' + this.project.name + '</h1>';
-		for (let t in this.tables) {
-			html += this.tables[t].toString();
-		}
-
-		html += '</div></body></html>';
-		return html;
-	}
-
 	fromObject(node, clear_existing) {
 		return new Promise((resolve, reject) => {
 			let $this = this,
@@ -87,20 +75,6 @@ export default class SqlDesigner extends SqlBase {
 			if (!node) return reject();
 
 			if (clear_existing !== false) this.ClearTables();
-
-			// this.project = $.extend(false, this.project, node);
-
-			// this.project.type = 'datamodel';
-
-			// if (typeof node.implementation_fields !== 'undefined')
-			// 	this.project.implementation_fields = node.implementation_fields.slice(0);
-
-			// if (typeof node.implementation_fields === 'string')
-			// 	this.project.implementation_fields = this.project.implementation_fields.split(/\r|\n|,/);
-
-			// if (this.project.database_type === 'undefined' || this.project.database_type === '' || this.project.database_type === null) {
-			// 	this.project.database_type = 'json';
-			// }
 
 			for (let uuid in node.entities) {
 				table = this.TableManager.addTable(

@@ -1,6 +1,7 @@
 .widget {
 	outline: 0;
 	outline: none;
+	
 }
 
 .widget-manager {
@@ -10,13 +11,14 @@
 	width: 100%;
 	height: 100%;
 	z-index: 9999;
-	opacity: 0.5;
-    
+	overflow: hidden;
+
+	border-radius: 5px;
+
     &.selected,
     &.hover,
     &:hover,
     &:focus{
-        opacity: 0.5;
         border: 3px solid #55C8FF !important;
     }
 }

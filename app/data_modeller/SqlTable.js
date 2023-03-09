@@ -49,20 +49,20 @@ export default class SqlTable extends SqlBase {
 	}
 
 	setName(string) {
-		var result = false;
+		let result = false;
 
 		if (typeof string === 'undefined') {
 			return result;
 		}
 
-		var title = string.trim();
-		var db_name = title.toLowerCase().replace(/( )/g, '_');
+		let title = string.trim();
+		let db_name = title.toLowerCase().replace(/( )/g, '_');
 
 		this.title = title;
 		this.name = db_name;
 
 		this.dom.container.find('.header .title').text(title);
-		var table = this;
+		let table = this;
 		document.dispatchEvent(new CustomEvent('table-changed', {
 			detail: {
 				table: table
@@ -73,7 +73,7 @@ export default class SqlTable extends SqlBase {
 	};
 
 	setComment(string) {
-		var result = false;
+		let result = false;
 
 		if (typeof string === 'undefined') {
 			return result;
@@ -81,7 +81,7 @@ export default class SqlTable extends SqlBase {
 
 		this.comment = string.trim();
 
-		var hdr = this.dom.container.find('.header .title');
+		let hdr = this.dom.container.find('.header .title');
 		hdr.find('.comment').remove();
 		hdr.append(`<p class="comment">${this.comment}</p>`);
 
@@ -208,13 +208,13 @@ export default class SqlTable extends SqlBase {
 	}
 
 	#make_droppable() {
-		var $this = this;
+		let $this = this;
 		this.dom.title.droppable({
 			drop: function (evt, ui) {
-				var src = ui.draggable.prop('row');
+				let src = ui.draggable.prop('row');
 				if (typeof src !== 'undefined') {
-					var col_opts = { type: src.sql_type, auto_increment: false, nullable: true, show_on_editor: true, show_on_grid: true, show_on_import: true };
-					var dest = $this.addRow(`FK_${src.table.name}_${src.name}`, col_opts);
+					let col_opts = { type: src.sql_type, auto_increment: false, nullable: true, show_on_editor: true, show_on_grid: true, show_on_import: true };
+					let dest = $this.addRow(`FK_${src.table.name}_${src.name}`, col_opts);
 
 					document.dispatchEvent(new CustomEvent('foreign-key-add', {
 						detail: {
@@ -231,7 +231,7 @@ export default class SqlTable extends SqlBase {
 	}
 
 	#make_draggable() {
-		var $this = this;
+		let $this = this;
 		this.dom.container.draggable({
 			grid: [10, 10],
 			handle: '.sql-table-title',
@@ -262,8 +262,8 @@ export default class SqlTable extends SqlBase {
 			},
 			drag: function (evt, ui) {
 				evt.stopPropagation();
-				var topdiff = $(this).offset().top - $this.begin_top;  // Current distance dragged element has traveled vertically
-				var leftdiff = $(this).offset().left - $this.begin_left; // Current distance dragged element has traveled horizontally
+				let topdiff = $(this).offset().top - $this.begin_top;  // Current distance dragged element has traveled vertically
+				let leftdiff = $(this).offset().left - $this.begin_left; // Current distance dragged element has traveled horizontally
 
 				if ($(this).hasClass('selected')) {
 					$('.selected').each(function (i) {
@@ -277,7 +277,7 @@ export default class SqlTable extends SqlBase {
 				evt.stopPropagation();
 				$this.toFront();
 
-				var pos = $this.dom.container.position();
+				let pos = $this.dom.container.position();
 				$this.top = pos.top;
 				$this.left = pos.left;
 
@@ -292,9 +292,9 @@ export default class SqlTable extends SqlBase {
 	}
 
 	ListenToFieldEvents() {
-		var $this = this;
+		let $this = this;
 		document.addEventListener('table-row-removed', function (evt) {
-			var table = evt.detail.table,
+			let table = evt.detail.table,
 				field = evt.detail.field;
 
 			if (table.uuid != $this.uuid) {
@@ -309,7 +309,7 @@ export default class SqlTable extends SqlBase {
 	}
 
 	ToggleFieldVisibility() {
-		var body = this.dom.container.find('table');
+		let body = this.dom.container.find('table');
 
 		this.toFront();
 
@@ -337,7 +337,7 @@ export default class SqlTable extends SqlBase {
 	}
 
 	deselect() {
-		for (var field in this.fields) {
+		for (let field in this.fields) {
 			if (typeof this.fields[field].deselect === 'function')
 				this.fields[field].deselect();
 		}
@@ -347,7 +347,7 @@ export default class SqlTable extends SqlBase {
 	}
 
 	addRow(title, data, uuid) {
-		var r = new SqlField(this, title || 'new field', data, this.owner);
+		let r = new SqlField(this, title || 'new field', data, this.owner);
 		if (uuid) r.uuid = uuid;
 
 		this.fields[r.uuid] = r;
@@ -376,7 +376,7 @@ export default class SqlTable extends SqlBase {
 		if (this.left < 0) this.left = 0;
 		if (this.top < 0) this.top = 0;
 
-		var parent = $(this.dom.parent);
+		let parent = $(this.dom.parent);
 
 		$(this.dom.container).css({
 			'left': (parent.scrollLeft() + this.left) + 'px',
@@ -386,8 +386,8 @@ export default class SqlTable extends SqlBase {
 	}
 
 	toObject() {
-		var obj = super.toObject();
-		var key = null;
+		let obj = super.toObject();
+		let key = null;
 
 		delete obj.relationships;
 		delete obj.fields;
@@ -414,12 +414,12 @@ export default class SqlTable extends SqlBase {
 	}
 
 	fromObject(node) {
-		var node_copy = $.extend({}, node);
+		let node_copy = $.extend({}, node);
 		delete node_copy.database;
 
 		this.prototype = $.extend(true, this, node_copy);
 
-		var $this = this,
+		let $this = this,
 			fields = {},
 			field_array = [],
 			field = null,
@@ -458,14 +458,14 @@ export default class SqlTable extends SqlBase {
 
 		if (false === this.expanded) {
 			$this.dom.container.find('table').hide();
-			var icon = $this.dom.expander;
+			let icon = $this.dom.expander;
 			icon.addClass('la-chevron-right');
 			icon.removeClass('la-chevron-down');
 		}
 	}
 
 	toString() {
-		var html = '',
+		let html = '',
 			$this = this,
 			f = null,
 			field = null;
@@ -533,9 +533,9 @@ export default class SqlTable extends SqlBase {
 		html += '</tr></thead>';
 
 		html += '<tbody>';
-		var fields = this.fields;
+		let fields = this.fields;
 		$(this.data).each(function () {
-			var data = this;
+			let data = this;
 			html += '<tr>';
 			for (f in this.fields) {
 				field = this.fields[f];
@@ -552,11 +552,11 @@ export default class SqlTable extends SqlBase {
 	}
 
 	destroy() {
-		for (var field in this.fields) {
+		for (let field in this.fields) {
 			this.removeRow(this.fields[field], false);
 		}
 
-		var table = this;
+		let table = this;
 		document.dispatchEvent(new CustomEvent('table-removed', {
 			detail: {
 				table: table

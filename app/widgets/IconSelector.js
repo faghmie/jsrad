@@ -20,10 +20,16 @@ export default class IconSelector {
     show() {
         var list = [];
         for (var key in fa_icon_list) {
+            let cls = key.trim();
+            if (!cls.startsWith('lab ') && !cls.startsWith('las') && !cls.startsWith('lar ')){
+                cls = 'la '+ cls;
+            }
             list.push({
                 text: fa_icon_list[key],
-                class: 'la ' + key
+                class: cls
             });
+
+
         }
 
         list.sort(function (a, b) {
@@ -50,8 +56,8 @@ export default class IconSelector {
         for (var index = 0; index < list.length; index++) {
             ul.append('<li>');
             ul.find('li:last')
-                .append(`<i class="la la-lw la-2x ${list[index].class}" icon-class="${list[index].class}">`)
-                .attr('title', list[index].class.replace(/la/g, '').trim())
+                .append(`<i class="la-2x ${list[index].class}" icon-class="${list[index].class}">`)
+                .attr('title', list[index].class.trim())
                 .attr('icon-class', list[index].class);
         }
         ul.find('li')

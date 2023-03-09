@@ -41,8 +41,8 @@ export default class ControlFactory {
 		// @ts-ignore
 		ctrl.dom.container = $(`<div class="widget">
 									<div class="widget-control">
-										<div class="widget-manager" ></div>
 									</div>
+									<div class="widget-manager" ></div>
 								</div>`)
 			.data('control', ctrl);
 
@@ -68,11 +68,12 @@ export default class ControlFactory {
 		}
 
 		this.#enable_manager(ctrl);
-		this.#enable_inline_editor(ctrl);
-		this.#enable_line_connectors(ctrl);
+		// this.#enable_inline_editor(ctrl);
+		// this.#enable_line_connectors(ctrl);
 
 		return ctrl;
 	}
+
 
 	#enable_manager(ctrl) {
 		if (!ctrl.form) {
@@ -84,13 +85,11 @@ export default class ControlFactory {
 
 		ctrl.dom.container.on('mouseover', ctrl, function (evt) {
 			evt.stopPropagation();
-			evt.data.dom.manager.addClass('hover');
 			evt.data.dom.manager.children().show();
 		});
 
 		ctrl.dom.container.on('mouseout', ctrl, function (evt) {
 			evt.stopPropagation();
-			evt.data.dom.manager.removeClass('hover');
 			evt.data.dom.manager.children().hide();
 		});
 	}
@@ -147,25 +146,25 @@ export default class ControlFactory {
 			//for now activities can only be connected via their property window
 			return;
 		}
-		new WidgetConnector(ctrl, ctrl.dom.manager);
+		// new WidgetConnector(ctrl, ctrl.dom.manager);
 
-		ctrl.dom.container.droppable({
-			greedy: true,
-			drop: function (event, ui) {
-				event.stopPropagation();
-				console.log('got here')
-				if (ui.draggable.is('.jsrad-line-connector') === false) return;
-				let src = ui.draggable.data('parent');
+		// ctrl.dom.container.droppable({
+		// 	greedy: true,
+		// 	drop: function (event, ui) {
+		// 		event.stopPropagation();
+		// 		console.log('got here')
+		// 		if (ui.draggable.is('.jsrad-line-connector') === false) return;
+		// 		let src = ui.draggable.data('parent');
 
-				document.dispatchEvent(new CustomEvent('ui-control-add-connector', {
-					detail: {
-						form: src.getForm(),
-						from: src,
-						to: ctrl,
-					}
-				}));
-			}
-		});
+		// 		document.dispatchEvent(new CustomEvent('ui-control-add-connector', {
+		// 			detail: {
+		// 				form: src.getForm(),
+		// 				from: src,
+		// 				to: ctrl,
+		// 			}
+		// 		}));
+		// 	}
+		// });
 	}
 
 	async getControl(type) {

@@ -7,13 +7,43 @@
 	left: calc(100vw - 300px);
 	max-height: calc(100vh - 48px);
 	overflow: visible;
-	width: 300px;
+	// width: 300px;
 	min-width: 50px;
 	color: $color-primary;
 	background-color: $side-panel-color;
 
 	border-radius: 5px;
 	box-shadow: 0px 0px 15px $color-primary;
+
+	.control-type-name{
+		height: 24px;
+		min-height: 24px;
+		max-height: 24px;
+		vertical-align: baseline;
+		font-size: 0.8rem;
+		overflow: hidden;
+		word-wrap: none;
+		margin-bottom: 10px;
+		button{
+			margin: 0;
+			padding: 5px;
+			margin-left: 5px;
+		}
+	}
+	.nav{
+		border-bottom: 1px solid $color-secondary !important;
+		margin-bottom: 10px !important;
+		
+		.nav-link{
+			border-top-left-radius: 5px !important;
+			border-top-right-radius: 5px !important;
+			color: $base-text-color !important;
+			&.active{
+				color: $color-primary !important;
+				font-weight: bold !important;
+			}
+		}
+	}
 
 	.design-toolbox-title {
 		font-size: 0.9rem;
@@ -23,30 +53,49 @@
 		color: $inverse-text-color;
 		margin: 0;
 		margin-bottom: 5px;
-		padding: 10px;
+		padding: 5px;
+		padding-left: 10px;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 
-		i {
-			&:hover {
-				display: inline-block;
+		.panel-controls {
+			display: flex;
+			flex-direction: row;
+			// gap: 5px;
+			padding: 0;
+			i {
+				margin: 0 !important;
+				display: block;
+				border-radius: 50%;
+				padding: 5px;
 
-				cursor: pointer;
-				background-color: $color-secondary;
-				color: $inverse-text-color;
+				&:hover {
+					display: inline-block;
+
+					cursor: pointer;
+					background-color: $color-secondary;
+					color: $inverse-text-color;
+				}
 			}
 		}
 	}
 
+
 	.toolbox-body {
 		padding: 10px;
-		width: 100%;
+		width: 300px;
 		overflow-x: hidden;
 		overflow-y: auto;
 
+		resize: both !important;
+
 		&.no-overflow {
 			overflow: hidden;
+		}
+
+		&.no-resize{
+			resize: none;
 		}
 	}
 }
@@ -242,11 +291,4 @@
 			}
 		}
 	}
-
-
 }
-
-// .active {
-// 	background-color: $color-primary !important;
-// 	color: $inverse-text-color !important;
-// }

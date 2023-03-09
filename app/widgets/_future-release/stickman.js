@@ -72,8 +72,6 @@ var control_stickman = {
 		
 		
 		this.aspect_ratio = this.width / this.height;
-		if (this.dom.container.is('.ui-resizable'))
-			this.dom.container.resizable('option', 'aspectRatio', this.aspect_ratio);
 		
 		this.caption_align = 'bottom';
     },

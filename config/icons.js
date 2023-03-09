@@ -482,6 +482,7 @@ export default {
   "la-quote-right": "Quote Right",
   "la-ra": "Ra",
   "la-random": "Random",
+  "lab la-readme": "Read Me",
   "la-rebel": "Rebel",
   "la-recycle": "Recycle",
   "la-reddit": "Reddit",

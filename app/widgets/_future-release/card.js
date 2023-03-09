@@ -4,7 +4,6 @@ var control_card = {
 	control_category	: null, //"Containers",
 	control_thumbnail	: "images/widgets/card.png",
 	properties	: {
-			resizable		: false,
 			label			: "card",
 			label_show	: false,
 			label_align	: "hide",

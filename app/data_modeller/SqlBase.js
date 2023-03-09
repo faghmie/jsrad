@@ -111,7 +111,6 @@ export default class SqlBase {
                     <div class="toolbox-body"></div>
                 </div>`)
             .appendTo($('body'))
-            .resizable()
             .draggable({
                 handle: '.design-toolbox-title'
             });
@@ -126,13 +125,13 @@ export default class SqlBase {
                         evt.target.classList.add('la-chevron-up');
                         panel.attr('current-height', panel.css('height'));
                         panel.css('height', 40);
-                        panel.resizable('destroy');
-
+                        panel.find('.toolbox-body').addClass('no-resize');
+                        
                     } else if (evt.target.className.includes('la-chevron-up')) {
                         evt.target.classList.remove('la-chevron-up');
                         evt.target.classList.add('la-chevron-down');
                         panel.css('height', panel.attr('current-height'));
-                        panel.resizable();
+                        panel.find('.toolbox-body').removeClass('no-resize');
                     }
                 } else {
                     panel.show();
