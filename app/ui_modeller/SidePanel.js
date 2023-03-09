@@ -256,23 +256,23 @@ export default class SidePanel {
             <div>
                 <div class="control-type-name"></div>
                 <div class="nav nav-tabs" role="tablist">
-                    <button title="font" class="nav-link active" id="jsrad-edit-font" data-bs-toggle="tab" data-bs-target="#jsrad-edit-font-tab" type="button" role="tab" aria-controls="jsrad-edit-font-tab" aria-selected="true">
+                    <button title="widget specific properties" class="nav-link active" id="jsrad-edit-props" data-bs-toggle="tab" data-bs-target="#jsrad-edit-props-tab" type="button" role="tab" aria-controls="jsrad-edit-props-tab" aria-selected="false">
+                        <i class="la la-sliders"></i>
+                    </button>
+                    <button title="font" class="nav-link" id="jsrad-edit-font" data-bs-toggle="tab" data-bs-target="#jsrad-edit-font-tab" type="button" role="tab" aria-controls="jsrad-edit-font-tab" aria-selected="true">
                         <i class="la la-font"></i>
                     </button>
                     <button title="alignment" class="nav-link" id="jsrad-edit-dims" data-bs-toggle="tab" data-bs-target="#jsrad-edit-dims-tab" type="button" role="tab" aria-controls="jsrad-edit-dims-tab" aria-selected="false">
                         <i class="la la-arrows"></i>
-                    </button>
-                    <button title="widget specific properties" class="nav-link" id="jsrad-edit-props" data-bs-toggle="tab" data-bs-target="#jsrad-edit-props-tab" type="button" role="tab" aria-controls="jsrad-edit-props-tab" aria-selected="false">
-                        <i class="la la-sliders"></i>
                     </button>
                     <button title="documentation" class="nav-link" id="jsrad-edit-docs" data-bs-toggle="tab" data-bs-target="#jsrad-edit-docs-tab" type="button" role="tab" aria-controls="jsrad-edit-docs-tab" aria-selected="false">
                         <i class="la la-file-text"></i>
                     </button>
                 </div>
                 <div class="tab-content">
-                    <div id="jsrad-edit-font-tab" class="tab-pane fade show active" role="tabpanel" aria-labelledby="jsrad-edit-props"></div>
+                    <div id="jsrad-edit-font-tab" class="tab-pane fade" role="tabpanel" aria-labelledby="jsrad-edit-props"></div>
                     <div id="jsrad-edit-dims-tab" class="tab-pane fade" role="tabpanel" aria-labelledby="jsrad-edit-dims"></div>
-                    <div id="jsrad-edit-props-tab" class="tab-pane fade" role="tabpanel" aria-labelledby="jsrad-edit-props"></div>
+                    <div id="jsrad-edit-props-tab" class="tab-pane fade  show active" role="tabpanel" aria-labelledby="jsrad-edit-props"></div>
                     <div id="jsrad-edit-docs-tab" class="tab-pane fade" role="tabpanel" aria-labelledby="jsrad-edit-docs"></div>
                 </div>
             </div>`);

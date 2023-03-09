@@ -2883,6 +2883,7 @@ textarea.stickynotes {
   height: 100%;
   z-index: 9999;
   overflow: hidden;
+  border-radius: 5px;
 }
 
 .widget-manager.selected, .widget-manager.hover, .widget-manager:hover, .widget-manager:focus {
@@ -4151,8 +4152,8 @@ input.setting {
 .entity-report img {
   display: block;
   margin: auto;
-  max-width: 50vw;
-  height: auto;
+  width: auto;
+  max-height: 300px;
   border-radius: 5px;
   border: 2px solid #53809e;
 }

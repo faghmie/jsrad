@@ -182,8 +182,9 @@
     display: block;
     margin: auto;
     // width: max(680px, 50vw);
-    max-width: 50vw;
-    height: auto;
+    // max-width: 50vw;
+    width: auto;
+    max-height: 300px;
     border-radius: 5px;
     border: 2px solid $color-primary;
   }

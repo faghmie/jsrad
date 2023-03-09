@@ -56,9 +56,9 @@ export default class DocumentGenerator {
             'width': '80vw',
             'min-width': '80vw',
             'max-width': '80vw',
-            'height': '50vw',
-            'min-height': '50vw',
-            'max-height': '50vw',
+            'height': '40vw',
+            'min-height': '40vw',
+            'max-height': '40vw',
         })
     }
 

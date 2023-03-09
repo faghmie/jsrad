@@ -6,7 +6,7 @@ import SidePanel from "./SidePanel.js";
 import ControlFactory from "../widgets/ControlFactory.js";
 import SqlDesigner from "../data_modeller/SqlDesigner.js";
 import Form from "../widgets/Form.js";
-import DocumentGenerator from "../common/DocumentGeneratorjs.js";
+import DocumentGenerator from "../common/DocumentGenerator.js";
 
 export default class UiDesigner {
 
