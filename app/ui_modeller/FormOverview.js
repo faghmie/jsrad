@@ -1,5 +1,7 @@
 // import Form from "../widgets/form";
 
+import App from "../common/App.js";
+
 export default class FormOverview {
 	Forms = null;
 
@@ -198,7 +200,7 @@ export default class FormOverview {
 					form.preview = canvas.toDataURL();
 					resolve();
 				} catch (e) {
-					App.MessageError('Failed to update preview of form');
+					App.notifyError('Failed to update preview of form');
 					console.log(e);
 				}
 			});

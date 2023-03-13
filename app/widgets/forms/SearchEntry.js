@@ -24,7 +24,7 @@ export default class SearchBox extends BaseFormControl(ControlInterface) {
 	_selected_text = null;
 
 	toObject() {
-		var obj = super.toObject();
+		let obj = super.toObject();
 		delete obj._selected_key;
 		delete obj._selected_text;
 
@@ -39,10 +39,10 @@ export default class SearchBox extends BaseFormControl(ControlInterface) {
 	}
 
 	get_settings() {
-		var settings = super.get_settings();
+		let settings = super.get_settings();
 
 		//PLACEHOLDER
-		var placeholder = $("<input type='text'>")
+		let placeholder = $("<input type='text'>")
 			.addClass('form-control')
 			.val(this.placeholder || this.label);
 
@@ -53,7 +53,7 @@ export default class SearchBox extends BaseFormControl(ControlInterface) {
 		}.bind(this));
 
 		//CLEAR ON SHOW
-		var clear_on_show = $("<input type='checkbox'>");
+		let clear_on_show = $("<input type='checkbox'>");
 		if (this.clear_on_show === true)
 			clear_on_show.attr("checked", "checked");
 
@@ -70,8 +70,7 @@ export default class SearchBox extends BaseFormControl(ControlInterface) {
 	change_mode(in_run_mode) {
 		super.change_mode(in_run_mode);
 
-		var event = "click";
-		var $this = this;
+		let event = "click";
 
 		if (false === this.in_run_mode) {
 			this.ctrl.find(".search-submit").off(event);
@@ -84,59 +83,9 @@ export default class SearchBox extends BaseFormControl(ControlInterface) {
 			return;
 		}
 
-		if (typeof App.datasources[this.datasource.name] === "undefined") {
-			this.setValue();
-			return;
-		}
-
-		if (typeof App.datasources[this.datasource.name] === "undefined" || typeof App.datasources[this.datasource.name].entities === "undefined") {
-			this.setValue();
-			return;
-		}
-
-
 		//RESET ANY PREVIOUS VALUE
 		this._selected_key = null;
 		this._selected_text = null;
-
-		//BIND EVENTS FOR SEARCH
-		this.ctrl.find(".search-submit").off(event).on(event, function (evt) {
-			var ds = App.datasources[$this.datasource.name].entities[$this.datasource.entity];
-			//IF THIS FIELD IS A FOREIGN KEY IN IT'S CURRENT DATA-SET THEN WE NEED TO SEARCH THE
-			//REFERED DATASET
-			var field = ds.fields[$this.datasource.value[0]];
-			if (field && field.foreign_key) {
-				//CHANGE THE DATA-SOURCE TO THE 
-				ds = App.datasources[$this.datasource.name].entities[field.foreign_key.sql_table];
-			}
-
-
-			ds.showSearch(function (data) {
-
-				for (var col in ds.fields) {
-					var sel_field = ds.fields[col];
-					if (sel_field.primary_key === true) {
-						$this._selected_key = ds.message[sel_field.name];
-
-						$this.ctrl.find(".search-input").val($this._selected_key);
-					}
-				}
-
-				if ($this.datasource.value.length > 0) {
-					$this._selected_text = ds.message[$this.datasource.value[0]];
-					if (field && field.foreign_key)
-						$this.ctrl.find(".search-input").val(ds.message[field.foreign_key.value]);
-					else
-						$this.ctrl.find(".search-input").val(ds.message[$this.datasource.value[0]]);
-				}
-			});
-		});
-
-		this.ctrl.find(".search-submit").off("focusout").on("focusout", function (evt) {
-			if ($this._selected_text !== null) {
-
-			}
-		});
 	}
 
 	format() {

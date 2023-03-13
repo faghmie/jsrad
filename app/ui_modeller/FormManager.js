@@ -1,3 +1,5 @@
+import App from "../common/App.js";
+import Dialog from "../common/Dialog.js";
 import line_connection from "../widgets/connections.js";
 import ConnectionProperties from "../widgets/connection_properties.js";
 import ControlFactory from "../widgets/ControlFactory.js";
@@ -79,7 +81,7 @@ export default class FormManager {
 
         props.css({ 'overflow': 'show' });
 
-        open_card(props, {
+        new Dialog(props, {
             title: 'Line Settings',
             'width': '350px',
             'min-width': '350px',

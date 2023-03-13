@@ -52,48 +52,48 @@ var jsrad_feedback = function(){
 			var request = {
 					ajax_type: 'GET'
 				};
-			App.ajax_call('api/v1/feedback', request, function(data){
-				comments.children().remove();
-				for(var k = 0; k < data.length; k++){
-					append_comment_line(data[k]);
-				}
-			});
+			// App.ajax_call('api/v1/feedback', request, function(data){
+			// 	comments.children().remove();
+			// 	for(var k = 0; k < data.length; k++){
+			// 		append_comment_line(data[k]);
+			// 	}
+			// });
 		}
 		
-		if (!App.AuthToken || (typeof App.AuthToken.email === 'undefined')){
-			input_row.children().remove();
-			input_row.append('<p class="text-danger">You need to log in to provide feedback</p>');
-		}
+		// if (!App.AuthToken || (typeof App.AuthToken.email === 'undefined')){
+		// 	input_row.children().remove();
+		// 	input_row.append('<p class="text-danger">You need to log in to provide feedback</p>');
+		// }
 		
-		send.on('click', function(){
-			var request = {
-					ajax_type: 'POST',
-					'type': 'email',
-					auth_token: App.AuthToken,
-					'relates_to': 'General',
-					'body': input_row.find('textarea').val().trim(),
-				};
+		// send.on('click', function(){
+		// 	var request = {
+		// 			ajax_type: 'POST',
+		// 			'type': 'email',
+		// 			auth_token: App.AuthToken,
+		// 			'relates_to': 'General',
+		// 			'body': input_row.find('textarea').val().trim(),
+		// 		};
 			
-			if (request.body.length === 0){
-				return App.MessageError('No feedback message given.');
-			}
+		// 	if (request.body.length === 0){
+		// 		return App.MessageError('No feedback message given.');
+		// 	}
 			
-			if (!request.auth_token || (typeof request.auth_token.email === 'undefined')){
-				return App.MessageError('Please first log in before you can provide feedback.');
-			}
+		// 	if (!request.auth_token || (typeof request.auth_token.email === 'undefined')){
+		// 		return App.MessageError('Please first log in before you can provide feedback.');
+		// 	}
 			
-			App.ajax_call('api/v1/feedback', request, function(data){
-				App.MessageInfo('feedback has been sent');
-				refresh_comments();
-			});
-		});
+		// 	App.ajax_call('api/v1/feedback', request, function(data){
+		// 		App.MessageInfo('feedback has been sent');
+		// 		refresh_comments();
+		// 	});
+		// });
 		
 		refresh_comments();
 		
-		var email_card = open_card(email, {
-				title: 'Send Feedback',
-				'min-width': '300px',
-				height: '80vh',
-				'min-height': '80vh'
-			});
+		// var email_card = new Dialog(email, {
+		// 		title: 'Send Feedback',
+		// 		'min-width': '300px',
+		// 		height: '80vh',
+		// 		'min-height': '80vh'
+		// 	});
 };

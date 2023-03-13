@@ -1,3 +1,5 @@
+import App from "../common/App.js";
+import Dialog from "../common/Dialog.js";
 import DataMenu from "./DataMenu.js";
 import SqlBase from "./SqlBase.js";
 import TableManager from "./TableManager.js";
@@ -313,7 +315,7 @@ export default class SqlDesigner extends SqlBase {
 		let _load_local_file = function () {
 			let files = $dlg.find('#fileInput')[0].files;
 			if (files.length === 0) {
-				return App.MessageError('No file selected.');
+				return App.notifyError('No file selected.');
 			}
 			table_name = files[0].name;
 
@@ -390,7 +392,7 @@ export default class SqlDesigner extends SqlBase {
 				_import_from_text(json);
 			});
 		});
-		card = open_card($dlg, {
+		card = new Dialog($dlg, {
 			title: 'Import CSV to Table',
 		});
 	}
@@ -531,7 +533,7 @@ export default class SqlDesigner extends SqlBase {
 				_import_from_text(json);
 			});
 		});
-		card = open_card($dlg, {
+		card = new Dialog($dlg, {
 			title: 'Import JSON',
 		});
 	}

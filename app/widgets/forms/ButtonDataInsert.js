@@ -1,3 +1,5 @@
+import App from "../../common/App.js";
+import Dialog from "../../common/Dialog.js";
 import Button from "./Button.js";
 
 export default class ButtonDataInsert extends Button {
@@ -133,7 +135,7 @@ export default class ButtonDataInsert extends Button {
 			this.#make_field_row(mapper, col);
 		}.bind(this));
 
-		open_card(mapper, {
+		new Dialog(mapper, {
 			title: 'Define Filter',
 			'width': '60vw',
 			'min-width': '60vw',

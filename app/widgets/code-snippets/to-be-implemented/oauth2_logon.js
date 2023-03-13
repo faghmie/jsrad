@@ -1,3 +1,5 @@
+const { default: Dialog } = require("../../../common/Dialog");
+
 var control_oauth2_logon = {
 	type				: 'oauth2_logon',
 	control_label		: 'Authentication (OAuth2 Logon)',
@@ -18,7 +20,7 @@ var control_oauth2_logon = {
 		field = this.create_attribute('thumbnail', true).appendTo(mapper);
 		field.find('input').before('<label>thumbnail</label>');
 		
-		open_card(mapper,{
+		new Dialog(mapper,{
 			title: 'Map results',
 			width: '25vw',
 		});

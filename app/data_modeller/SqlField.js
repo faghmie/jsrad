@@ -1,3 +1,4 @@
+import App from "../common/App.js";
 import ColumnProperties from "./ColumnProperties.js";
 import SqlBase from "./SqlBase.js";
 
@@ -77,7 +78,7 @@ export default class SqlField extends SqlBase{
 		this.dom.container.find('.la-times').on('click tap', this, function(evt){
 			evt.stopPropagation();
 
-			App.Confirm('Are you sure you want to remove the field' + ' [' + evt.data.name + '] ?', function () {
+			Ap.Confirm('Are you sure you want to remove the field' + ' [' + evt.data.name + '] ?', function () {
 				evt.data.destroy();
 			});
 		});
@@ -145,7 +146,7 @@ export default class SqlField extends SqlBase{
 			result = true;
 		} else {
 			if (this.table.fields[this.uuid] !== this){
-				App.MessageError('There is already a field with this name: '+db_name);
+				App.notifyError('There is already a field with this name: '+db_name);
 			}
 		}
 		

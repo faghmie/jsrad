@@ -26,7 +26,9 @@ body {
     font-weight: 300;
     color: $base-text-color;
     background-color: $base-bg-color;
-    // background-color: $color-border;
+
+    position:fixed;
+    overflow:hidden;
 }
 
 h1,

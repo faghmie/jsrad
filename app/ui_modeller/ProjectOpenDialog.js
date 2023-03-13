@@ -1,3 +1,5 @@
+import Dialog from "../common/Dialog.js";
+
 export default class ProjectOpenDialog {
     project;
     designer;
@@ -170,7 +172,7 @@ export default class ProjectOpenDialog {
 
             this.#make_sample_list(sample_list, resolve);
 
-            this.card = open_card(dlg, {
+            this.card = new Dialog(dlg, {
                 no_header: true,
             });
 

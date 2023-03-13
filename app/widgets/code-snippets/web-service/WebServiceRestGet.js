@@ -1,3 +1,4 @@
+import App from "../../../common/App.js";
 import BaseActivity from "../BaseActivity.js";
 
 export default class SimpleRestGetServiceActivity extends BaseActivity {
@@ -22,7 +23,7 @@ export default class SimpleRestGetServiceActivity extends BaseActivity {
 			}.bind(this))
 			.catch(err => {
 				console.log(err);
-				App.MessageError('Failed to call remote-service at: ' + url);
+				App.notifyError('Failed to call remote-service at: ' + url);
 			})
 	}
 }

@@ -7,6 +7,7 @@ import ControlFactory from "../widgets/ControlFactory.js";
 import SqlDesigner from "../data_modeller/SqlDesigner.js";
 import Form from "../widgets/Form.js";
 import DocumentGenerator from "../common/DocumentGenerator.js";
+import App from "../common/App.js";
 
 export default class UiDesigner {
 
@@ -91,6 +92,10 @@ export default class UiDesigner {
 
 		document.addEventListener('ide-control-add', function (evt) {
 			this.addControl(evt.detail);
+		}.bind(this));
+
+		document.addEventListener('ide-control-remove', function (evt) {
+			this.removeSelected();
 		}.bind(this));
 
 		document.addEventListener('ide-is-dirty', function (evt) {
@@ -331,7 +336,7 @@ export default class UiDesigner {
 		if (typeof in_run_mode === 'undefined') in_run_mode = false;
 
 		if (!json.project || ['application', 'module'].indexOf(json.project.type) === -1) {
-			return App.MessageError('This is not an application file');
+			return App.notifyError('This is not an application file');
 		}
 
 		await this.#restore_forms(json, in_run_mode);
@@ -355,7 +360,7 @@ export default class UiDesigner {
 			for (form in forms) {
 				if (this.Forms.Exists(form)) {
 					frm_found = this.Forms.Get(form);
-					App.MessageError('One of your forms conflicts has the same id/name as :' + frm_found.label);
+					App.notifyError('One of your forms conflicts has the same id/name as :' + frm_found.label);
 					return false;
 				}
 			}

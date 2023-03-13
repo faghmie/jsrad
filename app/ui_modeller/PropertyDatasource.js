@@ -1,3 +1,6 @@
+import App from "../common/App.js";
+import Dialog from "../common/Dialog.js";
+
 export default class PropertyDatasource {
 
     // Data aware properties
@@ -74,7 +77,7 @@ export default class PropertyDatasource {
             console.log(ctrl.data_fields)
         }.bind(this));
 
-        open_card(mapper, {
+        new Dialog(mapper, {
             title: 'Field Selector',
             'width': '30vw',
             'min-width': '30vw',
@@ -119,7 +122,7 @@ export default class PropertyDatasource {
             div = $(`<div></div>`).append(field[1][1]).appendTo(mapper);
         }.bind(this));
 
-        open_card(mapper, {
+        new Dialog(mapper, {
             title: 'Map database fields',
             'width': '60vw',
             'min-width': '60vw',
@@ -158,7 +161,7 @@ export default class PropertyDatasource {
             this.#make_filter_row(mapper, col);
         }.bind(this));
 
-        open_card(mapper, {
+        new Dialog(mapper, {
             title: 'Define Filter',
             'width': '60vw',
             'min-width': '60vw',

@@ -251,6 +251,14 @@ export default class SidePanel {
         document.dispatchEvent(new CustomEvent('ui-form-show'));
     }
 
+    /**
+     *
+     *
+     * @param {CustomProperties} widget_props
+     * @param {*} ctrl
+     * @return {*} 
+     * @memberof SidePanel
+     */
     get_tabbed_ui(widget_props, ctrl) {
         let props = $(`
             <div>

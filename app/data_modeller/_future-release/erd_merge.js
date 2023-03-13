@@ -39,10 +39,10 @@ var erd_merge = function (_designer){
 			item.append(this[1]);
 		});
 		
-		open_card(div,{
-			title: 'Re-use an existing model',
-			width: '40%',
-		});
+		// new Dialog(div,{
+		// 	title: 'Re-use an existing model',
+		// 	width: '40%',
+		// });
 	}
 	
     function load_local_file(files, on_done){

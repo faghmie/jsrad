@@ -1,3 +1,5 @@
+const { default: Dialog } = require("../../common/Dialog");
+
 var control_ol = {
 	type			: 'ol',
 	control_label		: 'List',
@@ -49,7 +51,7 @@ var control_ol = {
 		field.find('select').before('<label>Key</label>');
 		mapper.append(field);
 					
-		open_card(mapper,{
+		new Dialog(mapper,{
 			title: 'Leave blank the fields you don\'t want to map',
 		});
 	},

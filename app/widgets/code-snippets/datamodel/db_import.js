@@ -1,3 +1,5 @@
+const { default: Dialog } = require("../../../common/Dialog");
+
 var control_db_import = {
 	type				: 'db_import',
 	control_label		: 'Database Import Record',
@@ -33,7 +35,7 @@ var control_db_import = {
 			mapper.append(field);
 		}
 		
-		open_card(mapper,{
+		new Dialog(mapper,{
 			title: 'Map database fields',
 		});
 	},
@@ -227,7 +229,7 @@ var control_db_import = {
 			
 			table.create(record, function(data, err){
 				if (err.length !== 0){
-					return open_card(err.join('<br>'),{title:'Creation Failed'});
+					return new Dialog(err.join('<br>'),{title:'Creation Failed'});
 				}
 				
 				$this._import_the_list(table, list, group_by, on_done);

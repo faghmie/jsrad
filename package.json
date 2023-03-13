@@ -6,8 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "common": [
-      "app/common/app.js",
-      "app/common/card.js",
       "app/common/utils.js"
     ],
     "widgets": [
