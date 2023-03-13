@@ -132,7 +132,7 @@ module.exports = function (grunt) {
 					{
 						expand: true,
 						cwd: 'app/common',
-						src: 'DocumentGenerator.js',
+						src: ['DocumentGenerator.js', 'App.js', 'Dialog.js'],
 						dest: 'dist/app/common'
 					}
 				]
