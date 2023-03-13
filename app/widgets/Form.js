@@ -1,5 +1,7 @@
 import ControlInterface from "./_base/ControlInterface.js";
 import resolutions from '../../config/device_resolutions.js';
+import Dialog from "../common/Dialog.js";
+import App from "../common/App.js";
 
 export default class Form extends ControlInterface {
 
@@ -247,7 +249,7 @@ export default class Form extends ControlInterface {
 			case 'popup':
 			case 'module':
 			case 'message-dialog':
-				this.card = open_card(this.dom.container, {
+				this.card = new Dialog(this.dom.container, {
 					title: this.label,
 					width: this.width,
 					height: this.height,
@@ -329,7 +331,7 @@ export default class Form extends ControlInterface {
 			</div>
 		</div>`);
 
-		this.busy_card = open_card(progress, {
+		this.busy_card = new Dialog(progress, {
 			// no_header: true,
 		});
 	}
@@ -370,7 +372,7 @@ export default class Form extends ControlInterface {
 		}
 
 		if (null === start_process) {
-			return App.MessageError('No starting process detected');
+			return App.notifyError('No starting process detected');
 		}
 
 		if (!start_process.message) {

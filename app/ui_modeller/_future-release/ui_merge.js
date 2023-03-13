@@ -1,3 +1,6 @@
+const { default: App } = require("../../common/App");
+const { default: Dialog } = require("../../common/Dialog");
+
 var ui_merge = function (_designer){
 	
 	var designer = _designer;
@@ -18,7 +21,7 @@ var ui_merge = function (_designer){
 			item.append(this[1]);
 		});
 		
-		open_card(div,{
+		new Dialog(div,{
 			title: 'Re-use an existing model',
 			width: '25vw',
 		});

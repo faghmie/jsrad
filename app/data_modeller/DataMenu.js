@@ -1,3 +1,5 @@
+import Dialog from "../common/Dialog.js";
+
 export default class DataMenu {
 	constructor(designer, container) {
 		this.container = container;
@@ -93,7 +95,7 @@ export default class DataMenu {
 				});
 			};
 
-			let card = open_card($dlg, {
+			let card = new Dialog($dlg, {
 				'max-width': 200,
 				'min-width': 200,
 				'height': '100px',
@@ -161,7 +163,7 @@ export default class DataMenu {
 			});
 
 			let $dlg = $('<div>').attr('title', 'Documentation');
-			open_card($dlg, {
+			new Dialog($dlg, {
 				title: 'Documentation'
 			});
 
@@ -197,7 +199,7 @@ export default class DataMenu {
 
 			saveAs(blob, $this.project.name + '.json');
 
-			open_card($dlg, {
+			new Dialog($dlg, {
 				title: 'JSON'
 			});
 		});

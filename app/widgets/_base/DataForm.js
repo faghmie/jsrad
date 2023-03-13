@@ -1,3 +1,5 @@
+import App from "../../common/App.js";
+import Dialog from "../../common/Dialog.js";
 import SqlBase from "../../data_modeller/SqlBase.js";
 import SqlTable from "../../data_modeller/SqlTable.js";
 import ControlInterface from "./ControlInterface.js";
@@ -44,7 +46,7 @@ export default class DataForm {
             div.append(`<input class="form-control data-field" value="${this.record[col.uuid]||''}" col-uuid="${col.uuid}">`);
         }
 
-        this.card = open_card(div, {
+        this.card = new Dialog(div, {
             action_list: this.#create_buttons()
         });
     }

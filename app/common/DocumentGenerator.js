@@ -1,3 +1,5 @@
+import Dialog from "./Dialog.js";
+
 export default class DocumentGenerator {
 
     Forms = null;
@@ -51,15 +53,15 @@ export default class DocumentGenerator {
 
         this.Forms.showForm(current_active_form);
         
-        open_card(dlg, {
+        new Dialog(dlg, {
             title: 'Documentation',
             'width': '80vw',
             'min-width': '80vw',
             'max-width': '80vw',
-            'height': '40vw',
-            'min-height': '40vw',
-            'max-height': '40vw',
-        })
+            'height': '80vh',
+            'min-height': '80vh',
+            'max-height': '80vh',
+        });
     }
 
     #get_datamodel_diagram() {

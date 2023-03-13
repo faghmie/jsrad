@@ -1,3 +1,5 @@
+import App from '../common/App.js';
+
 export default class ProjectManager {
     browserDbName = 'JSRAD_DATA';
 

@@ -1,3 +1,4 @@
+import App from "../common/App.js";
 import SqlRelation from "./SqlRelation.js";
 import SqlTable from "./SqlTable.js";
 

@@ -1,3 +1,5 @@
+import App from '../common/App.js';
+
 export default class Toolbox {
 
     toolbox = null;
@@ -199,7 +201,7 @@ export default class Toolbox {
         target.find('.widget-template').each(function () {
             if ($(this).attr('type') === widget.type) {
                 already_exist = true;
-                App.MessageWarning(widget.type + ' already loaded');
+                App.notifyWarning(widget.type + ' already loaded');
             }
         });
 

@@ -1,3 +1,5 @@
+const { default: Dialog } = require("../../common/Dialog.js");
+
 var control_comment_box = {
 	type				: 'comment_box',
 	control_label		: 'Comment Box',
@@ -49,7 +51,7 @@ var control_comment_box = {
 		field.find('select').before('<label>timestamp</label>');
 		mapper.append(field);
 			
-		open_card(mapper,{
+		new Dialog(mapper,{
 			title: 'Leave blank the fields you don\'t want to map',
 		});
 	},

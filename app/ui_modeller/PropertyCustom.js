@@ -1,3 +1,4 @@
+import Dialog from "../common/Dialog.js";
 import PropertyDatasource from "./PropertyDatasource.js";
 import Toolbox from "./Toolbox.js";
 
@@ -80,6 +81,7 @@ export default class CustomProperties extends PropertyDatasource{
 		}
 
 		let type = $(`<span> ${s.join('/').toTitle().trim()}</span>`);
+		this.show_remove(obj, type);
 		this.show_description(obj, type);
 
 		widget.append(type)
@@ -92,7 +94,7 @@ export default class CustomProperties extends PropertyDatasource{
 			}
 			let info = $(`<button><i class="la la-info-circle"></i></button>`)
 				.on('click', function(){
-					open_card($(`<p>${widget_info.description.trim()}</p>`),{
+					new Dialog($(`<p>${widget_info.description.trim()}</p>`),{
 						'width': '40vw',
 						'min-width': '40vw',
 						'max-width': '40vw'
@@ -100,6 +102,15 @@ export default class CustomProperties extends PropertyDatasource{
 				});
 			widget.after(info);
 		});
+	}
+
+	show_remove(obj, widget){
+		let info = $(`<button><i class="la la-trash-o"></i></button>`)
+			.on('click', function(){
+				document.dispatchEvent(new CustomEvent('ide-control-remove'));
+			});
+
+		widget.after(info);
 	}
 
 	on_click_event(obj, widget) {

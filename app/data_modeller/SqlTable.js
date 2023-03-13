@@ -1,3 +1,4 @@
+import Dialog from "../common/Dialog.js";
 import DataForm from "../widgets/_base/DataForm.js";
 import SqlBase from "./SqlBase.js";
 import SqlField from "./SqlField.js";
@@ -197,7 +198,7 @@ export default class SqlTable extends SqlBase {
 
 		table.append(thead).append(tbody);
 
-		open_card(ctrl,{
+		new Dialog(ctrl,{
 			width: '80vw',
 			'min-width': '80vw',
 			'max-width': '80vw',

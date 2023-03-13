@@ -39,90 +39,12 @@
     <link type="text/css" rel="stylesheet" href="app/styles/data_modeller.css" />
     <link type="text/css" rel="stylesheet" href="app/styles/ui_modeller.css" />
 
-    <style>
-        .loader {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            z-index: 1;
-            width: 150px;
-            height: 150px;
-            margin: -75px 0 0 -75px;
-            border: 16px solid #f3f3f3;
-            border-radius: 50%;
-            border-top: 16px solid #3498db;
-            width: 120px;
-            height: 120px;
-            -webkit-animation: spin 2s linear infinite;
-            animation: spin 2s linear infinite;
-        }
-
-        @-webkit-keyframes spin {
-            0% {
-                -webkit-transform: rotate(0deg);
-            }
-
-            100% {
-                -webkit-transform: rotate(360deg);
-            }
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Add animation to "page content" */
-        .animate-bottom {
-            position: relative;
-            -webkit-animation-name: animatebottom;
-            -webkit-animation-duration: 1s;
-            animation-name: animatebottom;
-            animation-duration: 1s
-        }
-
-        @-webkit-keyframes animatebottom {
-            from {
-                bottom: -100px;
-                opacity: 0
-            }
-
-            to {
-                bottom: 0px;
-                opacity: 1
-            }
-        }
-
-        @keyframes animatebottom {
-            from {
-                bottom: -100px;
-                opacity: 0
-            }
-
-            to {
-                bottom: 0;
-                opacity: 1
-            }
-        }
-
-        .startup-loader {
-
-            text-align: center;
-        }
-    </style>
 </head>
 
 <body>
     <div class="startup-loader">
         <div class="loader"></div>
-
-        <h3 style="display:inline-block;">starting...</h3>
-        <h4 id="progress-message"></h4>
+        <div class="title">loading</div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
@@ -152,8 +74,6 @@
     <script type="text/javascript" src="libs/jqplot/plugins/jqplot.pointLabels.js"></script>
     <script type="text/javascript" src="libs/jqplot/plugins/jqplot.bubbleRenderer.js"></script>
 
-    <script type="text/javascript" src="app/common/app.js"></script>
-    <script type="text/javascript" src="app/common/card.js"></script>
     <script type="text/javascript" src="app/common/utils.js"></script>
 
 

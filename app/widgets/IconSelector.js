@@ -1,4 +1,6 @@
 import fa_icon_list from '../../config/icons.js';
+import App from '../common/App.js';
+import Dialog from '../common/Dialog.js';
 
 export default class IconSelector {
     constructor(options_in) {
@@ -11,7 +13,7 @@ export default class IconSelector {
     open() {
         var div = $('<div>');
         if ((typeof fa_icon_list === 'undefined') || (typeof fa_icon_list !== 'object')) {
-            App.MessageError('Line-awesome icon-list did not load, please check if the la-icons.js file is in your app directory');
+            App.notifyError('Line-awesome icon-list did not load, please check if the la-icons.js file is in your app directory');
             return;
         }
         this.show();
@@ -69,7 +71,7 @@ export default class IconSelector {
                 );
             }.bind(this));
         
-        open_card(div, {
+        new Dialog(div, {
             title: 'Select Icon',
         });
 

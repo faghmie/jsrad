@@ -1,3 +1,5 @@
+const { default: App } = require("../common/App");
+
 var DataEditor = {	//YOU ARE MEANT TO EXTEND THE JSON DATA WITH THIS OBJECT TO CREATE THE DYNAMIC FORMS.
 	defaults	: {
 			context			: null,

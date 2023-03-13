@@ -1,3 +1,4 @@
+import App from "../../../common/App.js";
 import BaseActivity from "../BaseActivity.js";
 
 export default class PresntValueOfAnnuity extends BaseActivity {
@@ -19,22 +20,22 @@ export default class PresntValueOfAnnuity extends BaseActivity {
 
 		amount = parseFloat(amount);
 		if (isNaN(amount)) {
-			App.MessageError('Loan amount must be a numeric value');
+			App.notifyError('Loan amount must be a numeric value');
 			return;
 		}
 
 		interest_rate = parseFloat(interest_rate);
 		if (isNaN(interest_rate)) {
-			App.MessageError('Interest rate must be a numeric value');
+			App.notifyError('Interest rate must be a numeric value');
 			return;
 		}
 
 		period = parseFloat(period);
 		if (isNaN(period)) {
-			App.MessageError('Period must be a numeric value');
+			App.notifyError('Period must be a numeric value');
 			return;
 		} else if (period <= 0) {
-			App.MessageError('Period must be greater than zero');
+			App.notifyError('Period must be greater than zero');
 		}
 
 		interest_rate = (interest_rate / 12.0000) / 100.0000;

@@ -1,3 +1,6 @@
+import App from "../common/App.js";
+import Dialog from "../common/Dialog.js";
+
 export default class ProjectOpenDialog {
     project;
     designer;
@@ -61,7 +64,7 @@ export default class ProjectOpenDialog {
             data.forEach((item) => {
                 map[item.uuid] = item;
                 the_list.append(`
-                    <div class="list-item" value="${item.uuid}">
+                    <div class="list-item" value="${item.uuid}" item-name="${item.name}">
                         ${item.name}
                         <span class="remove la la-remove"></span>
                     </div>`);
@@ -107,8 +110,9 @@ export default class ProjectOpenDialog {
 
     #remove_project(list_item) {
         let project_uuid = list_item.getAttribute('value');
+        let project_name = list_item.getAttribute('item-name');
         App.Confirm(
-            'Are you sure you want to remove this project?<br>This operations cannot be reversed.',
+            `[${project_name}]<br><br>Are you sure you want to remove this?<br>Operation cannot be reversed.`,
             function () {
                 this.project.Remove(project_uuid).then(function () {
                     list_item.remove();
@@ -170,7 +174,7 @@ export default class ProjectOpenDialog {
 
             this.#make_sample_list(sample_list, resolve);
 
-            this.card = open_card(dlg, {
+            this.card = new Dialog(dlg, {
                 no_header: true,
             });
 

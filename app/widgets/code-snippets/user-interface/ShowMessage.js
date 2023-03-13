@@ -1,3 +1,4 @@
+import Dialog from "../../../common/Dialog.js";
 import BaseActivity from "../BaseActivity.js";
 
 export default class ShowMessageActivity extends BaseActivity {
@@ -24,7 +25,7 @@ export default class ShowMessageActivity extends BaseActivity {
 					
 		div.find('.body-content').html(JSON.stringify(msg));
 
-		card = open_card(div, {
+		card = new Dialog(div, {
 			no_header: true,
 		});
 

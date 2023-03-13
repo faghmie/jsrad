@@ -32,13 +32,14 @@ export default class CommentsEditor{
         var msg_box = $(`<textarea class="form-control comment" placeholder="type comments here (ctrl+enter for newline)" ></textarea>`)
             .appendTo(container);
 
-        if (!App.AuthToken || !App.AuthToken.email){
+        // if (!App.AuthToken || !App.AuthToken.email){
             author.val("Unknown");
-            // return App.MessageError('Please signin before attempting to add comments');
-        } else{
-            author.val(App.AuthToken.email);
-            author.disabled();
-        }
+        //     // return App.MessageError('Please signin before attempting to add comments');
+        // } else{
+            // author.val(App.AuthToken.email);
+            // author.disabled();
+        // }
+
         container.append("<div class='comment-list'>");
         
         var $this = this;
