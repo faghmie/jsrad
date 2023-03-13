@@ -30,7 +30,7 @@ export default class PropertyDatasource {
         let col = null;
 
         let table = this.ctrl.datamodel.TableManager.tables[this.ctrl.entity];
-        if (!table) return;
+        if (!table) return App.notifyError('First select an entity');
 
         this.ctrl.data_fields ||= [];
 
@@ -97,7 +97,7 @@ export default class PropertyDatasource {
         let col = null;
 
         let table = this.ctrl.datamodel.TableManager.tables[this.ctrl.entity];
-        if (!table) return;
+        if (!table) return App.notifyError('First select an entity');
 
         for (col of table) {
             fields.push(col);
@@ -142,7 +142,7 @@ export default class PropertyDatasource {
         let col = null;
 
         let table = this.ctrl.datamodel.TableManager.tables[this.ctrl.entity];
-        if (!table) return;
+        if (!table) return App.notifyError('First select an entity');
 
         for (col of table) {
             fields.push(col);

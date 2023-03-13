@@ -12,14 +12,13 @@ export default class HeadingControl extends ControlInterface {
 
 	ignore_properties = [
 		//'on-click',
-		'name',
+		// 'name',
 		'value',
 		'allow inline editor',
 	];
 
 	get_settings() {
-		let $this = this,
-			types = $(`<select class="form-control">`).append("<option>");
+		let types = $(`<select class="form-select form-control">`).append("<option>");
 
 		this.heading_list.forEach(item => {
 			let opt = $("<option>").text(item).appendTo(types);

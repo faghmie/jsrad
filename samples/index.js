@@ -14,4 +14,9 @@ export default [
         "description": "Demo application built using the tool to understand general flow of screens and how data will be stored. The purpose is to track financial spending",
         "file": "FinancialHealthDemo.js"  
     },
+    {
+        "name": "Loan Repayment Calculator",
+        "description": "Simple project to show how to use the loan-repayment code-snippet",
+        "file": "Loan-Repayment-Calculator.js"  
+    },
 ]

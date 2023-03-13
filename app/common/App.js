@@ -1,3 +1,5 @@
+import Dialog from "./Dialog.js";
+
 export default class App{
 
 	static MessageTypes = {
