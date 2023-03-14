@@ -2,7 +2,7 @@ import Dialog from "../common/Dialog.js";
 import PropertyDatasource from "./PropertyDatasource.js";
 import Toolbox from "./Toolbox.js";
 
-export default class CustomProperties extends PropertyDatasource{
+export default class CustomProperties extends PropertyDatasource {
 	widget = null;
 
 	/** @type{ControlInterface|undefined} */
@@ -10,7 +10,7 @@ export default class CustomProperties extends PropertyDatasource{
 
 	constructor(_designer) {
 		super();
-		
+
 		this._designer = _designer;
 	}
 
@@ -81,20 +81,21 @@ export default class CustomProperties extends PropertyDatasource{
 		}
 
 		let type = $(`<span> ${s.join('/').toTitle().trim()}</span>`);
+		widget.append(type)
+		
 		this.show_remove(obj, type);
 		this.show_description(obj, type);
 
-		widget.append(type)
 	}
-	
-	show_description(obj, widget){
+
+	show_description(obj, widget) {
 		Toolbox.FetchWidgetInfo(obj.type).then(widget_info => {
-			if (!widget_info.description){
+			if (!widget_info.description) {
 				return;
 			}
 			let info = $(`<button><i class="la la-info-circle"></i></button>`)
-				.on('click', function(){
-					new Dialog($(`<p>${widget_info.description.trim()}</p>`),{
+				.on('click', function () {
+					new Dialog($(`<p>${widget_info.description.trim()}</p>`), {
 						'width': '40vw',
 						'min-width': '40vw',
 						'max-width': '40vw'
@@ -104,13 +105,17 @@ export default class CustomProperties extends PropertyDatasource{
 		});
 	}
 
-	show_remove(obj, widget){
-		let info = $(`<button><i class="la la-trash-o"></i></button>`)
-			.on('click', function(){
+	show_remove(obj, widget) {
+		if (obj.type.includes('Form')){
+			return;
+		}
+		
+		let btn = $(`<button><i class="la la-trash"></i></button>`)
+			.on('click', function () {
 				document.dispatchEvent(new CustomEvent('ide-control-remove'));
 			});
 
-		widget.after(info);
+		widget.after(btn);
 	}
 
 	on_click_event(obj, widget) {

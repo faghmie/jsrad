@@ -63,7 +63,6 @@ export default class SidePanel {
         }.bind(this));
 
         document.addEventListener('ui-show-properties', function (evt) {
-            console.log('got here')
             this.#show_panel('.design-area-text');
             this.set_properties(evt.detail);
         }.bind(this));
