@@ -152,6 +152,10 @@ export default class UiDesigner {
 		}
 
 		this.is_dirty = true;
+
+		document.dispatchEvent(new CustomEvent('ui-show-properties', {
+			detail: form
+		}));
 	};
 
 	setup_key_bindings() {
