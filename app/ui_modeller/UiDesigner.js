@@ -345,6 +345,7 @@ export default class UiDesigner {
 
 		await this.#restore_forms(json, in_run_mode);
 
+		this.DataModeller.ClearTables();
 		this.DataModeller.fromObject(json.datamodels, true);
 		if (json.connections instanceof Array) {
 			json.connections.forEach(function(conn){
