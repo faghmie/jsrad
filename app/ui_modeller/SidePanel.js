@@ -151,9 +151,6 @@ export default class SidePanel {
             .appendTo(this.panel_container);
 
         panel
-            .draggable({
-                handle: '.design-toolbox-title'
-            })
             .on('click', { className: `.${cls}` }, function (evt) {
                 if (evt.target.className.includes('close-panel')) {
                     this.panel_container.find(evt.data.className).hide();
@@ -176,8 +173,44 @@ export default class SidePanel {
                     this.#show_panel(evt.data.className);
                 }
             }.bind(this));
+        
+        this.#make_panel_draggable(this.panel_container, panel);
 
         return panel;
+    }
+
+    #make_panel_draggable(container, panel){
+        panel.attr('draggable', 'true');
+        panel.uniqueId();
+        panel[0].addEventListener('dragstart', function (evt) {
+			let style = window.getComputedStyle(evt.target, null);
+
+			evt.dataTransfer.setData("text/plain", JSON.stringify({
+				left: (parseInt(style.getPropertyValue("left"), 10) - evt.clientX),
+				top: (parseInt(style.getPropertyValue("top"), 10) - evt.clientY),
+				id: evt.target.id
+			}));
+		});
+
+        container.on('dragover', function (evt) {
+			evt.preventDefault(); // stops the browser from redirecting.
+			return false;
+		});
+
+        container[0].addEventListener('drop', function (evt) {
+			let info = JSON.parse(evt.dataTransfer.getData("text/plain"));
+			if (info.id) {
+				let ctrl = document.getElementById(info.id);
+				let left = (evt.clientX + parseInt(info.left, 10));
+				let top = (evt.clientY + parseInt(info.top, 10));
+
+                ctrl.style.top = top +'px';
+                ctrl.style.left = left + 'px';
+			}
+
+			// evt.stopPropagation(); // stops the browser from redirecting.
+			// return false;
+		}.bind(this));
     }
 
     #set_button_events() {

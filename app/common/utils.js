@@ -1,11 +1,3 @@
-if (typeof FD === 'undefined') FD = {};
-
-var DB_DESIGN_AREA = {
-	height: 4096,
-	width: 4096
-};
-
-var GRID_SIZE = 10;
 
 function csv_to_array(text, separator, quote) {
 	if (typeof text === 'undefined' || null === text || text.length === 0) {

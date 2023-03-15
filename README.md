@@ -115,11 +115,11 @@ The system can import a CSV file and auto-create the table with its data.
 - [ ] Define process to allow developers to add new widgets easily. The code-base is currently shared, so need to think of where and how to keep those widgets
 
 ## Usability
-- [ ] Add touch events (read up on 
+- [x] Add touch events (read up on 
 [Add touch to your site](https://web.dev/add-touch-to-your-site/))
 - [ ] Create a wiki for the tool
 - [ ] Create a web-page for the tool
-- [ ] Generate Documentation: relook at the structure of the documentation being generated
+- [x] Generate Documentation: relook at the structure of the documentation being generated
 - [ ] Allow documentation to be written in markdown (my biznous.net tool already does this, so I need to port it)
 - [x] Ability to remove a project from the browser-storage
 - [x] Open New Project dialogue should have a section that allows user to select "system examples/templates"
@@ -131,9 +131,9 @@ The system can import a CSV file and auto-create the table with its data.
 - [ ] Feedback.js - is meant to allow users to send feedback to my email, but need to consider an "About" dialog with a link to github where they can leave comments?
 - [x] General: remove all code that was meant to read data from the server.
 - [x] General: remove all "data-aware" code. This was only applicable because of the "server" component that use to exist
-- [ ] User-Menu: remove class - not used currently - might use later when user-cloud-storage is introduced
-- [ ] Mobile-Toolbar - remove this class and find way to auto-scale SidePanel.js class for mobile
-- [ ] Card.js - convert to a class and module
+- [x] User-Menu: remove class - not used currently - might use later when user-cloud-storage is introduced
+- [x] Mobile-Toolbar - remove this class and find way to auto-scale SidePanel.js class for mobile
+- [x] Card.js - convert to a class and module
 - [x] App.js - convert to class and module. Also remove all "data-awareness code.
 - [ ] Find a better line drawing library - current one is custom written:
    - [ ] JsPlumb - used before but felt clunky and "heavy"
@@ -147,9 +147,9 @@ The system can import a CSV file and auto-create the table with its data.
 - [ ] Code-snippets: create a "logger" window to output messages to
 - [ ] Shape-widgets: understand and implement a way to create rounded corners for the shapes 
 - [ ] Shape-widgets: understand and implement a way to create allow borders to have same styles as normal html/css borders (e.g. dashed vs solid vs dotted)
-- [ ] UI-Modeller: fix z-index of "design-mode" form so that resizer is below toolboxes
+- [x] UI-Modeller: fix z-index of "design-mode" form so that resizer is below toolboxes
 - [x] Icon-Selector: refactor to "class" and change from font-awesome to line-awesome
-- [ ] Widget-Context-Menu: either refactor or remove this functionality
+- [x] Widget-Context-Menu: either refactor or remove this functionality
 - [ ] Image-Selector - not sure if should still be used. Might drop this, cause the way the product works now it is online only - thus image selector will be as simple as setting URL to image and not selecting a file from disk. Initially, this functionality would take an image and then upload it to "your area" and then allow then user to use that image from a link in "your space".
 - [ ] Logger.js - Meant to be a "debug-window" for code-snippets so that you can view the messages flowing. Might need to re-introduce this, but it first needs to be refactored.
 
