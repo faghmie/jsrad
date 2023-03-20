@@ -133,7 +133,7 @@ export default class SqlTable extends SqlBase {
 
 		this.#make_droppable();
 
-		this.#make_draggable();
+		this.make_panel_draggable(this.owner.container, this.dom.container);
 
 		this.toFront();
 		this.set_title(this.name, null);
@@ -227,67 +227,6 @@ export default class SqlTable extends SqlBase {
 
 					// dest.redraw();
 				}
-			}
-		});
-	}
-
-	#make_draggable() {
-		let $this = this;
-		this.dom.container.draggable({
-			grid: [10, 10],
-			handle: '.sql-table-title',
-			cursor: 'move',
-			containment: this.owner.container,
-			start: function (evt) {
-				evt.stopPropagation();
-				$this.moving = true;
-				//COPIED CODE TO MOVE ALL ELEMENTS THAT ARE SELECTED
-				$this.posTopArray = [];
-				$this.posLeftArray = [];
-				if ($(this).hasClass('selected')) {  // Loop through each element and store beginning start and left positions
-					$('.selected').each(function (i) {
-						let thiscsstop = $(this).css('top');
-						if (thiscsstop === 'auto') thiscsstop = 0; // For IE
-
-						let thiscssleft = $(this).css('left');
-						if (thiscssleft === 'auto') thiscssleft = 0; // For IE
-
-						$this.posTopArray[i] = parseInt(thiscsstop);
-						$this.posLeftArray[i] = parseInt(thiscssleft);
-					});
-				}
-
-				$this.begin_top = $(this).offset().top; // Dragged element top position
-				$this.begin_left = $(this).offset().left; // Dragged element left position
-
-			},
-			drag: function (evt, ui) {
-				evt.stopPropagation();
-				let topdiff = $(this).offset().top - $this.begin_top;  // Current distance dragged element has traveled vertically
-				let leftdiff = $(this).offset().left - $this.begin_left; // Current distance dragged element has traveled horizontally
-
-				if ($(this).hasClass('selected')) {
-					$('.selected').each(function (i) {
-						$(this).css('top', $this.posTopArray[i] + topdiff); // Move element veritically - current css top + distance dragged element has travelled vertically
-						$(this).css('left', $this.posLeftArray[i] + leftdiff); // Move element horizontally - current css left + distance dragged element has travelled horizontally
-					});
-				}
-			},
-			stop: function (evt) {
-				//NOW FIX THE RELATIONSHIP WIRES
-				evt.stopPropagation();
-				$this.toFront();
-
-				let pos = $this.dom.container.position();
-				$this.top = pos.top;
-				$this.left = pos.left;
-
-				document.dispatchEvent(new CustomEvent('table-redraw', {
-					detail: {
-						table: $this
-					}
-				}));
-
 			}
 		});
 	}

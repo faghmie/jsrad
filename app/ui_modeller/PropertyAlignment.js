@@ -8,6 +8,8 @@ export default class AlignmentManager {
 		let widget = $(`<div class="text-formater">`);
 
 		// widget.append(`<div class="title-line">alignment</div>`);
+		widget.append(this.snap_to_width(obj));
+		widget.append(`<div class="title-line"></div>`);
 		widget.append(this.get_alignment(obj));
 		widget.append(this.get_spacing(obj));
 		widget.append(this.get_order(obj));
@@ -17,6 +19,19 @@ export default class AlignmentManager {
 		return widget;
 	};
 
+	snap_to_width(obj){
+		let chk = $(`<input type="checkbox">`);
+		if (obj.snap_to_width == true){
+			chk.attr('checked', 'checked');
+		}
+
+		chk.on('click', function () {
+			obj.snap_to_width = this.checked;
+			obj.resize();
+		});
+
+		return $(`<div class="control-with-label"><label>snap to width</label></div>`).append(chk);
+	}
 	get_order(obj) {
 		let prop = $(`
 			<div>

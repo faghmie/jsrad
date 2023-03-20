@@ -43,6 +43,7 @@ export default class ControlInterface extends ControlDatasource(ControlActivityB
 	is_a_card = false;
 	aspect_ratio = false;
 	is_locked = false;
+	snap_to_width = false;
 
 	/** @type {ControlInterface | undefined} */
 	controls = {};
@@ -318,6 +319,17 @@ export default class ControlInterface extends ControlDatasource(ControlActivityB
 	}
 
 	resize(width, height) {
+		
+		if (true === this.snap_to_width){
+			let form = this.getForm();
+			if (form != this){
+				width = form.width;
+				height ||= this.height;
+				this.move(0, this.top);
+			}
+		}
+
+
 		if (width !== undefined && height !== undefined) {
 			this.width = width;
 			if (false === this.height_fixed){

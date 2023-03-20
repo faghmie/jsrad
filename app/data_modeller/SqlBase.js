@@ -110,10 +110,7 @@ export default class SqlBase {
                     </div>
                     <div class="toolbox-body"></div>
                 </div>`)
-            .appendTo($('body'))
-            .draggable({
-                handle: '.design-toolbox-title'
-            });
+            .appendTo($('body'));
 
             panel.on('click', panel, function (evt) {
 				let panel = evt.data;
@@ -142,6 +139,7 @@ export default class SqlBase {
 
 		panel.show();
 
+		this.make_panel_draggable($('body'), panel)
         return panel;
     }
 
