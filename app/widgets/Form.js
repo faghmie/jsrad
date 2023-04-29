@@ -7,6 +7,8 @@ export default class Form extends ControlInterface {
 
 	static control_description = 'resolutions was retrieved from: https://www.mydevice.io/';
 
+	design_width = null;
+
 	properties = {
 		height: 480,
 		width: 680,
@@ -54,6 +56,41 @@ export default class Form extends ControlInterface {
 		for (let f in this.controls) {
 			this.controls[f].format();
 		}
+	}
+	
+	resize(width, height) {
+
+		[width, height] = this.get_responsive_dims(width, height);
+				
+		super.resize(width, height);
+		
+		for (let f in this.controls) {
+			this.controls[f].resize();
+		}
+
+		super.setControlStyle();
+	}
+
+	get_responsive_dims(width, height){
+		let form = this.getForm();
+		if (form.in_run_mode === true){
+			if (this.is_responsive === true){
+				width = window.innerWidth;
+				height = height || this.height;
+				if (this.design_width == null){
+					this.design_width = this.width;
+				}
+			}
+		} else {
+			if (this.is_responsive === true){
+				width = width || this.design_width;
+				height = height || this.height;
+			}
+
+			this.design_width = null;
+		}
+
+		return [width, height];
 	}
 
 	change_mode(in_run_mode) {
@@ -575,17 +612,19 @@ export default class Form extends ControlInterface {
 
 		let responsive = $("<input type='checkbox' id='responsive'>");
 
-		if (this.is_responsive === true)
+		if (this.is_responsive === true){
 			responsive.attr('checked', 'checked');
+		}
 
-		responsive.on('click', function () {
-			$this.is_responsive = this.checked;
-		});
+		responsive.on('click', function (evt) {
+			this.is_responsive = evt.target.checked;
+		}.bind(this));
 
 		return [
 			['resolution', select],
 			['orientation', orientation],
 			['form type', form_type],
+			['responsive', responsive],
 			['auto refresh values', cmb_refresh],
 		];
 	}

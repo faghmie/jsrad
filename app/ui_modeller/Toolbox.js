@@ -160,8 +160,8 @@ export default class Toolbox {
 
         ctrls.forEach(function(ctrl){
             ctrl.addEventListener('dragstart', function(evt){
+                evt.stopPropagation();
                 let style = window.getComputedStyle(evt.target, null);
-    
                 evt.dataTransfer.setData("text/plain", JSON.stringify({
                     left:  (parseInt(style.getPropertyValue("left"), 10) - evt.clientX),
                     top: (parseInt(style.getPropertyValue("top"), 10) - evt.clientY),

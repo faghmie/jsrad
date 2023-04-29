@@ -19,4 +19,9 @@ export default [
         "description": "Simple project to show how to use the loan-repayment code-snippet",
         "file": "Loan-Repayment-Calculator.js"  
     },
+    {
+        "name": "CSV File Import",
+        "description": "Illustrates how to use the CSV-File-Import activity to import a CSV file into a table control",
+        "file": "CSV-File-Import.js"  
+    },
 ]

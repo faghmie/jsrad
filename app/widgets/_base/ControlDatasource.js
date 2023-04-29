@@ -40,13 +40,19 @@ export const ControlDatasource = (superclass) => class extends superclass {
 	insert_record(record) {
 		return new Promise((resolve, reject) => {
 			let ds = this.datamodel.TableManager.tables;
-			if (!ds) return resolve();
+			if (!ds){
+				console.log('Table list empty');
+				return resolve();
+			} 
 
 			let table = ds[this.entity];
-			if (!table) return resolve();
+			if (!table){
+				console.log('Table not found : ' + this.entity, ds);
+				return resolve();
+			} 
 
 			table.data ||= [];
-
+			
 			//Give the record a system-id
 			record.__system_id__ = generate_uuid();
 

@@ -136,4 +136,8 @@ export const ControlActivityBase = (superclass) => class extends superclass {
             return this.message_map[attribute];
         }
     }
+
+    set_message(attribute, value){
+        this.message[this.get_attribute(attribute)] = value;
+    }
 }

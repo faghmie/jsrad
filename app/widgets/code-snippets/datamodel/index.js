@@ -27,5 +27,12 @@ export default [
     label: 'Update records',
     description: `Update one or more records`,
   },
+  {
+    category: 'Code (DataModel)',
+    thumbnail: 'class: la la-cube',
+    type: 'code-snippets/datamodel/DataFileImport',
+    label: 'Import data from a file into an entity',
+    description: `Import data from a CSV file into an entity, if no entity exists it will create the entity`,
+  },
 
 ];

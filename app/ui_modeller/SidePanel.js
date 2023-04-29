@@ -183,6 +183,7 @@ export default class SidePanel {
         panel.attr('draggable', 'true');
         panel.uniqueId();
         panel[0].addEventListener('dragstart', function (evt) {
+            evt.stopPropagation();
 			let style = window.getComputedStyle(evt.target, null);
 
 			evt.dataTransfer.setData("text/plain", JSON.stringify({

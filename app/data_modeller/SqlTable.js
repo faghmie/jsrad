@@ -33,7 +33,7 @@ export default class SqlTable extends SqlBase {
 		this.owner = owner;
 		this.TableProperties = new TableProperties(this);
 
-		this.#build(left, top);
+		this.#build(left||300, top||80);
 	}
 
 	[Symbol.iterator]() {

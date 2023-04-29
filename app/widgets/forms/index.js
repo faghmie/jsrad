@@ -14,6 +14,13 @@ export default [
   },
   {
     category: 'Forms',
+    type: 'forms/ButtonDataImport',
+    label: 'Button (Data Import)',
+    thumbnail: 'images/widgets/button.png',
+    description: `Import a CSV file into a specific data entity.`
+  },
+  {
+    category: 'Forms',
     type: 'forms/ButtonDataFormInsert',
     label: 'Button (DataForm Insert)',
     thumbnail: 'images/widgets/button.png',
