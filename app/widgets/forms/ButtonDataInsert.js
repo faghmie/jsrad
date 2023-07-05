@@ -43,6 +43,11 @@ export default class ButtonDataInsert extends Button {
 		this.insert_record(record).then(() => {
 			App.notifyInfo('Record inserted');
 			this.ctrl.hide();
+
+			//clear form-message to prevent duplicate messages
+			this.getForm().message = {};
+			this.getForm().pre_message = {};
+			console.log(this.getForm())
 		});
 	}
 

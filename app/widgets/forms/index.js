@@ -21,6 +21,13 @@ export default [
   },
   {
     category: 'Forms',
+    type: 'forms/ButtonDataExport',
+    label: 'Button (Data Export)',
+    thumbnail: 'images/widgets/button.png',
+    description: `Export a specific table to a CSV file`
+  },
+  {
+    category: 'Forms',
     type: 'forms/ButtonDataFormInsert',
     label: 'Button (DataForm Insert)',
     thumbnail: 'images/widgets/button.png',

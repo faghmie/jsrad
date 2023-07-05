@@ -1,8 +1,11 @@
+import App from "../../common/App.js";
 import ControlInterface from "../_base/ControlInterface.js";
 
 export class BaseChart extends ControlInterface {
-	
+
 	chart = null;
+	is_data_aware = true;
+
 	style = {
 		'background-color': '#FFFFFF',
 		'border-style': 'solid',
@@ -26,7 +29,6 @@ export class BaseChart extends ControlInterface {
 		'allow inline editor',
 	];
 
-	// style_to_exclude = ['border-width', 'border-color', 'border-style'];
 	style_to_exclude = ['background-color', 'font-size', 'font-weight', 'font-style', 'color'];
 
 	chart_area_style = {
@@ -45,6 +47,137 @@ export class BaseChart extends ControlInterface {
 		shadowAlpha: 0.07 // Opacity of the shadow
 	};
 
+	get_settings() {
+		return [
+			// ...super.get_settings(),
+			['X-Axis', this.get_x_axis()],
+			['Y-Axis', this.get_y_axis()]
+		];
+	}
+
+	get_table_fields() {
+		let fields = [];
+
+		/** @type{SqlField|undefined} */
+		let col = null;
+
+		let table = this.datamodel.TableManager.tables[this.entity];
+		if (!table) return App.notifyError('First select an entity');
+
+		for (col of table) {
+			fields.push(col);
+		}
+
+		fields = fields.sort(function (a, b) {
+			return (a.title || '').localeCompare(b.title);
+		});
+
+		return fields;
+	}
+
+	get_x_axis() {
+		//ON THIS CHANGE WE LOAD THE TABLES
+		let fields = this.get_table_fields(),
+			mapper = $(`<select class="form-select  form-control"><option></option></select>`);
+
+		if (!fields) {
+			return console.log('No fields available');
+		}
+
+		fields.forEach(function (col) {
+			let chk = $(`<option value="${col.uuid}">${col.title}</option>`).appendTo(mapper);
+
+			if (this.data_x_axis == col.uuid) {
+				chk.attr('selected', 'selected');
+			}
+		}.bind(this));
+
+		mapper.on('change', function (evt) {
+			this.data_x_axis = evt.target.value
+			document.dispatchEvent(new CustomEvent('ide-is-dirty'));
+		}.bind(this));
+
+		return mapper;
+	}
+
+	get_y_axis() {
+		//ON THIS CHANGE WE LOAD THE TABLES
+		let fields = this.get_table_fields(),
+			mapper = $(`<select class="form-select form-control"><option></option></select>`);
+		if (!fields) {
+			return console.log('No fields available');
+		}
+		fields.forEach(function (col) {
+			let chk = $(`<option value="${col.uuid}">${col.title}</option>`).appendTo(mapper);
+
+			if (this.data_y_axis == col.uuid) {
+				chk.attr('selected', 'selected');
+			}
+		}.bind(this));
+
+		mapper.on('change', function (evt) {
+			this.data_y_axis = evt.target.value;
+			document.dispatchEvent(new CustomEvent('ide-is-dirty'));
+		}.bind(this));
+
+		return mapper;
+	}
+
+	get_chart_data(data) {
+		let x_col = this.get_field_name(this.data_x_axis);
+		let y_col = this.get_field_name(this.data_y_axis);
+		
+		let chart_data = data.map(item => {
+			return {
+				x: item[x_col],
+				y: item[y_col]
+			};
+		});
+		
+		let values = {};
+		chart_data.forEach(item => {
+			if (!values[item.x]) {
+				values[item.x] = parseFloat(item.y);
+			} else {
+				values[item.x] += parseFloat(item.y);
+			}
+		});
+
+		chart_data = Object.keys(values).map(key => {
+			return [key, values[key]];
+		});	
+
+		console.log(chart_data);
+
+		return chart_data;
+	}
+
+	map_x_data(data) {
+		let field = this.get_field_name(this.data_x_axis);
+		this.value.ticks = [];
+		for (var index = 0; index < data.length; index++) {
+			this.value.ticks.push((data[index][field]));
+		}
+	}
+
+	map_y_data(data) {
+		let field = this.get_field_name(this.data_y_axis);
+		this.value.data = [];
+		for (var index = 0; index < data.length; index++) {
+			this.value.data.push(parseFloat(data[index][field]));
+		}
+	}
+
+	get_field_name(uuid) {
+		let fields = this.get_table_fields();
+		if (!fields) return console.log('No fields available');
+		for (var index = 0; index < fields.length; index++) {
+			if (fields[index].uuid == uuid) {
+				return fields[index].title;
+			}
+		}
+	}
+
 	toObject() {
 		var obj = super.toObject();
 
@@ -54,26 +187,26 @@ export class BaseChart extends ControlInterface {
 		return obj;
 	}
 
-	resize(width, height){
+	resize(width, height) {
 		super.resize(width, height);
-		
+
 		this.create_chart();
 	}
 
 	format() {
 		super.format();
-		
+
 		this.setControlStyle();
-		
+
 		var caption = this.ctrl.find('.chart-caption');
 		caption.hide();
 		this.label = this.label.trim();
 		caption.html(this.label);
-		if (this.label.length !== 0){
+		if (this.label.length !== 0) {
 			caption.show();
 		}
 
-		for(var key in this.style){
+		for (var key in this.style) {
 			caption.css(key, this.style[key]);
 		}
 
@@ -83,11 +216,12 @@ export class BaseChart extends ControlInterface {
 
 	}
 
-	create_chart(){
+	create_chart() {
 		if (this.chart) {
-			if (typeof this.chart.destroy === 'function'){
+			if (typeof this.chart.destroy === 'function') {
+				console.log('remove old chart')
 				this.chart.destroy();
-			} 
+			}
 			this.chart = null;
 		}
 
@@ -107,6 +241,10 @@ export class BaseChart extends ControlInterface {
 		}
 
 		try {
+			if (this.value.data.length === 0) {
+				this.chart_area.append("<span class='lead text-danger'>No data available for chart</span>");
+				return console.log('No data to draw');
+			}
 			this.draw();
 		} catch (e) {
 			console.log(e);
@@ -118,46 +256,25 @@ export class BaseChart extends ControlInterface {
 		this.setValue();
 	}
 
-	setValue(value) {
+	async setValue(value) {
 		this.value = typeof value !== "undefined" ? value : this.value;
-		var $this = this;
 
-		// this.get_datasource(function (data_) {
-		// 	var datasource = [];
-		// 	if (data_) {
-		// 		datasource = data_.slice(1);
-		// 	} else {
-		// 		if ($this.value instanceof Array)
-		// 			datasource = $this.value.slice(0);
-		// 		else
-		// 			datasource = Object.assign({}, $this.value);
-		// 	}
-		// 	if (datasource instanceof Array) {
-		// 		$this.value = {
-		// 			data: [],
-		// 			ticks: []
-		// 		};
-		// 		for (var index = 0; index < datasource.length; index++) {
-		// 			var row = datasource[index];
-
-		// 			if (isNaN(parseFloat(row[1])) === true) continue;
-
-		// 			$this.value.ticks.push(row[0]);
-		// 			$this.value.data.push(parseFloat(row[1]));
-		// 		}
-		// 		console.log(datasource)
-		// 	}
-			
-		// 	if (!($this.value.data instanceof Array)) $this.value = Object.assign({}, $this.properties.value);
-			
-		// 	if ($("#" + $($this.chart_area).attr("id")).length === 0) {
-		// 		return console.log('Cannot find chart area');
-		// 	}
-			
-		// 	$this.resize();
-		// 	$this.format();
-		// });
+		this.read_records().then(function (data) {
+			// console.log(data);
+			if (data) {
+				let values = this.get_chart_data(data);
+				this.value.ticks_data = values.slice();
+				this.value.ticks = values.map(item => item[0]); 
+				this.value.data = values.map(item => item[1]); 
+				// this.map_x_data(data);
+				// this.map_y_data(data);
+				this.create_chart();
+				// console.log(this.value);
+			}
+		}.bind(this));
 	}
+
+
 
 	getControl() {
 		this.ctrl = $(`<div class="chart">

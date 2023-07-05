@@ -137,6 +137,7 @@ export default class Form extends ControlInterface {
 
 	//Populate form with any message that was passed to the form
 	pre_load(message) {
+		
 		this.pre_message = Object.assign(this.pre_message, message || {});
 
 		this.message = Object.assign({}, this.pre_message);

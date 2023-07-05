@@ -56,6 +56,12 @@ export const ControlDatasource = (superclass) => class extends superclass {
 			//Give the record a system-id
 			record.__system_id__ = generate_uuid();
 
+			for(let field of table){
+				if (field.name === this.datamodel.TableManager.SYSTEM_FIELDS.Created_On) {
+					record[field.uuid] = new Date().toLocaleString("en-GB").replace(",", "");
+				}
+			}
+			
 			table.data.push(record);
 
 			resolve(record);
@@ -117,7 +123,7 @@ export const ControlDatasource = (superclass) => class extends superclass {
 
 			list_to_remove.forEach(function (idx) {
 				table.data.splice(idx, 1);
-			}.bind(this));
+			});
 
 			resolve();
 		});

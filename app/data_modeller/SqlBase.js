@@ -30,7 +30,7 @@ export default class SqlBase {
 	}
 
 	toObject() {
-		var obj = Object.assign({}, this);
+		let obj = Object.assign({}, this);
 
 		delete obj.owner;
 		delete obj.flag;
@@ -39,8 +39,9 @@ export default class SqlBase {
 		delete obj.dom;
 		delete obj.moving;
 		delete obj.prototype;
+		delete obj.TableManager;
 
-		for (var key in obj) {
+		for (let key in obj) {
 			if (typeof obj[key] === 'function') delete obj[key];
 		}
 
@@ -48,29 +49,27 @@ export default class SqlBase {
 	}
 
 	set_title(name, comment) {
-		if (name === undefined || name === null)
-			name = this.name;
-		else
+		if (name != undefined && name != null){
 			this.name = name.trim();
+		}
 
-		if (comment === undefined || comment === null)
-			comment = this.comment;
-		else
+		if (comment != undefined && comment != null){
 			this.comment = comment;
+		}
 
-
-		var _title = this.title;
+		let _title = this.title;
 
 		if (this.comment) {
 			_title += '<p class="comment">' + this.comment + '</p>';
 		}
 
-		if (this.dom.title)
+		if (this.dom.title){
 			this.dom.title.html(_title);
+		}
 	}
 
 	setName(string) {
-		this.name = typeof string === 'undefined' ? string.trim() : this.name;
+		this.name = string ? string.trim() : this.name;
 
 		this.name = string;
 	}
