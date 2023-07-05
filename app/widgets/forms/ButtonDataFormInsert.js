@@ -12,6 +12,13 @@ export default class ButtonDataFormInsert extends Button {
 
 	is_data_aware = true;
 
+	toObject() {
+		let obj = super.toObject();
+		
+		console.log(obj)
+		return obj;
+	}
+
 	handle_insert() {
 		let dataForm = new DataForm();
 

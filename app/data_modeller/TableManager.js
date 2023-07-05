@@ -8,6 +8,12 @@ export default class TableManager{
 	adding 	= false;
 	tables	= {};
 	relations = [];
+	SYSTEM_FIELDS = {
+		Created_On: 'Created On',
+		Updated_On: 'Updated On'
+	};
+
+	system_fields = [this.SYSTEM_FIELDS.Created_On, this.SYSTEM_FIELDS.Updated_On];
 
 	constructor(container, owner){
 		this.container = container;
@@ -114,9 +120,12 @@ export default class TableManager{
 			newtable = this.addTable(tbl_name, x, y);
 
 			let col_opts = {nullable:false, auto_increment:true, show_on_editor:false, show_on_grid:true, show_on_import:false};
-			newtable.addRow("id",col_opts);
-			newtable.addRow("name",{ai:false});
+			newtable.addRow("ID",col_opts);
+			newtable.addRow("Name",{ai:false});
 
+			this.system_fields.forEach(field => {
+				newtable.addRow(field,{ai:false});	
+			});
 		} else {
 			for(t in this.tables){
 				this.tables[t].deselect();

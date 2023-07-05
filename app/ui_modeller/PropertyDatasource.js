@@ -53,12 +53,10 @@ export default class PropertyDatasource {
         }.bind(this));
 
         mapper.find('input').on('click', function (evt) {
-            console.log(evt.target);
             let ctrl = this.ctrl;
 
             if (this.ctrl.data_single_field_selector === true) {
                 mapper.find('input').each(function () {
-                    console.log(this)
                     if (this != evt.target) {
                         this.checked = false;
                     }
@@ -68,13 +66,12 @@ export default class PropertyDatasource {
             //Reset list and only added selected items
             ctrl.data_fields = [];
             mapper.find('input').each(function () {
-                console.log(this)
                 if (this.checked) {
                     ctrl.data_fields.push(this.value);
                 }
             });
 
-            console.log(ctrl.data_fields)
+            document.dispatchEvent(new CustomEvent('ide-is-dirty'));
         }.bind(this));
 
         new Dialog(mapper, {
@@ -188,7 +185,7 @@ export default class PropertyDatasource {
                 document.dispatchEvent(new CustomEvent('ide-is-dirty'));
             }.bind(this))
 
-        let div = $(`<div></div>`).append(input).appendTo(mapper);
+        $(`<div></div>`).append(input).appendTo(mapper);
 
         let filter_types = ['equals', 'not equal', 'is empty', 'contains'];
 
@@ -212,7 +209,7 @@ export default class PropertyDatasource {
             document.dispatchEvent(new CustomEvent('ide-is-dirty'));
         }.bind(this));
 
-        div = $(`<div></div>`).append(select).appendTo(mapper);
+        $(`<div></div>`).append(select).appendTo(mapper);
     }
 
     #make_table_selector() {
@@ -274,9 +271,7 @@ export default class PropertyDatasource {
     #make_field_mapper_button() {
         let btn = $(`<button class="w-100">Fields</button>`);
 
-        btn.on('click', function () {
-            this.open_field_selector();
-        }.bind(this));
+        btn.on('click',this.open_field_selector.bind(this));
 
         return btn;
     }

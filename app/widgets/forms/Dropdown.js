@@ -55,11 +55,21 @@ export default class DropDown extends BaseFormControl(ControlInterface) {
 	}
 
 	setValue(value) {
-		this.value = typeof value !== 'undefined' ? value : this.value;
+		let parts = [];
+
+		//Make sure that you have an array
+		if (value instanceof Array) {
+			this.value = value;
+		} else if (typeof value === "string") {
+			parts = value.split(/\n|\r|,/);
+			if (parts.length > 1) {
+				this.value = parts;
+			}
+		}
+
+		// this.value = value || this.value;
 
 		this.read_records().then(function (data) {
-			let parts =[];
-
 			if (data) {
 				this.value = data;
 			}
@@ -77,7 +87,7 @@ export default class DropDown extends BaseFormControl(ControlInterface) {
 	}
 
 	SetFromArray(items) {
-		var select = this.ctrl.find('select');
+		let select = this.ctrl.find('select');
 
 		select.find("option").remove();
 		select.append('<option>');
@@ -97,7 +107,7 @@ export default class DropDown extends BaseFormControl(ControlInterface) {
 
 		this.ctrl.find('option').removeAttr('selected');
 		this.ctrl.find('option').each(function () {
-			var opt = $(this);
+			let opt = $(this);
 
 			if (value == opt.val()) {
 				opt.attr('selected', 'selected');

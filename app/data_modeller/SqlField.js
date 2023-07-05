@@ -1,6 +1,7 @@
 import App from "../common/App.js";
 import ColumnProperties from "./ColumnProperties.js";
 import SqlBase from "./SqlBase.js";
+import TableManager from "./TableManager.js";
 
 export default class SqlField extends SqlBase{
 	
@@ -18,14 +19,17 @@ export default class SqlField extends SqlBase{
 	keys			= {};
 	selected		= false;
 	object_type 	= 'FIELD';
-	
+
+	/** @type{TableManager||undefined} */
+	TableManager 	= null;
+
 	constructor(owner, title, data, tableManager){
 		super();
 
 		this.ColumnProperties = new ColumnProperties(this, tableManager);
 
 		this.table = owner;
-
+		this.TableManager = tableManager;
 		this.name = title;
 		this.title = title;
 
@@ -58,7 +62,7 @@ export default class SqlField extends SqlBase{
 	
 	
 	build() {
-		var dest = this;
+		let dest = this;
 		
 		this.dom.container = $("<tr class='sql-table-field'>")
 									.append("<td class='remove-field faded-text' style='width:20px;'><span class='hide-me la la-times'></span></td>")
@@ -74,25 +78,9 @@ export default class SqlField extends SqlBase{
 			evt.stopPropagation();
 			evt.data.ColumnProperties.Show();
 		});
-
-		this.dom.container.find('.la-times').on('click tap', this, function(evt){
-			evt.stopPropagation();
-
-			Ap.Confirm('Are you sure you want to remove the field' + ' [' + evt.data.name + '] ?', function () {
-				evt.data.destroy();
-			});
-		});
 		
-		this.dom.container.on('mouseover', function(evt){
-			evt.stopPropagation();
-			dest.dom.container.find('.hide-me').show();
-		});
+		this.allow_field_removal();
 
-		this.dom.container.on('mouseleave', function(evt){
-			evt.stopPropagation();
-			dest.dom.container.find('.hide-me').hide();
-		});
-		
 		this.dom.container
 			.draggable({
 				revert	: 'invalid',
@@ -100,7 +88,7 @@ export default class SqlField extends SqlBase{
 			})
 			.droppable({
 				drop		: function(evt, ui){
-					var src		= ui.draggable.prop('row');
+					let src		= ui.draggable.prop('row');
 					document.dispatchEvent(new CustomEvent('foreign-key-add', {
 						detail:{
 							table: src.table,
@@ -115,8 +103,35 @@ export default class SqlField extends SqlBase{
 		this.redraw();
 	}
 
+	allow_field_removal(){
+		if (this.TableManager.system_fields.indexOf(this.name) !== -1){
+			this.dom.container.find('.la-times').remove();
+			return;
+		}
+
+		this.dom.container.find('.hide-me').hide();
+
+		this.dom.container.find('.la-times').on('click tap', this, function(evt){
+			evt.stopPropagation();
+
+			App.Confirm('Are you sure you want to remove the field' + ' [' + evt.data.name + '] ?', function () {
+				evt.data.destroy();
+			});
+		});
+		
+		this.dom.container.on('mouseover', function(evt){
+			evt.stopPropagation();
+			this.dom.container.find('.hide-me').show();
+		}.bind(this));
+
+		this.dom.container.on('mouseleave', function(evt){
+			evt.stopPropagation();
+			this.dom.container.find('.hide-me').hide();
+		}.bind(this));
+	}
+
 	setTitle(t) {
-		// var _title = t;
+		// let _title = t;
 				
 		// if (this.comment){
 		// 	_title += '<p class="comment">'+this.comment+'</p>';
@@ -129,12 +144,12 @@ export default class SqlField extends SqlBase{
 	}
 
 	setName(string){
-		var result = false;
+		let result = false;
 
 		if (typeof string === 'undefined') return result;
 
-		var title = $.trim(string);
-		var db_name = title.toLowerCase().replace(/( )/g, '_');
+		let title = $.trim(string);
+		let db_name = title.toLowerCase().replace(/( )/g, '_');
 
 		//MAKE SURE THAT THE NAME IS NOT ALREADY IN THE LIST OF FIELDS
 		if (typeof this.table.fields[this.uuid] === 'undefined' ||
@@ -160,13 +175,13 @@ export default class SqlField extends SqlBase{
 	}
 		
 	reset_index(){
-		for(var c in this.table.fields){
+		for(let c in this.table.fields){
 			this.table.fields[c].index = this.table.fields[c].dom.container.index();
 		}
 	}
 	
 	up() {
-		var prev = this.dom.container.prevAll('tr:visible:first');
+		let prev = this.dom.container.prevAll('tr:visible:first');
 		if (prev.length === 0){
 			return;
 		}
@@ -176,7 +191,7 @@ export default class SqlField extends SqlBase{
 	}
 
 	down() {
-		var next = this.dom.container.nextAll('tr:visible:first');
+		let next = this.dom.container.nextAll('tr:visible:first');
 		if (next.length === 0){
 			return;
 		}
@@ -186,7 +201,7 @@ export default class SqlField extends SqlBase{
 	}
 
 	redraw() {
-		var title		= this.dom.container.find('.title'),
+		let title		= this.dom.container.find('.title'),
 			field_type	= this.dom.container.find('.field-type'),
 			i			= 0,
 			rel			= null;
@@ -211,7 +226,7 @@ export default class SqlField extends SqlBase{
 	}
 
 	destroy() {
-		for (var i=0;i<this.keys.length;i++){
+		for (let i=0;i<this.keys.length;i++){
 			this.keys[i].removeRow(this);
 		}
 
@@ -226,7 +241,7 @@ export default class SqlField extends SqlBase{
 	}
 	
 	toObject() {
-		var obj = super.toObject();
+		let obj = super.toObject();
 			
 		delete obj.table;
 		delete obj.selected;
@@ -234,7 +249,7 @@ export default class SqlField extends SqlBase{
 		delete obj.keys;
 		delete obj.ColumnProperties;
 		
-		for(var key in obj){
+		for(let key in obj){
 			if (typeof obj[key] === 'function') delete obj[key];
 		}
 		
@@ -294,9 +309,9 @@ export default class SqlField extends SqlBase{
 	}
 
 	isUnique() {
-		for (var i=0;i<this.keys.length;i++) {
-			var k = this.keys[i];
-			var t = k.getType();
+		for (let i=0;i<this.keys.length;i++) {
+			let k = this.keys[i];
+			let t = k.getType();
 			if (t === 'PRIMARY' || t === 'UNIQUE') { return true; }
 		}
 		return false;

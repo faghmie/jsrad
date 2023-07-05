@@ -30,7 +30,7 @@ export default class SqlBase {
 	}
 
 	toObject() {
-		var obj = Object.assign({}, this);
+		let obj = Object.assign({}, this);
 
 		delete obj.owner;
 		delete obj.flag;
@@ -39,8 +39,9 @@ export default class SqlBase {
 		delete obj.dom;
 		delete obj.moving;
 		delete obj.prototype;
+		delete obj.TableManager;
 
-		for (var key in obj) {
+		for (let key in obj) {
 			if (typeof obj[key] === 'function') delete obj[key];
 		}
 
@@ -48,29 +49,27 @@ export default class SqlBase {
 	}
 
 	set_title(name, comment) {
-		if (name === undefined || name === null)
-			name = this.name;
-		else
+		if (name != undefined && name != null){
 			this.name = name.trim();
+		}
 
-		if (comment === undefined || comment === null)
-			comment = this.comment;
-		else
+		if (comment != undefined && comment != null){
 			this.comment = comment;
+		}
 
-
-		var _title = this.title;
+		let _title = this.title;
 
 		if (this.comment) {
 			_title += '<p class="comment">' + this.comment + '</p>';
 		}
 
-		if (this.dom.title)
+		if (this.dom.title){
 			this.dom.title.html(_title);
+		}
 	}
 
 	setName(string) {
-		this.name = typeof string === 'undefined' ? string.trim() : this.name;
+		this.name = string ? string.trim() : this.name;
 
 		this.name = string;
 	}
@@ -110,10 +109,7 @@ export default class SqlBase {
                     </div>
                     <div class="toolbox-body"></div>
                 </div>`)
-            .appendTo($('body'))
-            .draggable({
-                handle: '.design-toolbox-title'
-            });
+            .appendTo($('body'));
 
             panel.on('click', panel, function (evt) {
 				let panel = evt.data;
@@ -142,7 +138,43 @@ export default class SqlBase {
 
 		panel.show();
 
+		this.make_panel_draggable($('body'), panel)
         return panel;
     }
+
+	make_panel_draggable(container, panel){
+        panel.attr('draggable', 'true');
+        panel.uniqueId();
+        panel[0].addEventListener('dragstart', function (evt) {
+			let style = window.getComputedStyle(evt.target, null);
+
+			evt.dataTransfer.setData("text/plain", JSON.stringify({
+				left: (parseInt(style.getPropertyValue("left"), 10) - evt.clientX),
+				top: (parseInt(style.getPropertyValue("top"), 10) - evt.clientY),
+				id: evt.target.id
+			}));
+		});
+
+        container.on('dragover', function (evt) {
+			evt.preventDefault(); // stops the browser from redirecting.
+			return false;
+		});
+
+        container[0].addEventListener('drop', function (evt) {
+			let info = JSON.parse(evt.dataTransfer.getData("text/plain"));
+			if (info.id) {
+				let ctrl = document.getElementById(info.id);
+				let left = (evt.clientX + parseInt(info.left, 10));
+				let top = (evt.clientY + parseInt(info.top, 10));
+
+                ctrl.style.top = top +'px';
+                ctrl.style.left = left + 'px';
+			}
+
+			// evt.stopPropagation(); // stops the browser from redirecting.
+			// return false;
+		}.bind(this));
+    }
+
 
 }

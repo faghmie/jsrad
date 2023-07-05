@@ -55,7 +55,7 @@ export default class ProjectManager {
             uuid: uuid
         };
 
-
+        this.designer.DataModeller.ClearTables();
         this.Forms.addForm().then(function () {
             this.designer.switch_context();
         }.bind(this));

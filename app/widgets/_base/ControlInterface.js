@@ -43,6 +43,7 @@ export default class ControlInterface extends ControlDatasource(ControlActivityB
 	is_a_card = false;
 	aspect_ratio = false;
 	is_locked = false;
+	snap_to_width = false;
 
 	/** @type {ControlInterface | undefined} */
 	controls = {};
@@ -318,6 +319,15 @@ export default class ControlInterface extends ControlDatasource(ControlActivityB
 	}
 
 	resize(width, height) {
+		if (true === this.snap_to_width){
+			let form = this.getForm();
+			if (form != this){
+				width = form.width;
+				height ||= this.height;
+				this.move(0, this.top);
+			}
+		}
+
 		if (width !== undefined && height !== undefined) {
 			this.width = width;
 			if (false === this.height_fixed){
@@ -344,6 +354,7 @@ export default class ControlInterface extends ControlDatasource(ControlActivityB
 				height: this.height
 			});
 		}
+
 		if (!this.ctrl) return;
 
 		this.ctrl.css({
@@ -564,8 +575,9 @@ export default class ControlInterface extends ControlDatasource(ControlActivityB
 		return this;
 	}
 
-	setControlStyle(css) {
+	setControlStyle() {
 		let key = null;
+
 		if (!this.ctrl) return;
 
 		for (key in this.style) {
@@ -877,8 +889,9 @@ export default class ControlInterface extends ControlDatasource(ControlActivityB
 	}
 
 	make_droppable(ctrl) {
-		let form = this.getForm() || ctrl;
-		if (!ctrl) return;
+		if (!ctrl){
+			return;
+		}
 
 		ctrl.on('dragover', function (evt) {
 			evt.preventDefault(); // stops the browser from redirecting.
@@ -893,6 +906,10 @@ export default class ControlInterface extends ControlDatasource(ControlActivityB
 				let top = (evt.clientY + parseInt(info.top, 10));
 
 				ctrl.move(left, top);
+				document.dispatchEvent(new CustomEvent('ui-control-redraw-connector', {
+					detail: ctrl
+				}));
+
 			} else if (info.widget) {
 				let widget = JSON.parse(info.widget);
 				widget.left = evt.offsetX;
@@ -901,7 +918,9 @@ export default class ControlInterface extends ControlDatasource(ControlActivityB
 					detail: widget
 				}));
 			}
+			
 			evt.stopPropagation(); // stops the browser from redirecting.
+
 			return false;
 		}.bind(this));
 

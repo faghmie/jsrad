@@ -136,12 +136,12 @@ export default class TableControl extends ControlInterface {
 	}
 	
 	SetFromArray (value){
-		let list = value,
+		let list = [...(value||[])],
 			hdr = null;
 		
 		let fields_to_ignore = ['__system_id__'];
 
-		if (!(value instanceof Array)) list = this.value;
+		if (!(value instanceof Array)) list = [...this.value];
 
 		if (!(list instanceof Array)) 
 		{
@@ -165,8 +165,7 @@ export default class TableControl extends ControlInterface {
 			}
 			tr.append(`<th>${col}</th>`);
 		});
-
-
+		
 		let tbody = $('<tbody>');
 		list.forEach(row =>{
 			tr = $(`<tr>`).appendTo(tbody);
